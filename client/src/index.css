@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    
+    --color-cream-50: #FCFAF6;
+    --color-cream-100: #F7F3E9;
+    --color-cream-200: #EFE8D6;
+    --color-cream-300: #E3D9C0;
+    
+    --color-forest-900: #0D261A;
+    --color-forest-800: #153E2B;
+    --color-forest-700: #1E5138;
+    --color-forest-600: #296748;
+    
+    --color-gold-500: #C5A059;
+    --color-gold-400: #D8B26E;
+    --color-gold-600: #A8833E;
+    
+    --color-spice-500: #B85D3A;
+    --color-spice-600: #9B4929;
+    
+    --color-earth-900: #241D17;
+    --color-earth-800: #382F26;
+    --color-earth-600: #6B5E51;
+    --color-earth-400: #A69888;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #FAF7F2;
+    color: #241D17;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-editorial {
+    font-family: var(--font-serif);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F4EFE6;
+}
+::-webkit-scrollbar-thumb {
+  background: #D8B26E;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B38D45;
+}
+
+/* Luxury card styling */
+.luxury-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(197, 160, 89, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.luxury-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -8px rgba(21, 62, 43, 0.12), 0 4px 12px rgba(197, 160, 89, 0.08);
+  border-color: rgba(197, 160, 89, 0.45);
+}
+
+/* Subtle botanical pattern overlay */
+.bg-spice-pattern {
+  background-color: #FAF7F2;
+  background-image: radial-gradient(rgba(197, 160, 89, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Glassmorphism panel */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Animations */
+@keyframes pulseSubtle {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 3s ease-in-out infinite;
+}
