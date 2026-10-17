@@ -1,13 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext.js';
+import { useAuth } from '../context/AuthContext.js';
 import { formatINR } from '../utils/format.js';
 import { X, Plus, Minus, Trash2, ShoppingBag, ArrowRight, Sparkles } from 'lucide-react';
 
 export const MiniCartDrawer: React.FC = () => {
   const { cart, isMiniCartOpen, closeMiniCart, updateQuantity, removeFromCart } = useCart();
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   if (!isMiniCartOpen) return null;
+
+  const handleViewCart = () => {
+    closeMiniCart();
+    if (!user) {
+      navigate('/login?redirect=/cart', {
+        state: { message: 'Please sign in to view your shopping cart.' }
+      });
+    } else {
+      navigate('/cart');
+    }
+  };
+
+  const handleCheckout = () => {
+    closeMiniCart();
+    if (!user) {
+      navigate('/login?redirect=/checkout', {
+        state: { message: 'Please sign in to proceed to checkout and payment.' }
+      });
+    } else {
+      navigate('/checkout');
+    }
+  };
 
   const threshold = cart.freeShippingThresholdPaise;
   const progressPercent = Math.min(100, Math.round((cart.subtotalPaise / threshold) * 100));
@@ -15,14 +40,14 @@ export const MiniCartDrawer: React.FC = () => {
   return (
     <div className="fixed inset-0 z-50 overflow-hidden">
       {/* Backdrop */}
-      <div 
+      <div
         onClick={closeMiniCart}
         className="absolute inset-0 bg-black/50 backdrop-blur-xs transition-opacity duration-300"
       />
 
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
         <div className="w-screen max-w-md bg-[#FCFAF6] shadow-2xl flex flex-col border-l border-[#EFE8D6]">
-          
+
           {/* Header */}
           <div className="p-5 border-b border-[#EFE8D6] flex items-center justify-between bg-white">
             <div className="flex items-center gap-2">
@@ -32,7 +57,7 @@ export const MiniCartDrawer: React.FC = () => {
                 {cart.items.reduce((s, i) => s + i.quantity, 0)}
               </span>
             </div>
-            <button 
+            <button
               onClick={closeMiniCart}
               className="p-1.5 text-stone-400 hover:text-stone-700 rounded-full hover:bg-stone-100 transition-colors"
             >
@@ -46,17 +71,17 @@ export const MiniCartDrawer: React.FC = () => {
               {cart.qualifiesForFreeShipping ? (
                 <span className="text-[#153E2B] flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
-                  <span>Congratulations! You qualify for <strong>FREE Delivery</strong></span>
+                  <span>Congratulations! You qualify for <strong> transparency delivery </strong></span>
                 </span>
               ) : (
                 <span className="text-stone-600">
-                  Add <strong className="text-[#153E2B]">{formatINR(cart.freeShippingRemainingPaise)}</strong> more to get <strong>FREE Delivery</strong>
+                  Add <strong className="text-[#153E2B]">{formatINR(cart.freeShippingRemainingPaise)}</strong> more to get <strong> transparency delivery </strong>
                 </span>
               )}
               <span className="text-[#C5A059] font-bold">{progressPercent}%</span>
             </div>
             <div className="w-full h-2 bg-stone-200 rounded-full overflow-hidden">
-              <div 
+              <div
                 className="h-full bg-gradient-to-r from-[#C5A059] to-[#153E2B] transition-all duration-500 rounded-full"
                 style={{ width: `${progressPercent}%` }}
               />
@@ -81,18 +106,18 @@ export const MiniCartDrawer: React.FC = () => {
               </div>
             ) : (
               cart.items.map((item) => (
-                <div 
+                <div
                   key={`${item.productId}-${item.variantId}`}
                   className="flex gap-3 bg-white p-3 rounded-xl border border-stone-100 shadow-2xs hover:border-[#C5A059]/30 transition-colors"
                 >
-                  <img 
-                    src={item.image} 
+                  <img
+                    src={item.image}
                     alt={item.productName}
                     className="w-18 h-18 object-cover rounded-lg bg-stone-100 shrink-0"
                   />
                   <div className="flex-1 min-w-0">
                     <div className="flex justify-between items-start gap-1">
-                      <Link 
+                      <Link
                         to={`/product/${item.productSlug}`}
                         onClick={closeMiniCart}
                         className="text-xs font-bold text-[#153E2B] hover:underline line-clamp-1"
@@ -161,21 +186,21 @@ export const MiniCartDrawer: React.FC = () => {
               </p>
 
               <div className="grid grid-cols-2 gap-2 pt-1">
-                <Link
-                  to="/cart"
-                  onClick={closeMiniCart}
-                  className="w-full text-center py-2.5 px-3 border border-[#153E2B] text-[#153E2B] hover:bg-[#153E2B]/5 rounded-xl text-xs font-bold tracking-wide transition-colors"
+                <button
+                  type="button"
+                  onClick={handleViewCart}
+                  className="w-full text-center py-2.5 px-3 border border-[#153E2B] text-[#153E2B] hover:bg-[#153E2B]/5 rounded-xl text-xs font-bold tracking-wide transition-colors cursor-pointer"
                 >
                   View Cart
-                </Link>
-                <Link
-                  to="/checkout"
-                  onClick={closeMiniCart}
-                  className="w-full flex items-center justify-center gap-1.5 py-2.5 px-3 bg-[#153E2B] text-[#F7F3E9] hover:bg-[#1E5138] rounded-xl text-xs font-bold tracking-wide shadow-md transition-all group"
+                </button>
+                <button
+                  type="button"
+                  onClick={handleCheckout}
+                  className="w-full flex items-center justify-center gap-1.5 py-2.5 px-3 bg-[#153E2B] text-[#F7F3E9] hover:bg-[#1E5138] rounded-xl text-xs font-bold tracking-wide shadow-md transition-all group cursor-pointer"
                 >
                   <span>Checkout</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                </button>
               </div>
             </div>
           )}

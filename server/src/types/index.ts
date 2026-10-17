@@ -188,6 +188,7 @@ export interface IReview {
 }
 
 export interface IStoreSettings {
+  _id?: string;
   storeName: string;
   brandTagline: string;
   announcementText: string;

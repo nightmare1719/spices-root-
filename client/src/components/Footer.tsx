@@ -53,7 +53,7 @@ export const Footer: React.FC = () => {
             </div>
             <div>
               <h4 className="text-xs font-bold uppercase tracking-wider text-[#F7F3E9]">Pan-India Delivery</h4>
-              <p className="text-[11px] text-[#E3D9C0]">Free on orders above ₹999</p>
+              <p className="text-[11px] text-[#E3D9C0]">transparency shipping</p>
             </div>
           </div>
 

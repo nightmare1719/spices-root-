@@ -6,10 +6,10 @@ import { useCart } from '../context/CartContext.js';
 import { useWishlist } from '../context/WishlistContext.js';
 import { formatINR, getDiscountPercentage } from '../utils/format.js';
 import { ProductCard } from '../components/ProductCard.js';
-import { 
-  Heart, ShoppingBag, Zap, Star, ShieldCheck, 
-  Truck, RotateCcw, ChevronRight, Plus, Minus, 
-  MapPin, CheckCircle, Sparkles, MessageSquare 
+import {
+  Heart, ShoppingBag, Zap, Star, ShieldCheck,
+  Truck, RotateCcw, ChevronRight, Plus, Minus,
+  MapPin, CheckCircle, Sparkles, MessageSquare
 } from 'lucide-react';
 
 export const ProductDetailPage: React.FC = () => {
@@ -135,7 +135,7 @@ export const ProductDetailPage: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
-      
+
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-xs text-stone-500">
         <Link to="/" className="hover:text-[#153E2B]">Home</Link>
@@ -151,7 +151,7 @@ export const ProductDetailPage: React.FC = () => {
 
       {/* Main Product Hero Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        
+
         {/* Left: Image Gallery */}
         <div className="space-y-4">
           <div className="aspect-square rounded-3xl overflow-hidden bg-stone-100 border border-[#EFE8D6] shadow-sm relative group">
@@ -174,11 +174,10 @@ export const ProductDetailPage: React.FC = () => {
                 <button
                   key={idx}
                   onClick={() => setActiveImageIndex(idx)}
-                  className={`w-20 h-20 rounded-xl overflow-hidden border-2 transition-all shrink-0 ${
-                    activeImageIndex === idx 
-                      ? 'border-[#153E2B] ring-2 ring-[#C5A059]/40' 
+                  className={`w-20 h-20 rounded-xl overflow-hidden border-2 transition-all shrink-0 ${activeImageIndex === idx
+                      ? 'border-[#153E2B] ring-2 ring-[#C5A059]/40'
                       : 'border-stone-200 opacity-70 hover:opacity-100'
-                  }`}
+                    }`}
                 >
                   <img src={img} alt={`${product.name} thumb ${idx}`} className="w-full h-full object-cover" />
                 </button>
@@ -189,7 +188,7 @@ export const ProductDetailPage: React.FC = () => {
 
         {/* Right: Product Info & Actions */}
         <div className="space-y-6">
-          
+
           <div>
             {/* Origin & Rating */}
             <div className="flex items-center justify-between gap-2 mb-2">
@@ -205,9 +204,8 @@ export const ProductDetailPage: React.FC = () => {
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className={`w-4 h-4 ${
-                        i < Math.floor(product.rating) ? 'fill-current' : 'text-stone-300'
-                      }`}
+                      className={`w-4 h-4 ${i < Math.floor(product.rating) ? 'fill-current' : 'text-stone-300'
+                        }`}
                     />
                   ))}
                 </div>
@@ -265,11 +263,10 @@ export const ProductDetailPage: React.FC = () => {
                     setSelectedVariantIndex(idx);
                     setQuantity(1);
                   }}
-                  className={`p-3 rounded-xl border text-left transition-all ${
-                    idx === selectedVariantIndex
+                  className={`p-3 rounded-xl border text-left transition-all ${idx === selectedVariantIndex
                       ? 'border-[#153E2B] bg-[#153E2B] text-white shadow-xs font-bold'
                       : 'border-stone-200 bg-white text-stone-700 hover:border-[#C5A059]'
-                  }`}
+                    }`}
                 >
                   <span className="block text-xs font-bold">{v.packSize}</span>
                   <span className={`block text-[11px] mt-0.5 ${idx === selectedVariantIndex ? 'text-[#D8B26E]' : 'text-stone-500'}`}>
@@ -298,7 +295,7 @@ export const ProductDetailPage: React.FC = () => {
           {/* Quantity and Actions */}
           <div className="space-y-3 pt-2">
             <div className="flex items-center gap-4">
-              
+
               {/* Stepper */}
               <div className="flex items-center border border-stone-300 rounded-xl bg-white p-1">
                 <button
@@ -335,11 +332,10 @@ export const ProductDetailPage: React.FC = () => {
               {/* Wishlist Button */}
               <button
                 onClick={() => toggleWishlist(product.id)}
-                className={`p-3.5 border rounded-xl transition-colors shadow-xs ${
-                  isSaved
+                className={`p-3.5 border rounded-xl transition-colors shadow-xs ${isSaved
                     ? 'border-[#B85D3A] bg-[#B85D3A] text-white'
                     : 'border-stone-300 hover:border-[#153E2B] text-stone-700 bg-white'
-                }`}
+                  }`}
                 aria-label="Wishlist toggle"
               >
                 <Heart className={`w-5 h-5 ${isSaved ? 'fill-current' : ''}`} />
@@ -362,7 +358,7 @@ export const ProductDetailPage: React.FC = () => {
           <div className="grid grid-cols-3 gap-3 pt-6 border-t border-stone-200 text-center">
             <div className="p-3 bg-white rounded-xl border border-stone-100 shadow-2xs">
               <Truck className="w-4 h-4 text-[#C5A059] mx-auto mb-1" />
-              <span className="text-[10px] font-bold text-[#153E2B] block">Free Delivery</span>
+              <span className="text-[10px] font-bold text-[#153E2B] block"> transparency delivery </span>
               <span className="text-[9px] text-stone-500">On orders &gt; ₹999</span>
             </div>
             <div className="p-3 bg-white rounded-xl border border-stone-100 shadow-2xs">
@@ -383,7 +379,7 @@ export const ProductDetailPage: React.FC = () => {
 
       {/* Product Details Tabs / Editorial Accordion */}
       <div className="bg-white p-6 sm:p-10 rounded-3xl border border-[#EFE8D6] space-y-8 shadow-xs">
-        
+
         <div>
           <h2 className="font-editorial text-2xl font-bold text-[#153E2B] mb-3">
             Product Story & Description
@@ -394,7 +390,7 @@ export const ProductDetailPage: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-stone-100">
-          
+
           {product.ingredients && product.ingredients.length > 0 && (
             <div className="bg-[#FAF7F2] p-5 rounded-2xl border border-[#EFE8D6]">
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#153E2B] mb-2 flex items-center gap-1.5">

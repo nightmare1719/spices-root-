@@ -8,14 +8,18 @@ export async function connectDatabase() {
   db.init();
 
   try {
-    // Attempt Mongoose connection with short timeout so server does not hang if Mongo is offline
+    // Attempt Mongoose connection with fallback so server never crashes if offline or IP not whitelisted
     mongoose.set('strictQuery', false);
     await mongoose.connect(uri, {
-      serverSelectionTimeoutMS: 2000,
-      connectTimeoutMS: 2000
+      dbName: 'spiceroots',
+      serverSelectionTimeoutMS: 15000,
+      connectTimeoutMS: 15000
     });
     console.log(`✅ [Database] Successfully connected to MongoDB Atlas / Local at: ${uri}`);
+    await db.syncWithMongo();
   } catch (err) {
-    console.log(`ℹ️ [Database] MongoDB connection not active (${(err as Error).message}). Using built-in persistent DataStore (data/store.json).`);
+    console.log(`ℹ️ [Database] MongoDB Atlas/Local connection note: ${(err as Error).message}`);
+    console.log(`   (Tip: If using Atlas, ensure your IP is whitelisted in Network Access: 0.0.0.0/0)`);
+    console.log(`   Using built-in persistent DataStore engine (data/store.json).`);
   }
 }

@@ -114,12 +114,14 @@ export function computeVerifiedQuote(params: QuoteParams): QuoteResult {
   }
 
   // Calculate Shipping fee
-  const qualifiesForFreeShipping = subtotalPaise >= settings.freeShippingThresholdPaise;
-  const shippingFeePaise = qualifiesForFreeShipping ? 0 : settings.standardShippingFeePaise;
+  const freeShippingThresholdPaise = Number(settings.freeShippingThresholdPaise) || 99900;
+  const standardShippingFeePaise = Number(settings.standardShippingFeePaise) || 6000;
+  const qualifiesForFreeShipping = subtotalPaise >= freeShippingThresholdPaise;
+  const shippingFeePaise = qualifiesForFreeShipping ? 0 : standardShippingFeePaise;
 
   // Calculate Tax (e.g. 5% GST inclusive / calculated)
   const taxableAmount = Math.max(0, subtotalPaise - discountPaise);
-  const taxPaise = Math.round((taxableAmount * settings.taxPercent) / 100);
+  const taxPaise = Math.round((taxableAmount * (settings.taxPercent || 5)) / 100);
 
   const grandTotalPaise = taxableAmount + shippingFeePaise + taxPaise;
 
@@ -135,7 +137,7 @@ export function computeVerifiedQuote(params: QuoteParams): QuoteResult {
     },
     appliedCouponCode,
     qualifiesForFreeShipping,
-    freeShippingThresholdPaise: settings.freeShippingThresholdPaise,
+    freeShippingThresholdPaise,
     errors
   };
 }

@@ -1,9 +1,14 @@
 import fs from 'fs';
 import path from 'path';
-import { 
-  IUser, IProduct, ICategory, ICart, IWishlist, 
-  IOrder, ICoupon, IReview, IStoreSettings 
+import mongoose from 'mongoose';
+import {
+  IUser, IProduct, ICategory, ICart, IWishlist,
+  IOrder, ICoupon, IReview, IStoreSettings
 } from '../types/index.js';
+import {
+  UserModel, ProductModel, CategoryModel, CartModel,
+  WishlistModel, OrderModel, CouponModel, ReviewModel, StoreSettingsModel
+} from './mongoSchemas.js';
 
 interface DatabaseCollections {
   users: IUser[];
@@ -20,9 +25,9 @@ interface DatabaseCollections {
 const defaultSettings: IStoreSettings = {
   storeName: "Spice Roots",
   brandTagline: "Authentic Western Ghats & Kerala Spices",
-  announcementText: "🌿 Free shipping across India on orders above ₹999 | Sourced fresh from Munnar & Western Ghats",
+  announcementText: "🌿 transparency shipping across india  | Sourced fresh from Munnar & Western Ghats",
   supportEmail: "care@spiceroots.in",
-  supportPhone: "+91 94882 12345",
+  supportPhone: "+91 91885 70191",
   businessAddress: "Kalaivani Spices & Plantation Depot, Post Office Junction, Munnar, Idukki District, Kerala - 685612",
   currencySymbol: "₹",
   freeShippingThresholdPaise: 99900,
@@ -69,10 +74,20 @@ class DataStore {
       if (fs.existsSync(this.filePath)) {
         const raw = fs.readFileSync(this.filePath, 'utf-8');
         const parsed = JSON.parse(raw);
+        const settings = {
+          ...defaultSettings,
+          ...(parsed.settings || {})
+        };
+        if (!settings.standardShippingFeePaise || typeof settings.standardShippingFeePaise !== 'number') {
+          settings.standardShippingFeePaise = defaultSettings.standardShippingFeePaise;
+        }
+        if (!settings.freeShippingThresholdPaise || typeof settings.freeShippingThresholdPaise !== 'number' || settings.freeShippingThresholdPaise > 200000) {
+          settings.freeShippingThresholdPaise = defaultSettings.freeShippingThresholdPaise;
+        }
         this.inMemory = {
           ...this.inMemory,
           ...parsed,
-          settings: { ...defaultSettings, ...(parsed.settings || {}) }
+          settings
         };
       } else {
         this.save();
@@ -81,6 +96,65 @@ class DataStore {
     } catch (err) {
       console.warn('DataStore initialization warning, using memory state:', err);
       this.isLoaded = true;
+    }
+  }
+
+  private isMongoConnected(): boolean {
+    return mongoose.connection && mongoose.connection.readyState === 1;
+  }
+
+  public async syncWithMongo() {
+    if (!this.isMongoConnected()) return;
+    try {
+      this.init();
+      const mongoProductCount = await ProductModel.countDocuments();
+      if (mongoProductCount === 0 && this.inMemory.products.length > 0) {
+        console.log('🔄 [MongoDB] Initializing MongoDB collections with store products & data...');
+        for (const c of this.inMemory.categories) {
+          await CategoryModel.findOneAndUpdate({ id: c.id }, c, { upsert: true }).catch(() => {});
+        }
+        for (const p of this.inMemory.products) {
+          await ProductModel.findOneAndUpdate({ id: p.id }, p, { upsert: true }).catch(() => {});
+        }
+        for (const u of this.inMemory.users) {
+          await UserModel.findOneAndUpdate({ id: u.id }, u, { upsert: true }).catch(() => {});
+        }
+        for (const c of this.inMemory.coupons) {
+          await CouponModel.findOneAndUpdate({ id: c.id }, c, { upsert: true }).catch(() => {});
+        }
+        for (const r of this.inMemory.reviews) {
+          await ReviewModel.findOneAndUpdate({ id: r.id }, r, { upsert: true }).catch(() => {});
+        }
+        for (const o of this.inMemory.orders) {
+          await OrderModel.findOneAndUpdate({ id: o.id }, o, { upsert: true }).catch(() => {});
+        }
+        await StoreSettingsModel.findOneAndUpdate({}, this.inMemory.settings, { upsert: true, new: true });
+        console.log(`✅ [MongoDB] Successfully migrated ${this.inMemory.products.length} products and all store collections into MongoDB!`);
+      } else if (mongoProductCount > 0) {
+        // Load latest products, categories, coupons, and settings from MongoDB Atlas
+        console.log(`📥 [MongoDB] Loading ${mongoProductCount} products from MongoDB Atlas into active runtime...`);
+        const [products, categories, coupons, reviews, orders, users, settingsDoc] = await Promise.all([
+          ProductModel.find({}).lean(),
+          CategoryModel.find({}).lean(),
+          CouponModel.find({}).lean(),
+          ReviewModel.find({}).lean(),
+          OrderModel.find({}).lean(),
+          UserModel.find({}).lean(),
+          StoreSettingsModel.findOne({}).lean()
+        ]);
+
+        if (products.length) this.inMemory.products = products as any;
+        if (categories.length) this.inMemory.categories = categories as any;
+        if (coupons.length) this.inMemory.coupons = coupons as any;
+        if (reviews.length) this.inMemory.reviews = reviews as any;
+        if (orders.length) this.inMemory.orders = orders as any;
+        if (users.length) this.inMemory.users = users as any;
+        if (settingsDoc) this.inMemory.settings = { ...defaultSettings, ...(settingsDoc as any) };
+        this.save();
+        console.log('✅ [MongoDB] Active catalog and data synced from MongoDB Atlas.');
+      }
+    } catch (err) {
+      console.warn('⚠️ [MongoDB] Sync note:', (err as Error).message);
     }
   }
 
@@ -112,18 +186,28 @@ class DataStore {
     const newUser: IUser = { ...user, id, _id: id, createdAt: user.createdAt || now, updatedAt: now };
     this.inMemory.users.push(newUser);
     this.save();
+    if (this.isMongoConnected()) {
+      UserModel.findOneAndUpdate({ id: newUser.id }, newUser, { upsert: true }).catch(err => {
+        console.error('Mongo User save error:', err.message);
+      });
+    }
     return newUser;
   }
   public updateUser(id: string, updates: Partial<IUser>) {
     this.init();
     const index = this.inMemory.users.findIndex(u => u.id === id || u._id === id);
     if (index === -1) return null;
-    this.inMemory.users[index] = { 
-      ...this.inMemory.users[index], 
-      ...updates, 
-      updatedAt: new Date().toISOString() 
+    this.inMemory.users[index] = {
+      ...this.inMemory.users[index],
+      ...updates,
+      updatedAt: new Date().toISOString()
     };
     this.save();
+    if (this.isMongoConnected()) {
+      UserModel.findOneAndUpdate({ id }, this.inMemory.users[index], { upsert: true }).catch(err => {
+        console.error('Mongo User update error:', err.message);
+      });
+    }
     return this.inMemory.users[index];
   }
 
@@ -144,18 +228,28 @@ class DataStore {
     const newProduct: IProduct = { ...product, id, _id: id, createdAt: now, updatedAt: now };
     this.inMemory.products.push(newProduct);
     this.save();
+    if (this.isMongoConnected()) {
+      ProductModel.findOneAndUpdate({ id: newProduct.id }, newProduct, { upsert: true }).catch(err => {
+        console.error('Mongo Product create error:', err.message);
+      });
+    }
     return newProduct;
   }
   public updateProduct(id: string, updates: Partial<IProduct>) {
     this.init();
     const index = this.inMemory.products.findIndex(p => p.id === id || p._id === id);
     if (index === -1) return null;
-    this.inMemory.products[index] = { 
-      ...this.inMemory.products[index], 
-      ...updates, 
-      updatedAt: new Date().toISOString() 
+    this.inMemory.products[index] = {
+      ...this.inMemory.products[index],
+      ...updates,
+      updatedAt: new Date().toISOString()
     };
     this.save();
+    if (this.isMongoConnected()) {
+      ProductModel.findOneAndUpdate({ id }, this.inMemory.products[index], { upsert: true }).catch(err => {
+        console.error('Mongo Product update error:', err.message);
+      });
+    }
     return this.inMemory.products[index];
   }
   public deleteProduct(id: string) {
@@ -164,12 +258,24 @@ class DataStore {
     if (index === -1) return false;
     this.inMemory.products.splice(index, 1);
     this.save();
+    if (this.isMongoConnected()) {
+      ProductModel.deleteOne({ id }).catch(err => {
+        console.error('Mongo Product delete error:', err.message);
+      });
+    }
     return true;
   }
   public setProducts(products: IProduct[]) {
     this.init();
     this.inMemory.products = products;
     this.save();
+    if (this.isMongoConnected()) {
+      (async () => {
+        for (const p of products) {
+          await ProductModel.findOneAndUpdate({ id: p.id }, p, { upsert: true }).catch(() => {});
+        }
+      })().catch(err => console.error('Mongo setProducts error:', err.message));
+    }
   }
 
   // --- CATEGORIES ---
@@ -178,19 +284,26 @@ class DataStore {
     this.init();
     this.inMemory.categories = categories;
     this.save();
+    if (this.isMongoConnected()) {
+      (async () => {
+        for (const c of categories) {
+          await CategoryModel.findOneAndUpdate({ id: c.id }, c, { upsert: true }).catch(() => {});
+        }
+      })().catch(err => console.error('Mongo setCategories error:', err.message));
+    }
   }
 
   // --- CARTS ---
   public getCart(identifier: { userId?: string; guestId?: string }) {
     this.init();
-    return this.inMemory.carts.find(c => 
+    return this.inMemory.carts.find(c =>
       (identifier.userId && c.userId === identifier.userId) ||
       (identifier.guestId && c.guestId === identifier.guestId)
     );
   }
   public saveCart(cart: ICart) {
     this.init();
-    const index = this.inMemory.carts.findIndex(c => 
+    const index = this.inMemory.carts.findIndex(c =>
       (cart.userId && c.userId === cart.userId) ||
       (cart.guestId && c.guestId === cart.guestId)
     );
@@ -202,31 +315,39 @@ class DataStore {
       this.inMemory.carts.push(updated);
     }
     this.save();
+    if (this.isMongoConnected()) {
+      CartModel.findOneAndUpdate({ id: updated.id }, updated, { upsert: true }).catch(err => {
+        console.error('Mongo Cart save error:', err.message);
+      });
+    }
     return updated;
   }
   public clearCart(identifier: { userId?: string; guestId?: string }) {
     this.init();
-    const index = this.inMemory.carts.findIndex(c => 
+    const index = this.inMemory.carts.findIndex(c =>
       (identifier.userId && c.userId === identifier.userId) ||
       (identifier.guestId && c.guestId === identifier.guestId)
     );
     if (index >= 0) {
-      this.inMemory.carts.splice(index, 1);
+      const removed = this.inMemory.carts.splice(index, 1)[0];
       this.save();
+      if (this.isMongoConnected() && removed) {
+        CartModel.deleteOne({ id: removed.id }).catch(() => {});
+      }
     }
   }
 
   // --- WISHLIST ---
   public getWishlist(identifier: { userId?: string; guestId?: string }) {
     this.init();
-    return this.inMemory.wishlists.find(w => 
+    return this.inMemory.wishlists.find(w =>
       (identifier.userId && w.userId === identifier.userId) ||
       (identifier.guestId && w.guestId === identifier.guestId)
     );
   }
   public saveWishlist(wishlist: IWishlist) {
     this.init();
-    const index = this.inMemory.wishlists.findIndex(w => 
+    const index = this.inMemory.wishlists.findIndex(w =>
       (wishlist.userId && w.userId === wishlist.userId) ||
       (wishlist.guestId && w.guestId === wishlist.guestId)
     );
@@ -238,6 +359,9 @@ class DataStore {
       this.inMemory.wishlists.push(updated);
     }
     this.save();
+    if (this.isMongoConnected()) {
+      WishlistModel.findOneAndUpdate({ id: updated.id }, updated, { upsert: true }).catch(() => {});
+    }
     return updated;
   }
 
@@ -272,18 +396,29 @@ class DataStore {
     const newOrder: IOrder = { ...order, id, _id: id, createdAt: now, updatedAt: now };
     this.inMemory.orders.unshift(newOrder);
     this.save();
+    if (this.isMongoConnected()) {
+      OrderModel.findOneAndUpdate({ id: newOrder.id }, newOrder, { upsert: true }).catch(err => {
+        console.error('Mongo Order save error:', err.message);
+      });
+    }
     return newOrder;
   }
   public updateOrder(id: string, updates: Partial<IOrder>) {
     this.init();
     const index = this.inMemory.orders.findIndex(o => o.id === id || o._id === id || o.orderNumber === id);
     if (index === -1) return null;
-    this.inMemory.orders[index] = { 
-      ...this.inMemory.orders[index], 
-      ...updates, 
-      updatedAt: new Date().toISOString() 
+    this.inMemory.orders[index] = {
+      ...this.inMemory.orders[index],
+      ...updates,
+      updatedAt: new Date().toISOString()
     };
     this.save();
+    if (this.isMongoConnected()) {
+      const updated = this.inMemory.orders[index];
+      OrderModel.findOneAndUpdate({ id: updated.id }, updated, { upsert: true }).catch(err => {
+        console.error('Mongo Order update error:', err.message);
+      });
+    }
     return this.inMemory.orders[index];
   }
 
@@ -299,6 +434,9 @@ class DataStore {
     const newCoupon: ICoupon = { ...coupon, id, _id: id };
     this.inMemory.coupons.push(newCoupon);
     this.save();
+    if (this.isMongoConnected()) {
+      CouponModel.findOneAndUpdate({ id: newCoupon.id }, newCoupon, { upsert: true }).catch(() => {});
+    }
     return newCoupon;
   }
   public updateCoupon(id: string, updates: Partial<ICoupon>) {
@@ -307,6 +445,9 @@ class DataStore {
     if (index === -1) return null;
     this.inMemory.coupons[index] = { ...this.inMemory.coupons[index], ...updates };
     this.save();
+    if (this.isMongoConnected()) {
+      CouponModel.findOneAndUpdate({ id }, this.inMemory.coupons[index], { upsert: true }).catch(() => {});
+    }
     return this.inMemory.coupons[index];
   }
   public deleteCoupon(id: string) {
@@ -315,12 +456,22 @@ class DataStore {
     if (index === -1) return false;
     this.inMemory.coupons.splice(index, 1);
     this.save();
+    if (this.isMongoConnected()) {
+      CouponModel.deleteOne({ id }).catch(() => {});
+    }
     return true;
   }
   public setCoupons(coupons: ICoupon[]) {
     this.init();
     this.inMemory.coupons = coupons;
     this.save();
+    if (this.isMongoConnected()) {
+      (async () => {
+        for (const c of coupons) {
+          await CouponModel.findOneAndUpdate({ id: c.id }, c, { upsert: true }).catch(() => {});
+        }
+      })().catch(err => console.error('Mongo setCoupons error:', err.message));
+    }
   }
 
   // --- REVIEWS ---
@@ -337,6 +488,9 @@ class DataStore {
     const newRev = { ...review, id, _id: id, createdAt: new Date().toISOString() };
     this.inMemory.reviews.push(newRev);
     this.save();
+    if (this.isMongoConnected()) {
+      ReviewModel.create(newRev).catch(err => console.error('Mongo Review save error:', err.message));
+    }
     return newRev;
   }
 
@@ -349,8 +503,14 @@ class DataStore {
     this.init();
     this.inMemory.settings = { ...this.inMemory.settings, ...updates };
     this.save();
+    if (this.isMongoConnected()) {
+      StoreSettingsModel.findOneAndUpdate({}, this.inMemory.settings, { upsert: true }).catch(err => {
+        console.error('Mongo Settings update error:', err.message);
+      });
+    }
     return this.inMemory.settings;
   }
 }
 
 export const db = new DataStore();
+

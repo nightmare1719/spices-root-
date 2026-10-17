@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext.js';
+import { useAuth } from '../context/AuthContext.js';
 import { api } from '../services/api.js';
 import { formatINR } from '../utils/format.js';
-import { 
-  ShoppingBag, Trash2, Plus, Minus, ArrowRight, 
-  Sparkles, Tag, CheckCircle2, ShieldCheck, Truck 
+import {
+  ShoppingBag, Trash2, Plus, Minus, ArrowRight,
+  Sparkles, Tag, CheckCircle2, ShieldCheck, Truck
 } from 'lucide-react';
 
 export const CartPage: React.FC = () => {
   const { cart, updateQuantity, removeFromCart, clearCart } = useCart();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   const [couponCode, setCouponCode] = useState('');
@@ -65,9 +67,22 @@ export const CartPage: React.FC = () => {
     );
   }
 
+  const handleProceedToCheckout = () => {
+    if (!user) {
+      navigate('/login?redirect=/checkout', {
+        state: {
+          message: 'Please sign in to proceed to checkout and payment.',
+          couponCode: appliedCoupon?.code
+        }
+      });
+    } else {
+      navigate('/checkout', { state: { couponCode: appliedCoupon?.code } });
+    }
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
-      
+
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-4 border-b border-stone-200">
         <div>
           <h1 className="font-editorial text-3xl font-bold text-[#153E2B]">
@@ -91,17 +106,17 @@ export const CartPage: React.FC = () => {
           {cart.qualifiesForFreeShipping ? (
             <span className="text-[#153E2B] flex items-center gap-1.5 font-bold">
               <Sparkles className="w-4 h-4 text-[#C5A059]" />
-              You qualify for FREE Delivery across India!
+              You qualify for  transparency delivery  across India!
             </span>
           ) : (
             <span className="text-stone-600">
-              Add <strong className="text-[#153E2B]">{formatINR(cart.freeShippingRemainingPaise)}</strong> more to unlock <strong>FREE Delivery</strong>
+              Add <strong className="text-[#153E2B]">{formatINR(cart.freeShippingRemainingPaise)}</strong> more to unlock <strong> transparency delivery </strong>
             </span>
           )}
           <span className="text-[#C5A059] font-bold">{progressPercent}%</span>
         </div>
         <div className="w-full h-2.5 bg-stone-200 rounded-full overflow-hidden">
-          <div 
+          <div
             className="h-full bg-gradient-to-r from-[#C5A059] to-[#153E2B] transition-all duration-500 rounded-full"
             style={{ width: `${progressPercent}%` }}
           />
@@ -109,13 +124,13 @@ export const CartPage: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
-        
+
         {/* Cart Items List */}
         <div className="lg:col-span-2 space-y-4">
           <div className="bg-white rounded-2xl border border-[#EFE8D6] overflow-hidden shadow-2xs divide-y divide-stone-100">
             {cart.items.map((item) => (
               <div key={`${item.productId}-${item.variantId}`} className="p-4 sm:p-6 flex flex-col sm:flex-row gap-4 items-center justify-between">
-                
+
                 <div className="flex items-center gap-4 w-full sm:w-auto">
                   <img
                     src={item.image}
@@ -192,7 +207,7 @@ export const CartPage: React.FC = () => {
 
         {/* Order Summary & Coupon Card */}
         <div className="space-y-6">
-          
+
           {/* Coupon Input */}
           <div className="bg-white p-6 rounded-2xl border border-[#EFE8D6] shadow-2xs space-y-3">
             <h3 className="text-xs font-bold uppercase tracking-wider text-stone-700 flex items-center gap-1.5">
@@ -285,8 +300,9 @@ export const CartPage: React.FC = () => {
             </div>
 
             <button
-              onClick={() => navigate('/checkout', { state: { couponCode: appliedCoupon?.code } })}
-              className="w-full py-3.5 bg-[#153E2B] text-[#F7F3E9] hover:bg-[#1E5138] rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 group"
+              type="button"
+              onClick={handleProceedToCheckout}
+              className="w-full py-3.5 bg-[#153E2B] text-[#F7F3E9] hover:bg-[#1E5138] rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 group cursor-pointer"
             >
               <span>Proceed to Checkout</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

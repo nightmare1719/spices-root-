@@ -40,10 +40,10 @@ export const AiAssistantWidget: React.FC = () => {
       role: 'assistant',
       text: "Namaste! I am your **Spice Roots Concierge** 🌿. Sourced directly from Kerala & the Western Ghats, I can help you select authentic spices, recommend blends for biryani, find soothing teas, or curate festive gift boxes. How may I assist your culinary journey today?",
       suggestedFollowUps: [
+        'Recommend an evening tea',
+        'Accepted payment options',
         'Find spices for biryani',
         'Which pepper should I buy?',
-        'Recommend an evening tea',
-        'Help me choose a gift box',
         'Show products under ₹500',
         'How do I store whole spices?'
       ],

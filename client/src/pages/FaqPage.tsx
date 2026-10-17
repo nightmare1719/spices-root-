@@ -46,7 +46,7 @@ const FAQS: FaqItem[] = [
   {
     category: 'Gifting & Wholesale',
     question: 'Can I order custom spice gift boxes for weddings or corporate events?',
-    answer: 'Yes! Our Western Ghats Spice Discovery Caskets can be custom engraved or bundled for corporate celebrations, festival hampers, and weddings. Please reach out to care@spiceroots.in or call our depot at +91 94882 12345.'
+    answer: 'Yes! Our Western Ghats Spice Discovery Caskets can be custom engraved or bundled for corporate celebrations, festival hampers, and weddings. Please reach out to care@spiceroots.in or call our depot at +91 91885 70191.'
   }
 ];
 
@@ -55,12 +55,12 @@ export const FaqPage: React.FC = () => {
   const [openIndexes, setOpenIndexes] = useState<number[]>([0, 1]);
 
   const toggleIndex = (idx: number) => {
-    setOpenIndexes(prev => 
+    setOpenIndexes(prev =>
       prev.includes(idx) ? prev.filter(i => i !== idx) : [...prev, idx]
     );
   };
 
-  const filteredFaqs = FAQS.filter(faq => 
+  const filteredFaqs = FAQS.filter(faq =>
     faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
     faq.answer.toLowerCase().includes(searchQuery.toLowerCase()) ||
     faq.category.toLowerCase().includes(searchQuery.toLowerCase())
@@ -68,7 +68,7 @@ export const FaqPage: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
-      
+
       <div className="text-center space-y-2">
         <span className="text-xs font-bold text-[#C5A059] uppercase tracking-widest block">
           Knowledge Base
@@ -103,7 +103,7 @@ export const FaqPage: React.FC = () => {
           filteredFaqs.map((faq, idx) => {
             const isOpen = openIndexes.includes(idx);
             return (
-              <div 
+              <div
                 key={idx}
                 className="bg-white rounded-2xl border border-[#EFE8D6] overflow-hidden shadow-2xs transition-colors"
               >

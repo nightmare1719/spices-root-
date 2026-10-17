@@ -362,6 +362,57 @@ export const AdminProductsPage: React.FC = () => {
                 />
               </div>
 
+              {/* DIRECT PRODUCT IMAGE LINK / URL FIELD */}
+              <div className="bg-[#FAF7F2] p-4 rounded-2xl border border-stone-200 space-y-3">
+                <div className="flex justify-between items-center">
+                  <label className="block text-xs font-bold text-[#153E2B]">
+                    Product Image Link / Product URL *
+                  </label>
+                  <span className="text-[10px] text-stone-500">Supports direct web URLs & asset links</span>
+                </div>
+                
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                  <div className="flex-1 w-full">
+                    <input
+                      type="url"
+                      required
+                      value={editingProduct.images?.[0] || ''}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        const cur = editingProduct.images ? [...editingProduct.images] : [];
+                        if (cur.length > 0) {
+                          cur[0] = val;
+                        } else {
+                          cur.push(val);
+                        }
+                        setEditingProduct({ ...editingProduct, images: cur });
+                      }}
+                      placeholder="https://images.unsplash.com/... or https://your-domain.com/photo.jpg"
+                      className="w-full text-xs p-2.5 bg-white border border-stone-200 rounded-xl font-mono focus:outline-hidden focus:border-[#C5A059]"
+                    />
+                  </div>
+
+                  {/* Live Image Preview Thumbnail */}
+                  <div className="w-14 h-14 rounded-xl border border-stone-300 bg-stone-100 overflow-hidden flex items-center justify-center shrink-0 shadow-2xs">
+                    {editingProduct.images?.[0] ? (
+                      <img
+                        src={editingProduct.images[0]}
+                        alt="Product Asset Preview"
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=400&q=80';
+                        }}
+                      />
+                    ) : (
+                      <span className="text-[9px] text-stone-400 font-bold uppercase text-center px-1">No Image</span>
+                    )}
+                  </div>
+                </div>
+                <p className="text-[10px] text-stone-400">
+                  Enter a direct web URL of the product picture. This URL is saved directly to the product database for instant rendering across the storefront.
+                </p>
+              </div>
+
               {/* Variants Section */}
               <div className="pt-3 border-t border-stone-200 space-y-3">
                 <div className="flex justify-between items-center">

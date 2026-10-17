@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { api } from '../services/api.js';
 import { IProduct, ICategory, IReview } from '../types/index.js';
 import { ProductCard } from '../components/ProductCard.js';
-import { 
-  ArrowRight, Sparkles, ShieldCheck, Leaf, 
-  Award, Heart, ChevronRight, Star, Clock, Flame 
+import {
+  ArrowRight, Sparkles, ShieldCheck, Leaf,
+  Award, Heart, ChevronRight, Star, Clock, Flame
 } from 'lucide-react';
 
 export const HomePage: React.FC = () => {
@@ -92,25 +92,28 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="space-y-20 pb-20">
-      
+
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[580px] lg:min-h-[640px] flex items-center justify-center bg-[#0F2E20] overflow-hidden">
-        {/* Background Image with luxury dark gradient */}
+      <section className="relative min-h-[580px] lg:min-h-[640px] flex items-center justify-center bg-[#091D13] overflow-hidden">
+        {/* Minimalist Texture Background with luxury estate lighting & gradients */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/hero_banner.png"
-            alt="Western Ghats Spices and Tea Plantations"
-            className="w-full h-full object-cover object-center opacity-40 mix-blend-luminosity scale-105 animate-pulse-subtle"
+            src="/images/hero_minimalist_texture.jpg"
+            alt="Minimalist Kerala Estate Texture Background"
+            className="w-full h-full object-cover object-center opacity-70 scale-100 transition-opacity duration-700"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1920&q=85';
+              (e.target as HTMLImageElement).src = '/images/hero_banner.png';
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0D261A]/95 via-[#0D261A]/80 to-[#0D261A]/60" />
+          {/* Ambient lighting & smooth gradient vignettes */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#07170F]/95 via-[#0A2016]/80 to-[#06140D]/90" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_75%_25%,rgba(197,160,89,0.18),transparent_65%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_80%,rgba(21,62,43,0.3),transparent_50%)]" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center sm:text-left flex flex-col justify-center">
           <div className="max-w-2xl space-y-6">
-            
+
             <div className="inline-flex items-center gap-2 bg-[#FAF7F2]/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#C5A059]/40 text-[#D8B26E] text-xs font-semibold tracking-wider uppercase">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Direct Harvest from Munnar & Western Ghats</span>
@@ -153,7 +156,7 @@ export const HomePage: React.FC = () => {
               </span>
               <span className="flex items-center gap-1.5">
                 <CheckCircle className="w-4 h-4 text-[#D8B26E]" />
-                Free India Delivery &gt; ₹999
+                Transparency Delivery across India
               </span>
             </div>
 
@@ -164,7 +167,7 @@ export const HomePage: React.FC = () => {
       {/* 2. VALUE PROPOSITION STRIP */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 bg-white p-8 rounded-2xl border border-[#EFE8D6] shadow-xs">
-          
+
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 rounded-xl bg-[#153E2B]/10 flex items-center justify-center shrink-0 text-[#153E2B]">
               <Leaf className="w-6 h-6 text-[#153E2B]" />
@@ -227,8 +230,8 @@ export const HomePage: React.FC = () => {
               Explore by Category
             </h2>
           </div>
-          <Link 
-            to="/shop" 
+          <Link
+            to="/shop"
             className="text-xs font-bold text-[#153E2B] hover:text-[#C5A059] flex items-center gap-1 transition-colors group"
           >
             <span>View All Categories</span>
@@ -272,8 +275,8 @@ export const HomePage: React.FC = () => {
               Best-Selling Western Ghats Spices
             </h2>
           </div>
-          <Link 
-            to="/shop" 
+          <Link
+            to="/shop"
             className="text-xs font-bold text-[#153E2B] hover:text-[#C5A059] flex items-center gap-1 transition-colors group"
           >
             <span>See Entire Catalog</span>
@@ -300,7 +303,7 @@ export const HomePage: React.FC = () => {
       <section className="bg-[#153E2B] text-[#F7F3E9] py-20 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
+
             <div className="space-y-6">
               <span className="text-xs font-bold uppercase tracking-widest text-[#D8B26E] flex items-center gap-2">
                 <Sparkles className="w-4 h-4" />
@@ -387,16 +390,16 @@ export const HomePage: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {recipes.map((recipe, idx) => (
-            <div 
+            <div
               key={idx}
               className="luxury-card rounded-2xl overflow-hidden bg-white border border-[#EFE8D6] flex flex-col justify-between"
             >
               <div>
                 <div className="relative aspect-16/10 overflow-hidden bg-stone-100">
-                  <img 
-                    src={recipe.image} 
+                  <img
+                    src={recipe.image}
                     alt={recipe.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-3 left-3 bg-[#153E2B]/90 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
                     <Clock className="w-3 h-3 text-[#D8B26E]" />
@@ -455,7 +458,7 @@ export const HomePage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {genuineReviews.map((rev, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="bg-white p-6 rounded-2xl border border-[#EFE8D6] shadow-2xs flex flex-col justify-between"
               >

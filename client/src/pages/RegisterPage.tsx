@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.js';
 import { Lock, Mail, User, Phone, ArrowRight, AlertCircle, ShieldCheck } from 'lucide-react';
 
 export const RegisterPage: React.FC = () => {
   const { register } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const queryRedirect = new URLSearchParams(location.search).get('redirect');
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -31,7 +33,7 @@ export const RegisterPage: React.FC = () => {
         password,
         phone: phone.trim() || undefined
       });
-      navigate('/');
+      navigate(queryRedirect || '/', { replace: true });
     } catch (err) {
       setErrorMessage((err as Error).message || 'Registration failed');
     } finally {
@@ -143,7 +145,10 @@ export const RegisterPage: React.FC = () => {
 
         <div className="mt-6 pt-6 border-t border-stone-100 text-center text-xs text-stone-500">
           Already registered?{' '}
-          <Link to="/login" className="font-bold text-[#153E2B] hover:underline">
+          <Link 
+            to={queryRedirect ? `/login?redirect=${encodeURIComponent(queryRedirect)}` : '/login'} 
+            className="font-bold text-[#153E2B] hover:underline"
+          >
             Sign In
           </Link>
         </div>

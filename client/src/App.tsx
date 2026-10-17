@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext.js';
+import { BrowserRouter, Routes, Route, Outlet, useLocation, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/AuthContext.js';
 import { CartProvider } from './context/CartContext.js';
 import { WishlistProvider } from './context/WishlistContext.js';
 import { StoreProvider } from './context/StoreContext.js';
@@ -36,6 +36,34 @@ import { AdminCouponsPage } from './pages/admin/AdminCouponsPage.js';
 import { AdminCustomersPage } from './pages/admin/AdminCustomersPage.js';
 import { AdminSettingsPage } from './pages/admin/AdminSettingsPage.js';
 
+// Customer Authentication Guard for Cart & Checkout
+const CustomerAuthGuard: React.FC<{ children: React.ReactNode; redirectMessage: string }> = ({ children, redirectMessage }) => {
+  const { user, isLoading } = useAuth();
+  const location = useLocation();
+
+  if (isLoading) {
+    return (
+      <div className="py-24 text-center">
+        <div className="w-8 h-8 border-4 border-[#153E2B] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+        <p className="text-xs text-stone-500 font-medium">Verifying authentication...</p>
+      </div>
+    );
+  }
+
+  if (!user) {
+    const targetUrl = location.pathname + location.search;
+    return (
+      <Navigate
+        to={`/login?redirect=${encodeURIComponent(targetUrl)}`}
+        state={{ from: location, message: redirectMessage }}
+        replace
+      />
+    );
+  }
+
+  return <>{children}</>;
+};
+
 // Customer layout wrapper including Header, AnnouncementBar, Footer, MiniCart, and AI Assistant
 const CustomerLayout: React.FC = () => {
   return (
@@ -66,8 +94,24 @@ export const App: React.FC = () => {
                   <Route path="/shop" element={<ShopPage />} />
                   <Route path="/category/:slug" element={<CategoryPage />} />
                   <Route path="/product/:slug" element={<ProductDetailPage />} />
-                  <Route path="/cart" element={<CartPage />} />
-                  <Route path="/checkout" element={<CheckoutPage />} />
+                  
+                  {/* Protected Cart & Checkout Authentication Guards */}
+                  <Route 
+                    path="/cart" 
+                    element={
+                      <CustomerAuthGuard redirectMessage="Please sign in to view your shopping cart.">
+                        <CartPage />
+                      </CustomerAuthGuard>
+                    } 
+                  />
+                  <Route 
+                    path="/checkout" 
+                    element={
+                      <CustomerAuthGuard redirectMessage="Please sign in to proceed to checkout and payment.">
+                        <CheckoutPage />
+                      </CustomerAuthGuard>
+                    } 
+                  />
                   <Route path="/order-confirmation/:orderNumber" element={<OrderConfirmationPage />} />
                   <Route path="/track-order" element={<OrderTrackingPage />} />
                   <Route path="/login" element={<LoginPage />} />

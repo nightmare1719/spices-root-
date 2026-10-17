@@ -5,9 +5,9 @@ import { useAuth } from '../context/AuthContext.js';
 import { api } from '../services/api.js';
 import { formatINR } from '../utils/format.js';
 import confetti from 'canvas-confetti';
-import { 
-  ShieldCheck, Lock, CreditCard, Banknote, Truck, 
-  CheckCircle2, AlertCircle, Sparkles, ChevronRight 
+import {
+  ShieldCheck, Lock, CreditCard, Banknote, Truck,
+  CheckCircle2, AlertCircle, Sparkles, ChevronRight
 } from 'lucide-react';
 
 declare global {
@@ -17,11 +17,11 @@ declare global {
 }
 
 const INDIAN_STATES = [
-  'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 
-  'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka', 
-  'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 
-  'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 
-  'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal', 
+  'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
+  'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka',
+  'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram',
+  'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu',
+  'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal',
   'Delhi', 'Chandigarh', 'Puducherry'
 ];
 
@@ -227,7 +227,7 @@ export const CheckoutPage: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
-      
+
       {/* Header */}
       <div>
         <nav className="flex items-center gap-2 text-xs text-stone-500 mb-2">
@@ -269,10 +269,10 @@ export const CheckoutPage: React.FC = () => {
       )}
 
       <form onSubmit={handlePlaceOrder} className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
-        
+
         {/* Left Form: Customer and Shipping Details */}
         <div className="lg:col-span-2 space-y-8">
-          
+
           {/* Section 1: Customer Contact */}
           <div className="bg-white p-6 rounded-2xl border border-[#EFE8D6] shadow-2xs space-y-4">
             <h2 className="font-editorial text-lg font-bold text-[#153E2B] flex items-center gap-2 pb-3 border-b border-stone-100">
@@ -419,12 +419,11 @@ export const CheckoutPage: React.FC = () => {
 
             <div className="space-y-3">
               {/* Razorpay Online */}
-              <label 
-                className={`p-4 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${
-                  paymentMethod === 'razorpay'
+              <label
+                className={`p-4 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${paymentMethod === 'razorpay'
                     ? 'border-[#153E2B] bg-[#153E2B]/5 ring-1 ring-[#153E2B]'
                     : 'border-stone-200 hover:border-stone-300'
-                }`}
+                  }`}
               >
                 <div className="flex items-center gap-3">
                   <input
@@ -452,12 +451,11 @@ export const CheckoutPage: React.FC = () => {
               </label>
 
               {/* Cash On Delivery */}
-              <label 
-                className={`p-4 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${
-                  paymentMethod === 'cod'
+              <label
+                className={`p-4 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${paymentMethod === 'cod'
                     ? 'border-[#153E2B] bg-[#153E2B]/5 ring-1 ring-[#153E2B]'
                     : 'border-stone-200 hover:border-stone-300'
-                }`}
+                  }`}
               >
                 <div className="flex items-center gap-3">
                   <input
@@ -528,7 +526,7 @@ export const CheckoutPage: React.FC = () => {
                   <span>Shipping Fee:</span>
                   <span className="font-semibold text-stone-800">
                     {serverQuote.priceBreakdown.shippingFeePaise === 0 ? (
-                      <span className="text-emerald-700 font-bold">FREE Delivery</span>
+                      <span className="text-emerald-700 font-bold"> transparency delivery </span>
                     ) : (
                       formatINR(serverQuote.priceBreakdown.shippingFeePaise)
                     )}
@@ -556,11 +554,11 @@ export const CheckoutPage: React.FC = () => {
             >
               <Lock className="w-4 h-4 text-[#D8B26E]" />
               <span>
-                {isSubmitting 
-                  ? 'Verifying & Securing Order...' 
-                  : paymentMethod === 'cod' 
-                  ? 'Confirm Cash on Delivery Order' 
-                  : `Pay ${formatINR(serverQuote?.priceBreakdown?.totalPaise || cart.subtotalPaise)}`}
+                {isSubmitting
+                  ? 'Verifying & Securing Order...'
+                  : paymentMethod === 'cod'
+                    ? 'Confirm Cash on Delivery Order'
+                    : `Pay ${formatINR(serverQuote?.priceBreakdown?.totalPaise || cart.subtotalPaise)}`}
               </span>
             </button>
 

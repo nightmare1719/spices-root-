@@ -4,9 +4,9 @@ import { useAuth } from '../context/AuthContext.js';
 import { api } from '../services/api.js';
 import { IOrder, IUserAddress } from '../types/index.js';
 import { formatINR, formatDateTime } from '../utils/format.js';
-import { 
-  User, Package, MapPin, KeyRound, Shield, 
-  Trash2, Plus, CheckCircle2, Clock, Truck 
+import {
+  User, Package, MapPin, KeyRound, Shield,
+  Trash2, Plus, CheckCircle2, Clock, Truck
 } from 'lucide-react';
 
 export const ProfilePage: React.FC = () => {
@@ -153,7 +153,7 @@ export const ProfilePage: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
-      
+
       {/* Header Profile Summary */}
       <div className="bg-[#153E2B] text-white p-6 sm:p-8 rounded-3xl border border-[#C5A059]/40 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-lg">
         <div>
@@ -179,14 +179,13 @@ export const ProfilePage: React.FC = () => {
 
       {/* Tabs Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        
+
         {/* Navigation Tabs */}
         <aside className="space-y-1 bg-white p-3 rounded-2xl border border-[#EFE8D6] shadow-2xs h-fit">
           <button
             onClick={() => setSearchParams({ tab: 'profile' })}
-            className={`w-full text-left text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2.5 transition-colors ${
-              activeTab === 'profile' ? 'bg-[#153E2B] text-white' : 'text-stone-700 hover:bg-stone-50'
-            }`}
+            className={`w-full text-left text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2.5 transition-colors ${activeTab === 'profile' ? 'bg-[#153E2B] text-white' : 'text-stone-700 hover:bg-stone-50'
+              }`}
           >
             <User className="w-4 h-4" />
             <span>Profile Information</span>
@@ -194,9 +193,8 @@ export const ProfilePage: React.FC = () => {
 
           <button
             onClick={() => setSearchParams({ tab: 'orders' })}
-            className={`w-full text-left text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2.5 transition-colors ${
-              activeTab === 'orders' ? 'bg-[#153E2B] text-white' : 'text-stone-700 hover:bg-stone-50'
-            }`}
+            className={`w-full text-left text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2.5 transition-colors ${activeTab === 'orders' ? 'bg-[#153E2B] text-white' : 'text-stone-700 hover:bg-stone-50'
+              }`}
           >
             <Package className="w-4 h-4" />
             <span>My Orders & Dispatch</span>
@@ -204,9 +202,8 @@ export const ProfilePage: React.FC = () => {
 
           <button
             onClick={() => setSearchParams({ tab: 'addresses' })}
-            className={`w-full text-left text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2.5 transition-colors ${
-              activeTab === 'addresses' ? 'bg-[#153E2B] text-white' : 'text-stone-700 hover:bg-stone-50'
-            }`}
+            className={`w-full text-left text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2.5 transition-colors ${activeTab === 'addresses' ? 'bg-[#153E2B] text-white' : 'text-stone-700 hover:bg-stone-50'
+              }`}
           >
             <MapPin className="w-4 h-4" />
             <span>Saved Addresses</span>
@@ -214,9 +211,8 @@ export const ProfilePage: React.FC = () => {
 
           <button
             onClick={() => setSearchParams({ tab: 'security' })}
-            className={`w-full text-left text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2.5 transition-colors ${
-              activeTab === 'security' ? 'bg-[#153E2B] text-white' : 'text-stone-700 hover:bg-stone-50'
-            }`}
+            className={`w-full text-left text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2.5 transition-colors ${activeTab === 'security' ? 'bg-[#153E2B] text-white' : 'text-stone-700 hover:bg-stone-50'
+              }`}
           >
             <KeyRound className="w-4 h-4" />
             <span>Security & Password</span>
@@ -225,7 +221,7 @@ export const ProfilePage: React.FC = () => {
 
         {/* Tab Content Panel */}
         <main className="lg:col-span-3">
-          
+
           {/* TAB 1: Profile Details */}
           {activeTab === 'profile' && (
             <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#EFE8D6] shadow-xs space-y-6">
@@ -463,9 +459,8 @@ export const ProfilePage: React.FC = () => {
               </h2>
 
               {pwdMsg.text && (
-                <div className={`p-3 text-xs rounded-xl border ${
-                  pwdMsg.isError ? 'bg-red-50 text-red-800 border-red-200' : 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                }`}>
+                <div className={`p-3 text-xs rounded-xl border ${pwdMsg.isError ? 'bg-red-50 text-red-800 border-red-200' : 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                  }`}>
                   {pwdMsg.text}
                 </div>
               )}

@@ -490,11 +490,11 @@ export async function runSeed(force: boolean = false) {
       email: 'admin@spiceroots.in',
       passwordHash: adminPasswordHash,
       role: 'admin',
-      phone: '+91 94882 12345',
+      phone: '+91 91885 70191',
       addresses: [
         {
           name: 'Spice Roots Admin Office',
-          phone: '+91 94882 12345',
+          phone: '+91 91885 70191',
           addressLine: 'Post Office Junction',
           landmark: 'Opposite Plantation Club',
           city: 'Munnar',

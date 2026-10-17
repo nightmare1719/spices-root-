@@ -13,7 +13,9 @@ export const LoginPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const from = location.state?.from?.pathname || '/';
+  const queryRedirect = new URLSearchParams(location.search).get('redirect');
+  const from = queryRedirect || location.state?.from?.pathname || '/';
+  const redirectMessage = location.state?.message || (queryRedirect ? (queryRedirect.includes('checkout') ? 'Please sign in to proceed with your checkout & payment.' : 'Please sign in to view your shopping cart.') : '');
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,6 +56,22 @@ export const LoginPage: React.FC = () => {
           Access your past orders, saved delivery addresses, and wishlist.
         </p>
       </div>
+
+      {/* Authentication Guard Notice */}
+      {redirectMessage && (
+        <div className="bg-[#153E2B]/5 border border-[#153E2B]/20 p-4 rounded-2xl flex items-start gap-3 text-xs text-[#153E2B] animate-in fade-in duration-200">
+          <div className="p-1.5 bg-[#153E2B] text-white rounded-lg shrink-0 mt-0.5">
+            <Lock className="w-3.5 h-3.5" />
+          </div>
+          <div>
+            <p className="font-bold">Authentication Required</p>
+            <p className="text-stone-600 mt-0.5">{redirectMessage}</p>
+            <p className="text-[11px] text-[#C5A059] font-semibold mt-1">
+              Tip: Click "Customer Demo" below to auto-fill credentials instantly!
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Demo Credentials Quick-Fill Banner */}
       <div className="bg-[#FAF7F2] p-4 rounded-2xl border border-[#C5A059]/40 space-y-2 text-xs">
@@ -134,7 +152,10 @@ export const LoginPage: React.FC = () => {
 
         <div className="mt-6 pt-6 border-t border-stone-100 text-center text-xs text-stone-500">
           Don't have an account yet?{' '}
-          <Link to="/register" className="font-bold text-[#153E2B] hover:underline">
+          <Link 
+            to={queryRedirect ? `/register?redirect=${encodeURIComponent(queryRedirect)}` : '/register'} 
+            className="font-bold text-[#153E2B] hover:underline"
+          >
             Register Here
           </Link>
         </div>
