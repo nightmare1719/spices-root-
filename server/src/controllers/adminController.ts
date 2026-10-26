@@ -1,7 +1,10 @@
+import path from 'path';
+import fs from 'fs';
 import { Request, Response } from 'express';
 import { db } from '../models/dataStore.js';
 import { IProduct, IOrder, ICoupon, OrderFulfillmentStatus } from '../types/index.js';
 import { AuthenticatedRequest } from '../middleware/auth.js';
+import { generateInvoiceData } from '../services/invoiceService.js';
 
 export async function getDashboardMetrics(_req: Request, res: Response) {
   try {
@@ -152,19 +155,53 @@ export async function deleteAdminProduct(req: Request, res: Response) {
 // --- ORDERS ---
 export async function getAdminOrders(req: Request, res: Response) {
   try {
-    const { status, search } = req.query;
+    const { status, paymentStatus, search } = req.query;
     let orders = db.getOrders();
 
-    if (status && status !== 'all') {
-      orders = orders.filter(o => o.fulfillmentStatus === status || o.paymentStatus === status);
+    const cleanStatus = (status && status !== 'all' && status !== 'undefined' && status !== 'null')
+      ? String(status).trim().toLowerCase()
+      : null;
+
+    const cleanPaymentStatus = (paymentStatus && paymentStatus !== 'all' && paymentStatus !== 'undefined' && paymentStatus !== 'null')
+      ? String(paymentStatus).trim().toLowerCase()
+      : null;
+
+    const cleanSearch = (search && search !== 'undefined' && search !== 'null')
+      ? String(search).trim().toLowerCase()
+      : null;
+
+    if (cleanStatus) {
+      orders = orders.filter(o => (o.fulfillmentStatus || '').toLowerCase() === cleanStatus);
     }
-    if (search) {
-      const q = String(search).toLowerCase();
+
+    if (cleanPaymentStatus) {
+      orders = orders.filter(o => {
+        const pStatus = (o.paymentStatus || '').toLowerCase();
+        if (cleanPaymentStatus === 'paid') {
+          return pStatus === 'paid';
+        }
+        if (cleanPaymentStatus === 'verification_pending') {
+          return pStatus === 'verification_pending';
+        }
+        if (cleanPaymentStatus === 'awaiting_payment') {
+          return pStatus === 'awaiting_payment' || pStatus === 'pending';
+        }
+        if (cleanPaymentStatus === 'rejected') {
+          return pStatus === 'rejected';
+        }
+        return pStatus === cleanPaymentStatus;
+      });
+    }
+
+    if (cleanSearch) {
       orders = orders.filter(o => 
-        o.orderNumber.toLowerCase().includes(q) ||
-        o.customerName.toLowerCase().includes(q) ||
-        o.customerEmail.toLowerCase().includes(q) ||
-        o.customerPhone.includes(q)
+        (o.orderNumber && o.orderNumber.toLowerCase().includes(cleanSearch)) ||
+        (o.customerName && o.customerName.toLowerCase().includes(cleanSearch)) ||
+        (o.customerEmail && o.customerEmail.toLowerCase().includes(cleanSearch)) ||
+        (o.customerPhone && o.customerPhone.includes(cleanSearch)) ||
+        (o.upiTransactionRef && o.upiTransactionRef.toLowerCase().includes(cleanSearch)) ||
+        (o.shippingAddress?.pincode && o.shippingAddress.pincode.includes(cleanSearch)) ||
+        (o.shippingAddress?.city && o.shippingAddress.city.toLowerCase().includes(cleanSearch))
       );
     }
 
@@ -186,7 +223,13 @@ export async function updateAdminOrderStatus(req: AuthenticatedRequest, res: Res
 
     const updates: Partial<IOrder> = {};
     if (fulfillmentStatus) updates.fulfillmentStatus = fulfillmentStatus as OrderFulfillmentStatus;
-    if (paymentStatus) updates.paymentStatus = paymentStatus;
+    if (paymentStatus) {
+      updates.paymentStatus = paymentStatus;
+      if (paymentStatus === 'PAID' && !order.verifiedAt) {
+        updates.verifiedAt = new Date().toISOString();
+        updates.verifiedBy = req.user ? `${req.user.name} (${req.user.email})` : 'Store Administrator';
+      }
+    }
     if (courierName !== undefined) updates.courierName = courierName;
     if (trackingNumber !== undefined) updates.trackingNumber = trackingNumber;
 
@@ -195,7 +238,7 @@ export async function updateAdminOrderStatus(req: AuthenticatedRequest, res: Res
       {
         status: (fulfillmentStatus as OrderFulfillmentStatus) || order.fulfillmentStatus,
         timestamp: new Date().toISOString(),
-        note: note || `Updated by Admin (${req.user?.name || 'Administrator'})`,
+        note: note || `Updated by Admin (${req.user?.name || 'Administrator'})${paymentStatus ? ` [Payment: ${paymentStatus}]` : ''}`,
         updatedBy: req.user?.name
       }
     ];
@@ -357,3 +400,195 @@ export async function exportProductsCsv(_req: Request, res: Response) {
     return res.status(500).json({ success: false, message: 'CSV export failed', error: (err as Error).message });
   }
 }
+
+// --- UPI MANUAL PAYMENT VERIFICATION & AUDIT ---
+export async function verifyAdminPayment(req: AuthenticatedRequest, res: Response) {
+  try {
+    const { id } = req.params;
+    const { utr, upiTransactionRef, adminNote, adminNotes } = req.body;
+
+    const order = db.findOrderById(id);
+    if (!order) {
+      return res.status(404).json({ success: false, message: `Order "${id}" not found.` });
+    }
+
+    const now = new Date().toISOString();
+    const adminIdentifier = req.user ? `${req.user.name} (${req.user.email})` : 'Store Administrator';
+    const cleanUtr = (utr || upiTransactionRef) 
+      ? String(utr || upiTransactionRef).trim() 
+      : (order.upiTransactionRef || 'Verified via Bank Statement');
+    const cleanNote = (adminNote || adminNotes)
+      ? String(adminNote || adminNotes).trim()
+      : (order.adminNotes || 'Verified against merchant bank/UPI account');
+
+    const auditLogs = order.paymentAuditLogs || [];
+    auditLogs.push({
+      previousStatus: order.paymentStatus,
+      newStatus: 'PAID',
+      timestamp: now,
+      changedBy: adminIdentifier,
+      note: cleanNote,
+      utr: cleanUtr
+    });
+
+    const statusHistory = order.statusHistory || [];
+    statusHistory.push({
+      status: order.fulfillmentStatus === 'pending' ? 'confirmed' : order.fulfillmentStatus,
+      timestamp: now,
+      note: `Payment verified and confirmed by ${adminIdentifier}. UTR: ${cleanUtr}. Moved to fulfillment queue.`,
+      updatedBy: req.user?.name
+    });
+
+    const updated = db.updateOrder(order.id || order.orderNumber, {
+      paymentStatus: 'PAID',
+      fulfillmentStatus: order.fulfillmentStatus === 'pending' ? 'confirmed' : order.fulfillmentStatus,
+      upiTransactionRef: cleanUtr,
+      verifiedAt: now,
+      verifiedBy: adminIdentifier,
+      adminNotes: cleanNote,
+      paymentAuditLogs: auditLogs,
+      statusHistory
+    });
+
+    return res.json({
+      success: true,
+      message: `Payment for order ${order.orderNumber} successfully verified and marked as Paid.`,
+      data: updated
+    });
+  } catch (err) {
+    console.error('Error verifying admin payment:', err);
+    return res.status(500).json({ success: false, message: 'Failed to verify payment', error: (err as Error).message });
+  }
+}
+
+export async function rejectAdminPayment(req: AuthenticatedRequest, res: Response) {
+  try {
+    const { id } = req.params;
+    const { reason, rejectionReason, adminNote, adminNotes } = req.body;
+    const effectiveReason = reason || rejectionReason;
+
+    if (!effectiveReason || !String(effectiveReason).trim()) {
+      return res.status(400).json({ success: false, message: 'Rejection reason is required to notify the customer.' });
+    }
+
+    const order = db.findOrderById(id);
+    if (!order) {
+      return res.status(404).json({ success: false, message: `Order "${id}" not found.` });
+    }
+
+    const now = new Date().toISOString();
+    const adminIdentifier = req.user ? `${req.user.name} (${req.user.email})` : 'Store Administrator';
+    const cleanReason = String(effectiveReason).trim();
+    const cleanNote = (adminNote || adminNotes) ? String(adminNote || adminNotes).trim() : undefined;
+
+    const auditLogs = order.paymentAuditLogs || [];
+    auditLogs.push({
+      previousStatus: order.paymentStatus,
+      newStatus: 'REJECTED',
+      timestamp: now,
+      changedBy: adminIdentifier,
+      note: `Rejected: ${cleanReason}${cleanNote ? ' - ' + cleanNote : ''}`
+    });
+
+    const statusHistory = order.statusHistory || [];
+    statusHistory.push({
+      status: order.fulfillmentStatus,
+      timestamp: now,
+      note: `Payment rejected by ${adminIdentifier}. Reason: ${cleanReason}`,
+      updatedBy: req.user?.name
+    });
+
+    const updated = db.updateOrder(order.id || order.orderNumber, {
+      paymentStatus: 'REJECTED',
+      rejectionReason: cleanReason,
+      adminNotes: cleanNote || order.adminNotes,
+      paymentAuditLogs: auditLogs,
+      statusHistory
+    });
+
+    return res.json({
+      success: true,
+      message: `Payment for order ${order.orderNumber} rejected. Customer will be notified.`,
+      data: updated
+    });
+  } catch (err) {
+    console.error('Error rejecting admin payment:', err);
+    return res.status(500).json({ success: false, message: 'Failed to reject payment', error: (err as Error).message });
+  }
+}
+
+// Serve private payment screenshots securely (protected: admin only)
+export async function serveAdminScreenshot(req: AuthenticatedRequest, res: Response) {
+  try {
+    const { id } = req.params;
+    const order = db.findOrderById(id);
+    if (!order || !order.screenshotPath) {
+      return res.status(404).json({ success: false, message: 'Payment screenshot not found for this order.' });
+    }
+
+    // Sanitize filename to prevent directory traversal
+    const safeFilename = path.basename(order.screenshotPath);
+    const candidateDirs = [
+      path.resolve(process.cwd(), 'private_uploads', 'screenshots'),
+      path.resolve(process.cwd(), 'uploads', 'screenshots'),
+      path.resolve(process.cwd(), 'uploads'),
+      path.resolve(process.cwd(), 'public', 'uploads')
+    ];
+
+    let fullPath = '';
+    for (const dir of candidateDirs) {
+      const p = path.join(dir, safeFilename);
+      if (fs.existsSync(p)) {
+        fullPath = p;
+        break;
+      }
+    }
+
+    if (!fullPath || !fs.existsSync(fullPath)) {
+      return res.status(404).json({ success: false, message: `Screenshot file "${safeFilename}" does not exist on disk.` });
+    }
+
+    // Determine correct MIME type
+    const ext = path.extname(safeFilename).toLowerCase();
+    const mimeMap: Record<string, string> = {
+      '.png': 'image/png',
+      '.jpg': 'image/jpeg',
+      '.jpeg': 'image/jpeg',
+      '.webp': 'image/webp'
+    };
+    if (mimeMap[ext]) {
+      res.setHeader('Content-Type', mimeMap[ext]);
+    }
+
+    // Set anti-sniffing and cache headers
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    return res.sendFile(fullPath);
+  } catch (err) {
+    console.error('Error serving payment screenshot:', err);
+    return res.status(500).json({ success: false, message: 'Failed to retrieve screenshot', error: (err as Error).message });
+  }
+}
+
+// Generate official Tax Invoice or Bill of Supply
+export async function getOrderInvoice(req: Request, res: Response) {
+  try {
+    const { id } = req.params;
+    const order = db.findOrderById(id);
+    if (!order) {
+      return res.status(404).json({ success: false, message: `Order "${id}" not found.` });
+    }
+
+    const settings = db.getSettings();
+    const invoiceData = generateInvoiceData(order, settings);
+
+    return res.json({
+      success: true,
+      data: invoiceData
+    });
+  } catch (err) {
+    console.error('Error generating invoice:', err);
+    return res.status(500).json({ success: false, message: 'Failed to generate invoice', error: (err as Error).message });
+  }
+}
+

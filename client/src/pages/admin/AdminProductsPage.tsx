@@ -146,6 +146,8 @@ export const AdminProductsPage: React.FC = () => {
       <div className="bg-white p-4 rounded-2xl border border-stone-200 shadow-2xs flex flex-wrap gap-3 items-center justify-between">
         <form onSubmit={handleSearchSubmit} className="flex gap-2 flex-1 max-w-sm">
           <input
+            id="admin-products-search"
+            name="search"
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -158,8 +160,10 @@ export const AdminProductsPage: React.FC = () => {
         </form>
 
         <div className="flex items-center gap-2">
-          <span className="text-xs text-stone-500">Category:</span>
+          <label htmlFor="admin-products-category-filter" className="text-xs text-stone-500">Category:</label>
           <select
+            id="admin-products-category-filter"
+            name="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             className="text-xs bg-[#FAF7F2] border border-stone-200 rounded-lg p-2"
@@ -301,8 +305,10 @@ export const AdminProductsPage: React.FC = () => {
 
             <form onSubmit={handleSaveProduct} className="space-y-4 max-h-[70vh] overflow-y-auto pr-1">
               <div>
-                <label className="block text-xs font-semibold text-stone-700 mb-1">Product Title *</label>
+                <label htmlFor="prod-name-input" className="block text-xs font-semibold text-stone-700 mb-1">Product Title *</label>
                 <input
+                  id="prod-name-input"
+                  name="productName"
                   type="text"
                   required
                   value={editingProduct.name || ''}
@@ -314,8 +320,10 @@ export const AdminProductsPage: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-stone-700 mb-1">Category *</label>
+                  <label htmlFor="prod-category-select" className="block text-xs font-semibold text-stone-700 mb-1">Category *</label>
                   <select
+                    id="prod-category-select"
+                    name="category"
                     value={editingProduct.category || 'spices'}
                     onChange={(e) => setEditingProduct({ ...editingProduct, category: e.target.value as any })}
                     className="w-full text-xs p-2.5 bg-[#FAF7F2] border border-stone-200 rounded-xl"
@@ -330,8 +338,10 @@ export const AdminProductsPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-stone-700 mb-1">Origin Location</label>
+                  <label htmlFor="prod-origin-input" className="block text-xs font-semibold text-stone-700 mb-1">Origin Location</label>
                   <input
+                    id="prod-origin-input"
+                    name="origin"
                     type="text"
                     value={editingProduct.origin || ''}
                     onChange={(e) => setEditingProduct({ ...editingProduct, origin: e.target.value })}
@@ -342,8 +352,10 @@ export const AdminProductsPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-stone-700 mb-1">Short Description</label>
+                <label htmlFor="prod-short-desc-input" className="block text-xs font-semibold text-stone-700 mb-1">Short Description</label>
                 <input
+                  id="prod-short-desc-input"
+                  name="shortDescription"
                   type="text"
                   value={editingProduct.shortDescription || ''}
                   onChange={(e) => setEditingProduct({ ...editingProduct, shortDescription: e.target.value })}
@@ -353,8 +365,10 @@ export const AdminProductsPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-stone-700 mb-1">Full Detailed Story & Description</label>
+                <label htmlFor="prod-full-desc-input" className="block text-xs font-semibold text-stone-700 mb-1">Full Detailed Story & Description</label>
                 <textarea
+                  id="prod-full-desc-input"
+                  name="description"
                   rows={3}
                   value={editingProduct.description || ''}
                   onChange={(e) => setEditingProduct({ ...editingProduct, description: e.target.value })}
@@ -365,7 +379,7 @@ export const AdminProductsPage: React.FC = () => {
               {/* DIRECT PRODUCT IMAGE LINK / URL FIELD */}
               <div className="bg-[#FAF7F2] p-4 rounded-2xl border border-stone-200 space-y-3">
                 <div className="flex justify-between items-center">
-                  <label className="block text-xs font-bold text-[#153E2B]">
+                  <label htmlFor="prod-image-url-input" className="block text-xs font-bold text-[#153E2B]">
                     Product Image Link / Product URL *
                   </label>
                   <span className="text-[10px] text-stone-500">Supports direct web URLs & asset links</span>
@@ -374,6 +388,8 @@ export const AdminProductsPage: React.FC = () => {
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
                   <div className="flex-1 w-full">
                     <input
+                      id="prod-image-url-input"
+                      name="imageUrl"
                       type="url"
                       required
                       value={editingProduct.images?.[0] || ''}
@@ -449,8 +465,10 @@ export const AdminProductsPage: React.FC = () => {
                 {editingProduct.variants?.map((v, vIdx) => (
                   <div key={v.id || vIdx} className="grid grid-cols-5 gap-2 bg-[#FAF7F2] p-3 rounded-xl items-center text-xs">
                     <div>
-                      <span className="text-[10px] text-stone-500 block">Pack Size</span>
+                      <label htmlFor={`variant-packsize-${vIdx}`} className="text-[10px] text-stone-500 block">Pack Size</label>
                       <input
+                        id={`variant-packsize-${vIdx}`}
+                        name={`variant_packSize_${vIdx}`}
                         type="text"
                         value={v.packSize}
                         onChange={(e) => {
@@ -463,8 +481,10 @@ export const AdminProductsPage: React.FC = () => {
                     </div>
 
                     <div>
-                      <span className="text-[10px] text-stone-500 block">Price (INR ₹)</span>
+                      <label htmlFor={`variant-price-${vIdx}`} className="text-[10px] text-stone-500 block">Price (INR ₹)</label>
                       <input
+                        id={`variant-price-${vIdx}`}
+                        name={`variant_price_${vIdx}`}
                         type="number"
                         value={v.pricePaise / 100}
                         onChange={(e) => {
@@ -477,8 +497,10 @@ export const AdminProductsPage: React.FC = () => {
                     </div>
 
                     <div>
-                      <span className="text-[10px] text-stone-500 block">Stock Units</span>
+                      <label htmlFor={`variant-stock-${vIdx}`} className="text-[10px] text-stone-500 block">Stock Units</label>
                       <input
+                        id={`variant-stock-${vIdx}`}
+                        name={`variant_stock_${vIdx}`}
                         type="number"
                         value={v.stock}
                         onChange={(e) => {
@@ -491,8 +513,10 @@ export const AdminProductsPage: React.FC = () => {
                     </div>
 
                     <div>
-                      <span className="text-[10px] text-stone-500 block">SKU</span>
+                      <label htmlFor={`variant-sku-${vIdx}`} className="text-[10px] text-stone-500 block">SKU</label>
                       <input
+                        id={`variant-sku-${vIdx}`}
+                        name={`variant_sku_${vIdx}`}
                         type="text"
                         value={v.sku}
                         onChange={(e) => {
@@ -524,6 +548,8 @@ export const AdminProductsPage: React.FC = () => {
               <div className="flex gap-6 pt-2">
                 <label className="flex items-center gap-2 text-xs font-semibold text-stone-700 cursor-pointer">
                   <input
+                    id="prod-is-published"
+                    name="isPublished"
                     type="checkbox"
                     checked={editingProduct.isPublished}
                     onChange={(e) => setEditingProduct({ ...editingProduct, isPublished: e.target.checked })}
@@ -534,6 +560,8 @@ export const AdminProductsPage: React.FC = () => {
 
                 <label className="flex items-center gap-2 text-xs font-semibold text-stone-700 cursor-pointer">
                   <input
+                    id="prod-is-featured"
+                    name="isFeatured"
                     type="checkbox"
                     checked={editingProduct.isFeatured}
                     onChange={(e) => setEditingProduct({ ...editingProduct, isFeatured: e.target.checked })}

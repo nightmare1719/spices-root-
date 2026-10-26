@@ -3,6 +3,8 @@ import { db } from '../models/dataStore.js';
 import { AuthenticatedRequest } from '../middleware/auth.js';
 import { createRazorpayOrder, verifyRazorpaySignature, getRazorpayPublicConfig } from '../services/razorpay.js';
 import { IOrderItemSnapshot, IUserAddress, IOrder } from '../types/index.js';
+import { generateUpiPaymentDetails, getMerchantUpiConfig } from '../services/upiService.js';
+import { calculateTotalWeightInGrams, calculateTotalWeight } from '../utils/weight.js';
 
 function validateIndianPhone(phone: string): boolean {
   const digits = phone.replace(/\D/g, '');
@@ -17,6 +19,7 @@ function validatePincode(pincode: string): boolean {
 interface QuoteParams {
   items: { productId: string; variantId: string; quantity: number }[];
   couponCode?: string;
+  pincode?: string;
 }
 
 export interface QuoteSuccess {
@@ -33,6 +36,19 @@ export interface QuoteSuccess {
   appliedCouponCode?: string;
   qualifiesForFreeShipping: boolean;
   freeShippingThresholdPaise: number;
+  shippingDetails?: {
+    zoneName: string;
+    pincode: string;
+    totalWeightGrams: number;
+    formattedWeight: string;
+    baseWeightKg: number;
+    baseRate: number;
+    perAdditionalKgRate: number;
+    extraKg: number;
+    shippingFeeINR: number;
+    shippingFeePaise: number;
+    estimatedDelivery: string;
+  };
   errors: string[];
 }
 
@@ -113,15 +129,20 @@ export function computeVerifiedQuote(params: QuoteParams): QuoteResult {
     }
   }
 
-  // Calculate Shipping fee
+  // Total package weight calculated from verified order items (e.g. 50g, 250g, 500g, 1kg)
+  const totalWeightGrams = calculateTotalWeightInGrams(verifiedSnapshots);
+  const formattedWeight = calculateTotalWeight(verifiedSnapshots);
+
+  // In adminlogisticspage the total amount of courier is the shipping charge for the customer.
+  // Weight + Distance (destination pincode zone) = Shipping Charges.
+  const shippingInfo = db.getShippingDetails(params.pincode || '', totalWeightGrams);
   const freeShippingThresholdPaise = Number(settings.freeShippingThresholdPaise) || 99900;
-  const standardShippingFeePaise = Number(settings.standardShippingFeePaise) || 6000;
   const qualifiesForFreeShipping = subtotalPaise >= freeShippingThresholdPaise;
-  const shippingFeePaise = qualifiesForFreeShipping ? 0 : standardShippingFeePaise;
+  const shippingFeePaise = qualifiesForFreeShipping ? 0 : shippingInfo.shippingChargePaise;
 
   // Calculate Tax (e.g. 5% GST inclusive / calculated)
   const taxableAmount = Math.max(0, subtotalPaise - discountPaise);
-  const taxPaise = Math.round((taxableAmount * (settings.taxPercent || 5)) / 100);
+  const taxPaise = Math.round((taxableAmount * (settings.taxPercent || 0)) / 100);
 
   const grandTotalPaise = taxableAmount + shippingFeePaise + taxPaise;
 
@@ -138,19 +159,32 @@ export function computeVerifiedQuote(params: QuoteParams): QuoteResult {
     appliedCouponCode,
     qualifiesForFreeShipping,
     freeShippingThresholdPaise,
+    shippingDetails: {
+      zoneName: shippingInfo.zoneName,
+      pincode: shippingInfo.pincode,
+      totalWeightGrams: shippingInfo.totalWeightGrams,
+      formattedWeight,
+      baseWeightKg: shippingInfo.baseWeightKg,
+      baseRate: shippingInfo.baseRate,
+      perAdditionalKgRate: shippingInfo.perAdditionalKgRate,
+      extraKg: shippingInfo.extraKg,
+      shippingFeeINR: shippingInfo.shippingChargeINR,
+      shippingFeePaise,
+      estimatedDelivery: shippingInfo.estimatedDelivery
+    },
     errors
   };
 }
 
 export async function calculateQuote(req: Request, res: Response) {
   try {
-    const { items, couponCode } = req.body;
+    const { items, couponCode, pincode } = req.body;
 
     if (!items || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ success: false, message: 'Cart items are required for quote.' });
     }
 
-    const result = computeVerifiedQuote({ items, couponCode });
+    const result = computeVerifiedQuote({ items, couponCode, pincode });
     if (!result.success || result.error) {
       return res.status(400).json({ success: false, message: result.error, errors: result.errors });
     }
@@ -162,6 +196,7 @@ export async function calculateQuote(req: Request, res: Response) {
         appliedCouponCode: result.appliedCouponCode,
         qualifiesForFreeShipping: result.qualifiesForFreeShipping,
         freeShippingThresholdPaise: result.freeShippingThresholdPaise,
+        shippingDetails: result.shippingDetails,
         itemCount: result.snapshots.length,
         errors: result.errors
       }
@@ -203,18 +238,32 @@ export async function createOrder(req: AuthenticatedRequest, res: Response) {
       return res.status(400).json({ success: false, message: 'Please provide a valid 6-digit Indian PIN code.' });
     }
 
-    // Server-side recalculate and verify all items & prices
-    const quote = computeVerifiedQuote({ items, couponCode });
+    // Server-side recalculate and verify all items & shipping rate for destination pincode
+    const quote = computeVerifiedQuote({ 
+      items, 
+      couponCode, 
+      pincode: shippingAddress.pincode 
+    });
     if (!quote.success || quote.error) {
       return res.status(400).json({ success: false, message: quote.error, errors: quote.errors });
     }
 
     const settings = db.getSettings();
-    const chosenMethod = paymentMethod === 'cod' && settings.isCodEnabled ? 'cod' : 'razorpay';
+    let chosenMethod: 'upi_manual' | 'razorpay' | 'cod' = 'upi_manual';
+    if (paymentMethod === 'cod' && settings.isCodEnabled) {
+      chosenMethod = 'cod';
+    } else if (paymentMethod === 'razorpay' && settings.isRazorpayEnabled) {
+      chosenMethod = 'razorpay';
+    } else {
+      chosenMethod = 'upi_manual';
+    }
 
     // Generate unique order number
     const randomSuffix = Math.floor(10000 + Math.random() * 90000);
     const orderNumber = `SR-${new Date().getFullYear()}-${randomSuffix}`;
+
+    const initialPaymentStatus = chosenMethod === 'upi_manual' ? 'AWAITING_PAYMENT' : 'pending';
+    const initialFulfillmentStatus = chosenMethod === 'cod' ? 'confirmed' : 'pending';
 
     const orderData: IOrder = {
       orderNumber,
@@ -236,13 +285,26 @@ export async function createOrder(req: AuthenticatedRequest, res: Response) {
       couponCode: quote.appliedCouponCode,
       deliveryNotes: deliveryNotes ? deliveryNotes.trim() : undefined,
       paymentMethod: chosenMethod,
-      paymentStatus: chosenMethod === 'cod' ? 'pending' : 'pending',
-      fulfillmentStatus: chosenMethod === 'cod' ? 'confirmed' : 'pending',
+      paymentStatus: initialPaymentStatus,
+      fulfillmentStatus: initialFulfillmentStatus,
       statusHistory: [
         { 
-          status: chosenMethod === 'cod' ? 'confirmed' : 'pending', 
+          status: initialFulfillmentStatus, 
           timestamp: new Date().toISOString(), 
-          note: chosenMethod === 'cod' ? 'Order placed with Cash on Delivery' : 'Order created, awaiting payment verification' 
+          note: chosenMethod === 'cod' 
+            ? 'Order placed with Cash on Delivery' 
+            : chosenMethod === 'upi_manual'
+            ? 'Order created for Direct UPI payment. Awaiting customer transfer.'
+            : 'Order created, awaiting payment verification' 
+        }
+      ],
+      paymentAuditLogs: [
+        {
+          previousStatus: 'CREATED',
+          newStatus: initialPaymentStatus,
+          timestamp: new Date().toISOString(),
+          changedBy: 'system',
+          note: `Order initialized with payment method: ${chosenMethod}`
         }
       ],
       createdAt: new Date().toISOString(),
@@ -272,6 +334,23 @@ export async function createOrder(req: AuthenticatedRequest, res: Response) {
       }
     }
 
+    // Low-Cost Manual UPI Flow (Direct to cynalbertoz@sbi)
+    if (chosenMethod === 'upi_manual') {
+      const createdOrder = db.createOrder(orderData);
+      const upiDetails = await generateUpiPaymentDetails(orderNumber, quote.priceBreakdown.totalPaise);
+
+      return res.json({
+        success: true,
+        message: 'Order created for direct UPI transfer.',
+        data: {
+          order: createdOrder,
+          paymentMethod: 'upi_manual',
+          upi: upiDetails
+        }
+      });
+    }
+
+    // Razorpay Flow
     if (chosenMethod === 'razorpay') {
       const rzpOrder = await createRazorpayOrder({
         amountPaise: quote.priceBreakdown.totalPaise,
@@ -290,6 +369,7 @@ export async function createOrder(req: AuthenticatedRequest, res: Response) {
         success: true,
         data: {
           order: createdOrder,
+          paymentMethod: 'razorpay',
           razorpay: {
             orderId: rzpOrder.orderId,
             amount: rzpOrder.amount,
@@ -310,11 +390,108 @@ export async function createOrder(req: AuthenticatedRequest, res: Response) {
       success: true,
       message: 'Order placed successfully via Cash on Delivery.',
       data: {
-        order: createdOrder
+        order: createdOrder,
+        paymentMethod: 'cod'
       }
     });
   } catch (err) {
     return res.status(500).json({ success: false, message: 'Failed to create order', error: (err as Error).message });
+  }
+}
+
+export async function submitUpiPayment(req: Request, res: Response) {
+  try {
+    const { orderNumber, upiTransactionRef, customerNotes } = req.body;
+    if (!orderNumber || !String(orderNumber).trim()) {
+      return res.status(400).json({ success: false, message: 'Order reference number is required.' });
+    }
+
+    const order = db.findOrderById(orderNumber.trim());
+    if (!order) {
+      return res.status(404).json({ success: false, message: `Order with reference "${orderNumber}" was not found.` });
+    }
+
+    // If order is already paid, prevent duplicate submission
+    if (order.paymentStatus === 'PAID') {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'This order has already been verified and marked as Paid by the store administrator.' 
+      });
+    }
+
+    const now = new Date().toISOString();
+    const cleanUtr = upiTransactionRef ? String(upiTransactionRef).trim() : undefined;
+    const screenshotFilename = req.file ? req.file.filename : undefined;
+
+    const previousStatus = order.paymentStatus;
+    const newStatus = 'VERIFICATION_PENDING';
+
+    const auditLogs = order.paymentAuditLogs || [];
+    auditLogs.push({
+      previousStatus,
+      newStatus,
+      timestamp: now,
+      changedBy: 'customer',
+      note: customerNotes ? String(customerNotes).trim() : 'Customer submitted payment details on checkout',
+      utr: cleanUtr
+    });
+
+    const statusHistory = order.statusHistory || [];
+    statusHistory.push({
+      status: 'processing',
+      timestamp: now,
+      note: `Customer submitted payment details (UTR: ${cleanUtr || 'Screenshot attached'}). Payment Verification Pending.`
+    });
+
+    const updated = db.updateOrder(order.id || order.orderNumber, {
+      paymentStatus: newStatus,
+      upiTransactionRef: cleanUtr || order.upiTransactionRef,
+      screenshotPath: screenshotFilename || order.screenshotPath,
+      paymentSubmittedAt: now,
+      paymentAuditLogs: auditLogs,
+      statusHistory
+    });
+
+    const upiDetails = await generateUpiPaymentDetails(order.orderNumber, order.priceBreakdown.totalPaise);
+
+    return res.json({
+      success: true,
+      message: 'Payment submission received. Status updated to Payment Verification Pending.',
+      data: {
+        order: updated,
+        upi: upiDetails
+      }
+    });
+  } catch (err) {
+    console.error('Error submitting UPI payment:', err);
+    return res.status(500).json({ success: false, message: 'Failed to process UPI payment submission.', error: (err as Error).message });
+  }
+}
+
+export async function getUpiPaymentInfo(req: Request, res: Response) {
+  try {
+    const { orderNumber } = req.params;
+    if (!orderNumber) {
+      return res.status(400).json({ success: false, message: 'Order reference is required.' });
+    }
+
+    const order = db.findOrderById(orderNumber.trim());
+    if (!order) {
+      return res.status(404).json({ success: false, message: `Order "${orderNumber}" was not found.` });
+    }
+
+    const upiDetails = await generateUpiPaymentDetails(order.orderNumber, order.priceBreakdown.totalPaise);
+
+    return res.json({
+      success: true,
+      data: {
+        order,
+        upi: upiDetails
+      }
+    });
+  } catch (err) {
+    console.error('Error getting UPI payment info:', err);
+    return res.status(500).json({ success: false, message: 'Failed to retrieve UPI payment details.', error: (err as Error).message });
   }
 }
 
@@ -331,7 +508,7 @@ export async function verifyPayment(req: Request, res: Response) {
       return res.status(404).json({ success: false, message: 'Order record not found.' });
     }
 
-    if (order.paymentStatus === 'paid') {
+    if (order.paymentStatus === 'paid' || order.paymentStatus === 'PAID') {
       return res.json({ success: true, message: 'Payment already verified.', data: { order } });
     }
 
@@ -377,12 +554,24 @@ export async function verifyPayment(req: Request, res: Response) {
 export async function getPaymentConfig(_req: Request, res: Response) {
   const config = getRazorpayPublicConfig();
   const settings = db.getSettings();
+  const upiConfig = getMerchantUpiConfig();
+
   return res.json({
     success: true,
     data: {
       ...config,
-      isCodEnabled: settings.isCodEnabled,
-      isRazorpayEnabled: settings.isRazorpayEnabled
+      // COD and Razorpay are temporarily hidden for both admin and customer (can be reactivated later)
+      isCodEnabled: false,
+      isRazorpayEnabled: false,
+      isUpiManualEnabled: true,
+      upi: {
+        upiId: upiConfig.upiId,
+        merchantName: upiConfig.merchantName,
+        whatsappNumber: upiConfig.whatsappNumber
+      },
+      freeShippingThresholdPaise: settings.freeShippingThresholdPaise,
+      standardShippingFeePaise: settings.standardShippingFeePaise,
+      taxPercent: settings.taxPercent
     }
   });
 }

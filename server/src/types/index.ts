@@ -20,6 +20,9 @@ export interface IUser {
   passwordHash?: string;
   role: UserRole;
   phone?: string;
+  avatar?: string;
+  googleId?: string;
+  isEmailVerified?: boolean;
   addresses: IUserAddress[];
   createdAt: string;
   updatedAt: string;
@@ -107,7 +110,21 @@ export interface IWishlist {
   updatedAt: string;
 }
 
-export type OrderPaymentStatus = 'pending' | 'paid' | 'failed' | 'refunded';
+export type PaymentState = 
+  | 'CREATED'
+  | 'AWAITING_PAYMENT'
+  | 'VERIFICATION_PENDING'
+  | 'PAID'
+  | 'REJECTED'
+  | 'EXPIRED'
+  | 'pending'
+  | 'paid'
+  | 'failed'
+  | 'refunded';
+
+export type PaymentMethod = 'upi_manual' | 'razorpay' | 'cod';
+
+export type OrderPaymentStatus = PaymentState;
 export type OrderFulfillmentStatus = 'pending' | 'confirmed' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
 
 export interface IOrderItemSnapshot {
@@ -130,6 +147,15 @@ export interface IOrderStatusHistory {
   updatedBy?: string;
 }
 
+export interface IPaymentAuditLog {
+  previousStatus: string;
+  newStatus: string;
+  timestamp: string;
+  changedBy: string;
+  note?: string;
+  utr?: string;
+}
+
 export interface IOrder {
   _id?: string;
   id?: string;
@@ -149,8 +175,16 @@ export interface IOrder {
   };
   couponCode?: string;
   deliveryNotes?: string;
-  paymentMethod: 'razorpay' | 'cod';
-  paymentStatus: OrderPaymentStatus;
+  paymentMethod: PaymentMethod;
+  paymentStatus: PaymentState;
+  upiTransactionRef?: string;
+  screenshotPath?: string;
+  paymentSubmittedAt?: string;
+  verifiedAt?: string;
+  verifiedBy?: string;
+  rejectionReason?: string;
+  adminNotes?: string;
+  paymentAuditLogs?: IPaymentAuditLog[];
   razorpayOrderId?: string;
   razorpayPaymentId?: string;
   razorpaySignature?: string;
@@ -207,4 +241,26 @@ export interface IStoreSettings {
   returnPolicy: string;
   privacyPolicy: string;
   termsAndConditions: string;
+  legalBusinessName?: string;
+  gstin?: string;
+  pan?: string;
+  invoicePrefix?: string;
+  merchantUpiId?: string;
+  merchantWhatsappNumber?: string;
+  isUpiManualEnabled?: boolean;
 }
+
+export interface ShippingZoneRate {
+  id?: string;
+  _id?: string;
+  zoneName: string;
+  pincodePrefix: string;
+  baseWeightKg: number;
+  baseRate: number;
+  perAdditionalKgRate: number;
+  estimatedDelivery?: string;
+  isActive?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+

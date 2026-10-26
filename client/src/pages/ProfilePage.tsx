@@ -6,8 +6,9 @@ import { IOrder, IUserAddress } from '../types/index.js';
 import { formatINR, formatDateTime } from '../utils/format.js';
 import {
   User, Package, MapPin, KeyRound, Shield,
-  Trash2, Plus, CheckCircle2, Clock, Truck
+  Trash2, Plus, CheckCircle2, Clock, Truck, Sparkles
 } from 'lucide-react';
+import { GoogleAuthButton } from '../components/GoogleAuthButton.js';
 
 export const ProfilePage: React.FC = () => {
   const { user, refreshUser, isAdmin } = useAuth();
@@ -156,20 +157,41 @@ export const ProfilePage: React.FC = () => {
 
       {/* Header Profile Summary */}
       <div className="bg-[#153E2B] text-white p-6 sm:p-8 rounded-3xl border border-[#C5A059]/40 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-lg">
-        <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-[#D8B26E] block mb-1">
-            Customer Dashboard
-          </span>
-          <h1 className="font-editorial text-2xl sm:text-3xl font-bold">
-            Namaste, {user.name}
-          </h1>
-          <p className="text-xs text-[#E3D9C0] mt-0.5">{user.email}</p>
+        <div className="flex items-center gap-4">
+          {user.avatar ? (
+            <img
+              src={user.avatar}
+              alt={user.name}
+              className="w-16 h-16 rounded-full border-2 border-[#C5A059] shadow-md object-cover shrink-0"
+            />
+          ) : (
+            <div className="w-16 h-16 rounded-full bg-[#FAF7F2]/10 border border-[#C5A059]/40 flex items-center justify-center font-editorial text-2xl font-bold text-[#D8B26E] shrink-0">
+              {user.name?.charAt(0)?.toUpperCase() || 'C'}
+            </div>
+          )}
+          <div>
+            <div className="flex items-center gap-2 mb-1 flex-wrap">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#D8B26E]">
+                Customer Dashboard
+              </span>
+              {user.isEmailVerified && (
+                <span className="inline-flex items-center gap-1 bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                  <CheckCircle2 className="w-3 h-3" />
+                  Google Verified
+                </span>
+              )}
+            </div>
+            <h1 className="font-editorial text-2xl sm:text-3xl font-bold">
+              Namaste, {user.name}
+            </h1>
+            <p className="text-xs text-[#E3D9C0] mt-0.5">{user.email}</p>
+          </div>
         </div>
 
         {isAdmin && (
           <Link
             to="/admin"
-            className="inline-flex items-center gap-2 bg-[#C5A059] text-[#0F2E20] hover:bg-[#D8B26E] text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full shadow-md transition-all"
+            className="inline-flex items-center gap-2 bg-[#C5A059] text-[#0F2E20] hover:bg-[#D8B26E] text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full shadow-md transition-all shrink-0"
           >
             <Shield className="w-4 h-4" />
             <span>Go to Admin Dashboard</span>
@@ -228,6 +250,55 @@ export const ProfilePage: React.FC = () => {
               <h2 className="font-editorial text-xl font-bold text-[#153E2B] pb-3 border-b border-stone-100">
                 Personal Profile
               </h2>
+
+              {/* Google Account Verification & Security Status */}
+              <div className="p-4 rounded-2xl border border-stone-200 bg-[#FAF7F2] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 bg-white rounded-xl border border-stone-200 shadow-2xs shrink-0">
+                    <svg className="w-5 h-5" viewBox="0 0 24 24">
+                      <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.87c2.26-2.09 3.67-5.17 3.67-9.15z"/>
+                      <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.87-3.05c-1.08.72-2.45 1.16-4.06 1.16-3.13 0-5.78-2.11-6.73-4.96H1.27v3.15C3.3 21.35 7.36 24 12 24z"/>
+                      <path fill="#FBBC05" d="M5.27 14.24c-.25-.72-.38-1.49-.38-2.24s.13-1.52.38-2.24V6.61H1.27C.46 8.23 0 10.06 0 12s.46 3.77 1.27 5.39l4-3.15z"/>
+                      <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.36 0 3.3 2.65 1.27 6.61l4 3.15c.95-2.85 3.6-4.96 6.73-4.96z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xs font-bold text-[#153E2B] flex items-center gap-2">
+                      Google Verification
+                      {user.googleId ? (
+                        <span className="text-emerald-700 font-bold bg-emerald-100 text-[10px] px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+                          <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                          Verified
+                        </span>
+                      ) : (
+                        <span className="text-stone-500 font-normal text-[10px] bg-stone-200 px-2 py-0.5 rounded-full">
+                          Not Linked
+                        </span>
+                      )}
+                    </h3>
+                    <p className="text-[11px] text-stone-500 mt-0.5">
+                      {user.googleId
+                        ? 'Your customer account is verified with Google OAuth for 1-click logins.'
+                        : 'Link and verify your customer account with Google for 1-click login and verified badges.'}
+                    </p>
+                  </div>
+                </div>
+
+                {!user.googleId && (
+                  <div className="w-full sm:w-auto shrink-0">
+                    <GoogleAuthButton
+                      mode="verify"
+                      buttonText="Verify with Google"
+                      onSuccess={async () => {
+                        await refreshUser();
+                        setProfileSuccess('Google account successfully linked and verified!');
+                        setTimeout(() => setProfileSuccess(''), 4000);
+                      }}
+                      onError={(err) => alert(err)}
+                    />
+                  </div>
+                )}
+              </div>
 
               {profileSuccess && (
                 <div className="p-3 bg-emerald-50 text-emerald-800 text-xs rounded-xl border border-emerald-200">

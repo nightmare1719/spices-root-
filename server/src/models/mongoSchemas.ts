@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 import {
   IUser, IProduct, ICategory, ICart, IWishlist,
-  IOrder, ICoupon, IReview, IStoreSettings
+  IOrder, ICoupon, IReview, IStoreSettings, ShippingZoneRate
 } from '../types/index.js';
 
 // --- USER SCHEMA ---
@@ -24,6 +24,9 @@ const userSchema = new Schema<IUser>({
   passwordHash: { type: String },
   role: { type: String, enum: ['customer', 'admin'], default: 'customer' },
   phone: { type: String },
+  avatar: { type: String },
+  googleId: { type: String },
+  isEmailVerified: { type: Boolean, default: false },
   addresses: [userAddressSchema],
   createdAt: { type: String, default: () => new Date().toISOString() },
   updatedAt: { type: String, default: () => new Date().toISOString() }
@@ -126,6 +129,15 @@ const orderStatusHistorySchema = new Schema({
   updatedBy: { type: String }
 }, { _id: false });
 
+const paymentAuditLogSchema = new Schema({
+  previousStatus: { type: String, required: true },
+  newStatus: { type: String, required: true },
+  timestamp: { type: String, required: true },
+  changedBy: { type: String, required: true },
+  note: { type: String },
+  utr: { type: String }
+}, { _id: false });
+
 const orderSchema = new Schema<IOrder>({
   _id: { type: String },
   id: { type: String, required: true, unique: true },
@@ -144,11 +156,21 @@ const orderSchema = new Schema<IOrder>({
     totalPaise: { type: Number, required: true }
   },
   couponCode: { type: String },
-  paymentMethod: { type: String, required: true },
-  paymentStatus: { type: String, required: true, default: 'pending' },
+  deliveryNotes: { type: String },
+  paymentMethod: { type: String, required: true, default: 'upi_manual' },
+  paymentStatus: { type: String, required: true, default: 'AWAITING_PAYMENT' },
+  upiTransactionRef: { type: String },
+  screenshotPath: { type: String },
+  paymentSubmittedAt: { type: String },
+  verifiedAt: { type: String },
+  verifiedBy: { type: String },
+  rejectionReason: { type: String },
+  adminNotes: { type: String },
+  paymentAuditLogs: [paymentAuditLogSchema],
   razorpayOrderId: { type: String },
   razorpayPaymentId: { type: String },
-  fulfillmentStatus: { type: String, required: true, default: 'confirmed' },
+  razorpaySignature: { type: String },
+  fulfillmentStatus: { type: String, required: true, default: 'pending' },
   courierName: { type: String },
   trackingNumber: { type: String },
   statusHistory: [orderStatusHistorySchema],
@@ -198,7 +220,14 @@ const settingsSchema = new Schema<IStoreSettings>({
   taxPercent: { type: Number, default: 5 },
   isCodEnabled: { type: Boolean, default: true },
   isRazorpayEnabled: { type: Boolean, default: true },
+  isUpiManualEnabled: { type: Boolean, default: true },
   isAiEnabled: { type: Boolean, default: true },
+  merchantUpiId: { type: String, default: 'cynalbertoz@sbi' },
+  merchantWhatsappNumber: { type: String, default: '919188570191' },
+  legalBusinessName: { type: String, default: 'Kalaivani Spices & Plantation Depot' },
+  gstin: { type: String, default: '' },
+  pan: { type: String, default: '' },
+  invoicePrefix: { type: String, default: 'SR-INV-' },
   aboutStory: { type: String },
   shippingPolicy: { type: String },
   returnPolicy: { type: String },
@@ -216,3 +245,20 @@ export const OrderModel = mongoose.models.Order || mongoose.model<IOrder>('Order
 export const CouponModel = mongoose.models.Coupon || mongoose.model<ICoupon>('Coupon', couponSchema);
 export const ReviewModel = mongoose.models.Review || mongoose.model<IReview>('Review', reviewSchema);
 export const StoreSettingsModel = mongoose.models.StoreSettings || mongoose.model<IStoreSettings>('StoreSettings', settingsSchema);
+
+// --- SHIPPING ZONE RATES SCHEMA ---
+const shippingZoneRateSchema = new Schema<ShippingZoneRate>({
+  id: { type: String },
+  _id: { type: String },
+  zoneName: { type: String, required: true },
+  pincodePrefix: { type: String, required: true },
+  baseWeightKg: { type: Number, required: true, default: 1 },
+  baseRate: { type: Number, required: true, default: 100 },
+  perAdditionalKgRate: { type: Number, required: true, default: 50 },
+  estimatedDelivery: { type: String, default: '3-5 business days' },
+  isActive: { type: Boolean, default: true },
+  createdAt: { type: String, default: () => new Date().toISOString() },
+  updatedAt: { type: String, default: () => new Date().toISOString() }
+}, { timestamps: false });
+
+export const ShippingZoneRateModel = mongoose.models.ShippingZoneRate || mongoose.model<ShippingZoneRate>('ShippingZoneRate', shippingZoneRateSchema);

@@ -14,6 +14,16 @@
           "state": "Kerala",
           "pincode": "685612",
           "isDefault": true
+        },
+        {
+          "name": "Spice Roots Admin",
+          "phone": "+91 91885 70191",
+          "addressLine": "Flat 402, Green Meadows Apartment",
+          "landmark": "",
+          "city": "madurai",
+          "state": "Kerala",
+          "pincode": "625001",
+          "isDefault": false
         }
       ],
       "createdAt": "2026-10-15T07:57:08.445Z",
@@ -22,7 +32,7 @@
       "passwordHash": "$2a$10$qdZc.A.VJJdyN1nDT.hp9.yEHzMgFNnLTMzONu3oLJuZXC8lPnboW",
       "phone": "+91 91885 70191",
       "role": "admin",
-      "updatedAt": "2026-10-15T07:57:08.445Z"
+      "updatedAt": "2026-10-20T18:13:37.414Z"
     },
     {
       "_id": "usr_1792051028446_mp01m",
@@ -47,6 +57,35 @@
       "phone": "+91 98765 43210",
       "role": "customer",
       "updatedAt": "2026-10-15T09:00:20.106Z"
+    },
+    {
+      "_id": "usr_1792332474561_ileig",
+      "id": "usr_1792332474561_ileig",
+      "__v": 0,
+      "addresses": [],
+      "createdAt": "2026-10-18T14:07:54.561Z",
+      "email": "harihvk@gmail.com",
+      "name": "hari varathana kumar",
+      "passwordHash": "$2a$10$GjP8vbw5AG6QBC7NfSRCD.or6pU6KSxTl58/ksv5XQ43dD17hev76",
+      "phone": "9400499098",
+      "role": "customer",
+      "updatedAt": "2026-10-18T14:07:54.561Z"
+    },
+    {
+      "_id": "usr_1792780341407_0lx6q",
+      "id": "usr_1792780341407_0lx6q",
+      "__v": 0,
+      "addresses": [],
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocK5lV3ucSXXW5_JR0n7-BsLDoBoOaOOPIQO9tve7bz8aRl4=s96-c",
+      "createdAt": "2026-10-23T18:32:21.407Z",
+      "email": "mystery.boz01@gmail.com",
+      "googleId": "106433668808435015607",
+      "isEmailVerified": true,
+      "name": "cyn albertoz",
+      "passwordHash": "$2a$10$nZU.HOYq66hLTsVRxjBOFOlKVxE/Zq8Iq993iS2Erwf.CnmrjpsUS",
+      "phone": "9562570191",
+      "role": "customer",
+      "updatedAt": "2026-10-25T17:24:29.960Z"
     }
   ],
   "products": [
@@ -119,8 +158,8 @@
         "bestseller",
         "kerala"
       ],
-      "createdAt": "2026-10-17T17:58:58.353Z",
-      "updatedAt": "2026-10-17T17:58:58.355Z"
+      "createdAt": "2026-10-26T04:55:24.623Z",
+      "updatedAt": "2026-10-26T04:55:24.623Z"
     },
     {
       "id": "prod_green_cardamom_8mm",
@@ -191,8 +230,8 @@
         "bestseller",
         "whole spices"
       ],
-      "createdAt": "2026-10-17T17:58:58.355Z",
-      "updatedAt": "2026-10-17T17:58:58.355Z"
+      "createdAt": "2026-10-26T04:55:24.623Z",
+      "updatedAt": "2026-10-26T04:55:24.623Z"
     },
     {
       "id": "prod_ceylon_cinnamon",
@@ -252,8 +291,8 @@
         "baking",
         "sweet spices"
       ],
-      "createdAt": "2026-10-17T17:58:58.355Z",
-      "updatedAt": "2026-10-17T17:58:58.355Z"
+      "createdAt": "2026-10-26T04:55:24.623Z",
+      "updatedAt": "2026-10-26T04:55:24.623Z"
     },
     {
       "id": "prod_clove_wayanad",
@@ -311,8 +350,8 @@
         "clove",
         "whole spices"
       ],
-      "createdAt": "2026-10-17T17:58:58.355Z",
-      "updatedAt": "2026-10-17T17:58:58.355Z"
+      "createdAt": "2026-10-26T04:55:24.623Z",
+      "updatedAt": "2026-10-26T04:55:24.623Z"
     },
     {
       "id": "prod_star_anise",
@@ -360,8 +399,8 @@
         "star anise",
         "biryani"
       ],
-      "createdAt": "2026-10-17T17:58:58.355Z",
-      "updatedAt": "2026-10-17T17:58:58.355Z"
+      "createdAt": "2026-10-26T04:55:24.623Z",
+      "updatedAt": "2026-10-26T04:55:24.623Z"
     },
     {
       "id": "prod_mace_nutmeg",
@@ -411,8 +450,8 @@
         "nutmeg",
         "rare"
       ],
-      "createdAt": "2026-10-17T17:58:58.355Z",
-      "updatedAt": "2026-10-17T17:58:58.355Z"
+      "createdAt": "2026-10-26T04:55:24.623Z",
+      "updatedAt": "2026-10-26T04:55:24.623Z"
     },
     {
       "id": "prod_pathimugam",
@@ -461,8 +500,8 @@
         "traditional",
         "kerala herbal"
       ],
-      "createdAt": "2026-10-17T17:58:58.355Z",
-      "updatedAt": "2026-10-17T17:58:58.355Z"
+      "createdAt": "2026-10-26T04:55:24.623Z",
+      "updatedAt": "2026-10-26T04:55:24.623Z"
     },
     {
       "id": "prod_kerala_garam_masala",
@@ -521,8 +560,8 @@
         "bestseller",
         "biryani"
       ],
-      "createdAt": "2026-10-17T17:58:58.355Z",
-      "updatedAt": "2026-10-17T17:58:58.355Z"
+      "createdAt": "2026-10-26T04:55:24.623Z",
+      "updatedAt": "2026-10-26T04:55:24.623Z"
     },
     {
       "id": "prod_kolukkumalai_tea",
@@ -583,8 +622,8 @@
         "munnar",
         "bestseller"
       ],
-      "createdAt": "2026-10-17T17:58:58.355Z",
-      "updatedAt": "2026-10-17T17:58:58.355Z"
+      "createdAt": "2026-10-26T04:55:24.623Z",
+      "updatedAt": "2026-10-26T04:55:24.623Z"
     },
     {
       "id": "prod_thalayar_tea",
@@ -643,8 +682,8 @@
         "chai",
         "ctc"
       ],
-      "createdAt": "2026-10-17T17:58:58.355Z",
-      "updatedAt": "2026-10-17T17:58:58.355Z"
+      "createdAt": "2026-10-26T04:55:24.623Z",
+      "updatedAt": "2026-10-26T04:55:24.623Z"
     },
     {
       "id": "prod_white_tea_tips",
@@ -693,8 +732,8 @@
         "luxury",
         "rare"
       ],
-      "createdAt": "2026-10-17T17:58:58.355Z",
-      "updatedAt": "2026-10-17T17:58:58.355Z"
+      "createdAt": "2026-10-26T04:55:24.623Z",
+      "updatedAt": "2026-10-26T04:55:24.623Z"
     },
     {
       "id": "prod_lemongrass_oil",
@@ -743,8 +782,8 @@
         "lemongrass",
         "aromatherapy"
       ],
-      "createdAt": "2026-10-17T17:58:58.355Z",
-      "updatedAt": "2026-10-17T17:58:58.355Z"
+      "createdAt": "2026-10-26T04:55:24.623Z",
+      "updatedAt": "2026-10-26T04:55:24.623Z"
     },
     {
       "id": "prod_coconut_oil_cold_pressed",
@@ -793,8 +832,8 @@
         "pure",
         "cold-pressed"
       ],
-      "createdAt": "2026-10-17T17:58:58.355Z",
-      "updatedAt": "2026-10-17T17:58:58.355Z"
+      "createdAt": "2026-10-26T04:55:24.623Z",
+      "updatedAt": "2026-10-26T04:55:24.623Z"
     },
     {
       "id": "prod_heritage_spice_box",
@@ -850,8 +889,8 @@
         "hamper",
         "corporate"
       ],
-      "createdAt": "2026-10-17T17:58:58.355Z",
-      "updatedAt": "2026-10-17T17:58:58.355Z"
+      "createdAt": "2026-10-26T04:55:24.623Z",
+      "updatedAt": "2026-10-26T04:55:24.623Z"
     },
     {
       "id": "prod_roasted_almond_chocolate",
@@ -905,8 +944,8 @@
         "almonds",
         "handmade"
       ],
-      "createdAt": "2026-10-17T17:58:58.355Z",
-      "updatedAt": "2026-10-17T17:58:58.355Z"
+      "createdAt": "2026-10-26T04:55:24.623Z",
+      "updatedAt": "2026-10-26T04:55:24.623Z"
     }
   ],
   "categories": [
@@ -961,21 +1000,6 @@
   ],
   "carts": [
     {
-      "guestId": "gst_mv9a1y12_91tcxa",
-      "items": [
-        {
-          "productId": "prod_green_cardamom_8mm",
-          "variantId": "v_gc_50",
-          "packSize": "50 g",
-          "quantity": 1,
-          "unitPricePaise": 27500
-        }
-      ],
-      "updatedAt": "2026-10-17T11:22:54.558Z",
-      "id": "cart_1792226230704",
-      "_id": "cart_1792226230704"
-    },
-    {
       "guestId": "gst_mvcblhpg_0w1bui",
       "items": [
         {
@@ -991,8 +1015,24 @@
       "_id": "cart_1792237098911"
     },
     {
-      "userId": "usr_1792051028445_txwjm",
+      "userId": "usr_1792332474561_ileig",
       "guestId": "gst_mvazy5uy_adx0ro",
+      "items": [
+        {
+          "productId": "prod_pathimugam",
+          "variantId": "v_pat_100",
+          "packSize": "100 g",
+          "quantity": 1,
+          "unitPricePaise": 12000
+        }
+      ],
+      "updatedAt": "2026-10-21T04:45:54.573Z",
+      "id": "cart_1792557954573",
+      "_id": "cart_1792557954573"
+    },
+    {
+      "userId": "usr_1792051028445_txwjm",
+      "guestId": "gst_mv9a1y12_91tcxa",
       "items": [
         {
           "productId": "prod_green_cardamom_8mm",
@@ -1002,13 +1042,141 @@
           "unitPricePaise": 27500
         }
       ],
-      "updatedAt": "2026-10-17T17:27:29.399Z",
-      "id": "cart_1792258049399",
-      "_id": "cart_1792258049399"
+      "updatedAt": "2026-10-21T07:20:49.449Z",
+      "id": "cart_1792567249449",
+      "_id": "cart_1792567249449"
+    },
+    {
+      "userId": "usr_1792780341407_0lx6q",
+      "guestId": "gst_mvazy5uy_adx0ro",
+      "items": [
+        {
+          "productId": "prod_1792772845838_3qtjd",
+          "variantId": "v_1792772724377",
+          "packSize": "100 g",
+          "quantity": 1,
+          "unitPricePaise": 15000
+        }
+      ],
+      "updatedAt": "2026-10-23T18:34:47.290Z",
+      "id": "cart_1792780487288",
+      "_id": "cart_1792780487288"
     }
   ],
   "wishlists": [],
   "orders": [
+    {
+      "orderNumber": "SR-2026-REJECT01",
+      "customerName": "Fraud Suspect",
+      "customerEmail": "fraud@test.com",
+      "customerPhone": "9123456780",
+      "shippingAddress": {
+        "name": "Fraud Suspect",
+        "phone": "9123456780",
+        "addressLine": "Nowhere",
+        "city": "Kochi",
+        "state": "Kerala",
+        "pincode": "682001"
+      },
+      "items": [],
+      "priceBreakdown": {
+        "subtotalPaise": 20000,
+        "discountPaise": 0,
+        "shippingFeePaise": 6000,
+        "taxPaise": 1000,
+        "totalPaise": 26000
+      },
+      "paymentMethod": "upi_manual",
+      "paymentStatus": "REJECTED",
+      "fulfillmentStatus": "pending",
+      "statusHistory": [],
+      "createdAt": "2026-10-26T04:55:24.093Z",
+      "updatedAt": "2026-10-26T04:55:24.099Z",
+      "id": "ord_1792990524093_mjsel",
+      "_id": "ord_1792990524093_mjsel",
+      "rejectionReason": "No incoming credit received in SBI account for this order",
+      "paymentAuditLogs": [
+        {
+          "previousStatus": "VERIFICATION_PENDING",
+          "newStatus": "REJECTED",
+          "timestamp": "2026-10-26T04:55:24.099Z",
+          "changedBy": "Admin (admin@spiceroots.in)",
+          "note": "Rejected: No incoming credit received in SBI account for this order"
+        }
+      ]
+    },
+    {
+      "orderNumber": "SR-2026-TEST02",
+      "customerName": "Test Buyer",
+      "customerEmail": "buyer@test.com",
+      "customerPhone": "9876543210",
+      "shippingAddress": {
+        "name": "Test Buyer",
+        "phone": "9876543210",
+        "addressLine": "123 Test Street",
+        "city": "Kochi",
+        "state": "Kerala",
+        "pincode": "682001"
+      },
+      "items": [
+        {
+          "productId": "prod_black_pepper",
+          "productName": "Malabar Black Pepper",
+          "productSlug": "malabar-black-pepper",
+          "variantId": "v_bp_100",
+          "sku": "BP-100",
+          "packSize": "100g",
+          "unitPricePaise": 16000,
+          "quantity": 2,
+          "lineTotalPaise": 32000,
+          "image": "/images/pepper.jpg"
+        }
+      ],
+      "priceBreakdown": {
+        "subtotalPaise": 32000,
+        "discountPaise": 0,
+        "shippingFeePaise": 6000,
+        "taxPaise": 1600,
+        "totalPaise": 38000
+      },
+      "paymentMethod": "upi_manual",
+      "paymentStatus": "PAID",
+      "fulfillmentStatus": "confirmed",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-26T04:55:24.071Z",
+          "note": "Order placed, awaiting UPI transfer"
+        }
+      ],
+      "createdAt": "2026-10-26T04:55:24.071Z",
+      "updatedAt": "2026-10-26T04:55:24.087Z",
+      "id": "ord_1792990524071_1eci5",
+      "_id": "ord_1792990524071_1eci5",
+      "upiTransactionRef": "429381749281",
+      "paymentSubmittedAt": "2026-10-26T04:55:24.076Z",
+      "paymentAuditLogs": [
+        {
+          "previousStatus": "AWAITING_PAYMENT",
+          "newStatus": "VERIFICATION_PENDING",
+          "timestamp": "2026-10-26T04:55:24.076Z",
+          "changedBy": "customer",
+          "utr": "429381749281",
+          "note": "Customer submitted payment details on checkout"
+        },
+        {
+          "previousStatus": "VERIFICATION_PENDING",
+          "newStatus": "PAID",
+          "timestamp": "2026-10-26T04:55:24.087Z",
+          "changedBy": "Admin Operations (admin@spiceroots.in)",
+          "utr": "429381749281",
+          "note": "Verified in SBI Yono banking app statement at 11:30 AM"
+        }
+      ],
+      "verifiedAt": "2026-10-26T04:55:24.087Z",
+      "verifiedBy": "Admin Operations (admin@spiceroots.in)",
+      "adminNotes": "Verified in SBI Yono banking app statement at 11:30 AM"
+    },
     {
       "_id": "ord_1792054967384_qmal3",
       "id": "ord_1792054967384_qmal3",
@@ -1047,7 +1215,7 @@
       ],
       "orderNumber": "SR-2026-12737",
       "paymentMethod": "razorpay",
-      "paymentStatus": "paid",
+      "paymentStatus": "PAID",
       "priceBreakdown": {
         "subtotalPaise": 30000,
         "discountPaise": 0,
@@ -1095,10 +1263,24 @@
           "timestamp": "2026-10-17T17:33:46.624Z",
           "note": "Status updated to cancelled from recent orders panel",
           "updatedBy": "Spice Roots Admin"
+        },
+        {
+          "status": "cancelled",
+          "timestamp": "2026-10-20T16:47:16.701Z",
+          "note": "Status updated to cancelled from recent orders panel",
+          "updatedBy": "Spice Roots Admin"
+        },
+        {
+          "status": "cancelled",
+          "timestamp": "2026-10-23T14:07:49.930Z",
+          "note": "Status updated to cancelled (PAID)",
+          "updatedBy": "Spice Roots Admin"
         }
       ],
-      "updatedAt": "2026-10-17T17:33:46.624Z",
-      "userId": "usr_1792051028446_mp01m"
+      "updatedAt": "2026-10-23T14:07:49.930Z",
+      "userId": "usr_1792051028446_mp01m",
+      "verifiedAt": "2026-10-23T14:07:49.929Z",
+      "verifiedBy": "Spice Roots Admin (admin@spiceroots.in)"
     },
     {
       "_id": "ord_1792054103143_7ws3h",
@@ -1239,6 +1421,895 @@
       ],
       "trackingNumber": "BD749281045IN",
       "updatedAt": "2026-10-15T07:57:08.451Z"
+    },
+    {
+      "_id": "ord_1792264026818_69nbj",
+      "id": "ord_1792264026818_69nbj",
+      "__v": 0,
+      "createdAt": "2026-10-17T19:07:06.818Z",
+      "customerEmail": "customer@spiceroots.in",
+      "customerName": "Ramesh Kumar",
+      "customerPhone": "9876543210",
+      "fulfillmentStatus": "confirmed",
+      "items": [
+        {
+          "productId": "prod_green_cardamom_8mm",
+          "productName": "Alleppey Green Cardamom — 8mm Super Bold",
+          "productSlug": "alleppey-green-cardamom-8mm",
+          "variantId": "v_gc_50",
+          "sku": "SR-GC-50G",
+          "packSize": "50 g",
+          "unitPricePaise": 27500,
+          "quantity": 1,
+          "lineTotalPaise": 27500,
+          "image": "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=1000&q=80"
+        },
+        {
+          "productId": "prod_black_pepper",
+          "productName": "Malabar Tellicherry Black Pepper (Garbled)",
+          "productSlug": "malabar-black-pepper",
+          "variantId": "v_bp_100",
+          "sku": "SR-BP-100G",
+          "packSize": "100 g",
+          "unitPricePaise": 16000,
+          "quantity": 1,
+          "lineTotalPaise": 16000,
+          "image": "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1000&q=80"
+        }
+      ],
+      "orderNumber": "SR-2026-84877",
+      "paymentAuditLogs": [
+        {
+          "previousStatus": "CREATED",
+          "newStatus": "AWAITING_PAYMENT",
+          "timestamp": "2026-10-17T19:07:06.743Z",
+          "changedBy": "system",
+          "note": "Order initialized with payment method: upi_manual"
+        },
+        {
+          "previousStatus": "AWAITING_PAYMENT",
+          "newStatus": "VERIFICATION_PENDING",
+          "timestamp": "2026-10-17T19:12:18.678Z",
+          "changedBy": "customer",
+          "note": "Customer submitted payment details on checkout"
+        },
+        {
+          "previousStatus": "VERIFICATION_PENDING",
+          "newStatus": "PAID",
+          "timestamp": "2026-10-21T07:01:37.002Z",
+          "changedBy": "Spice Roots Admin (admin@spiceroots.in)",
+          "note": "Verified against merchant bank/UPI account",
+          "utr": "Verified via Bank Statement"
+        }
+      ],
+      "paymentMethod": "upi_manual",
+      "paymentStatus": "PAID",
+      "priceBreakdown": {
+        "subtotalPaise": 43500,
+        "discountPaise": 0,
+        "shippingFeePaise": 6000,
+        "taxPaise": 2175,
+        "totalPaise": 51675
+      },
+      "shippingAddress": {
+        "name": "Ramesh Kumar",
+        "phone": "9876543210",
+        "addressLine": "124 Plantation View",
+        "landmark": "Near Indiranagar Metro",
+        "city": "Munnar",
+        "state": "Kerala",
+        "pincode": "685612",
+        "isDefault": false
+      },
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-17T19:07:06.742Z",
+          "note": "Order created for Direct UPI payment. Awaiting customer transfer."
+        },
+        {
+          "status": "processing",
+          "timestamp": "2026-10-17T19:12:18.678Z",
+          "note": "Customer submitted payment details (UTR: Screenshot attached). Payment Verification Pending."
+        },
+        {
+          "status": "pending",
+          "timestamp": "2026-10-17T19:26:48.994Z",
+          "note": "Status updated to pending from recent orders panel",
+          "updatedBy": "Spice Roots Admin"
+        },
+        {
+          "status": "pending",
+          "timestamp": "2026-10-17T19:27:41.292Z",
+          "note": "Status updated to pending from recent orders panel",
+          "updatedBy": "Spice Roots Admin"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": "2026-10-21T07:01:37.002Z",
+          "note": "Payment verified and confirmed by Spice Roots Admin (admin@spiceroots.in). UTR: Verified via Bank Statement. Moved to fulfillment queue.",
+          "updatedBy": "Spice Roots Admin"
+        }
+      ],
+      "updatedAt": "2026-10-21T07:01:37.013Z",
+      "userId": "usr_1792051028446_mp01m",
+      "paymentSubmittedAt": "2026-10-17T19:12:18.678Z",
+      "courierName": "Blue Dart Express",
+      "adminNotes": "Verified against merchant bank/UPI account",
+      "upiTransactionRef": "Verified via Bank Statement",
+      "verifiedAt": "2026-10-21T07:01:37.002Z",
+      "verifiedBy": "Spice Roots Admin (admin@spiceroots.in)"
+    },
+    {
+      "_id": "ord_1792265718382_mdpnf",
+      "id": "ord_1792265718382_mdpnf",
+      "__v": 0,
+      "createdAt": "2026-10-17T19:35:18.382Z",
+      "customerEmail": "customer@spiceroots.in",
+      "customerName": "vishnu",
+      "customerPhone": "+91 98765 43210",
+      "fulfillmentStatus": "pending",
+      "items": [
+        {
+          "productId": "prod_green_cardamom_8mm",
+          "productName": "Alleppey Green Cardamom — 8mm Super Bold",
+          "productSlug": "alleppey-green-cardamom-8mm",
+          "variantId": "v_gc_50",
+          "sku": "SR-GC-50G",
+          "packSize": "50 g",
+          "unitPricePaise": 27500,
+          "quantity": 1,
+          "lineTotalPaise": 27500,
+          "image": "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=1000&q=80"
+        }
+      ],
+      "orderNumber": "SR-2026-36671",
+      "paymentAuditLogs": [
+        {
+          "previousStatus": "CREATED",
+          "newStatus": "AWAITING_PAYMENT",
+          "timestamp": "2026-10-17T19:35:18.297Z",
+          "changedBy": "system",
+          "note": "Order initialized with payment method: upi_manual"
+        }
+      ],
+      "paymentMethod": "upi_manual",
+      "paymentStatus": "AWAITING_PAYMENT",
+      "priceBreakdown": {
+        "subtotalPaise": 27500,
+        "discountPaise": 0,
+        "shippingFeePaise": 6000,
+        "taxPaise": 1375,
+        "totalPaise": 34875
+      },
+      "shippingAddress": {
+        "name": "vishnu",
+        "phone": "+91 98765 43210",
+        "addressLine": "Flat 402, Green Meadows Apartment",
+        "landmark": "Near Indiranagar Metro",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560038",
+        "isDefault": false
+      },
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-17T19:35:18.297Z",
+          "note": "Order created for Direct UPI payment. Awaiting customer transfer."
+        }
+      ],
+      "updatedAt": "2026-10-17T19:35:18.382Z",
+      "userId": "usr_1792051028446_mp01m"
+    },
+    {
+      "_id": "ord_1792265792494_4o7x8",
+      "id": "ord_1792265792494_4o7x8",
+      "__v": 0,
+      "createdAt": "2026-10-17T19:36:32.494Z",
+      "customerEmail": "customer@spiceroots.in",
+      "customerName": "vishnu",
+      "customerPhone": "+91 98765 43210",
+      "fulfillmentStatus": "confirmed",
+      "items": [
+        {
+          "productId": "prod_green_cardamom_8mm",
+          "productName": "Alleppey Green Cardamom — 8mm Super Bold",
+          "productSlug": "alleppey-green-cardamom-8mm",
+          "variantId": "v_gc_50",
+          "sku": "SR-GC-50G",
+          "packSize": "50 g",
+          "unitPricePaise": 27500,
+          "quantity": 1,
+          "lineTotalPaise": 27500,
+          "image": "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=1000&q=80"
+        }
+      ],
+      "orderNumber": "SR-2026-52012",
+      "paymentAuditLogs": [
+        {
+          "previousStatus": "CREATED",
+          "newStatus": "AWAITING_PAYMENT",
+          "timestamp": "2026-10-17T19:36:32.480Z",
+          "changedBy": "system",
+          "note": "Order initialized with payment method: upi_manual"
+        },
+        {
+          "previousStatus": "AWAITING_PAYMENT",
+          "newStatus": "VERIFICATION_PENDING",
+          "timestamp": "2026-10-17T19:37:02.510Z",
+          "changedBy": "customer",
+          "note": "Customer submitted payment details on checkout"
+        },
+        {
+          "previousStatus": "VERIFICATION_PENDING",
+          "newStatus": "VERIFICATION_PENDING",
+          "timestamp": "2026-10-17T19:38:42.201Z",
+          "changedBy": "customer",
+          "note": "Customer submitted payment details on checkout",
+          "utr": "tnx1237r99595-393445"
+        },
+        {
+          "previousStatus": "VERIFICATION_PENDING",
+          "newStatus": "PAID",
+          "timestamp": "2026-10-20T17:23:08.031Z",
+          "changedBy": "Spice Roots Admin (admin@spiceroots.in)",
+          "note": "Verified against merchant bank/UPI account",
+          "utr": "tnx1237r99595-393445"
+        }
+      ],
+      "paymentMethod": "upi_manual",
+      "paymentStatus": "PAID",
+      "priceBreakdown": {
+        "subtotalPaise": 27500,
+        "discountPaise": 0,
+        "shippingFeePaise": 6000,
+        "taxPaise": 1375,
+        "totalPaise": 34875
+      },
+      "shippingAddress": {
+        "name": "vishnu",
+        "phone": "+91 98765 43210",
+        "addressLine": "Flat 402, Green Meadows Apartment",
+        "landmark": "Near Indiranagar Metro",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560038",
+        "isDefault": false
+      },
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-17T19:36:32.480Z",
+          "note": "Order created for Direct UPI payment. Awaiting customer transfer."
+        },
+        {
+          "status": "processing",
+          "timestamp": "2026-10-17T19:37:02.510Z",
+          "note": "Customer submitted payment details (UTR: Screenshot attached). Payment Verification Pending."
+        },
+        {
+          "status": "processing",
+          "timestamp": "2026-10-17T19:38:42.201Z",
+          "note": "Customer submitted payment details (UTR: tnx1237r99595-393445). Payment Verification Pending."
+        },
+        {
+          "status": "pending",
+          "timestamp": "2026-10-17T19:40:49.553Z",
+          "note": "Status updated to pending from recent orders panel",
+          "updatedBy": "Spice Roots Admin"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": "2026-10-20T17:23:08.031Z",
+          "note": "Payment verified and confirmed by Spice Roots Admin (admin@spiceroots.in). UTR: tnx1237r99595-393445. Moved to fulfillment queue.",
+          "updatedBy": "Spice Roots Admin"
+        }
+      ],
+      "updatedAt": "2026-10-20T17:23:08.031Z",
+      "userId": "usr_1792051028446_mp01m",
+      "paymentSubmittedAt": "2026-10-17T19:38:42.201Z",
+      "screenshotPath": "proof_SR-2026-52012_1792265922100_4jr06w.png",
+      "upiTransactionRef": "tnx1237r99595-393445",
+      "courierName": "Blue Dart Express",
+      "verifiedAt": "2026-10-20T17:23:08.031Z",
+      "verifiedBy": "Spice Roots Admin (admin@spiceroots.in)"
+    },
+    {
+      "_id": "ord_1792332630231_9d2u3",
+      "id": "ord_1792332630231_9d2u3",
+      "__v": 0,
+      "createdAt": "2026-10-18T14:10:30.231Z",
+      "customerEmail": "harihvk@gmail.com",
+      "customerName": "hari varathana kumar",
+      "customerPhone": "9400499098",
+      "fulfillmentStatus": "processing",
+      "items": [
+        {
+          "productId": "prod_black_pepper",
+          "productName": "Malabar Tellicherry Black Pepper (Garbled)",
+          "productSlug": "malabar-black-pepper",
+          "variantId": "v_bp_100",
+          "sku": "SR-BP-100G",
+          "packSize": "100 g",
+          "unitPricePaise": 16000,
+          "quantity": 1,
+          "lineTotalPaise": 16000,
+          "image": "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1000&q=80"
+        }
+      ],
+      "orderNumber": "SR-2026-27605",
+      "paymentAuditLogs": [
+        {
+          "previousStatus": "CREATED",
+          "newStatus": "AWAITING_PAYMENT",
+          "timestamp": "2026-10-18T14:10:30.204Z",
+          "changedBy": "system",
+          "note": "Order initialized with payment method: upi_manual"
+        },
+        {
+          "previousStatus": "AWAITING_PAYMENT",
+          "newStatus": "VERIFICATION_PENDING",
+          "timestamp": "2026-10-18T14:13:21.568Z",
+          "changedBy": "customer",
+          "note": "Customer submitted payment details on checkout",
+          "utr": "7936832027605"
+        }
+      ],
+      "paymentMethod": "upi_manual",
+      "paymentStatus": "VERIFICATION_PENDING",
+      "priceBreakdown": {
+        "subtotalPaise": 16000,
+        "discountPaise": 0,
+        "shippingFeePaise": 6000,
+        "taxPaise": 800,
+        "totalPaise": 22800
+      },
+      "shippingAddress": {
+        "name": "hari varathana kumar",
+        "phone": "9400499098",
+        "addressLine": "solamalai college of engineering",
+        "landmark": "solamalai",
+        "city": "madurai",
+        "state": "Tamil Nadu",
+        "pincode": "625020",
+        "isDefault": false
+      },
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-18T14:10:30.204Z",
+          "note": "Order created for Direct UPI payment. Awaiting customer transfer."
+        },
+        {
+          "status": "processing",
+          "timestamp": "2026-10-18T14:13:21.568Z",
+          "note": "Customer submitted payment details (UTR: 7936832027605). Payment Verification Pending."
+        },
+        {
+          "status": "processing",
+          "timestamp": "2026-10-18T14:15:29.286Z",
+          "note": "Status updated to processing from recent orders panel",
+          "updatedBy": "Spice Roots Admin"
+        }
+      ],
+      "updatedAt": "2026-10-18T14:15:29.286Z",
+      "userId": "usr_1792332474561_ileig",
+      "paymentSubmittedAt": "2026-10-18T14:13:21.568Z",
+      "upiTransactionRef": "7936832027605",
+      "courierName": "Blue Dart Express"
+    },
+    {
+      "_id": "ord_1792345434709_tu2sr",
+      "id": "ord_1792345434709_tu2sr",
+      "__v": 0,
+      "createdAt": "2026-10-18T17:43:54.709Z",
+      "customerEmail": "customer@spiceroots.in",
+      "customerName": "vishnu",
+      "customerPhone": "+91 98765 43210",
+      "fulfillmentStatus": "pending",
+      "items": [
+        {
+          "productId": "prod_ceylon_cinnamon",
+          "productName": "Handcrafted Ceylon Roll Cinnamon Quills",
+          "productSlug": "ceylon-roll-cinnamon",
+          "variantId": "v_cin_100",
+          "sku": "SR-CIN-100G",
+          "packSize": "100 g",
+          "unitPricePaise": 19000,
+          "quantity": 1,
+          "lineTotalPaise": 19000,
+          "image": "https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=1000&q=80"
+        }
+      ],
+      "orderNumber": "SR-2026-91957",
+      "paymentAuditLogs": [
+        {
+          "previousStatus": "CREATED",
+          "newStatus": "AWAITING_PAYMENT",
+          "timestamp": "2026-10-18T17:43:54.689Z",
+          "changedBy": "system",
+          "note": "Order initialized with payment method: upi_manual"
+        }
+      ],
+      "paymentMethod": "upi_manual",
+      "paymentStatus": "AWAITING_PAYMENT",
+      "priceBreakdown": {
+        "subtotalPaise": 19000,
+        "discountPaise": 0,
+        "shippingFeePaise": 6000,
+        "taxPaise": 950,
+        "totalPaise": 25950
+      },
+      "shippingAddress": {
+        "name": "vishnu",
+        "phone": "+91 98765 43210",
+        "addressLine": "Flat 402, Green Meadows Apartment",
+        "landmark": "Near Indiranagar Metro",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560038",
+        "isDefault": false
+      },
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-18T17:43:54.689Z",
+          "note": "Order created for Direct UPI payment. Awaiting customer transfer."
+        }
+      ],
+      "updatedAt": "2026-10-18T17:43:54.709Z",
+      "userId": "usr_1792051028446_mp01m"
+    },
+    {
+      "_id": "ord_1792345461240_3fato",
+      "id": "ord_1792345461240_3fato",
+      "__v": 0,
+      "createdAt": "2026-10-18T17:44:21.240Z",
+      "customerEmail": "customer@spiceroots.in",
+      "customerName": "vishnu",
+      "customerPhone": "+91 98765 43210",
+      "fulfillmentStatus": "shipped",
+      "items": [
+        {
+          "productId": "prod_ceylon_cinnamon",
+          "productName": "Handcrafted Ceylon Roll Cinnamon Quills",
+          "productSlug": "ceylon-roll-cinnamon",
+          "variantId": "v_cin_100",
+          "sku": "SR-CIN-100G",
+          "packSize": "100 g",
+          "unitPricePaise": 19000,
+          "quantity": 1,
+          "lineTotalPaise": 19000,
+          "image": "https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=1000&q=80"
+        }
+      ],
+      "orderNumber": "SR-2026-96400",
+      "paymentAuditLogs": [
+        {
+          "previousStatus": "CREATED",
+          "newStatus": "AWAITING_PAYMENT",
+          "timestamp": "2026-10-18T17:44:21.224Z",
+          "changedBy": "system",
+          "note": "Order initialized with payment method: upi_manual"
+        },
+        {
+          "previousStatus": "AWAITING_PAYMENT",
+          "newStatus": "VERIFICATION_PENDING",
+          "timestamp": "2026-10-18T17:46:37.739Z",
+          "changedBy": "customer",
+          "note": "Customer submitted payment details on checkout"
+        }
+      ],
+      "paymentMethod": "upi_manual",
+      "paymentStatus": "VERIFICATION_PENDING",
+      "priceBreakdown": {
+        "subtotalPaise": 19000,
+        "discountPaise": 0,
+        "shippingFeePaise": 6000,
+        "taxPaise": 950,
+        "totalPaise": 25950
+      },
+      "shippingAddress": {
+        "name": "vishnu",
+        "phone": "+91 98765 43210",
+        "addressLine": "Flat 402, Green Meadows Apartment",
+        "landmark": "Near Indiranagar Metro",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560038",
+        "isDefault": false
+      },
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-18T17:44:21.224Z",
+          "note": "Order created for Direct UPI payment. Awaiting customer transfer."
+        },
+        {
+          "status": "processing",
+          "timestamp": "2026-10-18T17:46:37.739Z",
+          "note": "Customer submitted payment details (UTR: Screenshot attached). Payment Verification Pending."
+        },
+        {
+          "status": "shipped",
+          "timestamp": "2026-10-18T17:48:05.904Z",
+          "note": "Status updated to shipped from recent orders panel",
+          "updatedBy": "Spice Roots Admin"
+        }
+      ],
+      "updatedAt": "2026-10-18T17:48:05.905Z",
+      "userId": "usr_1792051028446_mp01m",
+      "paymentSubmittedAt": "2026-10-18T17:46:37.739Z",
+      "courierName": "Blue Dart Express",
+      "trackingNumber": "bd12345"
+    },
+    {
+      "_id": "ord_1792519959302_7jsft",
+      "id": "ord_1792519959302_7jsft",
+      "__v": 0,
+      "createdAt": "2026-10-20T18:12:39.302Z",
+      "customerEmail": "admin@spiceroots.in",
+      "customerName": "Spice Roots Admin",
+      "customerPhone": "+91 91885 70191",
+      "fulfillmentStatus": "pending",
+      "items": [
+        {
+          "productId": "prod_green_cardamom_8mm",
+          "productName": "Alleppey Green Cardamom — 8mm Super Bold",
+          "productSlug": "alleppey-green-cardamom-8mm",
+          "variantId": "v_gc_50",
+          "sku": "SR-GC-50G",
+          "packSize": "50 g",
+          "unitPricePaise": 27500,
+          "quantity": 1,
+          "lineTotalPaise": 27500,
+          "image": "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=1000&q=80"
+        },
+        {
+          "productId": "prod_kolukkumalai_tea",
+          "productName": "Kolukkumalai High-Peak Orthodox Black Tea",
+          "productSlug": "kolukkumalai-orthodox-tea",
+          "variantId": "v_kt_100",
+          "sku": "SR-KT-100G",
+          "packSize": "100 g",
+          "unitPricePaise": 24000,
+          "quantity": 1,
+          "lineTotalPaise": 24000,
+          "image": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=1000&q=80"
+        }
+      ],
+      "orderNumber": "SR-2026-44313",
+      "paymentAuditLogs": [
+        {
+          "previousStatus": "CREATED",
+          "newStatus": "AWAITING_PAYMENT",
+          "timestamp": "2026-10-20T18:12:39.243Z",
+          "changedBy": "system",
+          "note": "Order initialized with payment method: upi_manual"
+        }
+      ],
+      "paymentMethod": "upi_manual",
+      "paymentStatus": "AWAITING_PAYMENT",
+      "priceBreakdown": {
+        "subtotalPaise": 51500,
+        "discountPaise": 0,
+        "shippingFeePaise": 6000,
+        "taxPaise": 2575,
+        "totalPaise": 60075
+      },
+      "shippingAddress": {
+        "name": "Spice Roots Admin",
+        "phone": "+91 91885 70191",
+        "addressLine": "Post Office Junction",
+        "landmark": "Opposite Plantation Club",
+        "city": "Munnar",
+        "state": "Kerala",
+        "pincode": "625001",
+        "isDefault": false
+      },
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-20T18:12:39.243Z",
+          "note": "Order created for Direct UPI payment. Awaiting customer transfer."
+        }
+      ],
+      "updatedAt": "2026-10-20T18:12:39.302Z",
+      "userId": "usr_1792051028445_txwjm"
+    },
+    {
+      "_id": "ord_1792520069055_vq7jf",
+      "id": "ord_1792520069055_vq7jf",
+      "__v": 0,
+      "createdAt": "2026-10-20T18:14:29.055Z",
+      "customerEmail": "admin@spiceroots.in",
+      "customerName": "Spice Roots Admin",
+      "customerPhone": "+91 91885 70191",
+      "fulfillmentStatus": "processing",
+      "items": [
+        {
+          "productId": "prod_green_cardamom_8mm",
+          "productName": "Alleppey Green Cardamom — 8mm Super Bold",
+          "productSlug": "alleppey-green-cardamom-8mm",
+          "variantId": "v_gc_50",
+          "sku": "SR-GC-50G",
+          "packSize": "50 g",
+          "unitPricePaise": 27500,
+          "quantity": 1,
+          "lineTotalPaise": 27500,
+          "image": "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=1000&q=80"
+        },
+        {
+          "productId": "prod_kolukkumalai_tea",
+          "productName": "Kolukkumalai High-Peak Orthodox Black Tea",
+          "productSlug": "kolukkumalai-orthodox-tea",
+          "variantId": "v_kt_100",
+          "sku": "SR-KT-100G",
+          "packSize": "100 g",
+          "unitPricePaise": 24000,
+          "quantity": 1,
+          "lineTotalPaise": 24000,
+          "image": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=1000&q=80"
+        }
+      ],
+      "orderNumber": "SR-2026-99994",
+      "paymentAuditLogs": [
+        {
+          "previousStatus": "CREATED",
+          "newStatus": "AWAITING_PAYMENT",
+          "timestamp": "2026-10-20T18:14:29.021Z",
+          "changedBy": "system",
+          "note": "Order initialized with payment method: upi_manual"
+        },
+        {
+          "previousStatus": "AWAITING_PAYMENT",
+          "newStatus": "VERIFICATION_PENDING",
+          "timestamp": "2026-10-20T18:14:39.173Z",
+          "changedBy": "customer",
+          "note": "Customer submitted payment details on checkout"
+        }
+      ],
+      "paymentMethod": "upi_manual",
+      "paymentStatus": "VERIFICATION_PENDING",
+      "priceBreakdown": {
+        "subtotalPaise": 51500,
+        "discountPaise": 0,
+        "shippingFeePaise": 6000,
+        "taxPaise": 2575,
+        "totalPaise": 60075
+      },
+      "shippingAddress": {
+        "name": "Spice Roots Admin",
+        "phone": "+91 91885 70191",
+        "addressLine": "Post Office Junction",
+        "landmark": "Opposite Plantation Club",
+        "city": "Madurai",
+        "state": "Tamil Nadu",
+        "pincode": "625001",
+        "isDefault": false
+      },
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-20T18:14:29.021Z",
+          "note": "Order created for Direct UPI payment. Awaiting customer transfer."
+        },
+        {
+          "status": "processing",
+          "timestamp": "2026-10-20T18:14:39.173Z",
+          "note": "Customer submitted payment details (UTR: Screenshot attached). Payment Verification Pending."
+        },
+        {
+          "status": "processing",
+          "timestamp": "2026-10-20T18:15:07.514Z",
+          "note": "Status updated to processing from recent orders panel",
+          "updatedBy": "Spice Roots Admin"
+        }
+      ],
+      "updatedAt": "2026-10-20T18:15:07.514Z",
+      "userId": "usr_1792051028445_txwjm",
+      "paymentSubmittedAt": "2026-10-20T18:14:39.173Z",
+      "courierName": "Blue Dart Express"
+    },
+    {
+      "_id": "ord_1792771331096_08ht8",
+      "id": "ord_1792771331096_08ht8",
+      "__v": 0,
+      "createdAt": "2026-10-23T16:02:11.097Z",
+      "customerEmail": "customer@spiceroots.in",
+      "customerName": "vishnu",
+      "customerPhone": "+91 98765 43210",
+      "fulfillmentStatus": "pending",
+      "items": [
+        {
+          "productId": "prod_1792764953029_r570x",
+          "productName": "Ripple Tasty Leaf Tea\t",
+          "productSlug": "ripple-tasty-leaf-tea-703",
+          "variantId": "v_1792764863062",
+          "sku": "SR-NEW-100G",
+          "packSize": "500 g",
+          "unitPricePaise": 20000,
+          "quantity": 1,
+          "lineTotalPaise": 20000,
+          "image": "https://www.rippletea.com/cdn/shop/files/FOP_4bcf197b-9184-46f6-ab70-e6f160e07ca7.png?v=1722936383&width=535"
+        }
+      ],
+      "orderNumber": "SR-2026-81701",
+      "paymentAuditLogs": [
+        {
+          "previousStatus": "CREATED",
+          "newStatus": "AWAITING_PAYMENT",
+          "timestamp": "2026-10-23T16:02:11.071Z",
+          "changedBy": "system",
+          "note": "Order initialized with payment method: upi_manual"
+        }
+      ],
+      "paymentMethod": "upi_manual",
+      "paymentStatus": "AWAITING_PAYMENT",
+      "priceBreakdown": {
+        "subtotalPaise": 20000,
+        "discountPaise": 0,
+        "shippingFeePaise": 12000,
+        "taxPaise": 1000,
+        "totalPaise": 33000
+      },
+      "shippingAddress": {
+        "name": "vishnu",
+        "phone": "+91 98765 43210",
+        "addressLine": "Flat 402, Green Meadows Apartment",
+        "landmark": "Near Indiranagar Metro",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560038",
+        "isDefault": false
+      },
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-23T16:02:11.071Z",
+          "note": "Order created for Direct UPI payment. Awaiting customer transfer."
+        }
+      ],
+      "updatedAt": "2026-10-23T16:02:11.097Z",
+      "userId": "usr_1792051028446_mp01m"
+    },
+    {
+      "_id": "ord_1792771414993_l84y7",
+      "id": "ord_1792771414993_l84y7",
+      "__v": 0,
+      "createdAt": "2026-10-23T16:03:34.993Z",
+      "customerEmail": "customer@spiceroots.in",
+      "customerName": "vishnu",
+      "customerPhone": "+91 98765 43210",
+      "fulfillmentStatus": "pending",
+      "items": [
+        {
+          "productId": "prod_1792764953029_r570x",
+          "productName": "Ripple Tasty Leaf Tea\t",
+          "productSlug": "ripple-tasty-leaf-tea-703",
+          "variantId": "v_1792764863062",
+          "sku": "SR-NEW-100G",
+          "packSize": "500 g",
+          "unitPricePaise": 20000,
+          "quantity": 2,
+          "lineTotalPaise": 40000,
+          "image": "https://www.rippletea.com/cdn/shop/files/FOP_4bcf197b-9184-46f6-ab70-e6f160e07ca7.png?v=1722936383&width=535"
+        }
+      ],
+      "orderNumber": "SR-2026-69547",
+      "paymentAuditLogs": [
+        {
+          "previousStatus": "CREATED",
+          "newStatus": "AWAITING_PAYMENT",
+          "timestamp": "2026-10-23T16:03:34.984Z",
+          "changedBy": "system",
+          "note": "Order initialized with payment method: upi_manual"
+        }
+      ],
+      "paymentMethod": "upi_manual",
+      "paymentStatus": "AWAITING_PAYMENT",
+      "priceBreakdown": {
+        "subtotalPaise": 40000,
+        "discountPaise": 0,
+        "shippingFeePaise": 10000,
+        "taxPaise": 2000,
+        "totalPaise": 52000
+      },
+      "shippingAddress": {
+        "name": "vishnu",
+        "phone": "+91 98765 43210",
+        "addressLine": "Flat 402, Green Meadows Apartment",
+        "landmark": "Near Indiranagar Metro",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "625001",
+        "isDefault": false
+      },
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-23T16:03:34.984Z",
+          "note": "Order created for Direct UPI payment. Awaiting customer transfer."
+        }
+      ],
+      "updatedAt": "2026-10-23T16:03:34.993Z",
+      "userId": "usr_1792051028446_mp01m"
+    },
+    {
+      "_id": "ord_1792771510362_ptamf",
+      "id": "ord_1792771510362_ptamf",
+      "__v": 0,
+      "createdAt": "2026-10-23T16:05:10.362Z",
+      "customerEmail": "customer@spiceroots.in",
+      "customerName": "vishnu",
+      "customerPhone": "+91 98765 43210",
+      "fulfillmentStatus": "pending",
+      "items": [
+        {
+          "productId": "prod_1792764953029_r570x",
+          "productName": "Ripple Tasty Leaf Tea\t",
+          "productSlug": "ripple-tasty-leaf-tea-703",
+          "variantId": "v_1792764863062",
+          "sku": "SR-NEW-100G",
+          "packSize": "500 g",
+          "unitPricePaise": 20000,
+          "quantity": 1,
+          "lineTotalPaise": 20000,
+          "image": "https://www.rippletea.com/cdn/shop/files/FOP_4bcf197b-9184-46f6-ab70-e6f160e07ca7.png?v=1722936383&width=535"
+        }
+      ],
+      "orderNumber": "SR-2026-18315",
+      "paymentAuditLogs": [
+        {
+          "previousStatus": "CREATED",
+          "newStatus": "AWAITING_PAYMENT",
+          "timestamp": "2026-10-23T16:05:10.347Z",
+          "changedBy": "system",
+          "note": "Order initialized with payment method: upi_manual"
+        },
+        {
+          "previousStatus": "AWAITING_PAYMENT",
+          "newStatus": "VERIFICATION_PENDING",
+          "timestamp": "2026-10-23T16:05:34.138Z",
+          "changedBy": "customer",
+          "note": "Customer submitted payment details on checkout"
+        }
+      ],
+      "paymentMethod": "upi_manual",
+      "paymentStatus": "VERIFICATION_PENDING",
+      "priceBreakdown": {
+        "subtotalPaise": 20000,
+        "discountPaise": 0,
+        "shippingFeePaise": 10000,
+        "taxPaise": 1000,
+        "totalPaise": 31000
+      },
+      "shippingAddress": {
+        "name": "vishnu",
+        "phone": "+91 98765 43210",
+        "addressLine": "Flat 402, Green Meadows Apartment",
+        "landmark": "Near Indiranagar Metro",
+        "city": "Madurai",
+        "state": "Tamil Nadu",
+        "pincode": "625019",
+        "isDefault": false
+      },
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-23T16:05:10.347Z",
+          "note": "Order created for Direct UPI payment. Awaiting customer transfer."
+        },
+        {
+          "status": "processing",
+          "timestamp": "2026-10-23T16:05:34.138Z",
+          "note": "Customer submitted payment details (UTR: Screenshot attached). Payment Verification Pending."
+        }
+      ],
+      "updatedAt": "2026-10-23T16:05:34.138Z",
+      "userId": "usr_1792051028446_mp01m",
+      "paymentSubmittedAt": "2026-10-23T16:05:34.138Z"
     }
   ],
   "coupons": [
@@ -1471,9 +2542,9 @@
       "rating": 5,
       "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
       "isVerifiedPurchase": true,
-      "createdAt": "2026-10-17T17:58:58.566Z",
-      "id": "rev_1792259938566",
-      "_id": "rev_1792259938566"
+      "createdAt": "2026-10-26T04:55:23.760Z",
+      "id": "rev_1792990523759",
+      "_id": "rev_1792990523759"
     },
     {
       "productId": "prod_green_cardamom_8mm",
@@ -1481,9 +2552,9 @@
       "rating": 5,
       "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
       "isVerifiedPurchase": true,
-      "createdAt": "2026-10-17T17:58:58.568Z",
-      "id": "rev_1792259938568",
-      "_id": "rev_1792259938568"
+      "createdAt": "2026-10-26T04:55:23.763Z",
+      "id": "rev_1792990523763",
+      "_id": "rev_1792990523763"
     },
     {
       "productId": "prod_kolukkumalai_tea",
@@ -1491,9 +2562,93 @@
       "rating": 5,
       "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
       "isVerifiedPurchase": true,
-      "createdAt": "2026-10-17T17:58:58.569Z",
-      "id": "rev_1792259938569",
-      "_id": "rev_1792259938569"
+      "createdAt": "2026-10-26T04:55:23.766Z",
+      "id": "rev_1792990523766",
+      "_id": "rev_1792990523766"
+    },
+    {
+      "productId": "prod_black_pepper",
+      "customerName": "Ananya Nair (Kochi)",
+      "rating": 5,
+      "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
+      "isVerifiedPurchase": true,
+      "createdAt": "2026-10-26T04:55:25.294Z",
+      "id": "rev_1792990525294",
+      "_id": "rev_1792990525294"
+    },
+    {
+      "productId": "prod_green_cardamom_8mm",
+      "customerName": "Chef Vikramaditya (Mumbai)",
+      "rating": 5,
+      "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
+      "isVerifiedPurchase": true,
+      "createdAt": "2026-10-26T04:55:25.303Z",
+      "id": "rev_1792990525303",
+      "_id": "rev_1792990525303"
+    },
+    {
+      "productId": "prod_kolukkumalai_tea",
+      "customerName": "Priya Sundaram (Chennai)",
+      "rating": 5,
+      "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
+      "isVerifiedPurchase": true,
+      "createdAt": "2026-10-26T04:55:25.309Z",
+      "id": "rev_1792990525309",
+      "_id": "rev_1792990525309"
+    }
+  ],
+  "shippingRates": [
+    {
+      "id": "rate_madurai",
+      "_id": "rate_madurai",
+      "zoneName": "Madurai & South Tamil Nadu",
+      "pincodePrefix": " 625001-625025,",
+      "baseWeightKg": 1,
+      "baseRate": 100,
+      "perAdditionalKgRate": 40,
+      "estimatedDelivery": "1-2 business days",
+      "isActive": true,
+      "createdAt": "2026-10-18T14:45:36.715Z",
+      "updatedAt": "2026-10-23T14:10:00.616Z"
+    },
+    {
+      "id": "rate_mumbai_delhi",
+      "_id": "rate_mumbai_delhi",
+      "zoneName": "Mumbai & Delhi Metros",
+      "pincodePrefix": "400001, 400050, 400001-400099, 110001, 110020, 110001-110099",
+      "baseWeightKg": 1,
+      "baseRate": 250,
+      "perAdditionalKgRate": 80,
+      "estimatedDelivery": "3-4 business days",
+      "isActive": true,
+      "createdAt": "2026-10-18T14:45:36.716Z",
+      "updatedAt": "2026-10-18T14:45:36.716Z"
+    },
+    {
+      "id": "rate_kerala",
+      "_id": "rate_kerala",
+      "zoneName": "Kerala Local Depot",
+      "pincodePrefix": "682001, 682035, 682001-682040, 683101, 685612, 686001",
+      "baseWeightKg": 1,
+      "baseRate": 60,
+      "perAdditionalKgRate": 30,
+      "estimatedDelivery": "24-48 hours",
+      "isActive": true,
+      "createdAt": "2026-10-18T14:45:36.717Z",
+      "updatedAt": "2026-10-18T14:45:36.717Z"
+    },
+    {
+      "id": "rate_national",
+      "_id": "rate_national",
+      "zoneName": "Rest of India (National Express)",
+      "pincodePrefix": "*",
+      "baseWeightKg": 1,
+      "baseRate": 120,
+      "perAdditionalKgRate": 60,
+      "estimatedDelivery": "3-5 business days",
+      "isActive": true,
+      "createdAt": "2026-10-18T14:45:36.717Z",
+      "updatedAt": "2026-10-18T14:45:36.717Z"
     }
   ],
   "settings": {
@@ -1507,9 +2662,16 @@
     "freeShippingThresholdPaise": 99900,
     "standardShippingFeePaise": 6000,
     "taxPercent": 5,
-    "isCodEnabled": true,
-    "isRazorpayEnabled": true,
+    "isCodEnabled": false,
+    "isRazorpayEnabled": false,
+    "isUpiManualEnabled": true,
     "isAiEnabled": true,
+    "merchantUpiId": "cynalbertoz@sbi",
+    "merchantWhatsappNumber": "919188570191",
+    "legalBusinessName": "Kalaivani Spices & Plantation Depot",
+    "gstin": "",
+    "pan": "",
+    "invoicePrefix": "SR-INV-",
     "aboutStory": "Founded amidst the mist-clad hills of Munnar and the lush slopes of the Western Ghats, Spice Roots (Kalaivani Spices) connects generational spice planters with kitchens that revere authenticity. Each peppercorn, cardamom pod, and hand-rolled cinnamon quill is selected for peak essential oil content, zero adulteration, and traditional sun-drying practices.",
     "shippingPolicy": "Orders are dispatched within 24-48 business hours via trusted courier partners (Blue Dart, DTDC, India Post). Standard delivery timeline is 3-6 business days across India. Tracking details are emailed and accessible on our tracking page as soon as your shipment is picked up.",
     "returnPolicy": "Because spices and food products are perishable and consumable goods, we accept returns or replacements within 7 days of delivery only for items received in damaged condition, defective packaging, or incorrect products sent. Please reach out to care@spiceroots.in with photos of the package.",
@@ -1518,6 +2680,6 @@
     "_id": "6ad3b4c6cb7ee1dcd71d1b49",
     "__v": 0,
     "createdAt": "2026-10-17T17:47:50.550Z",
-    "updatedAt": "2026-10-17T17:47:50.550Z"
+    "updatedAt": "2026-10-23T18:48:12.766Z"
   }
 }

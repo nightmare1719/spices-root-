@@ -91,6 +91,9 @@ export interface IUser {
   email: string;
   role: 'customer' | 'admin';
   phone?: string;
+  avatar?: string;
+  googleId?: string;
+  isEmailVerified?: boolean;
   addresses: IUserAddress[];
 }
 
@@ -116,6 +119,29 @@ export interface IOrderStatusHistory {
   updatedBy?: string;
 }
 
+export type PaymentState = 
+  | 'CREATED'
+  | 'AWAITING_PAYMENT'
+  | 'VERIFICATION_PENDING'
+  | 'PAID'
+  | 'REJECTED'
+  | 'EXPIRED'
+  | 'pending'
+  | 'paid'
+  | 'failed'
+  | 'refunded';
+
+export type PaymentMethod = 'upi_manual' | 'razorpay' | 'cod';
+
+export interface IPaymentAuditLog {
+  previousStatus: string;
+  newStatus: string;
+  timestamp: string;
+  changedBy: string;
+  note?: string;
+  utr?: string;
+}
+
 export interface IOrder {
   id: string;
   _id?: string;
@@ -135,8 +161,16 @@ export interface IOrder {
   };
   couponCode?: string;
   deliveryNotes?: string;
-  paymentMethod: 'razorpay' | 'cod';
-  paymentStatus: 'pending' | 'paid' | 'failed' | 'refunded';
+  paymentMethod: PaymentMethod;
+  paymentStatus: PaymentState;
+  upiTransactionRef?: string;
+  screenshotPath?: string;
+  paymentSubmittedAt?: string;
+  verifiedAt?: string;
+  verifiedBy?: string;
+  rejectionReason?: string;
+  adminNotes?: string;
+  paymentAuditLogs?: IPaymentAuditLog[];
   razorpayOrderId?: string;
   razorpayPaymentId?: string;
   fulfillmentStatus: 'pending' | 'confirmed' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
@@ -144,6 +178,7 @@ export interface IOrder {
   trackingNumber?: string;
   statusHistory: IOrderStatusHistory[];
   createdAt: string;
+  updatedAt: string;
 }
 
 export interface IStoreSettings {
@@ -165,6 +200,13 @@ export interface IStoreSettings {
   returnPolicy: string;
   privacyPolicy: string;
   termsAndConditions: string;
+  legalBusinessName?: string;
+  gstin?: string;
+  pan?: string;
+  invoicePrefix?: string;
+  merchantUpiId?: string;
+  merchantWhatsappNumber?: string;
+  isUpiManualEnabled?: boolean;
 }
 
 export interface IReview {
@@ -196,4 +238,18 @@ export interface ICoupon {
   usageLimit?: number;
   timesUsed: number;
   isActive: boolean;
+}
+
+export interface ShippingZoneRate {
+  id?: string;
+  _id?: string;
+  zoneName: string;
+  pincodePrefix: string;
+  baseWeightKg: number;
+  baseRate: number;
+  perAdditionalKgRate: number;
+  estimatedDelivery?: string;
+  isActive?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
 }

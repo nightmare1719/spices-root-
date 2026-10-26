@@ -35,6 +35,7 @@ import { AdminOrdersPage } from './pages/admin/AdminOrdersPage.js';
 import { AdminCouponsPage } from './pages/admin/AdminCouponsPage.js';
 import { AdminCustomersPage } from './pages/admin/AdminCustomersPage.js';
 import { AdminSettingsPage } from './pages/admin/AdminSettingsPage.js';
+import { AdminLogisticsPage } from './pages/admin/AdminLogisticsPage.js';
 
 // Customer Authentication Guard for Cart & Checkout
 const CustomerAuthGuard: React.FC<{ children: React.ReactNode; redirectMessage: string }> = ({ children, redirectMessage }) => {
@@ -96,14 +97,7 @@ export const App: React.FC = () => {
                   <Route path="/product/:slug" element={<ProductDetailPage />} />
                   
                   {/* Protected Cart & Checkout Authentication Guards */}
-                  <Route 
-                    path="/cart" 
-                    element={
-                      <CustomerAuthGuard redirectMessage="Please sign in to view your shopping cart.">
-                        <CartPage />
-                      </CustomerAuthGuard>
-                    } 
-                  />
+                  <Route path="/cart" element={<CartPage />} />
                   <Route 
                     path="/checkout" 
                     element={
@@ -134,6 +128,7 @@ export const App: React.FC = () => {
                   <Route path="orders" element={<AdminOrdersPage />} />
                   <Route path="coupons" element={<AdminCouponsPage />} />
                   <Route path="customers" element={<AdminCustomersPage />} />
+                  <Route path="logistics" element={<AdminLogisticsPage />} />
                   <Route path="settings" element={<AdminSettingsPage />} />
                 </Route>
               </Routes>

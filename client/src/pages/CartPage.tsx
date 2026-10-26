@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext.js';
 import { useAuth } from '../context/AuthContext.js';
 import { api } from '../services/api.js';
 import { formatINR } from '../utils/format.js';
+import { calculateTotalWeight, calculateTotalWeightInGrams } from '../utils/weight.js';
 import {
   ShoppingBag, Trash2, Plus, Minus, ArrowRight,
-  Sparkles, Tag, CheckCircle2, ShieldCheck, Truck
+  Sparkles, Tag, CheckCircle2, ShieldCheck, Truck, Scale, Navigation
 } from 'lucide-react';
 
 export const CartPage: React.FC = () => {
@@ -19,8 +20,75 @@ export const CartPage: React.FC = () => {
   const [couponError, setCouponError] = useState('');
   const [isValidatingCoupon, setIsValidatingCoupon] = useState(false);
 
+  // Shipping & Location Pincode Calculation State (Weight + Distance [Pincode] = Shipping Charges)
+  const defaultPin = user?.addresses?.find((a: any) => a.isDefault)?.pincode || user?.addresses?.[0]?.pincode || '';
+  const [shippingPincode, setShippingPincode] = useState(defaultPin);
+  const [courierShippingPaise, setCourierShippingPaise] = useState(6000); // Default 60 INR
+  const [courierDetails, setCourierDetails] = useState<any>(null);
+  const [isLocating, setIsLocating] = useState(false);
+  const [locationStatus, setLocationStatus] = useState('');
+
   const threshold = cart.freeShippingThresholdPaise;
   const progressPercent = Math.min(100, Math.round((cart.subtotalPaise / threshold) * 100));
+
+  // Geolocation detector for customer's current location pincode
+  const handleUseCurrentLocation = () => {
+    setIsLocating(true);
+    setLocationStatus('Locating device...');
+    if (!navigator.geolocation) {
+      setLocationStatus('Geolocation is not supported by your browser');
+      setIsLocating(false);
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        try {
+          const { latitude, longitude } = pos.coords;
+          const res = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&addressdetails=1`
+          );
+          if (!res.ok) throw new Error('Geocoding service unavailable');
+          const data = await res.json();
+          const addr = data.address || {};
+          const detectedPincode = addr.postcode ? addr.postcode.replace(/\D/g, '').slice(0, 6) : '';
+          if (detectedPincode && detectedPincode.length === 6) {
+            setShippingPincode(detectedPincode);
+            setLocationStatus(`📍 ${addr.city || addr.town || addr.village || 'Detected'} (${detectedPincode})`);
+          } else {
+            setLocationStatus('⚠️ Could not extract 6-digit postal code');
+          }
+        } catch {
+          setLocationStatus('⚠️ Could not fetch pincode from location');
+        } finally {
+          setIsLocating(false);
+        }
+      },
+      (err) => {
+        setIsLocating(false);
+        setLocationStatus(`⚠️ Location error: ${err.message}`);
+      },
+      { timeout: 10000, enableHighAccuracy: true }
+    );
+  };
+
+  // Recalculate courier shipping fee whenever items or pincode change
+  useEffect(() => {
+    if (cart.items.length === 0) return;
+    const totalWeightGrams = calculateTotalWeightInGrams(cart.items);
+
+    api.calculateShippingRate(shippingPincode.trim() || '625001', totalWeightGrams)
+      .then((res) => {
+        if (res.success && res.data) {
+          setCourierShippingPaise(res.data.shippingChargePaise || res.data.shippingChargeINR * 100);
+          setCourierDetails(res.data);
+        }
+      })
+      .catch(() => {
+        // Fallback standard rate
+        setCourierShippingPaise(6000);
+      });
+  }, [cart.items, shippingPincode]);
 
   const handleApplyCoupon = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,7 +110,7 @@ export const CartPage: React.FC = () => {
   };
 
   const discountPaise = appliedCoupon ? appliedCoupon.discountPaise : 0;
-  const shippingFeePaise = cart.qualifiesForFreeShipping ? 0 : 6000;
+  const shippingFeePaise = cart.qualifiesForFreeShipping ? 0 : courierShippingPaise;
   const totalPaise = Math.max(0, cart.subtotalPaise - discountPaise) + shippingFeePaise;
 
   if (cart.items.length === 0) {
@@ -72,11 +140,17 @@ export const CartPage: React.FC = () => {
       navigate('/login?redirect=/checkout', {
         state: {
           message: 'Please sign in to proceed to checkout and payment.',
-          couponCode: appliedCoupon?.code
+          couponCode: appliedCoupon?.code,
+          pincode: shippingPincode.trim() || undefined
         }
       });
     } else {
-      navigate('/checkout', { state: { couponCode: appliedCoupon?.code } });
+      navigate('/checkout', {
+        state: {
+          couponCode: appliedCoupon?.code,
+          pincode: shippingPincode.trim() || undefined
+        }
+      });
     }
   };
 
@@ -232,6 +306,8 @@ export const CartPage: React.FC = () => {
               <form onSubmit={handleApplyCoupon} className="space-y-2">
                 <div className="flex gap-2">
                   <input
+                    id="cart-coupon-input"
+                    name="couponCode"
                     type="text"
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
@@ -268,6 +344,14 @@ export const CartPage: React.FC = () => {
                 <span className="font-semibold text-stone-800">{formatINR(cart.subtotalPaise)}</span>
               </div>
 
+              <div className="flex justify-between items-center text-xs py-1.5 px-2.5 bg-[#FAF7F2] rounded-lg border border-stone-200/80">
+                <span className="flex items-center gap-1.5 font-medium text-stone-600">
+                  <Scale className="w-3.5 h-3.5 text-[#C5A059]" />
+                  Total Package Weight:
+                </span>
+                <span className="font-bold text-[#153E2B]">{calculateTotalWeight(cart.items)}</span>
+              </div>
+
               {discountPaise > 0 && (
                 <div className="flex justify-between text-[#B85D3A] font-semibold">
                   <span>Coupon Discount:</span>
@@ -275,13 +359,59 @@ export const CartPage: React.FC = () => {
                 </div>
               )}
 
-              <div className="flex justify-between">
-                <span>Estimated Shipping:</span>
+              {/* Courier Shipping Estimate by Pincode & Location */}
+              <div className="pt-2 pb-1 border-t border-stone-100">
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-[11px] font-bold text-stone-700 flex items-center gap-1">
+                    <Truck className="w-3.5 h-3.5 text-[#153E2B]" />
+                    Delivery Pincode:
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleUseCurrentLocation}
+                    disabled={isLocating}
+                    className="text-[10px] font-bold text-[#153E2B] hover:text-[#C5A059] flex items-center gap-1 disabled:opacity-50 transition-colors"
+                    title="Detect postal pincode from current device GPS"
+                  >
+                    <Navigation className={`w-3 h-3 ${isLocating ? 'animate-spin' : ''}`} />
+                    <span>{isLocating ? 'Locating...' : 'Use Current Location'}</span>
+                  </button>
+                </div>
+
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    maxLength={6}
+                    value={shippingPincode}
+                    onChange={(e) => setShippingPincode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                    placeholder="Enter 6-digit Pincode"
+                    className="flex-1 text-xs px-3 py-1.5 bg-[#FAF7F2] border border-stone-200 rounded-lg font-mono focus:outline-hidden focus:border-[#C5A059]"
+                  />
+                  {shippingPincode && shippingPincode.length === 6 && (
+                    <span className="px-2 py-1 bg-emerald-50 text-emerald-800 text-[10px] font-bold rounded-lg flex items-center">
+                      PIN: {shippingPincode}
+                    </span>
+                  )}
+                </div>
+
+                {locationStatus && (
+                  <p className="text-[10px] text-stone-500 mt-1 font-medium">{locationStatus}</p>
+                )}
+
+                {courierDetails && !cart.qualifiesForFreeShipping && (
+                  <p className="text-[10px] text-stone-500 mt-1">
+                    Zone: <strong className="text-stone-700">{courierDetails.zoneName}</strong> ({courierDetails.estimatedDelivery || '2-4 business days'})
+                  </p>
+                )}
+              </div>
+
+              <div className="flex justify-between items-center">
+                <span>Shipping Charge:</span>
                 <span className="font-semibold text-stone-800">
                   {shippingFeePaise === 0 ? (
                     <span className="text-emerald-700 font-bold">FREE</span>
                   ) : (
-                    formatINR(shippingFeePaise)
+                    <span>{formatINR(shippingFeePaise)}</span>
                   )}
                 </span>
               </div>

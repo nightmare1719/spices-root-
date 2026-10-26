@@ -46,6 +46,8 @@ export const AdminCustomersPage: React.FC = () => {
       <div className="bg-white p-4 rounded-2xl border border-stone-200 shadow-2xs flex justify-between items-center max-w-md">
         <div className="relative w-full">
           <input
+            id="admin-customers-search"
+            name="search"
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}

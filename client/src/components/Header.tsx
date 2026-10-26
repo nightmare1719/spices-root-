@@ -141,10 +141,18 @@ export const Header: React.FC = () => {
             <div className="relative">
               <button
                 onClick={() => setIsAccountMenuOpen(!isAccountMenuOpen)}
-                className="p-2 text-[#382F26] hover:text-[#153E2B] hover:bg-[#F4EFE6] rounded-full transition-colors flex items-center gap-1"
+                className="p-1 md:px-2 md:py-1.5 text-[#382F26] hover:text-[#153E2B] hover:bg-[#F4EFE6] rounded-full transition-colors flex items-center gap-1.5"
                 aria-label="Account options"
               >
-                <User className="w-5 h-5" />
+                {user?.avatar ? (
+                  <img
+                    src={user.avatar}
+                    alt={user.name}
+                    className="w-6 h-6 rounded-full object-cover border border-[#C5A059]"
+                  />
+                ) : (
+                  <User className="w-5 h-5" />
+                )}
                 {user && <span className="hidden md:inline text-xs font-semibold max-w-[80px] truncate">{user.name.split(' ')[0]}</span>}
                 <ChevronDown className="w-3.5 h-3.5 hidden md:inline text-stone-500" />
               </button>

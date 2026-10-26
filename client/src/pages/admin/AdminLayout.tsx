@@ -3,7 +3,7 @@ import { Link, Outlet, useLocation, Navigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext.js';
 import { 
   LayoutDashboard, Package, ShoppingCart, Tag, 
-  Users, Settings, ArrowLeft, Shield, LogOut 
+  Users, Settings, ArrowLeft, Shield, LogOut, Truck 
 } from 'lucide-react';
 
 export const AdminLayout: React.FC = () => {
@@ -30,7 +30,7 @@ export const AdminLayout: React.FC = () => {
           You must be logged in as an administrator to access the Spice Roots management console.
         </p>
         <Link
-          to="/login"
+          to={`/login?redirect=${encodeURIComponent(location.pathname + location.search)}`}
           state={{ from: location }}
           className="bg-[#153E2B] text-white text-xs font-bold uppercase tracking-wider px-6 py-2.5 rounded-full"
         >
@@ -46,6 +46,7 @@ export const AdminLayout: React.FC = () => {
     { label: 'Orders & Tracking', href: '/admin/orders', icon: ShoppingCart },
     { label: 'Discount Coupons', href: '/admin/coupons', icon: Tag },
     { label: 'Customer Base', href: '/admin/customers', icon: Users },
+    { label: 'Logistics & Rates', href: '/admin/logistics', icon: Truck },
     { label: 'Store Settings', href: '/admin/settings', icon: Settings }
   ];
 

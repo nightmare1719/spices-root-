@@ -3,11 +3,11 @@ import path from 'path';
 import mongoose from 'mongoose';
 import {
   IUser, IProduct, ICategory, ICart, IWishlist,
-  IOrder, ICoupon, IReview, IStoreSettings
+  IOrder, ICoupon, IReview, IStoreSettings, ShippingZoneRate
 } from '../types/index.js';
 import {
   UserModel, ProductModel, CategoryModel, CartModel,
-  WishlistModel, OrderModel, CouponModel, ReviewModel, StoreSettingsModel
+  WishlistModel, OrderModel, CouponModel, ReviewModel, StoreSettingsModel, ShippingZoneRateModel
 } from './mongoSchemas.js';
 
 interface DatabaseCollections {
@@ -19,6 +19,7 @@ interface DatabaseCollections {
   orders: IOrder[];
   coupons: ICoupon[];
   reviews: IReview[];
+  shippingRates: ShippingZoneRate[];
   settings: IStoreSettings;
 }
 
@@ -33,15 +34,77 @@ const defaultSettings: IStoreSettings = {
   freeShippingThresholdPaise: 99900,
   standardShippingFeePaise: 6000,
   taxPercent: 5,
-  isCodEnabled: true,
-  isRazorpayEnabled: true,
+  isCodEnabled: false, // Temporarily hidden - can be reactivated later
+  isRazorpayEnabled: false, // Temporarily hidden - can be reactivated later
+  isUpiManualEnabled: true,
   isAiEnabled: true,
+  merchantUpiId: process.env.MERCHANT_UPI_ID || "cynalbertoz@sbi",
+  merchantWhatsappNumber: process.env.MERCHANT_WHATSAPP_NUMBER || "919188570191",
+  legalBusinessName: process.env.LEGAL_BUSINESS_NAME || "Kalaivani Spices & Plantation Depot",
+  gstin: process.env.GSTIN || "",
+  pan: process.env.PAN || "",
+  invoicePrefix: process.env.INVOICE_PREFIX || "SR-INV-",
   aboutStory: "Founded amidst the mist-clad hills of Munnar and the lush slopes of the Western Ghats, Spice Roots (Kalaivani Spices) connects generational spice planters with kitchens that revere authenticity. Each peppercorn, cardamom pod, and hand-rolled cinnamon quill is selected for peak essential oil content, zero adulteration, and traditional sun-drying practices.",
   shippingPolicy: "Orders are dispatched within 24-48 business hours via trusted courier partners (Blue Dart, DTDC, India Post). Standard delivery timeline is 3-6 business days across India. Tracking details are emailed and accessible on our tracking page as soon as your shipment is picked up.",
   returnPolicy: "Because spices and food products are perishable and consumable goods, we accept returns or replacements within 7 days of delivery only for items received in damaged condition, defective packaging, or incorrect products sent. Please reach out to care@spiceroots.in with photos of the package.",
   privacyPolicy: "We respect your personal privacy. Customer information including address, phone number, and email are solely utilized to fulfill your orders, process payments securely, and send order updates. We never sell, rent, or lease customer data to third-party marketing services.",
   termsAndConditions: "By using Spice Roots, you agree to these terms. Prices are listed in Indian Rupees (INR) inclusive of applicable taxes. Order cancellation is supported prior to dispatch. Products are subject to seasonal availability from our plantation harvests."
 };
+
+const defaultShippingRates: ShippingZoneRate[] = [
+  {
+    id: 'rate_madurai',
+    _id: 'rate_madurai',
+    zoneName: 'Madurai & South Tamil Nadu',
+    pincodePrefix: '625001, 625002, 625003, 625009, 625020, 625001-625025, 626001, 627001, 628001',
+    baseWeightKg: 1,
+    baseRate: 100,
+    perAdditionalKgRate: 40,
+    estimatedDelivery: '1-2 business days',
+    isActive: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  },
+  {
+    id: 'rate_mumbai_delhi',
+    _id: 'rate_mumbai_delhi',
+    zoneName: 'Mumbai & Delhi Metros',
+    pincodePrefix: '400001, 400050, 400001-400099, 110001, 110020, 110001-110099',
+    baseWeightKg: 1,
+    baseRate: 250,
+    perAdditionalKgRate: 80,
+    estimatedDelivery: '3-4 business days',
+    isActive: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  },
+  {
+    id: 'rate_kerala',
+    _id: 'rate_kerala',
+    zoneName: 'Kerala Local Depot',
+    pincodePrefix: '682001, 682035, 682001-682040, 683101, 685612, 686001',
+    baseWeightKg: 1,
+    baseRate: 60,
+    perAdditionalKgRate: 30,
+    estimatedDelivery: '24-48 hours',
+    isActive: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  },
+  {
+    id: 'rate_national',
+    _id: 'rate_national',
+    zoneName: 'Rest of India (National Express)',
+    pincodePrefix: '*',
+    baseWeightKg: 1,
+    baseRate: 120,
+    perAdditionalKgRate: 60,
+    estimatedDelivery: '3-5 business days',
+    isActive: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  }
+];
 
 class DataStore {
   private dataDir: string;
@@ -61,6 +124,7 @@ class DataStore {
       orders: [],
       coupons: [],
       reviews: [],
+      shippingRates: defaultShippingRates,
       settings: defaultSettings
     };
   }
@@ -87,7 +151,8 @@ class DataStore {
         this.inMemory = {
           ...this.inMemory,
           ...parsed,
-          settings
+          settings,
+          shippingRates: parsed.shippingRates && parsed.shippingRates.length ? parsed.shippingRates : defaultShippingRates
         };
       } else {
         this.save();
@@ -99,7 +164,7 @@ class DataStore {
     }
   }
 
-  private isMongoConnected(): boolean {
+  public isMongoConnected(): boolean {
     return mongoose.connection && mongoose.connection.readyState === 1;
   }
 
@@ -149,7 +214,15 @@ class DataStore {
         if (reviews.length) this.inMemory.reviews = reviews as any;
         if (orders.length) this.inMemory.orders = orders as any;
         if (users.length) this.inMemory.users = users as any;
-        if (settingsDoc) this.inMemory.settings = { ...defaultSettings, ...(settingsDoc as any) };
+        if (settingsDoc) {
+          this.inMemory.settings = { 
+            ...defaultSettings, 
+            ...(settingsDoc as any),
+            isCodEnabled: false,
+            isRazorpayEnabled: false
+          };
+          StoreSettingsModel.findOneAndUpdate({}, { isCodEnabled: false, isRazorpayEnabled: false }).catch(() => {});
+        }
         this.save();
         console.log('✅ [MongoDB] Active catalog and data synced from MongoDB Atlas.');
       }
@@ -173,7 +246,30 @@ class DataStore {
   public getUsers() { this.init(); return this.inMemory.users; }
   public findUserByEmail(email: string) {
     this.init();
-    return this.inMemory.users.find(u => u.email.toLowerCase() === email.toLowerCase());
+    if (!email) return undefined;
+    return this.inMemory.users.find(u => u.email && u.email.toLowerCase() === email.trim().toLowerCase());
+  }
+  public findUserByGoogleId(googleId: string) {
+    this.init();
+    if (!googleId) return undefined;
+    return this.inMemory.users.find(u => u.googleId === googleId);
+  }
+  public findUserByEmailOrPhone(identifier: string) {
+    this.init();
+    if (!identifier) return undefined;
+    const clean = identifier.trim().toLowerCase();
+    const cleanDigits = identifier.replace(/\D/g, '');
+
+    return this.inMemory.users.find(u => {
+      if (u.email && u.email.trim().toLowerCase() === clean) return true;
+      if (cleanDigits.length >= 10 && u.phone) {
+        const uDigits = u.phone.replace(/\D/g, '');
+        if (uDigits && (uDigits === cleanDigits || uDigits.endsWith(cleanDigits) || cleanDigits.endsWith(uDigits))) {
+          return true;
+        }
+      }
+      return false;
+    });
   }
   public findUserById(id: string) {
     this.init();
@@ -293,20 +389,27 @@ class DataStore {
     }
   }
 
-  // --- CARTS ---
+  // --- CARTS (Customer-Private Scoping) ---
   public getCart(identifier: { userId?: string; guestId?: string }) {
     this.init();
-    return this.inMemory.carts.find(c =>
-      (identifier.userId && c.userId === identifier.userId) ||
-      (identifier.guestId && c.guestId === identifier.guestId)
-    );
+    // Strict customer privacy: authenticated users match ONLY by userId
+    if (identifier.userId) {
+      return this.inMemory.carts.find(c => c.userId === identifier.userId);
+    }
+    // Guest carts match ONLY when no userId is present
+    if (identifier.guestId) {
+      return this.inMemory.carts.find(c => !c.userId && c.guestId === identifier.guestId);
+    }
+    return undefined;
   }
   public saveCart(cart: ICart) {
     this.init();
-    const index = this.inMemory.carts.findIndex(c =>
-      (cart.userId && c.userId === cart.userId) ||
-      (cart.guestId && c.guestId === cart.guestId)
-    );
+    let index = -1;
+    if (cart.userId) {
+      index = this.inMemory.carts.findIndex(c => c.userId === cart.userId);
+    } else if (cart.guestId) {
+      index = this.inMemory.carts.findIndex(c => !c.userId && c.guestId === cart.guestId);
+    }
     const id = cart.id || cart._id || 'cart_' + Date.now();
     const updated = { ...cart, id, _id: id, updatedAt: new Date().toISOString() };
     if (index >= 0) {
@@ -324,10 +427,12 @@ class DataStore {
   }
   public clearCart(identifier: { userId?: string; guestId?: string }) {
     this.init();
-    const index = this.inMemory.carts.findIndex(c =>
-      (identifier.userId && c.userId === identifier.userId) ||
-      (identifier.guestId && c.guestId === identifier.guestId)
-    );
+    let index = -1;
+    if (identifier.userId) {
+      index = this.inMemory.carts.findIndex(c => c.userId === identifier.userId);
+    } else if (identifier.guestId) {
+      index = this.inMemory.carts.findIndex(c => !c.userId && c.guestId === identifier.guestId);
+    }
     if (index >= 0) {
       const removed = this.inMemory.carts.splice(index, 1)[0];
       this.save();
@@ -336,21 +441,60 @@ class DataStore {
       }
     }
   }
+  public mergeGuestCartIntoUserCart(guestId: string, userId: string) {
+    this.init();
+    if (!guestId || !userId) return;
+    const guestCart = this.inMemory.carts.find(c => !c.userId && c.guestId === guestId);
+    if (!guestCart || !guestCart.items || guestCart.items.length === 0) return;
 
-  // --- WISHLIST ---
+    let userCart = this.inMemory.carts.find(c => c.userId === userId);
+    if (!userCart) {
+      userCart = {
+        id: 'cart_' + Date.now(),
+        _id: 'cart_' + Date.now(),
+        userId,
+        items: [],
+        updatedAt: new Date().toISOString()
+      };
+      this.inMemory.carts.push(userCart);
+    }
+
+    for (const gItem of guestCart.items) {
+      const existing = userCart.items.find(i => i.productId === gItem.productId && i.variantId === gItem.variantId);
+      if (existing) {
+        existing.quantity += gItem.quantity;
+      } else {
+        userCart.items.push({ ...gItem });
+      }
+    }
+    userCart.updatedAt = new Date().toISOString();
+
+    const gIndex = this.inMemory.carts.findIndex(c => !c.userId && c.guestId === guestId);
+    if (gIndex >= 0) {
+      this.inMemory.carts.splice(gIndex, 1);
+    }
+    this.save();
+  }
+
+  // --- WISHLIST (Customer-Private Scoping) ---
   public getWishlist(identifier: { userId?: string; guestId?: string }) {
     this.init();
-    return this.inMemory.wishlists.find(w =>
-      (identifier.userId && w.userId === identifier.userId) ||
-      (identifier.guestId && w.guestId === identifier.guestId)
-    );
+    if (identifier.userId) {
+      return this.inMemory.wishlists.find(w => w.userId === identifier.userId);
+    }
+    if (identifier.guestId) {
+      return this.inMemory.wishlists.find(w => !w.userId && w.guestId === identifier.guestId);
+    }
+    return undefined;
   }
   public saveWishlist(wishlist: IWishlist) {
     this.init();
-    const index = this.inMemory.wishlists.findIndex(w =>
-      (wishlist.userId && w.userId === wishlist.userId) ||
-      (wishlist.guestId && w.guestId === wishlist.guestId)
-    );
+    let index = -1;
+    if (wishlist.userId) {
+      index = this.inMemory.wishlists.findIndex(w => w.userId === wishlist.userId);
+    } else if (wishlist.guestId) {
+      index = this.inMemory.wishlists.findIndex(w => !w.userId && w.guestId === wishlist.guestId);
+    }
     const id = wishlist.id || wishlist._id || 'wish_' + Date.now();
     const updated = { ...wishlist, id, _id: id, updatedAt: new Date().toISOString() };
     if (index >= 0) {
@@ -364,12 +508,216 @@ class DataStore {
     }
     return updated;
   }
+  public mergeGuestWishlistIntoUserWishlist(guestId: string, userId: string) {
+    this.init();
+    if (!guestId || !userId) return;
+    const guestWish = this.inMemory.wishlists.find(w => !w.userId && w.guestId === guestId);
+    if (!guestWish || !guestWish.productIds || guestWish.productIds.length === 0) return;
+
+    let userWish = this.inMemory.wishlists.find(w => w.userId === userId);
+    if (!userWish) {
+      userWish = {
+        id: 'wish_' + Date.now(),
+        _id: 'wish_' + Date.now(),
+        userId,
+        productIds: [],
+        updatedAt: new Date().toISOString()
+      };
+      this.inMemory.wishlists.push(userWish);
+    }
+
+    for (const pid of guestWish.productIds) {
+      if (!userWish.productIds.includes(pid)) {
+        userWish.productIds.push(pid);
+      }
+    }
+    userWish.updatedAt = new Date().toISOString();
+
+    const gIndex = this.inMemory.wishlists.findIndex(w => !w.userId && w.guestId === guestId);
+    if (gIndex >= 0) {
+      this.inMemory.wishlists.splice(gIndex, 1);
+    }
+    this.save();
+  }
+
+  // --- SHIPPING ZONE RATES & DYNAMIC LOGISTICS ---
+  public getShippingRates(): ShippingZoneRate[] {
+    this.init();
+    return this.inMemory.shippingRates || defaultShippingRates;
+  }
+  public findShippingRateById(id: string): ShippingZoneRate | undefined {
+    this.init();
+    return (this.inMemory.shippingRates || []).find(r => r.id === id || r._id === id);
+  }
+  public createShippingRate(rate: ShippingZoneRate): ShippingZoneRate {
+    this.init();
+    const id = rate.id || rate._id || 'rate_' + Date.now();
+    const now = new Date().toISOString();
+    const newRate: ShippingZoneRate = { ...rate, id, _id: id, createdAt: now, updatedAt: now };
+    if (!this.inMemory.shippingRates) this.inMemory.shippingRates = [];
+    this.inMemory.shippingRates.push(newRate);
+    this.save();
+    if (this.isMongoConnected()) {
+      ShippingZoneRateModel.findOneAndUpdate({ id }, newRate, { upsert: true }).catch(() => {});
+    }
+    return newRate;
+  }
+  public updateShippingRate(id: string, updates: Partial<ShippingZoneRate>): ShippingZoneRate | null {
+    this.init();
+    if (!this.inMemory.shippingRates) this.inMemory.shippingRates = [];
+    const index = this.inMemory.shippingRates.findIndex(r => r.id === id || r._id === id);
+    if (index === -1) return null;
+    this.inMemory.shippingRates[index] = {
+      ...this.inMemory.shippingRates[index],
+      ...updates,
+      updatedAt: new Date().toISOString()
+    };
+    this.save();
+    if (this.isMongoConnected()) {
+      ShippingZoneRateModel.findOneAndUpdate({ id }, this.inMemory.shippingRates[index], { upsert: true }).catch(() => {});
+    }
+    return this.inMemory.shippingRates[index];
+  }
+  public deleteShippingRate(id: string): boolean {
+    this.init();
+    if (!this.inMemory.shippingRates) return false;
+    const index = this.inMemory.shippingRates.findIndex(r => r.id === id || r._id === id);
+    if (index === -1) return false;
+    const removed = this.inMemory.shippingRates.splice(index, 1)[0];
+    this.save();
+    if (this.isMongoConnected() && removed) {
+      ShippingZoneRateModel.deleteOne({ id: removed.id || removed._id }).catch(() => {});
+    }
+    return true;
+  }
+  public getShippingDetails(pincode: string, totalWeightGrams: number) {
+    this.init();
+    const rates = this.getShippingRates();
+    const cleanPincode = (pincode || '').trim().replace(/\D/g, '');
+    const effectiveWeightGrams = Math.max(1, totalWeightGrams || 100);
+
+    if (!rates.length) {
+      return {
+        matchedZone: null,
+        zoneName: 'Standard Shipping',
+        pincode: cleanPincode,
+        totalWeightGrams: effectiveWeightGrams,
+        totalWeightKg: effectiveWeightGrams / 1000,
+        baseWeightKg: 1,
+        baseRate: 60,
+        perAdditionalKgRate: 30,
+        extraKg: 0,
+        shippingChargeINR: 60,
+        shippingChargePaise: 6000,
+        estimatedDelivery: '3-5 business days'
+      };
+    }
+
+    let matched: ShippingZoneRate | null = null;
+
+    // 1. Strict Exact 6-Digit & 6-Digit Range Matching
+    for (const r of rates) {
+      if (r.isActive === false) continue;
+      const codes = (r.pincodePrefix || '').split(',').map(p => p.trim());
+      for (const entry of codes) {
+        if (!entry) continue;
+        if (entry === '*' || entry.toLowerCase() === 'default' || entry.toLowerCase() === 'all') continue;
+
+        const cleanEntry = entry.replace(/\D/g, '');
+        // Exact 6-digit match
+        if (cleanEntry.length === 6 && cleanPincode.length === 6 && cleanEntry === cleanPincode) {
+          matched = r;
+          break;
+        }
+
+        // 6-digit range match (e.g. 625001-625025)
+        if (entry.includes('-')) {
+          const [startStr, endStr] = entry.split('-').map(s => s.trim().replace(/\D/g, ''));
+          if (startStr.length === 6 && endStr.length === 6 && cleanPincode.length === 6) {
+            const pinNum = parseInt(cleanPincode, 10);
+            const startNum = parseInt(startStr, 10);
+            const endNum = parseInt(endStr, 10);
+            if (!isNaN(pinNum) && !isNaN(startNum) && !isNaN(endNum) && pinNum >= startNum && pinNum <= endNum) {
+              matched = r;
+              break;
+            }
+          }
+        }
+      }
+      if (matched) break;
+    }
+
+    // 2. Prefix Matching Fallback (e.g. 3-digit prefix '625' or 2-digit '68')
+    if (!matched && cleanPincode.length >= 2) {
+      for (const r of rates) {
+        if (r.isActive === false) continue;
+        const codes = (r.pincodePrefix || '').split(',').map(p => p.trim());
+        for (const entry of codes) {
+          if (!entry || entry.includes('-') || entry === '*' || entry.toLowerCase() === 'default' || entry.toLowerCase() === 'all') continue;
+          const cleanEntry = entry.replace(/\D/g, '');
+          if (cleanEntry.length >= 2 && cleanEntry.length < 6 && cleanPincode.startsWith(cleanEntry)) {
+            matched = r;
+            break;
+          }
+        }
+        if (matched) break;
+      }
+    }
+
+    // 3. Fallback: Wildcard zone or 'Rest of India'
+    if (!matched) {
+      matched = rates.find(r => 
+        (r.pincodePrefix && (r.pincodePrefix.includes('*') || r.pincodePrefix.toLowerCase().includes('default') || r.pincodePrefix.toLowerCase().includes('all'))) || 
+        r.zoneName.toLowerCase().includes('rest of india')
+      ) || rates[0];
+    }
+
+    const totalWeightKg = effectiveWeightGrams / 1000;
+    const baseWeightKg = (matched && matched.baseWeightKg > 0) ? matched.baseWeightKg : 1;
+    const baseRate = matched ? Number(matched.baseRate) || 0 : 60;
+    const perAddlRate = matched ? Number(matched.perAdditionalKgRate) || 0 : 30;
+
+    let extraKg = 0;
+    let shippingChargeINR = baseRate;
+
+    if (totalWeightKg > baseWeightKg) {
+      extraKg = Math.ceil(totalWeightKg - baseWeightKg);
+      shippingChargeINR = baseRate + (extraKg * perAddlRate);
+    }
+
+    return {
+      matchedZone: matched,
+      zoneName: matched ? matched.zoneName : 'National Express',
+      pincode: cleanPincode,
+      totalWeightGrams: effectiveWeightGrams,
+      totalWeightKg,
+      baseWeightKg,
+      baseRate,
+      perAdditionalKgRate: perAddlRate,
+      extraKg,
+      shippingChargeINR,
+      shippingChargePaise: Math.round(shippingChargeINR * 100),
+      estimatedDelivery: matched?.estimatedDelivery || '2-4 business days'
+    };
+  }
+
+  public calculateShippingCharge(pincode: string, totalWeightGrams: number): number {
+    const details = this.getShippingDetails(pincode, totalWeightGrams);
+    return details.shippingChargeINR;
+  }
 
   // --- ORDERS ---
   public getOrders() { this.init(); return this.inMemory.orders; }
   public findOrderById(id: string) {
     this.init();
-    return this.inMemory.orders.find(o => o.id === id || o._id === id || o.orderNumber === id);
+    if (!id) return undefined;
+    const cleanId = String(id).trim().toUpperCase();
+    return this.inMemory.orders.find(o => 
+      o.id === id || 
+      o._id === id || 
+      (o.id && o.id.toUpperCase() === cleanId) ||
+      (o.orderNumber && o.orderNumber.toUpperCase() === cleanId)
+    );
   }
   public findOrdersByUser(userId: string) {
     this.init();
@@ -405,7 +753,14 @@ class DataStore {
   }
   public updateOrder(id: string, updates: Partial<IOrder>) {
     this.init();
-    const index = this.inMemory.orders.findIndex(o => o.id === id || o._id === id || o.orderNumber === id);
+    if (!id) return null;
+    const cleanId = String(id).trim().toUpperCase();
+    const index = this.inMemory.orders.findIndex(o => 
+      o.id === id || 
+      o._id === id || 
+      (o.id && o.id.toUpperCase() === cleanId) ||
+      (o.orderNumber && o.orderNumber.toUpperCase() === cleanId)
+    );
     if (index === -1) return null;
     this.inMemory.orders[index] = {
       ...this.inMemory.orders[index],
@@ -497,7 +852,11 @@ class DataStore {
   // --- SETTINGS ---
   public getSettings() {
     this.init();
-    return this.inMemory.settings;
+    return {
+      ...this.inMemory.settings,
+      isCodEnabled: false,
+      isRazorpayEnabled: false
+    };
   }
   public updateSettings(updates: Partial<IStoreSettings>) {
     this.init();

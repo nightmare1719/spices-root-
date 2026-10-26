@@ -59,3 +59,9 @@ Thumbs.db
 .stylelintcache
 tmp/
 temp/
+
+# User uploads & private payment verification screenshots
+private_uploads/
+server/private_uploads/
+uploads/
+server/uploads/

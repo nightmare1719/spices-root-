@@ -94,8 +94,11 @@ export const ContactPage: React.FC = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-stone-700 mb-1">Your Name *</label>
+                <label htmlFor="contact-name-input" className="block text-xs font-semibold text-stone-700 mb-1">Your Name *</label>
                 <input
+                  id="contact-name-input"
+                  name="name"
+                  autoComplete="name"
                   type="text"
                   required
                   value={name}
@@ -106,8 +109,11 @@ export const ContactPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-stone-700 mb-1">Email Address *</label>
+                <label htmlFor="contact-email-input" className="block text-xs font-semibold text-stone-700 mb-1">Email Address *</label>
                 <input
+                  id="contact-email-input"
+                  name="email"
+                  autoComplete="email"
                   type="email"
                   required
                   value={email}
@@ -119,8 +125,10 @@ export const ContactPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-stone-700 mb-1">Subject</label>
+              <label htmlFor="contact-subject-select" className="block text-xs font-semibold text-stone-700 mb-1">Subject</label>
               <select
+                id="contact-subject-select"
+                name="subject"
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
                 className="w-full text-xs p-3 bg-[#FAF7F2] border border-stone-200 rounded-xl focus:outline-hidden focus:border-[#C5A059]"
@@ -133,8 +141,10 @@ export const ContactPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-stone-700 mb-1">Message *</label>
+              <label htmlFor="contact-message-input" className="block text-xs font-semibold text-stone-700 mb-1">Message *</label>
               <textarea
+                id="contact-message-input"
+                name="message"
                 required
                 rows={4}
                 value={message}

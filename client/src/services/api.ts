@@ -16,12 +16,17 @@ function getAuthHeaders(): HeadersInit {
 
 async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const url = `${API_BASE}${endpoint}`;
+  const headers = {
+    ...getAuthHeaders(),
+    ...(options.headers || {})
+  };
+  if (options.body instanceof FormData) {
+    delete (headers as any)['Content-Type'];
+  }
+
   const response = await fetch(url, {
     ...options,
-    headers: {
-      ...getAuthHeaders(),
-      ...(options.headers || {})
-    }
+    headers
   });
 
   const data = await response.json().catch(() => ({}));
@@ -92,16 +97,23 @@ export const api = {
     }),
 
   // --- Checkout ---
-  calculateQuote: (items: any[], couponCode?: string) =>
+  calculateQuote: (items: any[], couponCode?: string, pincode?: string) =>
     request<any>('/checkout/quote', {
       method: 'POST',
-      body: JSON.stringify({ items, couponCode })
+      body: JSON.stringify({ items, couponCode, pincode })
     }),
   createOrder: (orderPayload: any) =>
     request<any>('/checkout/create-order', {
       method: 'POST',
       body: JSON.stringify(orderPayload)
     }),
+  submitUpiPayment: (formData: FormData) =>
+    request<any>('/checkout/submit-upi-payment', {
+      method: 'POST',
+      body: formData
+    }),
+  getUpiPaymentInfo: (orderNumber: string) =>
+    request<any>(`/checkout/upi-info/${orderNumber}`),
   verifyPayment: (payload: { orderId: string; razorpayOrderId?: string; razorpayPaymentId: string; razorpaySignature?: string }) =>
     request<any>('/checkout/verify-payment', {
       method: 'POST',
@@ -112,6 +124,7 @@ export const api = {
   // --- Orders ---
   getMyOrders: () => request<any>('/orders'),
   getOrderById: (id: string) => request<any>(`/orders/${id}`),
+  getOrderInvoice: (id: string) => request<any>(`/orders/${id}/invoice`),
   trackGuestOrder: (orderNumber: string, emailOrPhone: string) =>
     request<any>('/orders/track', {
       method: 'POST',
@@ -133,6 +146,17 @@ export const api = {
     request<any>('/auth/login', {
       method: 'POST',
       body: JSON.stringify(payload)
+    }),
+  getAuthConfig: () => request<any>('/auth/config'),
+  googleAuth: (credential: string, guestId?: string) =>
+    request<any>('/auth/google', {
+      method: 'POST',
+      body: JSON.stringify({ credential, guestId })
+    }),
+  linkGoogle: (credential: string) =>
+    request<any>('/auth/google/verify', {
+      method: 'POST',
+      body: JSON.stringify({ credential })
     }),
   getMe: () => request<any>('/auth/me'),
   updateProfile: (payload: any) =>
@@ -160,23 +184,77 @@ export const api = {
   admin: {
     getDashboard: () => request<any>('/admin/dashboard'),
     getProducts: (params?: any) => {
-      const q = new URLSearchParams(params || {}).toString();
-      return request<any>(`/admin/products?${q}`);
+      const q = new URLSearchParams();
+      if (params) {
+        Object.entries(params).forEach(([k, v]) => {
+          if (v !== undefined && v !== null && v !== '' && v !== 'undefined' && v !== 'all') {
+            q.set(k, String(v));
+          }
+        });
+      }
+      const qs = q.toString();
+      return request<any>(`/admin/products${qs ? `?${qs}` : ''}`);
     },
     createProduct: (data: any) => request<any>('/admin/products', { method: 'POST', body: JSON.stringify(data) }),
     updateProduct: (id: string, data: any) => request<any>(`/admin/products/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
     deleteProduct: (id: string) => request<any>(`/admin/products/${id}`, { method: 'DELETE' }),
     getOrders: (params?: any) => {
-      const q = new URLSearchParams(params || {}).toString();
-      return request<any>(`/admin/orders?${q}`);
+      const q = new URLSearchParams();
+      if (params) {
+        Object.entries(params).forEach(([k, v]) => {
+          if (v !== undefined && v !== null && v !== '' && v !== 'undefined' && v !== 'all') {
+            q.set(k, String(v));
+          }
+        });
+      }
+      const qs = q.toString();
+      return request<any>(`/admin/orders${qs ? `?${qs}` : ''}`);
     },
     updateOrderStatus: (id: string, data: any) => request<any>(`/admin/orders/${id}/status`, { method: 'PUT', body: JSON.stringify(data) }),
+    verifyPayment: (id: string, data: { upiTransactionRef?: string; utr?: string; adminNotes?: string; adminNote?: string }) =>
+      request<any>(`/admin/orders/${id}/verify-payment`, { 
+        method: 'POST', 
+        body: JSON.stringify({ 
+          ...data,
+          utr: data.utr || data.upiTransactionRef,
+          upiTransactionRef: data.upiTransactionRef || data.utr,
+          adminNote: data.adminNote || data.adminNotes,
+          adminNotes: data.adminNotes || data.adminNote
+        }) 
+      }),
+    rejectPayment: (id: string, data: { rejectionReason?: string; reason?: string; adminNotes?: string; adminNote?: string }) =>
+      request<any>(`/admin/orders/${id}/reject-payment`, { 
+        method: 'POST', 
+        body: JSON.stringify({ 
+          ...data,
+          reason: data.reason || data.rejectionReason,
+          rejectionReason: data.rejectionReason || data.reason,
+          adminNote: data.adminNote || data.adminNotes,
+          adminNotes: data.adminNotes || data.adminNote
+        }) 
+      }),
+    getOrderInvoice: (id: string) => request<any>(`/admin/orders/${id}/invoice`),
+    getScreenshotUrl: (id: string) => {
+      const token = localStorage.getItem('spiceroots_token') || '';
+      return `${API_BASE}/admin/orders/${id}/screenshot?token=${encodeURIComponent(token)}`;
+    },
     getCoupons: () => request<any>('/admin/coupons'),
     createCoupon: (data: any) => request<any>('/admin/coupons', { method: 'POST', body: JSON.stringify(data) }),
     updateCoupon: (id: string, data: any) => request<any>(`/admin/coupons/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
     deleteCoupon: (id: string) => request<any>(`/admin/coupons/${id}`, { method: 'DELETE' }),
     getCustomers: () => request<any>('/admin/customers'),
     getSettings: () => request<any>('/admin/settings'),
-    updateSettings: (data: any) => request<any>('/admin/settings', { method: 'PUT', body: JSON.stringify(data) })
-  }
+    updateSettings: (data: any) => request<any>('/admin/settings', { method: 'PUT', body: JSON.stringify(data) }),
+    getShippingRates: () => request<any>('/shipping-rates'),
+    createShippingRate: (data: any) => request<any>('/shipping-rates', { method: 'POST', body: JSON.stringify(data) }),
+    updateShippingRate: (id: string, data: any) => request<any>(`/shipping-rates/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+    deleteShippingRate: (id: string) => request<any>(`/shipping-rates/${id}`, { method: 'DELETE' }),
+    calculateShippingRate: (pincode: string, totalWeightGrams: number) =>
+      request<any>('/shipping-rates/calculate', { method: 'POST', body: JSON.stringify({ pincode, totalWeightGrams }) })
+  },
+
+  // Public shipping rates
+  getShippingRates: () => request<any>('/shipping-rates'),
+  calculateShippingRate: (pincode: string, totalWeightGrams: number) =>
+    request<any>('/shipping-rates/calculate', { method: 'POST', body: JSON.stringify({ pincode, totalWeightGrams }) })
 };

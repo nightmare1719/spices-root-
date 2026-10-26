@@ -187,8 +187,10 @@ export const AdminCouponsPage: React.FC = () => {
 
             <form onSubmit={handleCreateCoupon} className="space-y-4 text-xs">
               <div>
-                <label className="block font-semibold text-stone-700 mb-1">Coupon Code *</label>
+                <label htmlFor="coupon-code-input" className="block font-semibold text-stone-700 mb-1">Coupon Code *</label>
                 <input
+                  id="coupon-code-input"
+                  name="couponCode"
                   type="text"
                   required
                   value={newCode}
@@ -200,8 +202,10 @@ export const AdminCouponsPage: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-semibold text-stone-700 mb-1">Type</label>
+                  <label htmlFor="coupon-type-select" className="block font-semibold text-stone-700 mb-1">Type</label>
                   <select
+                    id="coupon-type-select"
+                    name="discountType"
                     value={discountType}
                     onChange={(e) => setDiscountType(e.target.value as any)}
                     className="w-full p-2.5 bg-[#FAF7F2] border border-stone-200 rounded-xl"
@@ -212,10 +216,12 @@ export const AdminCouponsPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block font-semibold text-stone-700 mb-1">
+                  <label htmlFor="coupon-value-input" className="block font-semibold text-stone-700 mb-1">
                     {discountType === 'percent' ? 'Discount %' : 'Discount INR ₹'}
                   </label>
                   <input
+                    id="coupon-value-input"
+                    name="discountValue"
                     type="number"
                     required
                     value={discountValue}
@@ -227,8 +233,10 @@ export const AdminCouponsPage: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-semibold text-stone-700 mb-1">Min Order Value (₹)</label>
+                  <label htmlFor="coupon-min-order-input" className="block font-semibold text-stone-700 mb-1">Min Order Value (₹)</label>
                   <input
+                    id="coupon-min-order-input"
+                    name="minOrderINR"
                     type="number"
                     value={minOrderINR}
                     onChange={(e) => setMinOrderINR(Number(e.target.value))}
@@ -237,8 +245,10 @@ export const AdminCouponsPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block font-semibold text-stone-700 mb-1">Max Cap (₹, optional)</label>
+                  <label htmlFor="coupon-max-cap-input" className="block font-semibold text-stone-700 mb-1">Max Cap (₹, optional)</label>
                   <input
+                    id="coupon-max-cap-input"
+                    name="maxDiscountINR"
                     type="number"
                     value={maxDiscountINR || ''}
                     onChange={(e) => setMaxDiscountINR(e.target.value ? Number(e.target.value) : undefined)}

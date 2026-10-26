@@ -38,7 +38,8 @@ describe('Spice Roots Core Business & Security Logic', () => {
           quantity: 2
         }
       ],
-      couponCode: 'WELCOME10'
+      couponCode: 'WELCOME10',
+      pincode: '682001'
     });
 
     expect(quote.success).toBe(true);
