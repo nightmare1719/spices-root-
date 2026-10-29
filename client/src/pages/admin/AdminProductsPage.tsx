@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { api } from '../../services/api.js';
+import { api, API_BASE } from '../../services/api.js';
 import { IProduct, IProductVariant } from '../../types/index.js';
 import { formatINR } from '../../utils/format.js';
 import { 
@@ -124,7 +124,7 @@ export const AdminProductsPage: React.FC = () => {
 
         <div className="flex items-center gap-2.5">
           <a
-            href="/api/admin/products/export-csv"
+            href={`${API_BASE}/admin/products/export-csv`}
             download
             className="inline-flex items-center gap-1.5 bg-white text-stone-700 hover:text-black border border-stone-200 px-4 py-2.5 rounded-xl text-xs font-semibold shadow-2xs transition-colors"
           >

@@ -85,7 +85,7 @@
       "passwordHash": "$2a$10$nZU.HOYq66hLTsVRxjBOFOlKVxE/Zq8Iq993iS2Erwf.CnmrjpsUS",
       "phone": "9562570191",
       "role": "customer",
-      "updatedAt": "2026-10-25T17:24:29.960Z"
+      "updatedAt": "2026-10-26T08:13:28.061Z"
     }
   ],
   "products": [
@@ -158,8 +158,8 @@
         "bestseller",
         "kerala"
       ],
-      "createdAt": "2026-10-26T04:55:24.623Z",
-      "updatedAt": "2026-10-26T04:55:24.623Z"
+      "createdAt": "2026-10-29T17:55:24.306Z",
+      "updatedAt": "2026-10-29T17:55:24.306Z"
     },
     {
       "id": "prod_green_cardamom_8mm",
@@ -230,8 +230,8 @@
         "bestseller",
         "whole spices"
       ],
-      "createdAt": "2026-10-26T04:55:24.623Z",
-      "updatedAt": "2026-10-26T04:55:24.623Z"
+      "createdAt": "2026-10-29T17:55:24.307Z",
+      "updatedAt": "2026-10-29T17:55:24.307Z"
     },
     {
       "id": "prod_ceylon_cinnamon",
@@ -291,8 +291,8 @@
         "baking",
         "sweet spices"
       ],
-      "createdAt": "2026-10-26T04:55:24.623Z",
-      "updatedAt": "2026-10-26T04:55:24.623Z"
+      "createdAt": "2026-10-29T17:55:24.307Z",
+      "updatedAt": "2026-10-29T17:55:24.307Z"
     },
     {
       "id": "prod_clove_wayanad",
@@ -350,8 +350,8 @@
         "clove",
         "whole spices"
       ],
-      "createdAt": "2026-10-26T04:55:24.623Z",
-      "updatedAt": "2026-10-26T04:55:24.623Z"
+      "createdAt": "2026-10-29T17:55:24.307Z",
+      "updatedAt": "2026-10-29T17:55:24.307Z"
     },
     {
       "id": "prod_star_anise",
@@ -399,8 +399,8 @@
         "star anise",
         "biryani"
       ],
-      "createdAt": "2026-10-26T04:55:24.623Z",
-      "updatedAt": "2026-10-26T04:55:24.623Z"
+      "createdAt": "2026-10-29T17:55:24.307Z",
+      "updatedAt": "2026-10-29T17:55:24.307Z"
     },
     {
       "id": "prod_mace_nutmeg",
@@ -450,8 +450,8 @@
         "nutmeg",
         "rare"
       ],
-      "createdAt": "2026-10-26T04:55:24.623Z",
-      "updatedAt": "2026-10-26T04:55:24.623Z"
+      "createdAt": "2026-10-29T17:55:24.307Z",
+      "updatedAt": "2026-10-29T17:55:24.307Z"
     },
     {
       "id": "prod_pathimugam",
@@ -500,8 +500,8 @@
         "traditional",
         "kerala herbal"
       ],
-      "createdAt": "2026-10-26T04:55:24.623Z",
-      "updatedAt": "2026-10-26T04:55:24.623Z"
+      "createdAt": "2026-10-29T17:55:24.307Z",
+      "updatedAt": "2026-10-29T17:55:24.307Z"
     },
     {
       "id": "prod_kerala_garam_masala",
@@ -560,8 +560,8 @@
         "bestseller",
         "biryani"
       ],
-      "createdAt": "2026-10-26T04:55:24.623Z",
-      "updatedAt": "2026-10-26T04:55:24.623Z"
+      "createdAt": "2026-10-29T17:55:24.307Z",
+      "updatedAt": "2026-10-29T17:55:24.307Z"
     },
     {
       "id": "prod_kolukkumalai_tea",
@@ -622,8 +622,8 @@
         "munnar",
         "bestseller"
       ],
-      "createdAt": "2026-10-26T04:55:24.623Z",
-      "updatedAt": "2026-10-26T04:55:24.623Z"
+      "createdAt": "2026-10-29T17:55:24.307Z",
+      "updatedAt": "2026-10-29T17:55:24.307Z"
     },
     {
       "id": "prod_thalayar_tea",
@@ -682,8 +682,8 @@
         "chai",
         "ctc"
       ],
-      "createdAt": "2026-10-26T04:55:24.623Z",
-      "updatedAt": "2026-10-26T04:55:24.623Z"
+      "createdAt": "2026-10-29T17:55:24.307Z",
+      "updatedAt": "2026-10-29T17:55:24.307Z"
     },
     {
       "id": "prod_white_tea_tips",
@@ -732,8 +732,8 @@
         "luxury",
         "rare"
       ],
-      "createdAt": "2026-10-26T04:55:24.623Z",
-      "updatedAt": "2026-10-26T04:55:24.623Z"
+      "createdAt": "2026-10-29T17:55:24.307Z",
+      "updatedAt": "2026-10-29T17:55:24.307Z"
     },
     {
       "id": "prod_lemongrass_oil",
@@ -782,8 +782,8 @@
         "lemongrass",
         "aromatherapy"
       ],
-      "createdAt": "2026-10-26T04:55:24.623Z",
-      "updatedAt": "2026-10-26T04:55:24.623Z"
+      "createdAt": "2026-10-29T17:55:24.307Z",
+      "updatedAt": "2026-10-29T17:55:24.307Z"
     },
     {
       "id": "prod_coconut_oil_cold_pressed",
@@ -832,8 +832,8 @@
         "pure",
         "cold-pressed"
       ],
-      "createdAt": "2026-10-26T04:55:24.623Z",
-      "updatedAt": "2026-10-26T04:55:24.623Z"
+      "createdAt": "2026-10-29T17:55:24.307Z",
+      "updatedAt": "2026-10-29T17:55:24.307Z"
     },
     {
       "id": "prod_heritage_spice_box",
@@ -889,8 +889,8 @@
         "hamper",
         "corporate"
       ],
-      "createdAt": "2026-10-26T04:55:24.623Z",
-      "updatedAt": "2026-10-26T04:55:24.623Z"
+      "createdAt": "2026-10-29T17:55:24.307Z",
+      "updatedAt": "2026-10-29T17:55:24.307Z"
     },
     {
       "id": "prod_roasted_almond_chocolate",
@@ -944,8 +944,8 @@
         "almonds",
         "handmade"
       ],
-      "createdAt": "2026-10-26T04:55:24.623Z",
-      "updatedAt": "2026-10-26T04:55:24.623Z"
+      "createdAt": "2026-10-29T17:55:24.307Z",
+      "updatedAt": "2026-10-29T17:55:24.307Z"
     }
   ],
   "categories": [
@@ -1090,16 +1090,16 @@
       "paymentStatus": "REJECTED",
       "fulfillmentStatus": "pending",
       "statusHistory": [],
-      "createdAt": "2026-10-26T04:55:24.093Z",
-      "updatedAt": "2026-10-26T04:55:24.099Z",
-      "id": "ord_1792990524093_mjsel",
-      "_id": "ord_1792990524093_mjsel",
+      "createdAt": "2026-10-29T17:55:24.086Z",
+      "updatedAt": "2026-10-29T17:55:24.087Z",
+      "id": "ord_1793296524086_n02wn",
+      "_id": "ord_1793296524086_n02wn",
       "rejectionReason": "No incoming credit received in SBI account for this order",
       "paymentAuditLogs": [
         {
           "previousStatus": "VERIFICATION_PENDING",
           "newStatus": "REJECTED",
-          "timestamp": "2026-10-26T04:55:24.099Z",
+          "timestamp": "2026-10-29T17:55:24.087Z",
           "changedBy": "Admin (admin@spiceroots.in)",
           "note": "Rejected: No incoming credit received in SBI account for this order"
         }
@@ -1145,21 +1145,21 @@
       "statusHistory": [
         {
           "status": "pending",
-          "timestamp": "2026-10-26T04:55:24.071Z",
+          "timestamp": "2026-10-29T17:55:24.074Z",
           "note": "Order placed, awaiting UPI transfer"
         }
       ],
-      "createdAt": "2026-10-26T04:55:24.071Z",
-      "updatedAt": "2026-10-26T04:55:24.087Z",
-      "id": "ord_1792990524071_1eci5",
-      "_id": "ord_1792990524071_1eci5",
+      "createdAt": "2026-10-29T17:55:24.074Z",
+      "updatedAt": "2026-10-29T17:55:24.083Z",
+      "id": "ord_1793296524074_0pogv",
+      "_id": "ord_1793296524074_0pogv",
       "upiTransactionRef": "429381749281",
-      "paymentSubmittedAt": "2026-10-26T04:55:24.076Z",
+      "paymentSubmittedAt": "2026-10-29T17:55:24.078Z",
       "paymentAuditLogs": [
         {
           "previousStatus": "AWAITING_PAYMENT",
           "newStatus": "VERIFICATION_PENDING",
-          "timestamp": "2026-10-26T04:55:24.076Z",
+          "timestamp": "2026-10-29T17:55:24.078Z",
           "changedBy": "customer",
           "utr": "429381749281",
           "note": "Customer submitted payment details on checkout"
@@ -1167,13 +1167,13 @@
         {
           "previousStatus": "VERIFICATION_PENDING",
           "newStatus": "PAID",
-          "timestamp": "2026-10-26T04:55:24.087Z",
+          "timestamp": "2026-10-29T17:55:24.083Z",
           "changedBy": "Admin Operations (admin@spiceroots.in)",
           "utr": "429381749281",
           "note": "Verified in SBI Yono banking app statement at 11:30 AM"
         }
       ],
-      "verifiedAt": "2026-10-26T04:55:24.087Z",
+      "verifiedAt": "2026-10-29T17:55:24.083Z",
       "verifiedBy": "Admin Operations (admin@spiceroots.in)",
       "adminNotes": "Verified in SBI Yono banking app statement at 11:30 AM"
     },
@@ -2542,9 +2542,9 @@
       "rating": 5,
       "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
       "isVerifiedPurchase": true,
-      "createdAt": "2026-10-26T04:55:23.760Z",
-      "id": "rev_1792990523759",
-      "_id": "rev_1792990523759"
+      "createdAt": "2026-10-29T17:55:23.960Z",
+      "id": "rev_1793296523960",
+      "_id": "rev_1793296523960"
     },
     {
       "productId": "prod_green_cardamom_8mm",
@@ -2552,9 +2552,9 @@
       "rating": 5,
       "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
       "isVerifiedPurchase": true,
-      "createdAt": "2026-10-26T04:55:23.763Z",
-      "id": "rev_1792990523763",
-      "_id": "rev_1792990523763"
+      "createdAt": "2026-10-29T17:55:23.962Z",
+      "id": "rev_1793296523961",
+      "_id": "rev_1793296523961"
     },
     {
       "productId": "prod_kolukkumalai_tea",
@@ -2562,9 +2562,9 @@
       "rating": 5,
       "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
       "isVerifiedPurchase": true,
-      "createdAt": "2026-10-26T04:55:23.766Z",
-      "id": "rev_1792990523766",
-      "_id": "rev_1792990523766"
+      "createdAt": "2026-10-29T17:55:23.963Z",
+      "id": "rev_1793296523963",
+      "_id": "rev_1793296523963"
     },
     {
       "productId": "prod_black_pepper",
@@ -2572,9 +2572,9 @@
       "rating": 5,
       "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
       "isVerifiedPurchase": true,
-      "createdAt": "2026-10-26T04:55:25.294Z",
-      "id": "rev_1792990525294",
-      "_id": "rev_1792990525294"
+      "createdAt": "2026-10-29T17:55:24.485Z",
+      "id": "rev_1793296524485",
+      "_id": "rev_1793296524485"
     },
     {
       "productId": "prod_green_cardamom_8mm",
@@ -2582,9 +2582,9 @@
       "rating": 5,
       "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
       "isVerifiedPurchase": true,
-      "createdAt": "2026-10-26T04:55:25.303Z",
-      "id": "rev_1792990525303",
-      "_id": "rev_1792990525303"
+      "createdAt": "2026-10-29T17:55:24.486Z",
+      "id": "rev_1793296524486",
+      "_id": "rev_1793296524486"
     },
     {
       "productId": "prod_kolukkumalai_tea",
@@ -2592,9 +2592,9 @@
       "rating": 5,
       "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
       "isVerifiedPurchase": true,
-      "createdAt": "2026-10-26T04:55:25.309Z",
-      "id": "rev_1792990525309",
-      "_id": "rev_1792990525309"
+      "createdAt": "2026-10-29T17:55:24.487Z",
+      "id": "rev_1793296524487",
+      "_id": "rev_1793296524487"
     }
   ],
   "shippingRates": [
@@ -2680,6 +2680,6 @@
     "_id": "6ad3b4c6cb7ee1dcd71d1b49",
     "__v": 0,
     "createdAt": "2026-10-17T17:47:50.550Z",
-    "updatedAt": "2026-10-23T18:48:12.766Z"
+    "updatedAt": "2026-10-29T16:58:37.985Z"
   }
 }

@@ -1,6 +1,10 @@
 import { getGuestId } from '../utils/format.js';
 
-const API_BASE = '/api';
+const defaultProdApiUrl = 'https://spices-root.onrender.com/api';
+const envApiUrl = (import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL || (import.meta.env.PROD ? defaultProdApiUrl : '')).trim().replace(/\/$/, '');
+export const API_BASE = envApiUrl
+  ? (envApiUrl.endsWith('/api') ? envApiUrl : `${envApiUrl}/api`)
+  : '/api';
 
 function getAuthHeaders(): HeadersInit {
   const token = localStorage.getItem('spiceroots_token');
