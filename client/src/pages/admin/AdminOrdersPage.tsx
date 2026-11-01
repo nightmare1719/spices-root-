@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { api } from '../../services/api.js';
 import { IOrder, OrderFulfillmentStatus, PaymentState } from '../../types/index.js';
 import { formatINR, formatDateTime } from '../../utils/format.js';
@@ -543,9 +544,18 @@ export const AdminOrdersPage: React.FC = () => {
                           {ord.fulfillmentStatus}
                         </span>
                         {ord.trackingNumber && (
-                          <span className="text-[10px] text-stone-500 font-mono block mt-1">
-                            AWB: {ord.trackingNumber}
-                          </span>
+                          <div className="mt-1">
+                            <Link
+                              to={`/track/${encodeURIComponent(ord.trackingNumber)}`}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-[10px] font-mono text-[#153E2B] hover:text-[#C5A059] underline inline-flex items-center gap-1"
+                              title="Track package live"
+                            >
+                              <span>AWB: {ord.trackingNumber}</span>
+                              <ExternalLink className="w-2.5 h-2.5 shrink-0" />
+                            </Link>
+                          </div>
                         )}
                       </td>
 
@@ -1033,21 +1043,34 @@ export const AdminOrdersPage: React.FC = () => {
                 />
               </div>
 
-              <div className="flex justify-end gap-3 pt-4 border-t">
-                <button
-                  type="button"
-                  onClick={() => setStatusOrder(null)}
-                  className="px-4 py-2 border rounded-xl hover:bg-stone-50"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={isUpdatingStatus}
-                  className="px-5 py-2 bg-[#153E2B] text-white rounded-xl font-bold hover:bg-[#1E5138]"
-                >
-                  {isUpdatingStatus ? 'Saving...' : 'Update Status'}
-                </button>
+              <div className="flex justify-between items-center gap-3 pt-4 border-t">
+                {(newTracking || statusOrder.trackingNumber) ? (
+                  <Link
+                    to={`/track/${encodeURIComponent(newTracking || statusOrder.trackingNumber || '')}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs font-bold text-[#153E2B] hover:underline flex items-center gap-1"
+                  >
+                    <span>View Live Tracking</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </Link>
+                ) : <span />}
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setStatusOrder(null)}
+                    className="px-4 py-2 border rounded-xl hover:bg-stone-50 text-xs font-semibold"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isUpdatingStatus}
+                    className="px-5 py-2 bg-[#153E2B] text-white rounded-xl text-xs font-bold hover:bg-[#1E5138]"
+                  >
+                    {isUpdatingStatus ? 'Saving...' : 'Update Status'}
+                  </button>
+                </div>
               </div>
             </form>
           </div>

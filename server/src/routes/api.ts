@@ -25,6 +25,7 @@ import {
   getMyOrders, 
   getOrderById, 
   trackGuestOrder, 
+  trackOrderByParameter,
   cancelOrder 
 } from '../controllers/orderController.js';
 import { 
@@ -129,6 +130,7 @@ router.get('/checkout/payment-config', getPaymentConfig);
 router.get('/orders', verifyToken, getMyOrders);
 router.get('/orders/:id', optionalToken, getOrderById);
 router.get('/orders/:id/invoice', getOrderInvoice);
+router.get('/orders/track/:trackingId', trackOrderByParameter);
 router.post('/orders/track', trackGuestOrder);
 router.post('/orders/:id/cancel', verifyToken, cancelOrder);
 

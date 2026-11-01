@@ -137,12 +137,12 @@ export const Header: React.FC = () => {
               )}
             </Link>
 
-            {/* Account Dropdown */}
-            <div className="relative">
+            {/* Account Dropdown & Mobile Action */}
+            <div className="relative user-account-action flex items-center">
               <button
                 onClick={() => setIsAccountMenuOpen(!isAccountMenuOpen)}
-                className="p-1 md:px-2 md:py-1.5 text-[#382F26] hover:text-[#153E2B] hover:bg-[#F4EFE6] rounded-full transition-colors flex items-center gap-1.5"
-                aria-label="Account options"
+                className="p-1.5 md:px-2.5 md:py-1.5 text-[#382F26] hover:text-[#153E2B] hover:bg-[#F4EFE6] rounded-full transition-colors flex items-center gap-1.5"
+                aria-label="User Account Sign In or Profile"
               >
                 {user?.avatar ? (
                   <img
@@ -153,7 +153,11 @@ export const Header: React.FC = () => {
                 ) : (
                   <User className="w-5 h-5" />
                 )}
-                {user && <span className="hidden md:inline text-xs font-semibold max-w-[80px] truncate">{user.name.split(' ')[0]}</span>}
+                {user ? (
+                  <span className="hidden md:inline text-xs font-semibold max-w-[80px] truncate">{user.name.split(' ')[0]}</span>
+                ) : (
+                  <span className="hidden sm:inline text-xs font-semibold text-[#153E2B]">Sign In</span>
+                )}
                 <ChevronDown className="w-3.5 h-3.5 hidden md:inline text-stone-500" />
               </button>
 
@@ -220,7 +224,14 @@ export const Header: React.FC = () => {
                         onClick={() => setIsAccountMenuOpen(false)}
                         className="block px-4 py-2 text-[#153E2B] font-semibold hover:bg-[#FAF7F2] transition-colors"
                       >
-                        Sign In / Register
+                        Sign In
+                      </Link>
+                      <Link
+                        to="/register"
+                        onClick={() => setIsAccountMenuOpen(false)}
+                        className="block px-4 py-2 text-[#C5A059] font-semibold hover:bg-[#FAF7F2] transition-colors"
+                      >
+                        Sign Up / Register
                       </Link>
                       <Link
                         to="/track-order"
@@ -252,6 +263,51 @@ export const Header: React.FC = () => {
       {/* Mobile Menu Drawer */}
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-[#FCFAF6] border-b border-[#EFE8D6] px-4 pt-2 pb-6 space-y-3">
+          {/* Mobile Account Access Section */}
+          <div className="p-3 bg-white rounded-xl border border-[#EFE8D6] mb-3 user-account-mobile">
+            {user ? (
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-[#153E2B] text-white flex items-center justify-center font-bold text-xs shrink-0">
+                    {user.avatar ? (
+                      <img src={user.avatar} alt={user.name} className="w-full h-full rounded-full object-cover" />
+                    ) : (
+                      user.name.charAt(0).toUpperCase()
+                    )}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-bold text-[#153E2B] truncate">{user.name}</p>
+                    <p className="text-[10px] text-stone-500 truncate">{user.email}</p>
+                  </div>
+                </div>
+                <Link
+                  to="/profile"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-xs font-bold text-[#C5A059] hover:underline shrink-0"
+                >
+                  My Profile →
+                </Link>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2">
+                <Link
+                  to="/login"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex-1 py-2 px-3 bg-[#153E2B] text-white text-xs font-bold uppercase tracking-wider text-center rounded-lg hover:bg-[#1E5138] transition-colors"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/register"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex-1 py-2 px-3 bg-[#FAF7F2] border border-[#C5A059] text-[#153E2B] text-xs font-bold uppercase tracking-wider text-center rounded-lg hover:bg-[#F4EFE6] transition-colors"
+                >
+                  Sign Up
+                </Link>
+              </div>
+            )}
+          </div>
+
           <form onSubmit={handleSearchSubmit} className="mb-4">
             <div className="relative">
               <input

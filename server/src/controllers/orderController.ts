@@ -73,6 +73,37 @@ export async function trackGuestOrder(req: Request, res: Response) {
   }
 }
 
+export async function trackOrderByParameter(req: Request, res: Response) {
+  try {
+    const { trackingId } = req.params;
+    if (!trackingId || !trackingId.trim()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Tracking reference number or AWB code is required.'
+      });
+    }
+
+    const order = db.findOrderByTracking(trackingId.trim());
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        message: `No active shipment matching tracking reference "${trackingId}" found.`
+      });
+    }
+
+    return res.json({
+      success: true,
+      data: order
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to retrieve shipment tracking details.',
+      error: (err as Error).message
+    });
+  }
+}
+
 export async function cancelOrder(req: AuthenticatedRequest, res: Response) {
   try {
     const { id } = req.params;

@@ -47,7 +47,7 @@ export const AdminSettingsPage: React.FC = () => {
         businessAddress: settings.businessAddress,
         freeShippingThresholdPaise: Number(settings.freeShippingThresholdINR) * 100,
         standardShippingFeePaise: Number(settings.standardShippingFeeINR) * 100,
-        taxPercent: Number(settings.taxPercent),
+        taxPercent: settings.taxPercent !== undefined && settings.taxPercent !== '' ? Number(settings.taxPercent) : 0,
         isCodEnabled: settings.isCodEnabled,
         isRazorpayEnabled: settings.isRazorpayEnabled,
         isUpiManualEnabled: settings.isUpiManualEnabled,
@@ -275,11 +275,14 @@ export const AdminSettingsPage: React.FC = () => {
                 id="settings-tax-percent"
                 name="taxPercent"
                 type="number"
-                value={settings.taxPercent || 5}
-                onChange={(e) => setSettings({ ...settings, taxPercent: Number(e.target.value) })}
+                min="0"
+                max="100"
+                step="0.5"
+                value={settings.taxPercent !== undefined && settings.taxPercent !== null ? settings.taxPercent : ''}
+                onChange={(e) => setSettings({ ...settings, taxPercent: e.target.value === '' ? '' : Number(e.target.value) })}
                 className="w-full p-2.5 bg-[#FAF7F2] border border-stone-200 rounded-xl font-bold text-[#153E2B]"
               />
-              <p className="text-[10px] text-stone-400 mt-1">Included in listed catalog prices</p>
+              <p className="text-[10px] text-stone-400 mt-1">If set to 5 use 5% GST; if set to 0 use 0% GST (tax-exempt)</p>
             </div>
           </div>
 

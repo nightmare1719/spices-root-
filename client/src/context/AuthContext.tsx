@@ -18,13 +18,27 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<IUser | null>(null);
   const [token, setToken] = useState<string | null>(() => localStorage.getItem('spiceroots_token'));
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [user, setUser] = useState<IUser | null>(() => {
+    try {
+      const savedUser = localStorage.getItem('spiceroots_user');
+      return savedUser ? JSON.parse(savedUser) : null;
+    } catch {
+      return null;
+    }
+  });
+  const [isLoading, setIsLoading] = useState<boolean>(() => {
+    const t = localStorage.getItem('spiceroots_token');
+    const u = localStorage.getItem('spiceroots_user');
+    // If token exists but user is not hydrated yet, show initial loading state until verified
+    return Boolean(t && !u);
+  });
 
   const refreshUser = async () => {
-    if (!token) {
+    const currentToken = token || localStorage.getItem('spiceroots_token');
+    if (!currentToken) {
       setUser(null);
+      localStorage.removeItem('spiceroots_user');
       setIsLoading(false);
       return;
     }
@@ -32,6 +46,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const res = await api.getMe();
       if (res.success && res.data) {
         setUser(res.data);
+        localStorage.setItem('spiceroots_user', JSON.stringify(res.data));
       } else {
         logout();
       }
@@ -50,6 +65,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const res = await api.login(credentials);
     if (res.success && res.data.token) {
       localStorage.setItem('spiceroots_token', res.data.token);
+      localStorage.setItem('spiceroots_user', JSON.stringify(res.data.user));
       setToken(res.data.token);
       setUser(res.data.user);
       window.dispatchEvent(new CustomEvent('auth_state_changed', { detail: { user: res.data.user } }));
@@ -63,6 +79,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const res = await api.googleAuth(credential, guestId);
     if (res.success && res.data?.token) {
       localStorage.setItem('spiceroots_token', res.data.token);
+      localStorage.setItem('spiceroots_user', JSON.stringify(res.data.user));
       setToken(res.data.token);
       setUser(res.data.user);
       window.dispatchEvent(new CustomEvent('auth_state_changed', { detail: { user: res.data.user } }));
@@ -75,6 +92,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const res = await api.linkGoogle(credential);
     if (res.success && res.data?.user) {
       setUser(res.data.user);
+      localStorage.setItem('spiceroots_user', JSON.stringify(res.data.user));
       window.dispatchEvent(new CustomEvent('auth_state_changed', { detail: { user: res.data.user } }));
     } else {
       throw new Error(res.message || 'Failed to link Google account');
@@ -85,6 +103,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const res = await api.register(payload);
     if (res.success && res.data.token) {
       localStorage.setItem('spiceroots_token', res.data.token);
+      localStorage.setItem('spiceroots_user', JSON.stringify(res.data.user));
       setToken(res.data.token);
       setUser(res.data.user);
       window.dispatchEvent(new CustomEvent('auth_state_changed', { detail: { user: res.data.user } }));
@@ -95,6 +114,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const logout = () => {
     localStorage.removeItem('spiceroots_token');
+    localStorage.removeItem('spiceroots_user');
     setToken(null);
     setUser(null);
     window.dispatchEvent(new CustomEvent('auth_state_changed', { detail: { user: null } }));

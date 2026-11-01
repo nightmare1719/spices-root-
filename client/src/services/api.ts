@@ -134,6 +134,8 @@ export const api = {
       method: 'POST',
       body: JSON.stringify({ orderNumber, emailOrPhone })
     }),
+  trackByTrackingId: (trackingId: string) =>
+    request<any>(`/orders/track/${encodeURIComponent(trackingId)}`),
   cancelOrder: (id: string, reason?: string) =>
     request<any>(`/orders/${id}/cancel`, {
       method: 'POST',

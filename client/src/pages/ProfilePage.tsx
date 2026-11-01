@@ -6,7 +6,8 @@ import { IOrder, IUserAddress } from '../types/index.js';
 import { formatINR, formatDateTime } from '../utils/format.js';
 import {
   User, Package, MapPin, KeyRound, Shield,
-  Trash2, Plus, CheckCircle2, Clock, Truck, Sparkles
+  Trash2, Plus, CheckCircle2, Clock, Truck, Sparkles,
+  X, ExternalLink, ArrowRight
 } from 'lucide-react';
 import { GoogleAuthButton } from '../components/GoogleAuthButton.js';
 
@@ -17,6 +18,7 @@ export const ProfilePage: React.FC = () => {
 
   const [orders, setOrders] = useState<IOrder[]>([]);
   const [isLoadingOrders, setIsLoadingOrders] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState<IOrder | null>(null);
 
   // Profile Form state
   const [name, setName] = useState(user?.name || '');
@@ -372,11 +374,22 @@ export const ProfilePage: React.FC = () => {
               ) : (
                 <div className="space-y-4">
                   {orders.map((ord) => (
-                    <div key={ord.id} className="p-5 rounded-2xl border border-stone-200 bg-[#FAF7F2] space-y-3">
+                    <div 
+                      key={ord.id} 
+                      onClick={() => setSelectedOrder(ord)}
+                      className="p-5 rounded-2xl border border-stone-200 bg-[#FAF7F2] space-y-3 cursor-pointer hover:border-[#C5A059] hover:shadow-sm transition-all duration-200 group"
+                    >
                       <div className="flex flex-wrap justify-between items-start gap-2 border-b border-stone-200 pb-3">
                         <div>
-                          <span className="font-mono text-xs font-bold text-[#153E2B]">{ord.orderNumber}</span>
-                          <span className="text-[11px] text-stone-500 block">Placed {formatDateTime(ord.createdAt)}</span>
+                          <div className="flex items-center gap-2">
+                            <span className="font-mono text-xs font-bold text-[#153E2B] group-hover:text-[#C5A059] transition-colors">
+                              {ord.orderNumber}
+                            </span>
+                            <span className="text-[10px] bg-stone-200 text-stone-700 px-2 py-0.5 rounded-md font-semibold">
+                              Click to view details
+                            </span>
+                          </div>
+                          <span className="text-[11px] text-stone-500 block mt-0.5">Placed {formatDateTime(ord.createdAt)}</span>
                         </div>
                         <div className="text-right">
                           <span className="text-[11px] font-bold bg-[#153E2B] text-white px-2.5 py-0.5 rounded-full uppercase tracking-wider">
@@ -397,18 +410,211 @@ export const ProfilePage: React.FC = () => {
                         ))}
                       </div>
 
-                      {ord.trackingNumber && (
-                        <div className="text-xs text-[#153E2B] font-semibold bg-emerald-50 p-2.5 rounded-lg border border-emerald-200 flex items-center justify-between">
-                          <span>Courier: {ord.courierName} ({ord.trackingNumber})</span>
-                          <Link to="/track-order" className="underline font-bold text-[#153E2B]">
-                            Track Package →
-                          </Link>
-                        </div>
-                      )}
+                      <div className="flex flex-wrap justify-between items-center gap-2 pt-2 border-t border-stone-200/60">
+                        {ord.trackingNumber ? (
+                          <div className="text-xs text-[#153E2B] font-semibold bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 flex items-center gap-2">
+                            <span>Courier: {ord.courierName} ({ord.trackingNumber})</span>
+                            <Link 
+                              to={`/track/${encodeURIComponent(ord.trackingNumber)}`}
+                              onClick={(e) => e.stopPropagation()} 
+                              className="underline font-bold text-[#153E2B] hover:text-[#C5A059]"
+                            >
+                              Track Package →
+                            </Link>
+                          </div>
+                        ) : (
+                          <span className="text-[11px] text-stone-400">Packaging at Munnar plantation depot</span>
+                        )}
+
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedOrder(ord);
+                          }}
+                          className="text-xs font-bold text-[#153E2B] hover:text-[#C5A059] flex items-center gap-1 ml-auto"
+                        >
+                          <span>View Full Order Details</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>
               )}
+            </div>
+          )}
+
+          {/* Modal Popup for Order Details */}
+          {selectedOrder && (
+            <div 
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200"
+              onClick={() => setSelectedOrder(null)}
+            >
+              <div 
+                className="bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl shadow-2xl border border-[#EFE8D6] overflow-y-auto flex flex-col"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Modal Header */}
+                <div className="bg-[#153E2B] text-white p-6 sm:p-7 rounded-t-3xl flex items-start justify-between">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-bold text-[#D8B26E] uppercase tracking-widest block">
+                      Order Summary & Tracking
+                    </span>
+                    <h3 className="font-editorial text-2xl font-bold text-[#F7F3E9] font-mono">
+                      {selectedOrder.orderNumber}
+                    </h3>
+                    <p className="text-xs text-[#E3D9C0]">
+                      Placed on {formatDateTime(selectedOrder.createdAt)}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setSelectedOrder(null)}
+                    className="p-2 text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-colors"
+                    aria-label="Close details"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                <div className="p-6 sm:p-8 space-y-6 flex-1">
+                  {/* Status Banner */}
+                  <div className="bg-[#FAF7F2] p-4 rounded-2xl border border-stone-200 flex flex-wrap justify-between items-center gap-3">
+                    <div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 block">Fulfillment Status</span>
+                      <span className="text-xs font-bold text-[#153E2B] uppercase">
+                        {selectedOrder.fulfillmentStatus}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 block">Payment Method</span>
+                      <span className="text-xs font-semibold text-stone-700 uppercase">
+                        {selectedOrder.paymentMethod} ({selectedOrder.paymentStatus})
+                      </span>
+                    </div>
+                    {selectedOrder.trackingNumber && (
+                      <Link
+                        to={`/track/${encodeURIComponent(selectedOrder.trackingNumber)}`}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#153E2B] text-white rounded-lg text-xs font-bold hover:bg-[#1E5138] transition-colors"
+                      >
+                        <Truck className="w-3.5 h-3.5 text-[#D8B26E]" />
+                        <span>Live Tracking</span>
+                      </Link>
+                    )}
+                  </div>
+
+                  {/* Tracking Milestones / Delivery Data */}
+                  <div className="space-y-3">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-stone-700 flex items-center gap-1.5">
+                      <Truck className="w-4 h-4 text-[#C5A059]" />
+                      <span>Shipment & Logistics</span>
+                    </h4>
+                    <div className="p-4 bg-emerald-50/60 rounded-2xl border border-emerald-200/60 text-xs space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-stone-600">Carrier Partner:</span>
+                        <strong className="text-[#153E2B]">{selectedOrder.courierName || 'Blue Dart Express (Plantation Depot)'}</strong>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-stone-600">Tracking AWB:</span>
+                        <strong className="font-mono text-[#153E2B]">{selectedOrder.trackingNumber || 'Pending Courier Pickup'}</strong>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-stone-600">Depot Hub:</span>
+                        <span className="text-stone-700">Munnar Plantation Hub, Kerala (685612)</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Items list */}
+                  <div className="space-y-3">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-stone-700">
+                      Order Items ({selectedOrder.items.length})
+                    </h4>
+                    <div className="space-y-2 border border-stone-200 rounded-2xl p-3 bg-stone-50/50">
+                      {selectedOrder.items.map((item, idx) => (
+                        <div key={idx} className="flex items-center justify-between p-2 bg-white rounded-xl border border-stone-100 text-xs">
+                          <div className="flex items-center gap-3 min-w-0">
+                            <img src={item.image} alt={item.productName} className="w-10 h-10 object-cover rounded-lg shrink-0 border" />
+                            <div className="min-w-0">
+                              <p className="font-bold text-[#153E2B] truncate">{item.productName}</p>
+                              <p className="text-[10px] text-stone-400">{item.packSize} • Qty: {item.quantity}</p>
+                            </div>
+                          </div>
+                          <span className="font-bold text-[#153E2B] shrink-0 ml-2">
+                            {formatINR(item.lineTotalPaise)}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Delivery Address */}
+                  <div className="space-y-2">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-stone-700 flex items-center gap-1.5">
+                      <MapPin className="w-4 h-4 text-[#C5A059]" />
+                      <span>Shipping Address</span>
+                    </h4>
+                    <div className="p-3.5 bg-stone-50 rounded-xl border border-stone-200 text-xs space-y-1">
+                      <p className="font-bold text-stone-800">{selectedOrder.shippingAddress.name} ({selectedOrder.shippingAddress.phone})</p>
+                      <p className="text-stone-600">
+                        {selectedOrder.shippingAddress.addressLine}
+                        {selectedOrder.shippingAddress.landmark ? `, Near ${selectedOrder.shippingAddress.landmark}` : ''}
+                      </p>
+                      <p className="text-stone-600">
+                        {selectedOrder.shippingAddress.city}, {selectedOrder.shippingAddress.state} - {selectedOrder.shippingAddress.pincode}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Price Breakdown */}
+                  <div className="p-4 bg-[#FAF7F2] rounded-2xl border border-stone-200 space-y-2 text-xs">
+                    <div className="flex justify-between text-stone-600">
+                      <span>Subtotal:</span>
+                      <span>{formatINR(selectedOrder.priceBreakdown.subtotalPaise)}</span>
+                    </div>
+                    {selectedOrder.priceBreakdown.discountPaise > 0 && (
+                      <div className="flex justify-between text-red-600 font-semibold">
+                        <span>Discount:</span>
+                        <span>-{formatINR(selectedOrder.priceBreakdown.discountPaise)}</span>
+                      </div>
+                    )}
+                    <div className="flex justify-between text-stone-600">
+                      <span>Shipping Fee:</span>
+                      <span>{selectedOrder.priceBreakdown.shippingFeePaise === 0 ? 'FREE' : formatINR(selectedOrder.priceBreakdown.shippingFeePaise)}</span>
+                    </div>
+                    <div className="flex justify-between text-stone-500">
+                      <span>Tax / GST:</span>
+                      <span>{formatINR(selectedOrder.priceBreakdown.taxPaise)}</span>
+                    </div>
+                    <div className="pt-2 border-t border-stone-200 flex justify-between font-bold text-sm text-[#153E2B]">
+                      <span>Grand Total:</span>
+                      <span className="font-editorial text-base">{formatINR(selectedOrder.priceBreakdown.totalPaise)}</span>
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* Modal Footer */}
+                <div className="p-4 sm:p-6 bg-stone-50 border-t border-stone-200 rounded-b-3xl flex justify-between items-center gap-3">
+                  {selectedOrder.trackingNumber ? (
+                    <Link
+                      to={`/track/${encodeURIComponent(selectedOrder.trackingNumber)}`}
+                      className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#153E2B] text-white rounded-xl text-xs font-bold hover:bg-[#1E5138] transition-colors"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5 text-[#D8B26E]" />
+                      <span>Open Live Tracking Page</span>
+                    </Link>
+                  ) : (
+                    <span className="text-[11px] text-stone-400">Tracking code will appear once dispatched</span>
+                  )}
+                  <button
+                    onClick={() => setSelectedOrder(null)}
+                    className="px-5 py-2 bg-stone-200 hover:bg-stone-300 text-stone-800 rounded-xl text-xs font-bold transition-colors ml-auto"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
             </div>
           )}
 

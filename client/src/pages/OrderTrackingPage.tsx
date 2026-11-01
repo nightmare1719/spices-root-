@@ -1,18 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, useSearchParams, Link } from 'react-router-dom';
 import { api } from '../services/api.js';
 import { IOrder } from '../types/index.js';
 import { formatINR, formatDateTime } from '../utils/format.js';
 import { 
   Search, Package, Truck, CheckCircle2, Clock, 
-  MapPin, AlertCircle, Sparkles 
+  MapPin, AlertCircle, Sparkles, ArrowLeft, RefreshCw 
 } from 'lucide-react';
 
 export const OrderTrackingPage: React.FC = () => {
+  const { trackingId: routeTrackingId } = useParams<{ trackingId?: string }>();
+  const [searchParams] = useSearchParams();
+  const queryTrackingId = searchParams.get('trackingId') || searchParams.get('order') || searchParams.get('awb');
+  const activeTrackingParam = routeTrackingId || queryTrackingId;
+
   const [orderNumber, setOrderNumber] = useState('');
   const [emailOrPhone, setEmailOrPhone] = useState('');
   const [order, setOrder] = useState<IOrder | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [showManualForm, setShowManualForm] = useState(!activeTrackingParam);
+
+  // Auto-fetch shipment tracking updates dynamically without intermediate landing wall blockers
+  useEffect(() => {
+    if (activeTrackingParam) {
+      const fetchDirectTracking = async () => {
+        setIsLoading(true);
+        setErrorMessage('');
+        try {
+          const res = await api.trackByTrackingId(activeTrackingParam.trim());
+          if (res.success && res.data) {
+            setOrder(res.data);
+            setOrderNumber(res.data.orderNumber);
+            setShowManualForm(false);
+          } else {
+            setErrorMessage(res.message || `No active shipment matching reference "${activeTrackingParam}" found.`);
+            setShowManualForm(true);
+          }
+        } catch (err) {
+          setErrorMessage((err as Error).message || `Could not retrieve live tracking for "${activeTrackingParam}". Please verify your details.`);
+          setShowManualForm(true);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+
+      fetchDirectTracking();
+    }
+  }, [activeTrackingParam]);
 
   const handleTrackSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,80 +95,100 @@ export const OrderTrackingPage: React.FC = () => {
           Live Shipment Status
         </span>
         <h1 className="font-editorial text-3xl sm:text-4xl font-bold text-[#153E2B]">
-          Track Your Spice Shipment
+          {order ? `Shipment Tracking: ${order.orderNumber}` : 'Track Your Spice Shipment'}
         </h1>
         <p className="text-xs sm:text-sm text-stone-500">
-          Enter your Order Number and the Email or Phone used during checkout to monitor dispatch from our Munnar depot.
+          {order 
+            ? 'Real-time transit updates and dispatch verification from Munnar plantation depot.'
+            : 'Enter your Order Number and the Email or Phone used during checkout to monitor dispatch from our Munnar depot.'}
         </p>
       </div>
 
-      {/* Tracking Search Form */}
-      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#EFE8D6] shadow-xs max-w-2xl mx-auto">
-        <form onSubmit={handleTrackSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-xs font-semibold text-stone-700 mb-1">
-                Order Reference *
-              </label>
-              <input
-                type="text"
-                required
-                value={orderNumber}
-                onChange={(e) => setOrderNumber(e.target.value)}
-                placeholder="e.g. SR-2026-91823"
-                className="w-full text-xs p-3 bg-[#FAF7F2] border border-stone-200 rounded-xl focus:outline-hidden focus:border-[#C5A059] uppercase font-mono"
-              />
+      {/* Loading direct tracking */}
+      {isLoading && (
+        <div className="py-12 text-center bg-white p-8 rounded-3xl border border-[#EFE8D6] shadow-xs max-w-2xl mx-auto space-y-3">
+          <div className="w-8 h-8 border-4 border-[#153E2B] border-t-transparent rounded-full animate-spin mx-auto" />
+          <p className="text-xs text-stone-600 font-medium">Fetching real-time shipment status from logistics network...</p>
+        </div>
+      )}
+
+      {/* Tracking Search Form (shown when manual search is active or when toggled) */}
+      {(!order || showManualForm) && !isLoading && (
+        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#EFE8D6] shadow-xs max-w-2xl mx-auto">
+          <form onSubmit={handleTrackSubmit} className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-stone-700 mb-1">
+                  Order Reference *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={orderNumber}
+                  onChange={(e) => setOrderNumber(e.target.value)}
+                  placeholder="e.g. SR-2026-91823"
+                  className="w-full text-xs p-3 bg-[#FAF7F2] border border-stone-200 rounded-xl focus:outline-hidden focus:border-[#C5A059] uppercase font-mono"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-stone-700 mb-1">
+                  Billing Email or Mobile *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={emailOrPhone}
+                  onChange={(e) => setEmailOrPhone(e.target.value)}
+                  placeholder="email@example.com or 10-digit phone"
+                  className="w-full text-xs p-3 bg-[#FAF7F2] border border-stone-200 rounded-xl focus:outline-hidden focus:border-[#C5A059]"
+                />
+              </div>
             </div>
 
-            <div>
-              <label className="block text-xs font-semibold text-stone-700 mb-1">
-                Billing Email or Mobile *
-              </label>
-              <input
-                type="text"
-                required
-                value={emailOrPhone}
-                onChange={(e) => setEmailOrPhone(e.target.value)}
-                placeholder="email@example.com or 10-digit phone"
-                className="w-full text-xs p-3 bg-[#FAF7F2] border border-stone-200 rounded-xl focus:outline-hidden focus:border-[#C5A059]"
-              />
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full py-3.5 bg-[#153E2B] text-white hover:bg-[#1E5138] rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider shadow-md hover:shadow-lg disabled:opacity-50 transition-all flex items-center justify-center gap-2"
+            >
+              <Search className="w-4 h-4 text-[#D8B26E]" />
+              <span>{isLoading ? 'Searching Plantation Log...' : 'Track Shipment'}</span>
+            </button>
+          </form>
+
+          {errorMessage && (
+            <div className="mt-4 p-4 bg-[#B85D3A]/10 text-[#B85D3A] rounded-xl border border-[#B85D3A]/30 text-xs flex items-center gap-2 font-medium">
+              <AlertCircle className="w-4 h-4 shrink-0" />
+              <span>{errorMessage}</span>
             </div>
-          </div>
-
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="w-full py-3.5 bg-[#153E2B] text-white hover:bg-[#1E5138] rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider shadow-md hover:shadow-lg disabled:opacity-50 transition-all flex items-center justify-center gap-2"
-          >
-            <Search className="w-4 h-4 text-[#D8B26E]" />
-            <span>{isLoading ? 'Searching Plantation Log...' : 'Track Shipment'}</span>
-          </button>
-        </form>
-
-        {errorMessage && (
-          <div className="mt-4 p-4 bg-[#B85D3A]/10 text-[#B85D3A] rounded-xl border border-[#B85D3A]/30 text-xs flex items-center gap-2 font-medium">
-            <AlertCircle className="w-4 h-4 shrink-0" />
-            <span>{errorMessage}</span>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
 
       {/* Result Display */}
-      {order && (
+      {order && !isLoading && (
         <div className="bg-white rounded-3xl border border-[#EFE8D6] p-6 sm:p-10 shadow-xs space-y-8 animate-in fade-in duration-300">
           
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-6 border-b border-stone-100">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-6 border-b border-stone-100">
             <div>
-              <span className="text-xs text-stone-500">Tracking Reference</span>
+              <span className="text-xs text-stone-500 font-semibold uppercase tracking-wider">Tracking Reference</span>
               <h2 className="font-editorial text-2xl font-bold text-[#153E2B] font-mono">
                 {order.orderNumber}
               </h2>
             </div>
-            <div className="text-right">
-              <span className="text-xs bg-[#153E2B]/10 text-[#153E2B] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                Status: {order.fulfillmentStatus}
-              </span>
-              <p className="text-[11px] text-stone-400 mt-1">Placed on {formatDateTime(order.createdAt)}</p>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setShowManualForm(!showManualForm)}
+                className="text-xs font-semibold text-stone-600 hover:text-[#153E2B] bg-stone-100 hover:bg-stone-200 px-3 py-1.5 rounded-lg transition-colors"
+              >
+                {showManualForm ? 'Hide Lookup Form' : 'Track Another Order'}
+              </button>
+              <div className="text-right">
+                <span className="text-xs bg-[#153E2B]/10 text-[#153E2B] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                  Status: {order.fulfillmentStatus}
+                </span>
+                <p className="text-[11px] text-stone-400 mt-1">Placed on {formatDateTime(order.createdAt)}</p>
+              </div>
             </div>
           </div>
 

@@ -986,8 +986,8 @@ export const CheckoutPage: React.FC = () => {
                     </span>
                   </div>
 
-                  <div className="flex justify-between text-stone-400 text-[11px]">
-                    <span>GST (Inclusive):</span>
+                  <div className="flex justify-between text-stone-500 text-[11px]">
+                    <span>{serverQuote.priceBreakdown.taxPaise === 0 ? 'GST (0% - Exempt):' : 'GST (Applicable):'}</span>
                     <span>{formatINR(serverQuote.priceBreakdown.taxPaise)}</span>
                   </div>
 

@@ -10,6 +10,7 @@ import { Header } from './components/Header.js';
 import { Footer } from './components/Footer.js';
 import { MiniCartDrawer } from './components/MiniCartDrawer.js';
 import { AiAssistantWidget } from './components/AiAssistantWidget.js';
+import { ScrollToTop } from './components/ScrollToTop.js';
 
 import { HomePage } from './pages/HomePage.js';
 import { ShopPage } from './pages/ShopPage.js';
@@ -67,16 +68,21 @@ const CustomerAuthGuard: React.FC<{ children: React.ReactNode; redirectMessage: 
 
 // Customer layout wrapper including Header, AnnouncementBar, Footer, MiniCart, and AI Assistant
 const CustomerLayout: React.FC = () => {
+  const location = useLocation();
+  const isCheckout = location.pathname.startsWith('/checkout');
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF7F2]">
+    <div className={`min-h-screen flex flex-col bg-[#FAF7F2] w-full max-w-full overflow-x-hidden ${isCheckout ? 'is-checkout-page' : ''}`}>
       <AnnouncementBar />
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 w-full max-w-full min-w-0">
         <Outlet />
       </main>
       <Footer />
       <MiniCartDrawer />
-      <AiAssistantWidget />
+      <div className="ai-assistant-widget-container">
+        <AiAssistantWidget />
+      </div>
     </div>
   );
 };
@@ -84,6 +90,7 @@ const CustomerLayout: React.FC = () => {
 export const App: React.FC = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <StoreProvider>
         <AuthProvider>
           <CartProvider>
@@ -108,6 +115,8 @@ export const App: React.FC = () => {
                   />
                   <Route path="/order-confirmation/:orderNumber" element={<OrderConfirmationPage />} />
                   <Route path="/track-order" element={<OrderTrackingPage />} />
+                  <Route path="/track-order/:trackingId" element={<OrderTrackingPage />} />
+                  <Route path="/track/:trackingId" element={<OrderTrackingPage />} />
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/register" element={<RegisterPage />} />
                   <Route path="/profile" element={<ProfilePage />} />

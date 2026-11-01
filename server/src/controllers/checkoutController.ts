@@ -140,9 +140,12 @@ export function computeVerifiedQuote(params: QuoteParams): QuoteResult {
   const qualifiesForFreeShipping = subtotalPaise >= freeShippingThresholdPaise;
   const shippingFeePaise = qualifiesForFreeShipping ? 0 : shippingInfo.shippingChargePaise;
 
-  // Calculate Tax (e.g. 5% GST inclusive / calculated)
+  // Calculate Tax (accounting to admin fix: if admin fix 5 use 5% GST, if 0 use 0% GST)
   const taxableAmount = Math.max(0, subtotalPaise - discountPaise);
-  const taxPaise = Math.round((taxableAmount * (settings.taxPercent || 0)) / 100);
+  const taxRatePercent = typeof settings.taxPercent === 'number' 
+    ? settings.taxPercent 
+    : (settings.taxPercent !== undefined && settings.taxPercent !== null ? Number(settings.taxPercent) : 0);
+  const taxPaise = taxRatePercent > 0 ? Math.round((taxableAmount * taxRatePercent) / 100) : 0;
 
   const grandTotalPaise = taxableAmount + shippingFeePaise + taxPaise;
 

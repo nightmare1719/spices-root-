@@ -644,16 +644,23 @@ export const OrderConfirmationPage: React.FC = () => {
                 </div>
               )}
               {invoiceData.isRegisteredGst && (
-                <>
+                invoiceData.taxRatePercent > 0 ? (
+                  <>
+                    <div className="flex justify-between text-stone-500">
+                      <span>CGST ({invoiceData.taxRatePercent / 2}%):</span>
+                      <span>{formatINR(invoiceData.cgstPaise)}</span>
+                    </div>
+                    <div className="flex justify-between text-stone-500">
+                      <span>SGST ({invoiceData.taxRatePercent / 2}%):</span>
+                      <span>{formatINR(invoiceData.sgstPaise)}</span>
+                    </div>
+                  </>
+                ) : (
                   <div className="flex justify-between text-stone-500">
-                    <span>CGST ({invoiceData.taxRatePercent / 2}%):</span>
-                    <span>{formatINR(invoiceData.cgstPaise)}</span>
+                    <span>GST (0% - Tax Exempt):</span>
+                    <span>₹0.00</span>
                   </div>
-                  <div className="flex justify-between text-stone-500">
-                    <span>SGST ({invoiceData.taxRatePercent / 2}%):</span>
-                    <span>{formatINR(invoiceData.sgstPaise)}</span>
-                  </div>
-                </>
+                )
               )}
               <div className="flex justify-between text-stone-600">
                 <span>Shipping:</span>

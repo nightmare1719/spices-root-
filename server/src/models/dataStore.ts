@@ -719,6 +719,17 @@ class DataStore {
       (o.orderNumber && o.orderNumber.toUpperCase() === cleanId)
     );
   }
+  public findOrderByTracking(trackingIdOrNumber: string) {
+    this.init();
+    if (!trackingIdOrNumber) return undefined;
+    const clean = String(trackingIdOrNumber).trim().toUpperCase();
+    return this.inMemory.orders.find(o => 
+      (o.trackingNumber && o.trackingNumber.trim().toUpperCase() === clean) ||
+      (o.orderNumber && o.orderNumber.trim().toUpperCase() === clean) ||
+      (o.id && o.id.toUpperCase() === clean) ||
+      (o._id && String(o._id).toUpperCase() === clean)
+    );
+  }
   public findOrdersByUser(userId: string) {
     this.init();
     return this.inMemory.orders.filter(o => o.userId === userId);

@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, Outlet, useLocation, Navigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext.js';
 import { 
   LayoutDashboard, Package, ShoppingCart, Tag, 
-  Users, Settings, ArrowLeft, Shield, LogOut, Truck 
+  Users, Settings, ArrowLeft, Shield, LogOut, Truck, CheckCircle2 
 } from 'lucide-react';
 
 export const AdminLayout: React.FC = () => {
-  const { user, isAdmin, isLoading, logout } = useAuth();
+  const { user, isAdmin, isLoading, logout, refreshUser } = useAuth();
   const location = useLocation();
+
+  // State hydration layer to parse & validate tokens instantly when admin page mounts
+  useEffect(() => {
+    const token = localStorage.getItem('spiceroots_token');
+    if (token) {
+      refreshUser();
+    }
+  }, []);
 
   if (isLoading) {
     return (
@@ -113,10 +121,44 @@ export const AdminLayout: React.FC = () => {
         </div>
       </aside>
 
-      {/* Main Content Area */}
-      <main className="flex-1 p-6 sm:p-10 overflow-y-auto">
-        <Outlet />
-      </main>
+      {/* Main Content Area with Top Profile Bar */}
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+        {/* Top Profile Header Bar */}
+        <header className="bg-white border-b border-stone-200 px-6 sm:px-8 py-3.5 flex items-center justify-between shrink-0 shadow-2xs">
+          <div className="flex items-center gap-2.5">
+            <span className="text-xs font-semibold text-stone-500 hidden sm:inline">Admin Console</span>
+            <span className="text-xs text-stone-300 hidden sm:inline">/</span>
+            <span className="text-xs font-bold text-[#153E2B] capitalize">
+              {location.pathname.replace('/admin/', '').replace('/admin', '') || 'Dashboard'}
+            </span>
+          </div>
+
+          {/* Hydrated Top Profile View */}
+          <div className="flex items-center gap-3">
+            <div className="text-right hidden sm:block">
+              <p className="text-xs font-bold text-[#153E2B] leading-tight">{user?.name || 'Administrator'}</p>
+              <div className="flex items-center justify-end gap-1.5 mt-0.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <p className="text-[10px] text-stone-500 font-medium">{user?.email || 'admin@spiceroots.in'}</p>
+                <span className="text-[9px] bg-[#153E2B]/10 text-[#153E2B] font-bold px-1.5 py-0.5 rounded-sm uppercase tracking-wider ml-1">
+                  {user?.role || 'Admin'}
+                </span>
+              </div>
+            </div>
+            <div className="w-9 h-9 rounded-full bg-[#153E2B] text-[#D8B26E] font-bold text-xs flex items-center justify-center border border-[#C5A059]/40 shadow-xs shrink-0 overflow-hidden">
+              {user?.avatar ? (
+                <img src={user.avatar} alt={user?.name || 'Admin'} className="w-full h-full object-cover" />
+              ) : (
+                (user?.name || 'A').charAt(0).toUpperCase()
+              )}
+            </div>
+          </div>
+        </header>
+
+        <main className="flex-1 p-6 sm:p-10 overflow-y-auto min-w-0">
+          <Outlet />
+        </main>
+      </div>
 
     </div>
   );

@@ -477,13 +477,26 @@ export const AdminDashboardPage: React.FC = () => {
               </div>
 
               <div className="flex flex-col sm:flex-row justify-between items-center gap-3 pt-2">
-                <Link
-                  to="/admin/orders"
-                  className="text-xs text-[#153E2B] hover:text-[#C5A059] font-bold flex items-center gap-1"
-                >
-                  <ExternalLink className="w-3.5 h-3.5" />
-                  <span>Open Full Orders Logistics Panel</span>
-                </Link>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Link
+                    to="/admin/orders"
+                    className="text-xs text-[#153E2B] hover:text-[#C5A059] font-bold flex items-center gap-1"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    <span>Open Full Orders Logistics Panel</span>
+                  </Link>
+                  {(modalTracking || selectedOrder.trackingNumber) && (
+                    <Link
+                      to={`/track/${encodeURIComponent(modalTracking || selectedOrder.trackingNumber)}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-xs text-emerald-800 hover:underline font-bold flex items-center gap-1 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200"
+                    >
+                      <Truck className="w-3.5 h-3.5" />
+                      <span>Track Package Live</span>
+                    </Link>
+                  )}
+                </div>
 
                 <div className="flex gap-2.5 w-full sm:w-auto">
                   <button

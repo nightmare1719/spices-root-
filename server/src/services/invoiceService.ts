@@ -76,17 +76,19 @@ export function generateInvoiceData(order: IOrder, settings?: IStoreSettings) {
   }) : new Date().toLocaleDateString('en-IN');
 
   const isKeralaOrder = (order.shippingAddress.state || '').trim().toLowerCase() === 'kerala';
-  const taxRate = s.taxPercent || 5;
+  const taxRate = typeof s.taxPercent === 'number' 
+    ? s.taxPercent 
+    : (s.taxPercent !== undefined && s.taxPercent !== null ? Number(s.taxPercent) : 5);
 
   const totalPaise = order.priceBreakdown.totalPaise;
   const totalRupees = totalPaise / 100;
-  const taxPaise = order.priceBreakdown.taxPaise;
+  const taxPaise = order.priceBreakdown.taxPaise || 0;
   const taxRupees = taxPaise / 100;
 
   // CGST + SGST vs IGST
-  const cgstAmount = isKeralaOrder ? (taxRupees / 2).toFixed(2) : '0.00';
-  const sgstAmount = isKeralaOrder ? (taxRupees / 2).toFixed(2) : '0.00';
-  const igstAmount = !isKeralaOrder ? taxRupees.toFixed(2) : '0.00';
+  const cgstAmount = isKeralaOrder && taxRate > 0 ? (taxRupees / 2).toFixed(2) : '0.00';
+  const sgstAmount = isKeralaOrder && taxRate > 0 ? (taxRupees / 2).toFixed(2) : '0.00';
+  const igstAmount = !isKeralaOrder && taxRate > 0 ? taxRupees.toFixed(2) : '0.00';
 
   const items = order.items.map((item, idx) => {
     const lineTotal = item.lineTotalPaise / 100;
