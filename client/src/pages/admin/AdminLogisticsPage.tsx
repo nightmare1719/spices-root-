@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../../services/api.js';
 import { ShippingZoneRate } from '../../types/index.js';
-import { 
-  Truck, Plus, Edit2, Trash2, CheckCircle2, 
+import {
+  Truck, Plus, Edit2, Trash2, CheckCircle2,
   Package, MapPin, Scale, RefreshCw, X, AlertCircle,
   Navigation, Info, Compass
 } from 'lucide-react';
@@ -162,8 +162,8 @@ export const AdminLogisticsPage: React.FC = () => {
         }
 
         if (!matched) {
-          matched = rates.find(r => 
-            (r.pincodePrefix && (r.pincodePrefix.includes('*') || r.pincodePrefix.toLowerCase().includes('default') || r.pincodePrefix.toLowerCase().includes('all'))) || 
+          matched = rates.find(r =>
+            (r.pincodePrefix && (r.pincodePrefix.includes('*') || r.pincodePrefix.toLowerCase().includes('default') || r.pincodePrefix.toLowerCase().includes('all'))) ||
             r.zoneName.toLowerCase().includes('rest of india')
           ) || rates[0];
         }
@@ -265,18 +265,18 @@ export const AdminLogisticsPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      
+
       {/* 1. Horizontal Navigation Bar */}
-      <div className="bg-white rounded-2xl border border-[#E5DED0] shadow-xs p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-[#1c1b1d] rounded-2xl border border-[#353437] shadow-xs p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#171814] text-[#D0AE70] flex items-center justify-center font-bold shadow-xs">
+          <div className="w-10 h-10 rounded-xl bg-[#0e0e10] text-[#d4af37] border border-[#353437] flex items-center justify-center font-bold shadow-xs">
             <Truck className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="font-editorial text-xl font-bold text-[#171814]">
+            <h1 className="font-editorial text-xl font-bold text-[#e5e1e4]">
               Store Overview & Logistics
             </h1>
-            <p className="text-xs text-[#77766E]">
+            <p className="text-xs text-[#d0c5af]">
               Manage Destination Pincode & Weight-based rate slabs stored in MongoDB
             </p>
           </div>
@@ -286,93 +286,93 @@ export const AdminLogisticsPage: React.FC = () => {
         <div className="flex items-center gap-3 flex-wrap">
           <a
             href="/admin/products"
-            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold text-[#171814] bg-[#D0AE70]/15 hover:bg-[#D0AE70]/25 border border-[#D0AE70]/30 transition-colors shadow-2xs"
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold text-[#d4af37] bg-[#d4af37]/15 hover:bg-[#d4af37]/25 border border-[#d4af37]/30 transition-colors shadow-2xs"
           >
-            <Package className="w-4 h-4 text-[#D0AE70]" />
+            <Package className="w-4 h-4 text-[#d4af37]" />
             <span>Add New Product</span>
           </a>
 
           <button
             type="button"
             onClick={openCreateModal}
-            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold text-[#171814] bg-[#D0AE70] hover:bg-[#B99153] transition-colors shadow-xs cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold text-[#131315] bg-[#d4af37] hover:bg-[#f2ca50] transition-colors shadow-xs cursor-pointer"
           >
-            <Plus className="w-4 h-4 text-[#171814]" />
+            <Plus className="w-4 h-4 text-[#131315]" />
             <span>Add Shipping Zone</span>
           </button>
         </div>
       </div>
 
       {/* Real-time Checkout Courier Integration Banner */}
-      <div className="bg-[#171814] border border-[#D0AE70]/30 text-[#F7F2E8] p-4 sm:p-5 rounded-2xl shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="bg-[#0e0e10] border border-[#d4af37]/30 text-[#e5e1e4] p-4 sm:p-5 rounded-2xl shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <span className="bg-[#D0AE70] text-[#171814] text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full tracking-wider font-sans">
+            <span className="bg-[#d4af37] text-[#131315] text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full tracking-wider font-sans">
               Live Checkout Integrated
             </span>
-            <span className="text-xs text-[#D0AE70] font-bold">Weight + Distance [Pincode] Formula Active</span>
+            <span className="text-xs text-[#d4af37] font-bold">Weight + Distance [Pincode] Formula Active</span>
           </div>
-          <h3 className="font-editorial text-lg font-bold text-white">
+          <h3 className="font-editorial text-lg font-bold text-[#e5e1e4]">
             Total Courier Amount = Customer Shipping Charge
           </h3>
-          <p className="text-xs text-[#D8D0C0] max-w-3xl">
+          <p className="text-xs text-[#d0c5af] max-w-3xl">
             The rate slabs configured below calculate the courier shipping fee based on customer's exact 6-digit destination pincode and total cart weight in grams. The resulting courier total is automatically charged to the customer at checkout.
           </p>
         </div>
-        <div className="shrink-0 bg-white/10 backdrop-blur-xs px-4 py-2.5 rounded-xl border border-white/10 text-center">
-          <span className="text-[10px] text-[#D0AE70] font-bold uppercase tracking-wider block font-sans">Customer Billing</span>
-          <span className="font-mono text-xs text-white font-bold">Weight + Pincode</span>
+        <div className="shrink-0 bg-[#1c1b1d] px-4 py-2.5 rounded-xl border border-[#353437] text-center">
+          <span className="text-[10px] text-[#d4af37] font-bold uppercase tracking-wider block font-sans">Customer Billing</span>
+          <span className="font-mono text-xs text-[#e5e1e4] font-bold">Weight + Pincode</span>
         </div>
       </div>
 
       {/* Notifications */}
       {successMessage && (
-        <div className="bg-[#435B43]/10 border border-[#435B43]/30 text-[#435B43] p-3.5 rounded-xl text-xs flex items-center gap-2 font-medium animate-in fade-in">
-          <CheckCircle2 className="w-4 h-4 text-[#435B43] shrink-0" />
+        <div className="bg-[#435b43]/20 border border-[#435b43]/40 text-[#8b9b7b] p-3.5 rounded-xl text-xs flex items-center gap-2 font-medium animate-in fade-in">
+          <CheckCircle2 className="w-4 h-4 text-[#8b9b7b] shrink-0" />
           <span>{successMessage}</span>
         </div>
       )}
 
       {errorMessage && (
-        <div className="bg-[#A94F38]/10 border border-[#A94F38]/30 text-[#A94F38] p-3.5 rounded-xl text-xs flex items-center gap-2 font-medium animate-in fade-in">
-          <AlertCircle className="w-4 h-4 text-[#A94F38] shrink-0" />
+        <div className="bg-[#a94f38]/20 border border-[#a94f38]/40 text-[#e07a5f] p-3.5 rounded-xl text-xs flex items-center gap-2 font-medium animate-in fade-in">
+          <AlertCircle className="w-4 h-4 text-[#e07a5f] shrink-0" />
           <span>{errorMessage}</span>
         </div>
       )}
 
       {/* Metric Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-white p-5 rounded-2xl border border-[#E5DED0] shadow-2xs flex items-center justify-between">
+        <div className="bg-[#1c1b1d] p-5 rounded-2xl border border-[#353437] shadow-2xs flex items-center justify-between">
           <div>
-            <p className="text-[11px] font-bold text-[#77766E] uppercase tracking-wider font-sans">Active Shipping Slabs</p>
-            <p className="font-editorial text-2xl font-bold text-[#171814] mt-1">{rates.filter(r => r.isActive !== false).length}</p>
+            <p className="text-[11px] font-bold text-[#99907c] uppercase tracking-wider font-sans">Active Shipping Slabs</p>
+            <p className="font-editorial text-2xl font-bold text-[#e5e1e4] mt-1">{rates.filter(r => r.isActive !== false).length}</p>
           </div>
-          <MapPin className="w-8 h-8 text-[#171814]/15" />
+          <MapPin className="w-8 h-8 text-[#d4af37]/25" />
         </div>
-        <div className="bg-white p-5 rounded-2xl border border-[#E5DED0] shadow-2xs flex items-center justify-between">
+        <div className="bg-[#1c1b1d] p-5 rounded-2xl border border-[#353437] shadow-2xs flex items-center justify-between">
           <div>
-            <p className="text-[11px] font-bold text-[#77766E] uppercase tracking-wider font-sans">Default Base Weight</p>
-            <p className="font-editorial text-2xl font-bold text-[#171814] mt-1">1.0 kg</p>
+            <p className="text-[11px] font-bold text-[#99907c] uppercase tracking-wider font-sans">Default Base Weight</p>
+            <p className="font-editorial text-2xl font-bold text-[#e5e1e4] mt-1">1.0 kg</p>
           </div>
-          <Scale className="w-8 h-8 text-[#171814]/15" />
+          <Scale className="w-8 h-8 text-[#d4af37]/25" />
         </div>
-        <div className="bg-white p-5 rounded-2xl border border-[#E5DED0] shadow-2xs flex items-center justify-between">
+        <div className="bg-[#1c1b1d] p-5 rounded-2xl border border-[#353437] shadow-2xs flex items-center justify-between">
           <div>
-            <p className="text-[11px] font-bold text-[#77766E] uppercase tracking-wider font-sans">Database Storage</p>
-            <p className="font-editorial text-2xl font-bold text-[#171814] mt-1">MongoDB Atlas</p>
+            <p className="text-[11px] font-bold text-[#99907c] uppercase tracking-wider font-sans">Database Storage</p>
+            <p className="font-editorial text-2xl font-bold text-[#e5e1e4] mt-1">MongoDB Atlas</p>
           </div>
-          <CheckCircle2 className="w-8 h-8 text-[#171814]/15" />
+          <CheckCircle2 className="w-8 h-8 text-[#d4af37]/25" />
         </div>
       </div>
 
       {/* 2. Responsive Table Grid of Rate Slabs */}
-      <div className="bg-white rounded-2xl border border-[#E5DED0] shadow-2xs overflow-hidden">
-        <div className="p-5 border-b border-[#E5DED0] flex items-center justify-between">
+      <div className="bg-[#1c1b1d] rounded-2xl border border-[#353437] shadow-2xs overflow-hidden">
+        <div className="p-5 border-b border-[#353437] flex items-center justify-between">
           <div>
-            <h2 className="text-sm font-bold text-[#171814] uppercase tracking-wider font-sans">
+            <h2 className="text-sm font-bold text-[#e5e1e4] uppercase tracking-wider font-sans">
               Destination Pincode & Weight Rate Slabs
             </h2>
-            <p className="text-xs text-[#77766E]">
+            <p className="text-xs text-[#d0c5af]">
               Matches customer full 6-digit postal pincodes (or ranges like 625001-625025) with base weight allowance (₹) + per additional kilogram increments.
             </p>
           </div>
@@ -380,7 +380,7 @@ export const AdminLogisticsPage: React.FC = () => {
             id="refresh-rates-btn"
             name="refreshRates"
             onClick={loadRates}
-            className="p-2 text-[#77766E] hover:text-[#171814] rounded-lg hover:bg-[#F7F2E8] cursor-pointer"
+            className="p-2 text-[#99907c] hover:text-[#e5e1e4] rounded-lg hover:bg-[#201f22] cursor-pointer"
             title="Refresh Rates"
           >
             <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
@@ -388,13 +388,13 @@ export const AdminLogisticsPage: React.FC = () => {
         </div>
 
         {isLoading ? (
-          <div className="p-12 text-center text-xs text-[#77766E]">Loading rate slabs...</div>
+          <div className="p-12 text-center text-xs text-[#99907c]">Loading rate slabs...</div>
         ) : rates.length === 0 ? (
-          <div className="p-12 text-center text-xs text-[#77766E]">No shipping slabs configured yet. Click "Add Shipping Zone" above.</div>
+          <div className="p-12 text-center text-xs text-[#99907c]">No shipping slabs configured yet. Click "Add Shipping Zone" above.</div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-[#F7F2E8] text-[#292A25] font-bold uppercase tracking-wider border-b border-[#E5DED0] font-sans">
+              <thead className="bg-[#201f22] text-[#99907c] font-bold uppercase tracking-wider border-b border-[#353437] font-sans">
                 <tr>
                   <th className="px-5 py-3.5">Zone Name</th>
                   <th className="px-5 py-3.5">Serviceable 6-Digit Pincodes</th>
@@ -405,10 +405,10 @@ export const AdminLogisticsPage: React.FC = () => {
                   <th className="px-5 py-3.5 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#E5DED0]">
+              <tbody className="divide-y divide-[#353437]">
                 {rates.map((rate) => (
-                  <tr key={rate.id || rate._id} className="hover:bg-[#F7F2E8]/40 transition-colors">
-                    <td className="px-5 py-4 font-bold text-[#171814]">
+                  <tr key={rate.id || rate._id} className="hover:bg-[#201f22]/60 transition-colors">
+                    <td className="px-5 py-4 font-bold text-[#e5e1e4]">
                       {rate.zoneName}
                     </td>
                     <td className="px-5 py-4">
@@ -416,34 +416,33 @@ export const AdminLogisticsPage: React.FC = () => {
                         {(rate.pincodePrefix || '').split(',').map((p, i) => (
                           <span
                             key={i}
-                            className={`px-2 py-0.5 rounded-md font-mono text-[11px] font-bold ${
-                              p.trim() === '*'
-                                ? 'bg-[#D0AE70]/20 text-[#79503A]'
-                                : 'bg-[#171814]/10 text-[#171814]'
-                            }`}
+                            className={`px-2 py-0.5 rounded-md font-mono text-[11px] font-bold border ${p.trim() === '*'
+                                ? 'bg-[#d4af37]/20 text-[#f2ca50] border-[#d4af37]/30'
+                                : 'bg-[#201f22] text-[#d0c5af] border-[#353437]'
+                              }`}
                           >
                             {p.trim() === '*' ? 'REST OF INDIA (*)' : p.trim()}
                           </span>
                         ))}
                       </div>
                     </td>
-                    <td className="px-5 py-4 text-[#292A25] font-medium">
+                    <td className="px-5 py-4 text-[#d0c5af] font-medium">
                       {rate.baseWeightKg} kg
                     </td>
-                    <td className="px-5 py-4 font-bold text-[#435B43]">
+                    <td className="px-5 py-4 font-bold text-[#f2ca50]">
                       ₹{rate.baseRate}
                     </td>
-                    <td className="px-5 py-4 font-medium text-[#292A25]">
+                    <td className="px-5 py-4 font-medium text-[#d0c5af]">
                       +₹{rate.perAdditionalKgRate} / kg
                     </td>
-                    <td className="px-5 py-4 text-[#77766E]">
+                    <td className="px-5 py-4 text-[#99907c]">
                       {rate.estimatedDelivery || '—'}
                     </td>
                     <td className="px-5 py-4 text-right space-x-2">
                       <button
                         type="button"
                         onClick={() => openEditModal(rate)}
-                        className="p-1.5 rounded-lg text-[#77766E] hover:text-[#171814] hover:bg-[#F7F2E8] transition-colors cursor-pointer"
+                        className="p-1.5 rounded-lg text-[#99907c] hover:text-[#d4af37] hover:bg-[#201f22] transition-colors cursor-pointer"
                         title="Edit Slab"
                       >
                         <Edit2 className="w-4 h-4" />
@@ -451,7 +450,7 @@ export const AdminLogisticsPage: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => handleDelete(rate.id || rate._id)}
-                        className="p-1.5 rounded-lg text-[#A94F38] hover:text-[#A94F38]/80 hover:bg-[#A94F38]/10 transition-colors cursor-pointer"
+                        className="p-1.5 rounded-lg text-[#e07a5f] hover:bg-[#a94f38]/20 transition-colors cursor-pointer"
                         title="Delete Slab"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -466,26 +465,26 @@ export const AdminLogisticsPage: React.FC = () => {
       </div>
 
       {/* 3. Live Shipping Rate Calculation Simulator Widget */}
-      <div className="bg-[#171814] text-[#F7F2E8] rounded-2xl p-6 sm:p-7 shadow-xs border border-[#292A25]">
+      <div className="bg-[#0e0e10] text-[#e5e1e4] rounded-2xl p-6 sm:p-7 shadow-xs border border-[#353437]">
         <div className="max-w-3xl space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <div className="flex items-center gap-2 text-[#D0AE70] font-bold text-xs uppercase tracking-widest font-sans">
+            <div className="flex items-center gap-2 text-[#d4af37] font-bold text-xs uppercase tracking-widest font-sans">
               <Scale className="w-4 h-4" />
               <span>Interactive Courier Logistics Calculator</span>
             </div>
-            <span className="text-[10px] bg-[#292A25] text-[#D0AE70] px-2.5 py-1 rounded-full font-mono font-bold border border-[#D0AE70]/30">
+            <span className="text-[10px] bg-[#1c1b1d] text-[#d4af37] px-2.5 py-1 rounded-full font-mono font-bold border border-[#353437]">
               Formula: Weight + Distance [Pincode] = Shipping Fee
             </span>
           </div>
 
-          <p className="text-xs text-[#D8D0C0]">
+          <p className="text-xs text-[#d0c5af]">
             Preview the exact shipping charge that will be applied to the customer at checkout. Test with any destination pincode across India or use your current GPS location.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
             <div>
               <div className="flex items-center justify-between mb-1">
-                <label htmlFor="sim-pincode-input" className="block text-xs font-semibold text-[#D8D0C0]">
+                <label htmlFor="sim-pincode-input" className="block text-xs font-semibold text-[#d0c5af]">
                   Destination Pincode (6 digits)
                 </label>
                 <button
@@ -494,7 +493,7 @@ export const AdminLogisticsPage: React.FC = () => {
                   name="detectLocation"
                   onClick={handleUseCurrentLocation}
                   disabled={isLocating}
-                  className="text-[11px] font-bold text-[#D0AE70] hover:text-amber-200 hover:underline flex items-center gap-1 disabled:opacity-50 transition-colors cursor-pointer"
+                  className="text-[11px] font-bold text-[#d4af37] hover:text-[#f2ca50] hover:underline flex items-center gap-1 disabled:opacity-50 transition-colors cursor-pointer"
                   title="Detect 6-digit postal code from device GPS"
                 >
                   <Navigation className={`w-3 h-3 ${isLocating ? 'animate-spin' : ''}`} />
@@ -509,15 +508,15 @@ export const AdminLogisticsPage: React.FC = () => {
                 onChange={(e) => setSimPincode(e.target.value.replace(/\D/g, '').slice(0, 6))}
                 placeholder="e.g. 625001 (Madurai) or 400001 (Mumbai)"
                 maxLength={6}
-                className="w-full bg-[#292A25] border border-[#D0AE70]/30 rounded-xl px-3.5 py-2 text-xs text-white placeholder-stone-400 focus:outline-hidden focus:border-[#D0AE70] font-mono tracking-wider"
+                className="w-full bg-[#1c1b1d] border border-[#353437] rounded-xl px-3.5 py-2 text-xs text-[#e5e1e4] placeholder-[#99907c] focus:outline-hidden focus:border-[#d4af37] font-mono tracking-wider"
               />
               {locationStatus && (
-                <p className="text-[10px] text-[#D0AE70] mt-1 font-medium">{locationStatus}</p>
+                <p className="text-[10px] text-[#d4af37] mt-1 font-medium">{locationStatus}</p>
               )}
             </div>
 
             <div>
-              <label htmlFor="sim-weight-input" className="block text-xs font-semibold text-[#D8D0C0] mb-1">
+              <label htmlFor="sim-weight-input" className="block text-xs font-semibold text-[#d0c5af] mb-1">
                 Total Cart / Package Weight (Grams)
               </label>
               <input
@@ -529,31 +528,31 @@ export const AdminLogisticsPage: React.FC = () => {
                 value={simWeightGrams}
                 onChange={(e) => setSimWeightGrams(Math.max(1, Number(e.target.value)))}
                 placeholder="e.g. 1500 for 1.5kg"
-                className="w-full bg-[#292A25] border border-[#D0AE70]/30 rounded-xl px-3.5 py-2 text-xs text-white placeholder-stone-400 focus:outline-hidden focus:border-[#D0AE70] font-mono"
+                className="w-full bg-[#1c1b1d] border border-[#353437] rounded-xl px-3.5 py-2 text-xs text-[#e5e1e4] placeholder-[#99907c] focus:outline-hidden focus:border-[#d4af37] font-mono"
               />
-              <p className="text-[10px] text-[#D8D0C0] mt-1">
+              <p className="text-[10px] text-[#99907c] mt-1">
                 {(simWeightGrams / 1000).toFixed(2)} kg (Calculated automatically from spice pack weights in cart)
               </p>
             </div>
           </div>
 
           {/* Result & Breakdown Card */}
-          <div className="bg-[#292A25] p-4 sm:p-5 rounded-2xl border border-[#D0AE70]/30 space-y-3">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#D0AE70]/20 pb-3">
+          <div className="bg-[#1c1b1d] p-4 sm:p-5 rounded-2xl border border-[#353437] space-y-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#353437] pb-3">
               <div>
-                <span className="text-[10px] text-[#D0AE70] uppercase font-bold tracking-wider block font-sans">
+                <span className="text-[10px] text-[#d4af37] uppercase font-bold tracking-wider block font-sans">
                   Customer Shipping Charge (Checkout Total Courier Amount):
                 </span>
-                <span className="text-xs text-[#D8D0C0]">
-                  Target: PIN <strong className="text-white font-mono">{simPincode || '—'}</strong> | Package:{' '}
-                  <strong className="text-white font-mono">{(simWeightGrams / 1000).toFixed(2)} kg</strong>
+                <span className="text-xs text-[#d0c5af]">
+                  Target: PIN <strong className="text-[#e5e1e4] font-mono">{simPincode || '—'}</strong> | Package:{' '}
+                  <strong className="text-[#e5e1e4] font-mono">{(simWeightGrams / 1000).toFixed(2)} kg</strong>
                 </span>
               </div>
               <div className="text-right">
-                <div className="font-editorial text-3xl font-bold text-[#D0AE70]">
+                <div className="font-editorial text-3xl font-bold text-[#f2ca50]">
                   {simResult !== null ? `₹${simResult}` : '—'}
                 </div>
-                <span className="text-[10px] text-[#8B9B7B] block font-semibold">
+                <span className="text-[10px] text-[#8b9b7b] block font-semibold">
                   ✓ Charged to customer at checkout
                 </span>
               </div>
@@ -561,28 +560,28 @@ export const AdminLogisticsPage: React.FC = () => {
 
             {simDetails && (
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-[11px] pt-1">
-                <div className="bg-[#171814] p-2.5 rounded-xl border border-[#292A25]">
-                  <span className="text-[#D8D0C0] text-[10px] block font-sans">Matched Logistics Zone</span>
-                  <span className="font-bold text-white">{simDetails.zoneName}</span>
+                <div className="bg-[#0e0e10] p-2.5 rounded-xl border border-[#353437]">
+                  <span className="text-[#99907c] text-[10px] block font-sans">Matched Logistics Zone</span>
+                  <span className="font-bold text-[#e5e1e4]">{simDetails.zoneName}</span>
                   {simDetails.estimatedDelivery && (
-                    <span className="text-[10px] text-[#D8D0C0] block mt-0.5">⏱ {simDetails.estimatedDelivery}</span>
+                    <span className="text-[10px] text-[#99907c] block mt-0.5">⏱ {simDetails.estimatedDelivery}</span>
                   )}
                 </div>
 
-                <div className="bg-[#171814] p-2.5 rounded-xl border border-[#292A25]">
-                  <span className="text-[#D8D0C0] text-[10px] block font-sans">Base Rate Allowance</span>
-                  <span className="font-bold text-white">
-                    ₹{simDetails.baseRate} <span className="font-normal text-[#D8D0C0]">(up to {simDetails.baseWeightKg} kg)</span>
+                <div className="bg-[#0e0e10] p-2.5 rounded-xl border border-[#353437]">
+                  <span className="text-[#99907c] text-[10px] block font-sans">Base Rate Allowance</span>
+                  <span className="font-bold text-[#f2ca50]">
+                    ₹{simDetails.baseRate} <span className="font-normal text-[#99907c]">(up to {simDetails.baseWeightKg} kg)</span>
                   </span>
                 </div>
 
-                <div className="bg-[#171814] p-2.5 rounded-xl border border-[#292A25]">
-                  <span className="text-[#D8D0C0] text-[10px] block font-sans">Incremental Weight</span>
-                  <span className="font-bold text-white">
+                <div className="bg-[#0e0e10] p-2.5 rounded-xl border border-[#353437]">
+                  <span className="text-[#99907c] text-[10px] block font-sans">Incremental Weight</span>
+                  <span className="font-bold text-[#e5e1e4]">
                     {simDetails.extraKg > 0 ? (
                       <>+{simDetails.extraKg} kg @ ₹{simDetails.perAdditionalKgRate}/kg = ₹{simDetails.extraKg * simDetails.perAdditionalKgRate}</>
                     ) : (
-                      <span className="text-[#8B9B7B]">Within base allowance (₹0)</span>
+                      <span className="text-[#8b9b7b]">Within base allowance (₹0)</span>
                     )}
                   </span>
                 </div>
@@ -594,16 +593,16 @@ export const AdminLogisticsPage: React.FC = () => {
 
       {/* Modal for Creating / Editing Rate Slab */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-4">
-          <div className="bg-white rounded-3xl w-full max-w-lg shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-150 border border-[#E5DED0]">
-            <div className="p-5 border-b border-[#E5DED0] flex items-center justify-between">
-              <h3 className="font-editorial text-lg font-bold text-[#171814]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4">
+          <div className="bg-[#1c1b1d] rounded-3xl w-full max-w-lg shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-150 border border-[#353437]">
+            <div className="p-5 border-b border-[#353437] flex items-center justify-between">
+              <h3 className="font-editorial text-lg font-bold text-[#e5e1e4]">
                 {editingId ? 'Edit Shipping Slab' : 'Add New Shipping Slab'}
               </h3>
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="text-[#77766E] hover:text-[#171814] p-1 cursor-pointer"
+                className="text-[#99907c] hover:text-[#e5e1e4] p-1 cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -611,7 +610,7 @@ export const AdminLogisticsPage: React.FC = () => {
 
             <form onSubmit={handleSave} className="p-6 space-y-4 text-xs">
               <div>
-                <label htmlFor="zone-name-input" className="block font-semibold text-[#292A25] mb-1">
+                <label htmlFor="zone-name-input" className="block font-semibold text-[#d0c5af] mb-1">
                   Zone Name *
                 </label>
                 <input
@@ -622,12 +621,12 @@ export const AdminLogisticsPage: React.FC = () => {
                   value={formData.zoneName}
                   onChange={e => setFormData({ ...formData, zoneName: e.target.value })}
                   placeholder="e.g. Madurai & South TN, Mumbai/Delhi Metros"
-                  className="w-full border border-[#E5DED0] rounded-xl px-3.5 py-2.5 bg-[#F7F2E8] text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
+                  className="w-full border border-[#353437] rounded-xl px-3.5 py-2.5 bg-[#0e0e10] text-[#e5e1e4] placeholder-[#99907c] focus:outline-hidden focus:border-[#d4af37]"
                 />
               </div>
 
               <div>
-                <label htmlFor="pincode-list-input" className="block font-semibold text-[#292A25] mb-1">
+                <label htmlFor="pincode-list-input" className="block font-semibold text-[#d0c5af] mb-1">
                   Serviceable 6-Digit Pincodes (comma separated, ranges like 625001-625025, or * for default) *
                 </label>
                 <input
@@ -638,16 +637,16 @@ export const AdminLogisticsPage: React.FC = () => {
                   value={formData.pincodePrefix}
                   onChange={e => setFormData({ ...formData, pincodePrefix: e.target.value })}
                   placeholder="e.g. 625001, 625020, 625001-625025 or *"
-                  className="w-full border border-[#E5DED0] rounded-xl px-3.5 py-2.5 bg-[#F7F2E8] font-mono text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
+                  className="w-full border border-[#353437] rounded-xl px-3.5 py-2.5 bg-[#0e0e10] font-mono text-[#e5e1e4] placeholder-[#99907c] focus:outline-hidden focus:border-[#d4af37]"
                 />
-                <span className="text-[10px] text-[#77766E] mt-1 block">
+                <span className="text-[10px] text-[#99907c] mt-1 block">
                   Enter exact 6-digit Indian postal codes or ranges (e.g. 625001-625025). Use * for Rest of India.
                 </span>
               </div>
 
               <div className="grid grid-cols-3 gap-3">
                 <div>
-                  <label htmlFor="base-weight-input" className="block font-semibold text-[#292A25] mb-1">
+                  <label htmlFor="base-weight-input" className="block font-semibold text-[#d0c5af] mb-1">
                     Base Wt (kg)
                   </label>
                   <input
@@ -659,11 +658,11 @@ export const AdminLogisticsPage: React.FC = () => {
                     required
                     value={formData.baseWeightKg}
                     onChange={e => setFormData({ ...formData, baseWeightKg: parseFloat(e.target.value) || 1 })}
-                    className="w-full border border-[#E5DED0] rounded-xl px-3.5 py-2 bg-[#F7F2E8] text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
+                    className="w-full border border-[#353437] rounded-xl px-3.5 py-2 bg-[#0e0e10] text-[#e5e1e4] focus:outline-hidden focus:border-[#d4af37]"
                   />
                 </div>
                 <div>
-                  <label htmlFor="base-rate-input" className="block font-semibold text-[#292A25] mb-1">
+                  <label htmlFor="base-rate-input" className="block font-semibold text-[#d0c5af] mb-1">
                     Base Rate (₹)
                   </label>
                   <input
@@ -674,11 +673,11 @@ export const AdminLogisticsPage: React.FC = () => {
                     required
                     value={formData.baseRate}
                     onChange={e => setFormData({ ...formData, baseRate: parseInt(e.target.value, 10) || 0 })}
-                    className="w-full border border-[#E5DED0] rounded-xl px-3.5 py-2 bg-[#F7F2E8] text-[#292A25] font-bold focus:outline-hidden focus:border-[#D0AE70]"
+                    className="w-full border border-[#353437] rounded-xl px-3.5 py-2 bg-[#0e0e10] text-[#f2ca50] font-bold focus:outline-hidden focus:border-[#d4af37]"
                   />
                 </div>
                 <div>
-                  <label htmlFor="addl-rate-input" className="block font-semibold text-[#292A25] mb-1">
+                  <label htmlFor="addl-rate-input" className="block font-semibold text-[#d0c5af] mb-1">
                     Addl. / kg (₹)
                   </label>
                   <input
@@ -689,13 +688,13 @@ export const AdminLogisticsPage: React.FC = () => {
                     required
                     value={formData.perAdditionalKgRate}
                     onChange={e => setFormData({ ...formData, perAdditionalKgRate: parseInt(e.target.value, 10) || 0 })}
-                    className="w-full border border-[#E5DED0] rounded-xl px-3.5 py-2 bg-[#F7F2E8] text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
+                    className="w-full border border-[#353437] rounded-xl px-3.5 py-2 bg-[#0e0e10] text-[#e5e1e4] focus:outline-hidden focus:border-[#d4af37]"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="estimated-delivery-input" className="block font-semibold text-[#292A25] mb-1">
+                <label htmlFor="estimated-delivery-input" className="block font-semibold text-[#d0c5af] mb-1">
                   Estimated Delivery Timeline
                 </label>
                 <input
@@ -705,22 +704,22 @@ export const AdminLogisticsPage: React.FC = () => {
                   value={formData.estimatedDelivery || ''}
                   onChange={e => setFormData({ ...formData, estimatedDelivery: e.target.value })}
                   placeholder="e.g. 1-2 business days"
-                  className="w-full border border-[#E5DED0] rounded-xl px-3.5 py-2 bg-[#F7F2E8] text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
+                  className="w-full border border-[#353437] rounded-xl px-3.5 py-2 bg-[#0e0e10] text-[#e5e1e4] placeholder-[#99907c] focus:outline-hidden focus:border-[#d4af37]"
                 />
               </div>
 
-              <div className="pt-4 flex items-center justify-end gap-2 border-t border-[#E5DED0]">
+              <div className="pt-4 flex items-center justify-end gap-2 border-t border-[#353437]">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2.5 rounded-xl text-[#77766E] hover:bg-[#F7F2E8] font-semibold cursor-pointer"
+                  className="px-4 py-2.5 rounded-xl text-[#99907c] hover:bg-[#201f22] hover:text-[#e5e1e4] font-semibold cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isSaving}
-                  className="px-5 py-2.5 rounded-xl bg-[#D0AE70] text-[#171814] font-bold hover:bg-[#B99153] transition-colors shadow-xs cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-[#d4af37] text-[#131315] font-bold hover:bg-[#f2ca50] transition-colors shadow-xs cursor-pointer"
                 >
                   {isSaving ? 'Saving to MongoDB...' : 'Save Rate Slab'}
                 </button>

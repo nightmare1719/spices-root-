@@ -46,9 +46,9 @@ const CustomerAuthGuard: React.FC<{ children: React.ReactNode; redirectMessage: 
 
   if (isLoading) {
     return (
-      <div className="py-24 text-center">
-        <div className="w-8 h-8 border-4 border-[#D0AE70] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-        <p className="text-xs text-[#77766E] font-medium">Verifying authentication...</p>
+      <div className="py-24 text-center bg-[#131315]">
+        <div className="w-8 h-8 border-4 border-[#d4af37] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+        <p className="text-xs text-[#d0c5af] font-medium tracking-wider uppercase font-sans">Verifying vault authorization...</p>
       </div>
     );
   }
@@ -73,7 +73,7 @@ const CustomerLayout: React.FC = () => {
   const isCheckout = location.pathname.startsWith('/checkout');
 
   return (
-    <div className={`min-h-screen flex flex-col bg-[#F7F2E8] w-full max-w-full overflow-x-hidden ${isCheckout ? 'is-checkout-page' : ''}`}>
+    <div className={`min-h-screen flex flex-col bg-[#131315] text-[#e5e1e4] w-full max-w-full overflow-x-hidden ${isCheckout ? 'is-checkout-page' : ''}`}>
       <AnnouncementBar />
       <Header />
       <main className="flex-1 w-full max-w-full min-w-0 pb-16 md:pb-0">

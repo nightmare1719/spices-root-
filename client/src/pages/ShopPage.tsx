@@ -105,17 +105,17 @@ export const ShopPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       
-      {/* Header Banner */}
-      <div className="bg-white p-6 sm:p-10 rounded-3xl border border-[#E5DED0] flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-xs">
+      {/* Header Banner (Stitch Archive Header Style) */}
+      <div className="bg-[#1c1b1d] p-6 sm:p-10 rounded-xl border border-[#353437] flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-xl">
         <div>
-          <span className="text-xs font-bold text-[#D0AE70] uppercase tracking-widest block mb-1">
-            Plantation Sourced • 100% Pure
+          <span className="text-xs font-bold text-[#d4af37] uppercase tracking-widest block mb-1 font-sans">
+            Archival Curations • Volume VIII
           </span>
-          <h1 className="font-editorial text-3xl sm:text-4xl font-bold text-[#171814]">
-            Western Ghats Spice Catalog
+          <h1 className="font-editorial text-3xl sm:text-4xl font-bold text-[#e5e1e4]">
+            The Spice Archive
           </h1>
-          <p className="text-xs sm:text-sm text-[#77766E] mt-1 max-w-xl">
-            Browse our sun-cured peppercorns, emerald cardamom pods, rare high-peak teas, and handcrafted gift hampers.
+          <p className="text-xs sm:text-sm text-[#d0c5af] mt-1 max-w-xl font-light">
+            Browse our single-harvest peppercorns, emerald cardamom pods, rare high-peak teas, and wax-sealed gift caskets.
           </p>
         </div>
 
@@ -125,10 +125,10 @@ export const ShopPage: React.FC = () => {
             type="text"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            placeholder="Search spices, cardamom, tea..."
-            className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm bg-[#F7F2E8] text-[#292A25] border border-[#E5DED0] rounded-full focus:outline-none focus:border-[#D0AE70] shadow-xs"
+            placeholder="Search vault archives..."
+            className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm bg-[#0e0e10] text-[#e5e1e4] placeholder-[#99907c] border border-[#353437] rounded-lg focus:outline-none focus:border-[#d4af37] shadow-xs"
           />
-          <Search className="w-4 h-4 text-[#77766E] absolute left-3.5 top-3" />
+          <Search className="w-4 h-4 text-[#99907c] absolute left-3.5 top-3" />
           {searchInput && (
             <button
               type="button"
@@ -136,7 +136,7 @@ export const ShopPage: React.FC = () => {
                 setSearchInput('');
                 updateParam('search', null);
               }}
-              className="absolute right-3 top-3 text-[#77766E] hover:text-[#292A25]"
+              className="absolute right-3 top-3 text-[#99907c] hover:text-[#e5e1e4]"
             >
               <X className="w-4 h-4" />
             </button>
@@ -149,39 +149,39 @@ export const ShopPage: React.FC = () => {
         
         {/* Desktop Sidebar Filters */}
         <aside className="hidden lg:block space-y-6">
-          <div className="bg-white p-6 rounded-2xl border border-[#E5DED0] space-y-6 shadow-xs">
-            <div className="flex items-center justify-between pb-4 border-b border-[#E5DED0]">
-              <h3 className="font-editorial text-base font-bold text-[#171814] flex items-center gap-2">
-                <Filter className="w-4 h-4 text-[#D0AE70]" />
-                <span>Filters</span>
+          <div className="bg-[#1c1b1d] p-6 rounded-xl border border-[#353437] space-y-6 shadow-xl sticky top-28">
+            <div className="flex items-center justify-between pb-4 border-b border-[#353437]">
+              <h3 className="font-editorial text-base font-bold text-[#e5e1e4] flex items-center gap-2">
+                <Filter className="w-4 h-4 text-[#d4af37]" />
+                <span>Terroir Controls</span>
               </h3>
               {hasActiveFilters && (
                 <button
                   onClick={clearAllFilters}
-                  className="text-xs text-[#A94F38] hover:underline font-semibold flex items-center gap-1"
+                  className="text-xs text-[#c25e2e] hover:underline font-semibold flex items-center gap-1 font-sans uppercase tracking-wider"
                 >
                   <RotateCcw className="w-3 h-3" />
-                  <span>Clear All</span>
+                  <span>Reset Vault</span>
                 </button>
               )}
             </div>
 
             {/* Category Filter */}
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#292A25] mb-3">
-                Category
+              <h4 className="text-xs font-bold uppercase tracking-wider text-[#dccf96] mb-3 font-sans">
+                Categories
               </h4>
               <div className="space-y-1.5">
                 <button
                   onClick={() => updateParam('category', 'all')}
                   className={`w-full text-left text-xs px-3 py-2 rounded-lg font-medium transition-colors flex justify-between items-center ${
                     categoryParam === 'all'
-                      ? 'bg-[#D0AE70] text-[#171814] font-bold shadow-xs'
-                      : 'text-[#292A25] hover:bg-[#F7F2E8]'
+                      ? 'bg-[#d4af37] text-[#131315] font-bold shadow-xs'
+                      : 'text-[#d0c5af] hover:bg-[#201f22]'
                   }`}
                 >
-                  <span>All Products</span>
-                  <span className="text-[10px] opacity-70">{pagination.totalItems}</span>
+                  <span>All Curations</span>
+                  <span className="text-[10px] opacity-70 font-sans">{pagination.totalItems}</span>
                 </button>
                 {categories.map((cat) => (
                   <button
@@ -189,24 +189,24 @@ export const ShopPage: React.FC = () => {
                     onClick={() => updateParam('category', cat.slug)}
                     className={`w-full text-left text-xs px-3 py-2 rounded-lg font-medium transition-colors flex justify-between items-center ${
                       categoryParam === cat.slug
-                        ? 'bg-[#D0AE70] text-[#171814] font-bold shadow-xs'
-                        : 'text-[#292A25] hover:bg-[#F7F2E8]'
+                        ? 'bg-[#d4af37] text-[#131315] font-bold shadow-xs'
+                        : 'text-[#d0c5af] hover:bg-[#201f22]'
                     }`}
                   >
                     <span>{cat.name}</span>
-                    <span className="text-[10px] opacity-70">{cat.itemCount || ''}</span>
+                    <span className="text-[10px] opacity-70 font-sans">{cat.itemCount || ''}</span>
                   </button>
                 ))}
               </div>
             </div>
 
             {/* Price Filter */}
-            <div className="pt-4 border-t border-[#E5DED0]">
+            <div className="pt-4 border-t border-[#353437]">
               <div className="flex justify-between items-center mb-2">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#292A25]">
-                  Max Price
+                <h4 className="text-xs font-bold uppercase tracking-wider text-[#dccf96] font-sans">
+                  Vault Reserve Tier
                 </h4>
-                <span className="text-xs font-bold text-[#435B43] font-product">₹{maxPrice}</span>
+                <span className="text-xs font-bold text-[#f2ca50] font-sans">₹{maxPrice}</span>
               </div>
               <input
                 type="range"
@@ -217,24 +217,24 @@ export const ShopPage: React.FC = () => {
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
                 onMouseUp={() => updateParam('maxPrice', String(maxPrice))}
                 onTouchEnd={() => updateParam('maxPrice', String(maxPrice))}
-                className="w-full accent-[#D0AE70] cursor-pointer"
+                className="w-full accent-[#d4af37] cursor-pointer"
               />
-              <div className="flex justify-between text-[10px] text-[#77766E] mt-1 font-product">
+              <div className="flex justify-between text-[10px] text-[#99907c] mt-1 font-sans">
                 <span>₹100</span>
                 <span>₹3,000+</span>
               </div>
             </div>
 
             {/* In-Stock Toggle */}
-            <div className="pt-4 border-t border-[#E5DED0]">
-              <label className="flex items-center gap-2 cursor-pointer text-xs text-[#292A25]">
+            <div className="pt-4 border-t border-[#353437]">
+              <label className="flex items-center gap-2 cursor-pointer text-xs text-[#d0c5af]">
                 <input
                   type="checkbox"
                   checked={inStockParam}
                   onChange={(e) => updateParam('inStock', e.target.checked ? 'true' : null)}
-                  className="rounded text-[#D0AE70] focus:ring-[#D0AE70] cursor-pointer"
+                  className="rounded text-[#d4af37] focus:ring-[#d4af37] accent-[#d4af37] cursor-pointer"
                 />
-                <span className="font-semibold">In-Stock Items Only</span>
+                <span className="font-semibold">Cellar Allocation Available</span>
               </label>
             </div>
 
@@ -245,37 +245,37 @@ export const ShopPage: React.FC = () => {
         <div className="lg:col-span-3 space-y-6">
           
           {/* Top Controls: Mobile filter trigger + Sort Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-4 bg-white p-4 rounded-xl border border-[#E5DED0] shadow-xs">
+          <div className="flex flex-wrap items-center justify-between gap-4 bg-[#1c1b1d] p-4 rounded-xl border border-[#353437] shadow-xl">
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setIsMobileFiltersOpen(true)}
-                className="lg:hidden flex items-center gap-1.5 text-xs font-bold bg-[#171814] text-[#D0AE70] px-3 py-1.5 rounded-lg border border-[#171814]"
+                className="lg:hidden flex items-center gap-1.5 text-xs font-bold bg-[#d4af37] text-[#131315] px-3 py-1.5 rounded-lg font-sans uppercase tracking-wider"
               >
                 <SlidersHorizontal className="w-3.5 h-3.5" />
                 <span>Filters</span>
               </button>
-              <p className="text-xs text-[#77766E]">
-                Showing <strong className="text-[#171814]">{products.length}</strong> of{' '}
-                <strong className="text-[#171814]">{pagination.totalItems}</strong> products
+              <p className="text-xs text-[#99907c] font-sans">
+                Showing <strong className="text-[#f2ca50]">{products.length}</strong> of{' '}
+                <strong className="text-[#e5e1e4]">{pagination.totalItems}</strong> vault selections
               </p>
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-xs text-[#77766E] flex items-center gap-1">
-                <ArrowUpDown className="w-3.5 h-3.5" />
+              <span className="text-xs text-[#99907c] flex items-center gap-1 font-sans uppercase tracking-wider">
+                <ArrowUpDown className="w-3.5 h-3.5 text-[#d4af37]" />
                 Sort:
               </span>
               <select
                 value={sortParam}
                 onChange={(e) => updateParam('sort', e.target.value)}
-                className="text-xs bg-[#F7F2E8] border border-[#E5DED0] rounded-lg px-2.5 py-1.5 text-[#292A25] font-medium focus:outline-none focus:border-[#D0AE70]"
+                className="text-xs bg-[#0e0e10] border border-[#353437] rounded-lg px-2.5 py-1.5 text-[#e5e1e4] font-medium focus:outline-none focus:border-[#d4af37] font-sans cursor-pointer"
               >
-                <option value="featured">Featured First</option>
+                <option value="featured">Featured Allocation</option>
                 <option value="price_asc">Price: Low to High</option>
                 <option value="price_desc">Price: High to Low</option>
-                <option value="rating">Highest Rated</option>
-                <option value="newest">Newest Harvests</option>
-                <option value="name_asc">Name: A to Z</option>
+                <option value="rating">Guild Palate Rating</option>
+                <option value="newest">Recent Harvests</option>
+                <option value="name_asc">Botanical: A to Z</option>
               </select>
             </div>
           </div>
@@ -284,19 +284,19 @@ export const ShopPage: React.FC = () => {
           {hasActiveFilters && (
             <div className="flex flex-wrap items-center gap-2">
               {categoryParam !== 'all' && (
-                <span className="inline-flex items-center gap-1 text-xs bg-[#D0AE70]/15 text-[#171814] border border-[#D0AE70]/30 px-3 py-1 rounded-full font-semibold">
+                <span className="inline-flex items-center gap-1 text-xs bg-[#201f22] text-[#dccf96] border border-[#d4af37]/35 px-3 py-1 rounded-full font-semibold font-sans">
                   Category: {categoryParam}
                   <button onClick={() => updateParam('category', null)}><X className="w-3 h-3" /></button>
                 </span>
               )}
               {searchParam && (
-                <span className="inline-flex items-center gap-1 text-xs bg-[#D0AE70]/15 text-[#171814] border border-[#D0AE70]/30 px-3 py-1 rounded-full font-semibold">
+                <span className="inline-flex items-center gap-1 text-xs bg-[#201f22] text-[#dccf96] border border-[#d4af37]/35 px-3 py-1 rounded-full font-semibold font-sans">
                   Query: "{searchParam}"
                   <button onClick={() => updateParam('search', null)}><X className="w-3 h-3" /></button>
                 </span>
               )}
               {maxPriceParam < 3000 && (
-                <span className="inline-flex items-center gap-1 text-xs bg-[#D0AE70]/15 text-[#171814] border border-[#D0AE70]/30 px-3 py-1 rounded-full font-semibold">
+                <span className="inline-flex items-center gap-1 text-xs bg-[#201f22] text-[#dccf96] border border-[#d4af37]/35 px-3 py-1 rounded-full font-semibold font-sans">
                   Max: ₹{maxPriceParam}
                   <button onClick={() => updateParam('maxPrice', null)}><X className="w-3 h-3" /></button>
                 </span>
@@ -304,25 +304,25 @@ export const ShopPage: React.FC = () => {
             </div>
           )}
 
-          {/* Products Grid (2-Column Mobile Meesho Style) */}
+          {/* Products Grid (Stitch Vault Caskets Grid) */}
           {isLoading ? (
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4 md:gap-6">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="aspect-[3/4] bg-white rounded-xl border border-[#E5DED0] animate-pulse" />
+                <div key={i} className="aspect-[3/4] bg-[#1c1b1d] rounded-xl border border-[#353437] animate-pulse" />
               ))}
             </div>
           ) : products.length === 0 ? (
-            <div className="text-center py-20 bg-white rounded-2xl border border-[#E5DED0] p-8 shadow-xs">
-              <Sparkles className="w-12 h-12 text-[#D0AE70]/40 mx-auto mb-3" />
-              <h3 className="font-editorial text-xl font-bold text-[#171814] mb-2">
-                No matching harvests found
+            <div className="text-center py-20 bg-[#1c1b1d] rounded-xl border border-[#353437] p-8 shadow-xl">
+              <Sparkles className="w-12 h-12 text-[#d4af37]/40 mx-auto mb-3" />
+              <h3 className="font-editorial text-xl font-bold text-[#e5e1e4] mb-2">
+                No matching archives found
               </h3>
-              <p className="text-xs text-[#77766E] max-w-md mx-auto mb-6">
-                We couldn't find any products matching your specific search or price filter. Try clearing filters to see our full Western Ghats collection.
+              <p className="text-xs text-[#d0c5af] max-w-md mx-auto mb-6">
+                We couldn't find any botanical relics matching your specific search or price filter. Try clearing filters to see our full Western Ghats archive.
               </p>
               <button
                 onClick={clearAllFilters}
-                className="bg-[#D0AE70] text-[#171814] text-xs font-bold uppercase tracking-wider px-6 py-2.5 rounded-full hover:bg-[#B99153] transition-all cursor-pointer"
+                className="bg-[#d4af37] text-[#131315] text-xs font-bold uppercase tracking-wider px-6 py-2.5 rounded-lg hover:bg-[#f2ca50] transition-all cursor-pointer font-sans"
               >
                 Reset All Filters
               </button>
@@ -341,7 +341,7 @@ export const ShopPage: React.FC = () => {
               <button
                 disabled={pageParam <= 1}
                 onClick={() => updateParam('page', String(pageParam - 1))}
-                className="p-2 border border-[#E5DED0] rounded-lg text-[#292A25] hover:bg-[#F7F2E8] disabled:opacity-30 disabled:cursor-not-allowed"
+                className="p-2 border border-[#353437] rounded-lg text-[#d0c5af] hover:bg-[#201f22] hover:text-[#d4af37] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
                 aria-label="Previous Page"
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -353,10 +353,10 @@ export const ShopPage: React.FC = () => {
                   <button
                     key={p}
                     onClick={() => updateParam('page', String(p))}
-                    className={`w-9 h-9 rounded-lg text-xs font-bold transition-colors ${
+                    className={`w-9 h-9 rounded-lg text-xs font-bold transition-colors cursor-pointer font-sans ${
                       p === pageParam
-                        ? 'bg-[#171814] text-[#D0AE70] border border-[#171814]'
-                        : 'border border-[#E5DED0] text-[#292A25] hover:bg-[#F7F2E8]'
+                        ? 'bg-[#d4af37] text-[#131315] border border-[#d4af37]'
+                        : 'border border-[#353437] text-[#d0c5af] hover:bg-[#201f22] hover:text-[#e5e1e4]'
                     }`}
                   >
                     {p}
@@ -367,7 +367,7 @@ export const ShopPage: React.FC = () => {
               <button
                 disabled={pageParam >= pagination.totalPages}
                 onClick={() => updateParam('page', String(pageParam + 1))}
-                className="p-2 border border-[#E5DED0] rounded-lg text-[#292A25] hover:bg-[#F7F2E8] disabled:opacity-30 disabled:cursor-not-allowed"
+                className="p-2 border border-[#353437] rounded-lg text-[#d0c5af] hover:bg-[#201f22] hover:text-[#d4af37] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
                 aria-label="Next Page"
               >
                 <ChevronRight className="w-4 h-4" />
@@ -384,30 +384,30 @@ export const ShopPage: React.FC = () => {
         <div className="fixed inset-0 z-50 overflow-hidden lg:hidden">
           <div 
             onClick={() => setIsMobileFiltersOpen(false)}
-            className="absolute inset-0 bg-black/50 backdrop-blur-xs"
+            className="absolute inset-0 bg-black/60 backdrop-blur-xs"
           />
           <div className="absolute inset-y-0 right-0 max-w-full flex pl-10">
-            <div className="w-screen max-w-xs bg-white p-6 shadow-2xl flex flex-col justify-between border-l border-[#E5DED0]">
+            <div className="w-screen max-w-xs bg-[#1c1b1d] text-[#e5e1e4] p-6 shadow-2xl flex flex-col justify-between border-l border-[#353437]">
               <div className="space-y-6">
-                <div className="flex justify-between items-center pb-4 border-b border-[#E5DED0]">
-                  <h3 className="font-editorial text-lg font-bold text-[#171814]">Catalog Filters</h3>
-                  <button onClick={() => setIsMobileFiltersOpen(false)}><X className="w-5 h-5 text-[#77766E]" /></button>
+                <div className="flex justify-between items-center pb-4 border-b border-[#353437]">
+                  <h3 className="font-editorial text-lg font-bold text-[#e5e1e4]">Catalog Filters</h3>
+                  <button onClick={() => setIsMobileFiltersOpen(false)} className="text-[#99907c] hover:text-[#e5e1e4]"><X className="w-5 h-5" /></button>
                 </div>
 
                 <div>
-                  <h4 className="text-xs font-bold uppercase text-[#292A25] mb-2">Categories</h4>
+                  <h4 className="text-xs font-bold uppercase text-[#dccf96] mb-2 font-sans">Categories</h4>
                   <div className="space-y-1">
                     <button
                       onClick={() => { updateParam('category', 'all'); setIsMobileFiltersOpen(false); }}
-                      className={`block w-full text-left text-xs py-1.5 font-medium ${categoryParam === 'all' ? 'text-[#D0AE70] font-bold' : 'text-[#292A25]'}`}
+                      className={`block w-full text-left text-xs py-1.5 font-medium ${categoryParam === 'all' ? 'text-[#d4af37] font-bold' : 'text-[#d0c5af]'}`}
                     >
-                      All Products
+                      All Curations
                     </button>
                     {categories.map((c) => (
                       <button
                         key={c.id}
                         onClick={() => { updateParam('category', c.slug); setIsMobileFiltersOpen(false); }}
-                        className={`block w-full text-left text-xs py-1.5 font-medium ${categoryParam === c.slug ? 'text-[#D0AE70] font-bold' : 'text-[#292A25]'}`}
+                        className={`block w-full text-left text-xs py-1.5 font-medium ${categoryParam === c.slug ? 'text-[#d4af37] font-bold' : 'text-[#d0c5af]'}`}
                       >
                         {c.name}
                       </button>
@@ -415,8 +415,8 @@ export const ShopPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-[#E5DED0]">
-                  <h4 className="text-xs font-bold uppercase text-[#292A25] mb-2">Max Price: ₹{maxPrice}</h4>
+                <div className="pt-4 border-t border-[#353437]">
+                  <h4 className="text-xs font-bold uppercase text-[#dccf96] mb-2 font-sans">Max Price: ₹{maxPrice}</h4>
                   <input
                     type="range"
                     min="100"
@@ -424,7 +424,7 @@ export const ShopPage: React.FC = () => {
                     step="50"
                     value={maxPrice}
                     onChange={(e) => setMaxPrice(Number(e.target.value))}
-                    className="w-full accent-[#D0AE70]"
+                    className="w-full accent-[#d4af37]"
                   />
                 </div>
               </div>
@@ -434,7 +434,7 @@ export const ShopPage: React.FC = () => {
                   updateParam('maxPrice', String(maxPrice));
                   setIsMobileFiltersOpen(false);
                 }}
-                className="w-full py-3 bg-[#D0AE70] text-[#171814] text-xs font-bold rounded-xl hover:bg-[#B99153]"
+                className="w-full py-3 bg-[#d4af37] text-[#131315] text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-[#f2ca50] font-sans"
               >
                 Apply Filters
               </button>

@@ -70,13 +70,13 @@ export const FaqPage: React.FC = () => {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
 
       <div className="text-center space-y-2">
-        <span className="text-xs font-bold text-[#D0AE70] uppercase tracking-widest block font-sans">
+        <span className="text-xs font-bold text-[#d4af37] uppercase tracking-widest block font-sans">
           Knowledge Base
         </span>
-        <h1 className="font-editorial text-3xl sm:text-4xl font-bold text-[#171814]">
+        <h1 className="font-editorial text-3xl sm:text-4xl font-bold text-[#e5e1e4]">
           Frequently Asked Questions
         </h1>
-        <p className="text-xs sm:text-sm text-[#77766E] max-w-lg mx-auto">
+        <p className="text-xs sm:text-sm text-[#d0c5af] max-w-lg mx-auto">
           Everything you need to know about our Kerala harvests, freshness sealing, pan-India delivery, and storage.
         </p>
       </div>
@@ -88,16 +88,16 @@ export const FaqPage: React.FC = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search questions (e.g. shipping, shelf life, pepper, cardamom)..."
-          className="w-full pl-10 pr-4 py-3 text-xs sm:text-sm bg-white border border-[#E5DED0] rounded-full text-[#292A25] placeholder:text-[#77766E] focus:outline-hidden focus:border-[#D0AE70] focus:ring-1 focus:ring-[#D0AE70] shadow-2xs"
+          className="w-full pl-10 pr-4 py-3 text-xs sm:text-sm bg-[#1c1b1d] border border-[#353437] rounded-full text-[#e5e1e4] placeholder:text-[#99907c] focus:outline-hidden focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] shadow-sm"
         />
-        <Search className="w-4 h-4 text-[#77766E] absolute left-3.5 top-3.5" />
+        <Search className="w-4 h-4 text-[#99907c] absolute left-3.5 top-3.5" />
       </div>
 
       {/* Accordion List */}
       <div className="space-y-3">
         {filteredFaqs.length === 0 ? (
-          <div className="text-center py-12 bg-white rounded-2xl border border-[#E5DED0]">
-            <p className="text-xs text-[#77766E]">No questions matched your search query.</p>
+          <div className="text-center py-12 bg-[#1c1b1d] rounded-2xl border border-[#353437]">
+            <p className="text-xs text-[#99907c]">No questions matched your search query.</p>
           </div>
         ) : (
           filteredFaqs.map((faq, idx) => {
@@ -105,27 +105,27 @@ export const FaqPage: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="bg-white rounded-2xl border border-[#E5DED0] overflow-hidden shadow-2xs transition-colors"
+                className="bg-[#1c1b1d] rounded-2xl border border-[#353437] overflow-hidden shadow-sm transition-colors"
               >
                 <button
                   onClick={() => toggleIndex(idx)}
-                  className="w-full text-left p-5 flex items-center justify-between gap-4 hover:bg-[#F7F2E8] transition-colors cursor-pointer"
+                  className="w-full text-left p-5 flex items-center justify-between gap-4 hover:bg-[#201f22] transition-colors cursor-pointer"
                 >
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#D0AE70] block mb-1 font-sans">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#d4af37] block mb-1 font-sans">
                       {faq.category}
                     </span>
-                    <h3 className="font-editorial text-base font-bold text-[#171814]">
+                    <h3 className="font-editorial text-base font-bold text-[#e5e1e4]">
                       {faq.question}
                     </h3>
                   </div>
-                  <div className="p-1.5 rounded-full bg-[#F7F2E8] text-[#171814] shrink-0">
+                  <div className="p-1.5 rounded-full bg-[#201f22] text-[#d4af37] shrink-0 border border-[#353437]">
                     {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                   </div>
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 pb-5 text-xs sm:text-sm text-[#292A25] leading-relaxed border-t border-[#E5DED0] pt-3 font-light">
+                  <div className="px-5 pb-5 text-xs sm:text-sm text-[#d0c5af] leading-relaxed border-t border-[#353437] pt-3 font-light">
                     {faq.answer}
                   </div>
                 )}

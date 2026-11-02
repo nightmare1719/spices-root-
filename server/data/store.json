@@ -85,7 +85,21 @@
       "passwordHash": "$2a$10$nZU.HOYq66hLTsVRxjBOFOlKVxE/Zq8Iq993iS2Erwf.CnmrjpsUS",
       "phone": "9562570191",
       "role": "customer",
-      "updatedAt": "2026-10-26T08:13:28.061Z"
+      "updatedAt": "2026-11-01T17:52:37.070Z"
+    },
+    {
+      "_id": "usr_1793297774168_kcwj6",
+      "id": "usr_1793297774168_kcwj6",
+      "__v": 0,
+      "addresses": [],
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocJqXDAnZA3spFDvf_MNdxr3-JrRjtT6i__0yeE9e8kpy1Hjr_pH=s96-c",
+      "createdAt": "2026-10-29T18:16:14.167Z",
+      "email": "harihvk920@gmail.com",
+      "googleId": "103569960922645400190",
+      "isEmailVerified": true,
+      "name": "HARI_ H.V.K",
+      "role": "customer",
+      "updatedAt": "2026-11-01T17:32:56.560Z"
     }
   ],
   "products": [
@@ -158,8 +172,8 @@
         "bestseller",
         "kerala"
       ],
-      "createdAt": "2026-11-02T09:07:18.189Z",
-      "updatedAt": "2026-11-02T09:07:18.189Z"
+      "createdAt": "2026-11-02T12:22:36.096Z",
+      "updatedAt": "2026-11-02T12:22:36.096Z"
     },
     {
       "id": "prod_green_cardamom_8mm",
@@ -230,8 +244,8 @@
         "bestseller",
         "whole spices"
       ],
-      "createdAt": "2026-11-02T09:07:18.189Z",
-      "updatedAt": "2026-11-02T09:07:18.189Z"
+      "createdAt": "2026-11-02T12:22:36.096Z",
+      "updatedAt": "2026-11-02T12:22:36.096Z"
     },
     {
       "id": "prod_ceylon_cinnamon",
@@ -291,8 +305,8 @@
         "baking",
         "sweet spices"
       ],
-      "createdAt": "2026-11-02T09:07:18.189Z",
-      "updatedAt": "2026-11-02T09:07:18.189Z"
+      "createdAt": "2026-11-02T12:22:36.096Z",
+      "updatedAt": "2026-11-02T12:22:36.096Z"
     },
     {
       "id": "prod_clove_wayanad",
@@ -350,8 +364,8 @@
         "clove",
         "whole spices"
       ],
-      "createdAt": "2026-11-02T09:07:18.189Z",
-      "updatedAt": "2026-11-02T09:07:18.189Z"
+      "createdAt": "2026-11-02T12:22:36.096Z",
+      "updatedAt": "2026-11-02T12:22:36.096Z"
     },
     {
       "id": "prod_star_anise",
@@ -399,8 +413,8 @@
         "star anise",
         "biryani"
       ],
-      "createdAt": "2026-11-02T09:07:18.189Z",
-      "updatedAt": "2026-11-02T09:07:18.189Z"
+      "createdAt": "2026-11-02T12:22:36.096Z",
+      "updatedAt": "2026-11-02T12:22:36.096Z"
     },
     {
       "id": "prod_mace_nutmeg",
@@ -450,8 +464,8 @@
         "nutmeg",
         "rare"
       ],
-      "createdAt": "2026-11-02T09:07:18.189Z",
-      "updatedAt": "2026-11-02T09:07:18.189Z"
+      "createdAt": "2026-11-02T12:22:36.096Z",
+      "updatedAt": "2026-11-02T12:22:36.096Z"
     },
     {
       "id": "prod_pathimugam",
@@ -500,8 +514,8 @@
         "traditional",
         "kerala herbal"
       ],
-      "createdAt": "2026-11-02T09:07:18.189Z",
-      "updatedAt": "2026-11-02T09:07:18.189Z"
+      "createdAt": "2026-11-02T12:22:36.096Z",
+      "updatedAt": "2026-11-02T12:22:36.096Z"
     },
     {
       "id": "prod_kerala_garam_masala",
@@ -560,8 +574,8 @@
         "bestseller",
         "biryani"
       ],
-      "createdAt": "2026-11-02T09:07:18.189Z",
-      "updatedAt": "2026-11-02T09:07:18.189Z"
+      "createdAt": "2026-11-02T12:22:36.096Z",
+      "updatedAt": "2026-11-02T12:22:36.096Z"
     },
     {
       "id": "prod_kolukkumalai_tea",
@@ -622,8 +636,8 @@
         "munnar",
         "bestseller"
       ],
-      "createdAt": "2026-11-02T09:07:18.189Z",
-      "updatedAt": "2026-11-02T09:07:18.189Z"
+      "createdAt": "2026-11-02T12:22:36.096Z",
+      "updatedAt": "2026-11-02T12:22:36.096Z"
     },
     {
       "id": "prod_thalayar_tea",
@@ -682,8 +696,8 @@
         "chai",
         "ctc"
       ],
-      "createdAt": "2026-11-02T09:07:18.189Z",
-      "updatedAt": "2026-11-02T09:07:18.189Z"
+      "createdAt": "2026-11-02T12:22:36.096Z",
+      "updatedAt": "2026-11-02T12:22:36.096Z"
     },
     {
       "id": "prod_white_tea_tips",
@@ -732,8 +746,8 @@
         "luxury",
         "rare"
       ],
-      "createdAt": "2026-11-02T09:07:18.189Z",
-      "updatedAt": "2026-11-02T09:07:18.189Z"
+      "createdAt": "2026-11-02T12:22:36.096Z",
+      "updatedAt": "2026-11-02T12:22:36.096Z"
     },
     {
       "id": "prod_lemongrass_oil",
@@ -782,8 +796,8 @@
         "lemongrass",
         "aromatherapy"
       ],
-      "createdAt": "2026-11-02T09:07:18.189Z",
-      "updatedAt": "2026-11-02T09:07:18.189Z"
+      "createdAt": "2026-11-02T12:22:36.096Z",
+      "updatedAt": "2026-11-02T12:22:36.096Z"
     },
     {
       "id": "prod_coconut_oil_cold_pressed",
@@ -832,8 +846,8 @@
         "pure",
         "cold-pressed"
       ],
-      "createdAt": "2026-11-02T09:07:18.190Z",
-      "updatedAt": "2026-11-02T09:07:18.190Z"
+      "createdAt": "2026-11-02T12:22:36.096Z",
+      "updatedAt": "2026-11-02T12:22:36.096Z"
     },
     {
       "id": "prod_heritage_spice_box",
@@ -889,8 +903,8 @@
         "hamper",
         "corporate"
       ],
-      "createdAt": "2026-11-02T09:07:18.190Z",
-      "updatedAt": "2026-11-02T09:07:18.190Z"
+      "createdAt": "2026-11-02T12:22:36.096Z",
+      "updatedAt": "2026-11-02T12:22:36.096Z"
     },
     {
       "id": "prod_roasted_almond_chocolate",
@@ -944,8 +958,8 @@
         "almonds",
         "handmade"
       ],
-      "createdAt": "2026-11-02T09:07:18.190Z",
-      "updatedAt": "2026-11-02T09:07:18.190Z"
+      "createdAt": "2026-11-02T12:22:36.096Z",
+      "updatedAt": "2026-11-02T12:22:36.096Z"
     }
   ],
   "categories": [
@@ -1065,342 +1079,6 @@
   ],
   "wishlists": [],
   "orders": [
-    {
-      "orderNumber": "SR-2026-REJECT01",
-      "customerName": "Fraud Suspect",
-      "customerEmail": "fraud@test.com",
-      "customerPhone": "9123456780",
-      "shippingAddress": {
-        "name": "Fraud Suspect",
-        "phone": "9123456780",
-        "addressLine": "Nowhere",
-        "city": "Kochi",
-        "state": "Kerala",
-        "pincode": "682001"
-      },
-      "items": [],
-      "priceBreakdown": {
-        "subtotalPaise": 20000,
-        "discountPaise": 0,
-        "shippingFeePaise": 6000,
-        "taxPaise": 1000,
-        "totalPaise": 26000
-      },
-      "paymentMethod": "upi_manual",
-      "paymentStatus": "REJECTED",
-      "fulfillmentStatus": "pending",
-      "statusHistory": [],
-      "createdAt": "2026-11-02T08:31:14.035Z",
-      "updatedAt": "2026-11-02T08:31:14.037Z",
-      "id": "ord_1793608274035_0ifrn",
-      "_id": "ord_1793608274035_0ifrn",
-      "rejectionReason": "No incoming credit received in SBI account for this order",
-      "paymentAuditLogs": [
-        {
-          "previousStatus": "VERIFICATION_PENDING",
-          "newStatus": "REJECTED",
-          "timestamp": "2026-11-02T08:31:14.037Z",
-          "changedBy": "Admin (admin@spiceroots.in)",
-          "note": "Rejected: No incoming credit received in SBI account for this order"
-        }
-      ]
-    },
-    {
-      "orderNumber": "SR-2026-TEST02",
-      "customerName": "Test Buyer",
-      "customerEmail": "buyer@test.com",
-      "customerPhone": "9876543210",
-      "shippingAddress": {
-        "name": "Test Buyer",
-        "phone": "9876543210",
-        "addressLine": "123 Test Street",
-        "city": "Kochi",
-        "state": "Kerala",
-        "pincode": "682001"
-      },
-      "items": [
-        {
-          "productId": "prod_black_pepper",
-          "productName": "Malabar Black Pepper",
-          "productSlug": "malabar-black-pepper",
-          "variantId": "v_bp_100",
-          "sku": "BP-100",
-          "packSize": "100g",
-          "unitPricePaise": 16000,
-          "quantity": 2,
-          "lineTotalPaise": 32000,
-          "image": "/images/pepper.jpg"
-        }
-      ],
-      "priceBreakdown": {
-        "subtotalPaise": 32000,
-        "discountPaise": 0,
-        "shippingFeePaise": 6000,
-        "taxPaise": 1600,
-        "totalPaise": 38000
-      },
-      "paymentMethod": "upi_manual",
-      "paymentStatus": "PAID",
-      "fulfillmentStatus": "confirmed",
-      "statusHistory": [
-        {
-          "status": "pending",
-          "timestamp": "2026-11-02T08:31:14.022Z",
-          "note": "Order placed, awaiting UPI transfer"
-        }
-      ],
-      "createdAt": "2026-11-02T08:31:14.022Z",
-      "updatedAt": "2026-11-02T08:31:14.031Z",
-      "id": "ord_1793608274022_fjbmt",
-      "_id": "ord_1793608274022_fjbmt",
-      "upiTransactionRef": "429381749281",
-      "paymentSubmittedAt": "2026-11-02T08:31:14.027Z",
-      "paymentAuditLogs": [
-        {
-          "previousStatus": "AWAITING_PAYMENT",
-          "newStatus": "VERIFICATION_PENDING",
-          "timestamp": "2026-11-02T08:31:14.027Z",
-          "changedBy": "customer",
-          "utr": "429381749281",
-          "note": "Customer submitted payment details on checkout"
-        },
-        {
-          "previousStatus": "VERIFICATION_PENDING",
-          "newStatus": "PAID",
-          "timestamp": "2026-11-02T08:31:14.031Z",
-          "changedBy": "Admin Operations (admin@spiceroots.in)",
-          "utr": "429381749281",
-          "note": "Verified in SBI Yono banking app statement at 11:30 AM"
-        }
-      ],
-      "verifiedAt": "2026-11-02T08:31:14.031Z",
-      "verifiedBy": "Admin Operations (admin@spiceroots.in)",
-      "adminNotes": "Verified in SBI Yono banking app statement at 11:30 AM"
-    },
-    {
-      "orderNumber": "SR-2026-REJECT01",
-      "customerName": "Fraud Suspect",
-      "customerEmail": "fraud@test.com",
-      "customerPhone": "9123456780",
-      "shippingAddress": {
-        "name": "Fraud Suspect",
-        "phone": "9123456780",
-        "addressLine": "Nowhere",
-        "city": "Kochi",
-        "state": "Kerala",
-        "pincode": "682001"
-      },
-      "items": [],
-      "priceBreakdown": {
-        "subtotalPaise": 20000,
-        "discountPaise": 0,
-        "shippingFeePaise": 6000,
-        "taxPaise": 1000,
-        "totalPaise": 26000
-      },
-      "paymentMethod": "upi_manual",
-      "paymentStatus": "REJECTED",
-      "fulfillmentStatus": "pending",
-      "statusHistory": [],
-      "createdAt": "2026-11-01T18:13:41.598Z",
-      "updatedAt": "2026-11-01T18:13:41.600Z",
-      "id": "ord_1793556821598_oytml",
-      "_id": "ord_1793556821598_oytml",
-      "rejectionReason": "No incoming credit received in SBI account for this order",
-      "paymentAuditLogs": [
-        {
-          "previousStatus": "VERIFICATION_PENDING",
-          "newStatus": "REJECTED",
-          "timestamp": "2026-11-01T18:13:41.600Z",
-          "changedBy": "Admin (admin@spiceroots.in)",
-          "note": "Rejected: No incoming credit received in SBI account for this order"
-        }
-      ]
-    },
-    {
-      "orderNumber": "SR-2026-TEST02",
-      "customerName": "Test Buyer",
-      "customerEmail": "buyer@test.com",
-      "customerPhone": "9876543210",
-      "shippingAddress": {
-        "name": "Test Buyer",
-        "phone": "9876543210",
-        "addressLine": "123 Test Street",
-        "city": "Kochi",
-        "state": "Kerala",
-        "pincode": "682001"
-      },
-      "items": [
-        {
-          "productId": "prod_black_pepper",
-          "productName": "Malabar Black Pepper",
-          "productSlug": "malabar-black-pepper",
-          "variantId": "v_bp_100",
-          "sku": "BP-100",
-          "packSize": "100g",
-          "unitPricePaise": 16000,
-          "quantity": 2,
-          "lineTotalPaise": 32000,
-          "image": "/images/pepper.jpg"
-        }
-      ],
-      "priceBreakdown": {
-        "subtotalPaise": 32000,
-        "discountPaise": 0,
-        "shippingFeePaise": 6000,
-        "taxPaise": 1600,
-        "totalPaise": 38000
-      },
-      "paymentMethod": "upi_manual",
-      "paymentStatus": "PAID",
-      "fulfillmentStatus": "confirmed",
-      "statusHistory": [
-        {
-          "status": "pending",
-          "timestamp": "2026-11-01T18:13:41.588Z",
-          "note": "Order placed, awaiting UPI transfer"
-        }
-      ],
-      "createdAt": "2026-11-01T18:13:41.588Z",
-      "updatedAt": "2026-11-01T18:13:41.594Z",
-      "id": "ord_1793556821588_obiuv",
-      "_id": "ord_1793556821588_obiuv",
-      "upiTransactionRef": "429381749281",
-      "paymentSubmittedAt": "2026-11-01T18:13:41.591Z",
-      "paymentAuditLogs": [
-        {
-          "previousStatus": "AWAITING_PAYMENT",
-          "newStatus": "VERIFICATION_PENDING",
-          "timestamp": "2026-11-01T18:13:41.591Z",
-          "changedBy": "customer",
-          "utr": "429381749281",
-          "note": "Customer submitted payment details on checkout"
-        },
-        {
-          "previousStatus": "VERIFICATION_PENDING",
-          "newStatus": "PAID",
-          "timestamp": "2026-11-01T18:13:41.594Z",
-          "changedBy": "Admin Operations (admin@spiceroots.in)",
-          "utr": "429381749281",
-          "note": "Verified in SBI Yono banking app statement at 11:30 AM"
-        }
-      ],
-      "verifiedAt": "2026-11-01T18:13:41.594Z",
-      "verifiedBy": "Admin Operations (admin@spiceroots.in)",
-      "adminNotes": "Verified in SBI Yono banking app statement at 11:30 AM"
-    },
-    {
-      "orderNumber": "SR-2026-REJECT01",
-      "customerName": "Fraud Suspect",
-      "customerEmail": "fraud@test.com",
-      "customerPhone": "9123456780",
-      "shippingAddress": {
-        "name": "Fraud Suspect",
-        "phone": "9123456780",
-        "addressLine": "Nowhere",
-        "city": "Kochi",
-        "state": "Kerala",
-        "pincode": "682001"
-      },
-      "items": [],
-      "priceBreakdown": {
-        "subtotalPaise": 20000,
-        "discountPaise": 0,
-        "shippingFeePaise": 6000,
-        "taxPaise": 1000,
-        "totalPaise": 26000
-      },
-      "paymentMethod": "upi_manual",
-      "paymentStatus": "REJECTED",
-      "fulfillmentStatus": "pending",
-      "statusHistory": [],
-      "createdAt": "2026-10-29T17:55:24.086Z",
-      "updatedAt": "2026-10-29T17:55:24.087Z",
-      "id": "ord_1793296524086_n02wn",
-      "_id": "ord_1793296524086_n02wn",
-      "rejectionReason": "No incoming credit received in SBI account for this order",
-      "paymentAuditLogs": [
-        {
-          "previousStatus": "VERIFICATION_PENDING",
-          "newStatus": "REJECTED",
-          "timestamp": "2026-10-29T17:55:24.087Z",
-          "changedBy": "Admin (admin@spiceroots.in)",
-          "note": "Rejected: No incoming credit received in SBI account for this order"
-        }
-      ]
-    },
-    {
-      "orderNumber": "SR-2026-TEST02",
-      "customerName": "Test Buyer",
-      "customerEmail": "buyer@test.com",
-      "customerPhone": "9876543210",
-      "shippingAddress": {
-        "name": "Test Buyer",
-        "phone": "9876543210",
-        "addressLine": "123 Test Street",
-        "city": "Kochi",
-        "state": "Kerala",
-        "pincode": "682001"
-      },
-      "items": [
-        {
-          "productId": "prod_black_pepper",
-          "productName": "Malabar Black Pepper",
-          "productSlug": "malabar-black-pepper",
-          "variantId": "v_bp_100",
-          "sku": "BP-100",
-          "packSize": "100g",
-          "unitPricePaise": 16000,
-          "quantity": 2,
-          "lineTotalPaise": 32000,
-          "image": "/images/pepper.jpg"
-        }
-      ],
-      "priceBreakdown": {
-        "subtotalPaise": 32000,
-        "discountPaise": 0,
-        "shippingFeePaise": 6000,
-        "taxPaise": 1600,
-        "totalPaise": 38000
-      },
-      "paymentMethod": "upi_manual",
-      "paymentStatus": "PAID",
-      "fulfillmentStatus": "confirmed",
-      "statusHistory": [
-        {
-          "status": "pending",
-          "timestamp": "2026-10-29T17:55:24.074Z",
-          "note": "Order placed, awaiting UPI transfer"
-        }
-      ],
-      "createdAt": "2026-10-29T17:55:24.074Z",
-      "updatedAt": "2026-10-29T17:55:24.083Z",
-      "id": "ord_1793296524074_0pogv",
-      "_id": "ord_1793296524074_0pogv",
-      "upiTransactionRef": "429381749281",
-      "paymentSubmittedAt": "2026-10-29T17:55:24.078Z",
-      "paymentAuditLogs": [
-        {
-          "previousStatus": "AWAITING_PAYMENT",
-          "newStatus": "VERIFICATION_PENDING",
-          "timestamp": "2026-10-29T17:55:24.078Z",
-          "changedBy": "customer",
-          "utr": "429381749281",
-          "note": "Customer submitted payment details on checkout"
-        },
-        {
-          "previousStatus": "VERIFICATION_PENDING",
-          "newStatus": "PAID",
-          "timestamp": "2026-10-29T17:55:24.083Z",
-          "changedBy": "Admin Operations (admin@spiceroots.in)",
-          "utr": "429381749281",
-          "note": "Verified in SBI Yono banking app statement at 11:30 AM"
-        }
-      ],
-      "verifiedAt": "2026-10-29T17:55:24.083Z",
-      "verifiedBy": "Admin Operations (admin@spiceroots.in)",
-      "adminNotes": "Verified in SBI Yono banking app statement at 11:30 AM"
-    },
     {
       "_id": "ord_1792054967384_qmal3",
       "id": "ord_1792054967384_qmal3",
@@ -2534,6 +2212,271 @@
       "updatedAt": "2026-10-23T16:05:34.138Z",
       "userId": "usr_1792051028446_mp01m",
       "paymentSubmittedAt": "2026-10-23T16:05:34.138Z"
+    },
+    {
+      "_id": "ord_1793297968942_3eqs2",
+      "id": "ord_1793297968942_3eqs2",
+      "__v": 0,
+      "createdAt": "2026-10-29T18:19:28.942Z",
+      "customerEmail": "harihvk920@gmail.com",
+      "customerName": "HARI_ H.V.K",
+      "customerPhone": "9400499098",
+      "deliveryNotes": "i need the package neat and clean",
+      "fulfillmentStatus": "delivered",
+      "items": [
+        {
+          "productId": "prod_1792772845838_3qtjd",
+          "productName": "Premium Dust Tea",
+          "productSlug": "premium-dust-tea-259",
+          "variantId": "v_1792772724377",
+          "sku": "SR-NEW-100G",
+          "packSize": "100 g",
+          "unitPricePaise": 15000,
+          "quantity": 1,
+          "lineTotalPaise": 15000,
+          "image": "https://www.rippletea.com/cdn/shop/files/FoP_500g.jpg?v=1722936247&width=535"
+        }
+      ],
+      "orderNumber": "SR-2026-75057",
+      "paymentAuditLogs": [
+        {
+          "previousStatus": "CREATED",
+          "newStatus": "AWAITING_PAYMENT",
+          "timestamp": "2026-10-29T18:19:28.940Z",
+          "changedBy": "system",
+          "note": "Order initialized with payment method: upi_manual"
+        },
+        {
+          "previousStatus": "AWAITING_PAYMENT",
+          "newStatus": "VERIFICATION_PENDING",
+          "timestamp": "2026-10-29T18:20:59.048Z",
+          "changedBy": "customer",
+          "note": "Customer submitted payment details on checkout",
+          "utr": "630224665244"
+        },
+        {
+          "previousStatus": "VERIFICATION_PENDING",
+          "newStatus": "PAID",
+          "timestamp": "2026-10-29T18:22:21.129Z",
+          "changedBy": "Spice Roots Admin (admin@spiceroots.in)",
+          "note": "Quick verified by administrator",
+          "utr": "630224665244"
+        }
+      ],
+      "paymentMethod": "upi_manual",
+      "paymentStatus": "PAID",
+      "priceBreakdown": {
+        "subtotalPaise": 15000,
+        "discountPaise": 0,
+        "shippingFeePaise": 10000,
+        "taxPaise": 750,
+        "totalPaise": 25750
+      },
+      "shippingAddress": {
+        "name": "HARI_ H.V.K",
+        "phone": "9400499098",
+        "addressLine": "soalmalai college of engineerig",
+        "landmark": "near tvs school",
+        "city": "madurai",
+        "state": "Tamil Nadu",
+        "pincode": "625025",
+        "isDefault": false
+      },
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-29T18:19:28.940Z",
+          "note": "Order created for Direct UPI payment. Awaiting customer transfer."
+        },
+        {
+          "status": "processing",
+          "timestamp": "2026-10-29T18:20:59.048Z",
+          "note": "Customer submitted payment details (UTR: 630224665244). Payment Verification Pending."
+        },
+        {
+          "status": "pending",
+          "timestamp": "2026-10-29T18:22:09.073Z",
+          "note": "Status updated to pending from recent orders panel",
+          "updatedBy": "Spice Roots Admin"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": "2026-10-29T18:22:21.129Z",
+          "note": "Payment verified and confirmed by Spice Roots Admin (admin@spiceroots.in). UTR: 630224665244. Moved to fulfillment queue.",
+          "updatedBy": "Spice Roots Admin"
+        },
+        {
+          "status": "processing",
+          "timestamp": "2026-10-29T18:22:57.211Z",
+          "note": "Status updated to processing from recent orders panel",
+          "updatedBy": "Spice Roots Admin"
+        },
+        {
+          "status": "shipped",
+          "timestamp": "2026-10-29T18:25:30.610Z",
+          "note": "munnar",
+          "updatedBy": "Spice Roots Admin"
+        },
+        {
+          "status": "delivered",
+          "timestamp": "2026-10-29T18:27:35.166Z",
+          "note": "Status updated to delivered (PAID)",
+          "updatedBy": "Spice Roots Admin"
+        }
+      ],
+      "updatedAt": "2026-10-29T18:27:35.166Z",
+      "userId": "usr_1793297774168_kcwj6",
+      "paymentSubmittedAt": "2026-10-29T18:20:59.048Z",
+      "upiTransactionRef": "630224665244",
+      "courierName": "Blue Dart Express",
+      "adminNotes": "Quick verified by administrator",
+      "verifiedAt": "2026-10-29T18:22:21.129Z",
+      "verifiedBy": "Spice Roots Admin (admin@spiceroots.in)",
+      "trackingNumber": "awb10192103"
+    },
+    {
+      "_id": "ord_1793554019104_2fmp0",
+      "id": "ord_1793554019104_2fmp0",
+      "__v": 0,
+      "createdAt": "2026-11-01T17:26:59.104Z",
+      "customerEmail": "mystery.boz01@gmail.com",
+      "customerName": "cyn albertoz",
+      "customerPhone": "9562570191",
+      "fulfillmentStatus": "shipped",
+      "items": [
+        {
+          "productId": "prod_1792772845838_3qtjd",
+          "productName": "Premium Dust Tea",
+          "productSlug": "premium-dust-tea-259",
+          "variantId": "v_1792772724377",
+          "sku": "SR-NEW-100G",
+          "packSize": "100 g",
+          "unitPricePaise": 15000,
+          "quantity": 1,
+          "lineTotalPaise": 15000,
+          "image": "https://www.rippletea.com/cdn/shop/files/FoP_500g.jpg?v=1722936247&width=535"
+        },
+        {
+          "productId": "prod_black_pepper",
+          "productName": "Malabar Tellicherry Black Pepper (Garbled)",
+          "productSlug": "malabar-black-pepper",
+          "variantId": "v_bp_100",
+          "sku": "SR-BP-100G",
+          "packSize": "100 g",
+          "unitPricePaise": 16000,
+          "quantity": 1,
+          "lineTotalPaise": 16000,
+          "image": "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1000&q=80"
+        }
+      ],
+      "orderNumber": "SR-2026-42838",
+      "paymentAuditLogs": [
+        {
+          "previousStatus": "CREATED",
+          "newStatus": "AWAITING_PAYMENT",
+          "timestamp": "2026-11-01T17:26:59.101Z",
+          "changedBy": "system",
+          "note": "Order initialized with payment method: upi_manual"
+        }
+      ],
+      "paymentMethod": "upi_manual",
+      "paymentStatus": "AWAITING_PAYMENT",
+      "priceBreakdown": {
+        "subtotalPaise": 31000,
+        "discountPaise": 0,
+        "shippingFeePaise": 10000,
+        "taxPaise": 1550,
+        "totalPaise": 42550
+      },
+      "shippingAddress": {
+        "name": "cyn albertoz",
+        "phone": "9562570191",
+        "addressLine": "Vaigai appartment",
+        "landmark": "Vaigai appartment",
+        "city": "Madurai",
+        "state": "Tamil Nadu",
+        "pincode": "625017",
+        "isDefault": false
+      },
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-11-01T17:26:59.101Z",
+          "note": "Order created for Direct UPI payment. Awaiting customer transfer."
+        },
+        {
+          "status": "shipped",
+          "timestamp": "2026-11-01T17:52:12.674Z",
+          "note": "Status updated to shipped from recent orders panel",
+          "updatedBy": "Spice Roots Admin"
+        }
+      ],
+      "updatedAt": "2026-11-01T17:52:12.675Z",
+      "userId": "usr_1792780341407_0lx6q",
+      "courierName": "Blue Dart Express",
+      "trackingNumber": "aws123556"
+    },
+    {
+      "_id": "ord_1793554437892_ds7nq",
+      "id": "ord_1793554437892_ds7nq",
+      "__v": 0,
+      "createdAt": "2026-11-01T17:33:57.892Z",
+      "customerEmail": "harihvk920@gmail.com",
+      "customerName": "HARI_ H.V.K",
+      "customerPhone": "9400499098",
+      "fulfillmentStatus": "pending",
+      "items": [
+        {
+          "productId": "prod_1792772845838_3qtjd",
+          "productName": "Premium Dust Tea",
+          "productSlug": "premium-dust-tea-259",
+          "variantId": "v_1792772724377",
+          "sku": "SR-NEW-100G",
+          "packSize": "100 g",
+          "unitPricePaise": 15000,
+          "quantity": 1,
+          "lineTotalPaise": 15000,
+          "image": "https://www.rippletea.com/cdn/shop/files/FoP_500g.jpg?v=1722936247&width=535"
+        }
+      ],
+      "orderNumber": "SR-2026-54932",
+      "paymentAuditLogs": [
+        {
+          "previousStatus": "CREATED",
+          "newStatus": "AWAITING_PAYMENT",
+          "timestamp": "2026-11-01T17:33:57.891Z",
+          "changedBy": "system",
+          "note": "Order initialized with payment method: upi_manual"
+        }
+      ],
+      "paymentMethod": "upi_manual",
+      "paymentStatus": "AWAITING_PAYMENT",
+      "priceBreakdown": {
+        "subtotalPaise": 15000,
+        "discountPaise": 0,
+        "shippingFeePaise": 6000,
+        "taxPaise": 750,
+        "totalPaise": 21750
+      },
+      "shippingAddress": {
+        "name": "HARI_ H.V.K",
+        "phone": "9400499098",
+        "addressLine": "Mg Colony",
+        "landmark": "Opg nest",
+        "city": "Munnar",
+        "state": "Kerala",
+        "pincode": "685612",
+        "isDefault": false
+      },
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-11-01T17:33:57.891Z",
+          "note": "Order created for Direct UPI payment. Awaiting customer transfer."
+        }
+      ],
+      "updatedAt": "2026-11-01T17:33:57.892Z",
+      "userId": "usr_1793297774168_kcwj6"
     }
   ],
   "coupons": [
@@ -2766,9 +2709,9 @@
       "rating": 5,
       "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
       "isVerifiedPurchase": true,
-      "createdAt": "2026-10-29T17:55:23.960Z",
-      "id": "rev_1793296523960",
-      "_id": "rev_1793296523960"
+      "createdAt": "2026-11-02T12:22:35.890Z",
+      "id": "rev_1793622155890",
+      "_id": "rev_1793622155890"
     },
     {
       "productId": "prod_green_cardamom_8mm",
@@ -2776,9 +2719,9 @@
       "rating": 5,
       "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
       "isVerifiedPurchase": true,
-      "createdAt": "2026-10-29T17:55:23.962Z",
-      "id": "rev_1793296523961",
-      "_id": "rev_1793296523961"
+      "createdAt": "2026-11-02T12:22:35.892Z",
+      "id": "rev_1793622155892",
+      "_id": "rev_1793622155892"
     },
     {
       "productId": "prod_kolukkumalai_tea",
@@ -2786,9 +2729,9 @@
       "rating": 5,
       "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
       "isVerifiedPurchase": true,
-      "createdAt": "2026-10-29T17:55:23.963Z",
-      "id": "rev_1793296523963",
-      "_id": "rev_1793296523963"
+      "createdAt": "2026-11-02T12:22:35.895Z",
+      "id": "rev_1793622155895",
+      "_id": "rev_1793622155895"
     },
     {
       "productId": "prod_black_pepper",
@@ -2796,9 +2739,9 @@
       "rating": 5,
       "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
       "isVerifiedPurchase": true,
-      "createdAt": "2026-10-29T17:55:24.485Z",
-      "id": "rev_1793296524485",
-      "_id": "rev_1793296524485"
+      "createdAt": "2026-11-02T12:22:36.369Z",
+      "id": "rev_1793622156369",
+      "_id": "rev_1793622156369"
     },
     {
       "productId": "prod_green_cardamom_8mm",
@@ -2806,9 +2749,9 @@
       "rating": 5,
       "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
       "isVerifiedPurchase": true,
-      "createdAt": "2026-10-29T17:55:24.486Z",
-      "id": "rev_1793296524486",
-      "_id": "rev_1793296524486"
+      "createdAt": "2026-11-02T12:22:36.374Z",
+      "id": "rev_1793622156374",
+      "_id": "rev_1793622156374"
     },
     {
       "productId": "prod_kolukkumalai_tea",
@@ -2816,429 +2759,9 @@
       "rating": 5,
       "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
       "isVerifiedPurchase": true,
-      "createdAt": "2026-10-29T17:55:24.487Z",
-      "id": "rev_1793296524487",
-      "_id": "rev_1793296524487"
-    },
-    {
-      "productId": "prod_black_pepper",
-      "customerName": "Ananya Nair (Kochi)",
-      "rating": 5,
-      "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:13:41.496Z",
-      "id": "rev_1793556821496",
-      "_id": "rev_1793556821496"
-    },
-    {
-      "productId": "prod_green_cardamom_8mm",
-      "customerName": "Chef Vikramaditya (Mumbai)",
-      "rating": 5,
-      "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:13:41.497Z",
-      "id": "rev_1793556821497",
-      "_id": "rev_1793556821497"
-    },
-    {
-      "productId": "prod_kolukkumalai_tea",
-      "customerName": "Priya Sundaram (Chennai)",
-      "rating": 5,
-      "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:13:41.499Z",
-      "id": "rev_1793556821499",
-      "_id": "rev_1793556821499"
-    },
-    {
-      "productId": "prod_black_pepper",
-      "customerName": "Ananya Nair (Kochi)",
-      "rating": 5,
-      "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:13:42.360Z",
-      "id": "rev_1793556822360",
-      "_id": "rev_1793556822360"
-    },
-    {
-      "productId": "prod_green_cardamom_8mm",
-      "customerName": "Chef Vikramaditya (Mumbai)",
-      "rating": 5,
-      "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:13:42.361Z",
-      "id": "rev_1793556822361",
-      "_id": "rev_1793556822361"
-    },
-    {
-      "productId": "prod_kolukkumalai_tea",
-      "customerName": "Priya Sundaram (Chennai)",
-      "rating": 5,
-      "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:13:42.363Z",
-      "id": "rev_1793556822363",
-      "_id": "rev_1793556822363"
-    },
-    {
-      "productId": "prod_black_pepper",
-      "customerName": "Ananya Nair (Kochi)",
-      "rating": 5,
-      "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:21:06.237Z",
-      "id": "rev_1793557266237",
-      "_id": "rev_1793557266237"
-    },
-    {
-      "productId": "prod_green_cardamom_8mm",
-      "customerName": "Chef Vikramaditya (Mumbai)",
-      "rating": 5,
-      "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:21:06.238Z",
-      "id": "rev_1793557266238",
-      "_id": "rev_1793557266238"
-    },
-    {
-      "productId": "prod_kolukkumalai_tea",
-      "customerName": "Priya Sundaram (Chennai)",
-      "rating": 5,
-      "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:21:06.240Z",
-      "id": "rev_1793557266240",
-      "_id": "rev_1793557266240"
-    },
-    {
-      "productId": "prod_black_pepper",
-      "customerName": "Ananya Nair (Kochi)",
-      "rating": 5,
-      "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:21:06.506Z",
-      "id": "rev_1793557266506",
-      "_id": "rev_1793557266506"
-    },
-    {
-      "productId": "prod_green_cardamom_8mm",
-      "customerName": "Chef Vikramaditya (Mumbai)",
-      "rating": 5,
-      "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:21:06.507Z",
-      "id": "rev_1793557266507",
-      "_id": "rev_1793557266507"
-    },
-    {
-      "productId": "prod_kolukkumalai_tea",
-      "customerName": "Priya Sundaram (Chennai)",
-      "rating": 5,
-      "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:21:06.510Z",
-      "id": "rev_1793557266510",
-      "_id": "rev_1793557266510"
-    },
-    {
-      "productId": "prod_black_pepper",
-      "customerName": "Ananya Nair (Kochi)",
-      "rating": 5,
-      "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:21:24.247Z",
-      "id": "rev_1793557284247",
-      "_id": "rev_1793557284247"
-    },
-    {
-      "productId": "prod_green_cardamom_8mm",
-      "customerName": "Chef Vikramaditya (Mumbai)",
-      "rating": 5,
-      "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:21:24.249Z",
-      "id": "rev_1793557284249",
-      "_id": "rev_1793557284249"
-    },
-    {
-      "productId": "prod_kolukkumalai_tea",
-      "customerName": "Priya Sundaram (Chennai)",
-      "rating": 5,
-      "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:21:24.251Z",
-      "id": "rev_1793557284251",
-      "_id": "rev_1793557284251"
-    },
-    {
-      "productId": "prod_black_pepper",
-      "customerName": "Ananya Nair (Kochi)",
-      "rating": 5,
-      "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:21:24.503Z",
-      "id": "rev_1793557284503",
-      "_id": "rev_1793557284503"
-    },
-    {
-      "productId": "prod_green_cardamom_8mm",
-      "customerName": "Chef Vikramaditya (Mumbai)",
-      "rating": 5,
-      "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:21:24.505Z",
-      "id": "rev_1793557284505",
-      "_id": "rev_1793557284505"
-    },
-    {
-      "productId": "prod_kolukkumalai_tea",
-      "customerName": "Priya Sundaram (Chennai)",
-      "rating": 5,
-      "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:21:24.507Z",
-      "id": "rev_1793557284507",
-      "_id": "rev_1793557284507"
-    },
-    {
-      "productId": "prod_black_pepper",
-      "customerName": "Ananya Nair (Kochi)",
-      "rating": 5,
-      "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:21:44.244Z",
-      "id": "rev_1793557304244",
-      "_id": "rev_1793557304244"
-    },
-    {
-      "productId": "prod_green_cardamom_8mm",
-      "customerName": "Chef Vikramaditya (Mumbai)",
-      "rating": 5,
-      "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:21:44.247Z",
-      "id": "rev_1793557304247",
-      "_id": "rev_1793557304247"
-    },
-    {
-      "productId": "prod_kolukkumalai_tea",
-      "customerName": "Priya Sundaram (Chennai)",
-      "rating": 5,
-      "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:21:44.249Z",
-      "id": "rev_1793557304249",
-      "_id": "rev_1793557304249"
-    },
-    {
-      "productId": "prod_black_pepper",
-      "customerName": "Ananya Nair (Kochi)",
-      "rating": 5,
-      "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:21:44.468Z",
-      "id": "rev_1793557304468",
-      "_id": "rev_1793557304468"
-    },
-    {
-      "productId": "prod_green_cardamom_8mm",
-      "customerName": "Chef Vikramaditya (Mumbai)",
-      "rating": 5,
-      "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:21:44.470Z",
-      "id": "rev_1793557304470",
-      "_id": "rev_1793557304470"
-    },
-    {
-      "productId": "prod_kolukkumalai_tea",
-      "customerName": "Priya Sundaram (Chennai)",
-      "rating": 5,
-      "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:21:44.472Z",
-      "id": "rev_1793557304472",
-      "_id": "rev_1793557304472"
-    },
-    {
-      "productId": "prod_black_pepper",
-      "customerName": "Ananya Nair (Kochi)",
-      "rating": 5,
-      "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:22:49.579Z",
-      "id": "rev_1793557369579",
-      "_id": "rev_1793557369579"
-    },
-    {
-      "productId": "prod_green_cardamom_8mm",
-      "customerName": "Chef Vikramaditya (Mumbai)",
-      "rating": 5,
-      "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:22:49.582Z",
-      "id": "rev_1793557369582",
-      "_id": "rev_1793557369582"
-    },
-    {
-      "productId": "prod_kolukkumalai_tea",
-      "customerName": "Priya Sundaram (Chennai)",
-      "rating": 5,
-      "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:22:49.586Z",
-      "id": "rev_1793557369586",
-      "_id": "rev_1793557369586"
-    },
-    {
-      "productId": "prod_black_pepper",
-      "customerName": "Ananya Nair (Kochi)",
-      "rating": 5,
-      "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:22:49.822Z",
-      "id": "rev_1793557369822",
-      "_id": "rev_1793557369822"
-    },
-    {
-      "productId": "prod_green_cardamom_8mm",
-      "customerName": "Chef Vikramaditya (Mumbai)",
-      "rating": 5,
-      "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:22:49.823Z",
-      "id": "rev_1793557369823",
-      "_id": "rev_1793557369823"
-    },
-    {
-      "productId": "prod_kolukkumalai_tea",
-      "customerName": "Priya Sundaram (Chennai)",
-      "rating": 5,
-      "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-01T18:22:49.825Z",
-      "id": "rev_1793557369825",
-      "_id": "rev_1793557369825"
-    },
-    {
-      "productId": "prod_black_pepper",
-      "customerName": "Ananya Nair (Kochi)",
-      "rating": 5,
-      "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-02T08:31:13.885Z",
-      "id": "rev_1793608273885",
-      "_id": "rev_1793608273885"
-    },
-    {
-      "productId": "prod_green_cardamom_8mm",
-      "customerName": "Chef Vikramaditya (Mumbai)",
-      "rating": 5,
-      "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-02T08:31:13.887Z",
-      "id": "rev_1793608273887",
-      "_id": "rev_1793608273887"
-    },
-    {
-      "productId": "prod_kolukkumalai_tea",
-      "customerName": "Priya Sundaram (Chennai)",
-      "rating": 5,
-      "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-02T08:31:13.890Z",
-      "id": "rev_1793608273890",
-      "_id": "rev_1793608273890"
-    },
-    {
-      "productId": "prod_black_pepper",
-      "customerName": "Ananya Nair (Kochi)",
-      "rating": 5,
-      "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-02T08:31:14.865Z",
-      "id": "rev_1793608274865",
-      "_id": "rev_1793608274865"
-    },
-    {
-      "productId": "prod_green_cardamom_8mm",
-      "customerName": "Chef Vikramaditya (Mumbai)",
-      "rating": 5,
-      "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-02T08:31:14.866Z",
-      "id": "rev_1793608274866",
-      "_id": "rev_1793608274866"
-    },
-    {
-      "productId": "prod_kolukkumalai_tea",
-      "customerName": "Priya Sundaram (Chennai)",
-      "rating": 5,
-      "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-02T08:31:14.868Z",
-      "id": "rev_1793608274868",
-      "_id": "rev_1793608274868"
-    },
-    {
-      "productId": "prod_black_pepper",
-      "customerName": "Ananya Nair (Kochi)",
-      "rating": 5,
-      "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-02T09:07:18.103Z",
-      "id": "rev_1793610438103",
-      "_id": "rev_1793610438103"
-    },
-    {
-      "productId": "prod_green_cardamom_8mm",
-      "customerName": "Chef Vikramaditya (Mumbai)",
-      "rating": 5,
-      "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-02T09:07:18.104Z",
-      "id": "rev_1793610438104",
-      "_id": "rev_1793610438104"
-    },
-    {
-      "productId": "prod_kolukkumalai_tea",
-      "customerName": "Priya Sundaram (Chennai)",
-      "rating": 5,
-      "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-02T09:07:18.106Z",
-      "id": "rev_1793610438106",
-      "_id": "rev_1793610438106"
-    },
-    {
-      "productId": "prod_black_pepper",
-      "customerName": "Ananya Nair (Kochi)",
-      "rating": 5,
-      "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-02T09:07:18.465Z",
-      "id": "rev_1793610438465",
-      "_id": "rev_1793610438465"
-    },
-    {
-      "productId": "prod_green_cardamom_8mm",
-      "customerName": "Chef Vikramaditya (Mumbai)",
-      "rating": 5,
-      "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-02T09:07:18.467Z",
-      "id": "rev_1793610438467",
-      "_id": "rev_1793610438467"
-    },
-    {
-      "productId": "prod_kolukkumalai_tea",
-      "customerName": "Priya Sundaram (Chennai)",
-      "rating": 5,
-      "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-02T09:07:18.469Z",
-      "id": "rev_1793610438469",
-      "_id": "rev_1793610438469"
+      "createdAt": "2026-11-02T12:22:36.377Z",
+      "id": "rev_1793622156377",
+      "_id": "rev_1793622156377"
     }
   ],
   "shippingRates": [
@@ -3313,7 +2836,7 @@
     "merchantUpiId": "cynalbertoz@sbi",
     "merchantWhatsappNumber": "919188570191",
     "legalBusinessName": "Kalaivani Spices & Plantation Depot",
-    "gstin": "32AAAAA0000A1Z5",
+    "gstin": "",
     "pan": "",
     "invoicePrefix": "SR-INV-",
     "aboutStory": "Founded amidst the mist-clad hills of Munnar and the lush slopes of the Western Ghats, Spice Roots (Kalaivani Spices) connects generational spice planters with kitchens that revere authenticity. Each peppercorn, cardamom pod, and hand-rolled cinnamon quill is selected for peak essential oil content, zero adulteration, and traditional sun-drying practices.",
@@ -3324,6 +2847,6 @@
     "_id": "6ad3b4c6cb7ee1dcd71d1b49",
     "__v": 0,
     "createdAt": "2026-10-17T17:47:50.550Z",
-    "updatedAt": "2026-10-29T16:58:37.985Z"
+    "updatedAt": "2026-11-02T10:06:57.884Z"
   }
 }

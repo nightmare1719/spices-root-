@@ -42,15 +42,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   return (
-    <div className="group rounded-xl sm:rounded-2xl overflow-hidden flex flex-col h-full bg-white border border-[#E5DED0] hover:border-[#D0AE70] hover:shadow-md transition-all duration-200">
+    <div className="group rounded-xl overflow-hidden flex flex-col h-full bg-[#1c1b1d] border border-[#d4af37]/20 hover:border-[#d4af37]/60 hover:shadow-[0_12px_36px_-8px_rgba(0,0,0,0.9),0_0_24px_0_rgba(212,175,55,0.18)] transition-all duration-300">
       
-      {/* Uniform Image Container (Meesho Style 1:1 Aspect Ratio) */}
-      <div className="relative aspect-square w-full overflow-hidden bg-[#F7F2E8]">
+      {/* Uniform Image Container (Stitch 1:1 Aspect Ratio against dark slate canvas) */}
+      <div className="relative aspect-square w-full overflow-hidden bg-[#0e0e10]">
         <Link to={`/product/${product.slug}`} className="block w-full h-full">
           <img
             src={product.images[0] || 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80'}
             alt={product.name}
-            className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
             loading="lazy"
           />
         </Link>
@@ -64,8 +64,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           }}
           className={`absolute top-2 right-2 p-1.5 sm:p-2 rounded-full transition-all z-10 shadow-xs cursor-pointer ${
             isSaved 
-              ? 'bg-[#A94F38] text-white' 
-              : 'bg-white/90 backdrop-blur-xs text-[#171814] hover:text-[#A94F38] hover:bg-white'
+              ? 'bg-[#c25e2e] text-white' 
+              : 'bg-[#0e0e10]/80 backdrop-blur-xs text-[#d0c5af] hover:text-[#d4af37] hover:bg-[#1c1b1d]'
           }`}
           aria-label={isSaved ? 'Remove from wishlist' : 'Add to wishlist'}
         >
@@ -75,37 +75,37 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {/* Top-Left Badges (Discount or Estate Reserve) */}
         <div className="absolute top-2 left-2 flex flex-col gap-1 z-10 pointer-events-none">
           {discountPercent > 0 && (
-            <span className="bg-[#A94F38] text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded shadow-xs">
+            <span className="bg-[#c25e2e] text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider shadow-xs">
               {discountPercent}% OFF
             </span>
           )}
           {product.isFeatured && (
-            <span className="bg-[#171814] text-[#D0AE70] text-[8px] sm:text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded shadow-xs border border-[#D0AE70]/30">
-              Reserve
+            <span className="bg-[#d4af37] text-[#131315] text-[8px] sm:text-[9px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded shadow-xs">
+              Vault Reserve
             </span>
           )}
         </div>
       </div>
 
-      {/* Meesho Catalog Style Info Section */}
-      <div className="p-2 sm:p-3 flex flex-col flex-1 justify-between gap-1.5">
+      {/* Stitch Vault Card Info Section */}
+      <div className="p-2.5 sm:p-3.5 flex flex-col flex-1 justify-between gap-1.5 bg-[#1c1b1d]">
         <div>
           {/* Product Title */}
-          <Link to={`/product/${product.slug}`} className="block group-hover:text-[#D0AE70] transition-colors">
-            <h3 className="text-xs sm:text-sm font-semibold text-[#292A25] line-clamp-1 sm:line-clamp-2 leading-snug font-product">
+          <Link to={`/product/${product.slug}`} className="block group-hover:text-[#d4af37] transition-colors">
+            <h3 className="text-xs sm:text-sm font-semibold text-[#e5e1e4] line-clamp-1 sm:line-clamp-2 leading-snug font-editorial">
               {product.name}
             </h3>
           </Link>
 
           {/* Pack Size / Variant Selector (Compact) */}
-          <div className="flex items-center gap-1 mt-1 text-[10px] text-[#77766E]">
-            <span>Pack:</span>
+          <div className="flex items-center gap-1 mt-1 text-[10px] text-[#99907c]">
+            <span className="uppercase tracking-wider">Pack:</span>
             {product.variants.length > 1 ? (
               <select
                 value={selectedVariantIndex}
                 onChange={(e) => setSelectedVariantIndex(Number(e.target.value))}
                 onClick={(e) => e.stopPropagation()}
-                className="text-[10px] font-semibold bg-[#F7F2E8] text-[#292A25] border border-[#E5DED0] rounded px-1.5 py-0.5 focus:border-[#D0AE70] cursor-pointer"
+                className="text-[10px] font-semibold bg-[#201f22] text-[#d0c5af] border border-[#353437] rounded px-1.5 py-0.5 focus:border-[#d4af37] cursor-pointer"
                 aria-label="Select Pack Size"
               >
                 {product.variants.map((v, idx) => (
@@ -115,65 +115,65 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 ))}
               </select>
             ) : (
-              <span className="font-semibold text-[#292A25] bg-[#F7F2E8] border border-[#E5DED0] px-1.5 py-0.5 rounded">
+              <span className="font-semibold text-[#d0c5af] bg-[#201f22] border border-[#353437] px-1.5 py-0.5 rounded">
                 {selectedVariant.packSize}
               </span>
             )}
           </div>
 
-          {/* Price Tag (Meesho Style: Bold Price + Strikethrough Compare Price) */}
+          {/* Price Tag (Gold Price + Strikethrough Compare Price) */}
           <div className="flex items-baseline gap-1.5 mt-1.5 flex-wrap">
-            <span className="text-sm sm:text-base font-extrabold text-[#435B43] font-product">
+            <span className="text-sm sm:text-base font-bold text-[#f2ca50] font-sans">
               {formatINR(selectedVariant.pricePaise)}
             </span>
             {selectedVariant.comparePricePaise && selectedVariant.comparePricePaise > selectedVariant.pricePaise && (
-              <span className="text-[10px] sm:text-xs text-[#77766E] line-through font-product">
+              <span className="text-[10px] sm:text-xs text-[#99907c] line-through font-sans">
                 {formatINR(selectedVariant.comparePricePaise)}
               </span>
             )}
           </div>
 
-          {/* Meesho Signature Rating Badge (Solid Pill + Star + Review Count) */}
+          {/* Rating Badge */}
           <div className="flex items-center gap-1.5 mt-1">
-            <span className="inline-flex items-center gap-0.5 bg-[#171814] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-sm">
+            <span className="inline-flex items-center gap-0.5 bg-[#201f22] text-[#e5e1e4] border border-[#353437] text-[10px] font-bold px-1.5 py-0.5 rounded-sm">
               <span>{product.rating.toFixed(1)}</span>
-              <Star className="w-2.5 h-2.5 fill-[#D0AE70] text-[#D0AE70]" />
+              <Star className="w-2.5 h-2.5 fill-[#d4af37] text-[#d4af37]" />
             </span>
-            <span className="text-[10px] text-[#77766E]">
-              ({product.reviewCount})
+            <span className="text-[10px] text-[#99907c]">
+              ({product.reviewCount} reviews)
             </span>
           </div>
 
           {/* Delivery Note */}
-          <span className="text-[9px] text-[#77766E] font-medium block mt-1">
-            Free Delivery on ₹499+
+          <span className="text-[9px] text-[#99907c] font-medium block mt-1 uppercase tracking-wider">
+            Complimentary dispatch on ₹499+
           </span>
         </div>
 
-        {/* Action Button: Compact, Clean Black & Gold Add to Bag Button */}
+        {/* Action Button: Gilded Gold Add Button */}
         <button
           onClick={handleAddToCart}
           disabled={isOutOfStock || isAdding}
-          className={`w-full mt-2 py-1.5 px-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+          className={`w-full mt-2.5 py-2 px-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer font-sans ${
             isOutOfStock
-              ? 'bg-[#E5DED0] text-[#77766E] cursor-not-allowed'
+              ? 'bg-[#2a2a2c] text-[#99907c] cursor-not-allowed border border-[#353437]'
               : justAdded
-              ? 'bg-[#435B43] text-white'
-              : 'bg-[#171814] text-[#D0AE70] hover:bg-[#D0AE70] hover:text-[#171814] border border-[#171814] active:scale-98 shadow-xs'
+              ? 'bg-[#435b43] text-white shadow-md'
+              : 'bg-[#d4af37] text-[#131315] hover:bg-[#f2ca50] active:scale-98 shadow-sm hover:shadow-[0_0_16px_rgba(212,175,55,0.35)]'
           }`}
           aria-label={isOutOfStock ? 'Sold Out' : justAdded ? 'Added to Cart' : `Add ${product.name} to Cart`}
         >
           {justAdded ? (
             <>
               <Check className="w-3.5 h-3.5 text-white" />
-              <span>Added</span>
+              <span>Acquired</span>
             </>
           ) : isOutOfStock ? (
-            <span>Sold Out</span>
+            <span>Allocation Exhausted</span>
           ) : (
             <>
               <ShoppingBag className="w-3.5 h-3.5" />
-              <span>Add</span>
+              <span>Acquire to Vault</span>
             </>
           )}
         </button>

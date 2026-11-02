@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { api } from '../services/api.js';
 import { useCart } from '../context/CartContext.js';
 import { formatINR } from '../utils/format.js';
-import { 
-  MessageSquare, X, Send, Sparkles, Bot, User, 
-  ShoppingBag, ArrowRight, Check, RefreshCw 
+import {
+  MessageSquare, X, Send, Sparkles, Bot, User,
+  ShoppingBag, ArrowRight, Check, RefreshCw
 } from 'lucide-react';
 
 interface ChatMessage {
@@ -31,7 +31,7 @@ export const AiAssistantWidget: React.FC = () => {
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [addedIds, setAddedIds] = useState<Record<string, boolean>>({});
-  
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -134,13 +134,13 @@ export const AiAssistantWidget: React.FC = () => {
             aria-label="Open AI Spice Assistant"
           >
             <div className="relative">
-              <Bot className="w-5 h-5 text-[#D0AE70] group-hover:rotate-12 transition-transform" />
-              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#D0AE70] rounded-full animate-ping" />
-              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#D0AE70] rounded-full" />
+              <Bot className="w-5 h-5 text-[#d4af37] group-hover:rotate-12 transition-transform" />
+              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#d4af37] rounded-full animate-ping" />
+              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#d4af37] rounded-full" />
             </div>
             <div className="text-left hidden sm:block">
-              <p className="text-xs font-bold tracking-wide text-[#D0AE70]">Spice Roots AI</p>
-              <p className="text-[10px] text-[#D8D0C0] -mt-0.5">Culinary Assistant</p>
+              <p className="text-xs font-bold tracking-wide text-[#d4af37]">Spice Roots AI</p>
+              <p className="text-[10px] text-[#d0c5af] -mt-0.5">Vault Sommelier</p>
             </div>
           </button>
         )}
@@ -148,29 +148,29 @@ export const AiAssistantWidget: React.FC = () => {
 
       {/* Floating Chat Modal / Drawer */}
       {isOpen && (
-        <div className="fixed bottom-16 right-2 sm:bottom-6 sm:right-6 z-50 w-[95vw] sm:w-[420px] h-[560px] max-h-[80vh] bg-[#F7F2E8] rounded-2xl shadow-2xl border border-[#E5DED0] flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-300">
-          
+        <div className="fixed bottom-16 right-2 sm:bottom-6 sm:right-6 z-50 w-[95vw] sm:w-[420px] h-[560px] max-h-[80vh] bg-[#131315] rounded-2xl shadow-2xl border border-[#d4af37]/35 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-300">
+
           {/* Header */}
-          <div className="bg-[#171814] text-[#F7F2E8] p-4 flex items-center justify-between border-b border-[#D0AE70]/30">
+          <div className="bg-[#0e0e10] text-[#e5e1e4] p-4 flex items-center justify-between border-b border-[#353437]">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-full bg-[#292A25] border border-[#D0AE70]/40 flex items-center justify-center shrink-0">
-                <Bot className="w-5 h-5 text-[#D0AE70]" />
+              <div className="w-9 h-9 rounded-full bg-[#1c1b1d] border border-[#d4af37]/40 flex items-center justify-center shrink-0">
+                <Bot className="w-5 h-5 text-[#d4af37]" />
               </div>
               <div>
-                <h3 className="font-editorial text-base font-bold text-[#D0AE70] flex items-center gap-1.5">
-                  <span>Spice Roots Concierge</span>
-                  <Sparkles className="w-3.5 h-3.5 text-[#D0AE70]" />
+                <h3 className="font-editorial text-base font-bold text-[#d4af37] flex items-center gap-1.5">
+                  <span>Vault Sommelier Advisor</span>
+                  <Sparkles className="w-3.5 h-3.5 text-[#d4af37]" />
                 </h3>
-                <p className="text-[11px] text-[#D8D0C0] flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 bg-[#435B43] rounded-full inline-block" />
-                  Western Ghats Catalog Assistant
+                <p className="text-[11px] text-[#d0c5af] flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 bg-[#435b43] rounded-full inline-block" />
+                  Terroir & Botanical Pairing Engine
                 </p>
               </div>
             </div>
 
             <button
               onClick={() => setIsOpen(false)}
-              className="p-1.5 text-[#D8D0C0] hover:text-white rounded-full hover:bg-white/10 transition-colors"
+              className="p-1.5 text-[#d0c5af] hover:text-[#d4af37] rounded-full hover:bg-white/10 transition-colors cursor-pointer"
               aria-label="Close assistant"
             >
               <X className="w-5 h-5" />
@@ -178,64 +178,63 @@ export const AiAssistantWidget: React.FC = () => {
           </div>
 
           {/* Messages Container */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#F7F2E8]">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#131315]">
             {messages.map((msg) => (
               <div
                 key={msg.id}
                 className={`flex gap-2.5 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 {msg.role === 'assistant' && (
-                  <div className="w-7 h-7 rounded-full bg-[#171814] text-[#D0AE70] flex items-center justify-center shrink-0 mt-1">
+                  <div className="w-7 h-7 rounded-full bg-[#1c1b1d] border border-[#d4af37]/30 text-[#d4af37] flex items-center justify-center shrink-0 mt-1">
                     <Bot className="w-4 h-4" />
                   </div>
                 )}
 
                 <div className={`max-w-[85%] ${msg.role === 'user' ? 'items-end' : 'items-start'} flex flex-col`}>
                   <div
-                    className={`p-3.5 rounded-2xl text-xs sm:text-[13px] leading-relaxed ${
-                      msg.role === 'user'
-                        ? 'bg-[#171814] text-[#F7F2E8] rounded-br-xs'
-                        : 'bg-white text-[#292A25] border border-[#E5DED0] rounded-bl-xs shadow-xs'
-                    }`}
+                    className={`p-3.5 rounded-2xl text-xs sm:text-[13px] leading-relaxed ${msg.role === 'user'
+                        ? 'bg-[#d4af37] text-[#131315] font-medium rounded-br-xs'
+                        : 'bg-[#1c1b1d] text-[#e5e1e4] border border-[#353437] rounded-bl-xs shadow-xs'
+                      }`}
                   >
-                    <div 
+                    <div
                       className="whitespace-pre-line"
-                      dangerouslySetInnerHTML={{ 
-                        __html: msg.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
-                      }} 
+                      dangerouslySetInnerHTML={{
+                        __html: msg.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                      }}
                     />
                   </div>
 
                   {/* Product Recommendations Cards */}
                   {msg.recommendedProducts && msg.recommendedProducts.length > 0 && (
                     <div className="w-full mt-2.5 space-y-2">
-                      <p className="text-[11px] font-bold text-[#171814] flex items-center gap-1">
-                        <Sparkles className="w-3 h-3 text-[#D0AE70]" />
-                        Recommended from Our Catalog:
+                      <p className="text-[11px] font-bold text-[#d4af37] flex items-center gap-1 uppercase tracking-wider">
+                        <Sparkles className="w-3 h-3 text-[#d4af37]" />
+                        Vault Curations Selected:
                       </p>
 
                       <div className="grid grid-cols-1 gap-2">
                         {msg.recommendedProducts.map((prod) => (
                           <div
                             key={prod.id}
-                            className="bg-white p-2.5 rounded-xl border border-[#E5DED0] flex items-center gap-3 shadow-xs hover:border-[#D0AE70] transition-all"
+                            className="bg-[#1c1b1d] p-2.5 rounded-xl border border-[#353437] flex items-center gap-3 shadow-xs hover:border-[#d4af37]/50 transition-all"
                           >
                             <img
                               src={prod.image}
                               alt={prod.name}
-                              className="w-14 h-14 object-cover rounded-lg bg-[#F7F2E8] shrink-0 border border-[#E5DED0]"
+                              className="w-14 h-14 object-cover rounded-lg bg-[#0e0e10] shrink-0 border border-[#353437]"
                             />
                             <div className="flex-1 min-w-0">
-                              <h4 className="text-xs font-bold text-[#171814] truncate font-product">{prod.name}</h4>
-                              <p className="text-[11px] text-[#77766E]">
-                                {prod.packSize} • <strong className="text-[#435B43] font-product">{formatINR(prod.pricePaise)}</strong>
+                              <h4 className="text-xs font-bold text-[#e5e1e4] truncate font-editorial">{prod.name}</h4>
+                              <p className="text-[11px] text-[#99907c]">
+                                {prod.packSize} • <strong className="text-[#f2ca50] font-sans">{formatINR(prod.pricePaise)}</strong>
                               </p>
-                              
+
                               <div className="flex items-center gap-2 mt-1.5">
                                 <Link
                                   to={`/product/${prod.slug}`}
                                   onClick={() => setIsOpen(false)}
-                                  className="text-[10px] font-semibold text-[#D0AE70] hover:underline flex items-center gap-0.5"
+                                  className="text-[10px] font-semibold text-[#d4af37] hover:underline flex items-center gap-0.5"
                                 >
                                   <span>View</span>
                                   <ArrowRight className="w-2.5 h-2.5" />
@@ -243,11 +242,10 @@ export const AiAssistantWidget: React.FC = () => {
 
                                 <button
                                   onClick={() => handleQuickAdd(prod)}
-                                  className={`text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 transition-all ${
-                                    addedIds[prod.id]
-                                      ? 'bg-[#435B43] text-white'
-                                      : 'bg-[#D0AE70] text-[#171814] hover:bg-[#B99153]'
-                                  }`}
+                                  className={`text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 transition-all cursor-pointer ${addedIds[prod.id]
+                                      ? 'bg-[#435b43] text-white'
+                                      : 'bg-[#d4af37] text-[#131315] hover:bg-[#f2ca50]'
+                                    }`}
                                 >
                                   {addedIds[prod.id] ? (
                                     <>
@@ -256,8 +254,8 @@ export const AiAssistantWidget: React.FC = () => {
                                     </>
                                   ) : (
                                     <>
-                                      <ShoppingBag className="w-3 h-3 text-[#171814]" />
-                                      <span>Add to Cart</span>
+                                      <ShoppingBag className="w-3 h-3 text-[#131315]" />
+                                      <span>Acquire</span>
                                     </>
                                   )}
                                 </button>
@@ -276,7 +274,7 @@ export const AiAssistantWidget: React.FC = () => {
                         <button
                           key={idx}
                           onClick={() => handleSendMessage(chip)}
-                          className="text-[11px] bg-white border border-[#E5DED0] text-[#292A25] hover:border-[#D0AE70] hover:text-[#D0AE70] px-2.5 py-1 rounded-full transition-colors"
+                          className="text-[11px] bg-[#1c1b1d] border border-[#353437] text-[#d0c5af] hover:border-[#d4af37] hover:text-[#f2ca50] px-2.5 py-1 rounded-full transition-colors cursor-pointer"
                         >
                           {chip}
                         </button>
@@ -284,13 +282,13 @@ export const AiAssistantWidget: React.FC = () => {
                     </div>
                   )}
 
-                  <span className="text-[9px] text-[#77766E] mt-1 px-1">
+                  <span className="text-[9px] text-[#99907c] mt-1 px-1">
                     {msg.timestamp}
                   </span>
                 </div>
 
                 {msg.role === 'user' && (
-                  <div className="w-7 h-7 rounded-full bg-[#D0AE70] text-[#171814] flex items-center justify-center shrink-0 mt-1 font-bold text-xs">
+                  <div className="w-7 h-7 rounded-full bg-[#d4af37] text-[#131315] flex items-center justify-center shrink-0 mt-1 font-bold text-xs">
                     <User className="w-4 h-4" />
                   </div>
                 )}
@@ -298,9 +296,9 @@ export const AiAssistantWidget: React.FC = () => {
             ))}
 
             {isLoading && (
-              <div className="flex items-center gap-2 text-[#77766E] text-xs py-2 px-3 bg-white rounded-xl border border-[#E5DED0] w-fit">
-                <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#D0AE70]" />
-                <span>Checking plantation catalog...</span>
+              <div className="flex items-center gap-2 text-[#d0c5af] text-xs py-2 px-3 bg-[#1c1b1d] rounded-xl border border-[#353437] w-fit">
+                <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#d4af37]" />
+                <span>Consulting vault sommelier records...</span>
               </div>
             )}
 
@@ -308,27 +306,27 @@ export const AiAssistantWidget: React.FC = () => {
           </div>
 
           {/* Footer Input */}
-          <form 
+          <form
             onSubmit={(e) => {
               e.preventDefault();
               handleSendMessage();
             }}
-            className="p-3 bg-white border-t border-[#E5DED0] flex items-center gap-2"
+            className="p-3 bg-[#0e0e10] border-t border-[#353437] flex items-center gap-2"
           >
             <input
               type="text"
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
-              placeholder="Ask about spices, biryani, tea, or gifts..."
-              className="flex-1 text-xs sm:text-sm bg-[#F7F2E8] border border-[#E5DED0] text-[#292A25] rounded-full px-4 py-2 focus:outline-none focus:border-[#D0AE70]"
+              placeholder="Ask about terroirs, Tellicherry pepper, saffron, blends..."
+              className="flex-1 text-xs sm:text-sm bg-[#1c1b1d] border border-[#353437] text-[#e5e1e4] placeholder-[#99907c] rounded-full px-4 py-2 focus:outline-none focus:border-[#d4af37]"
             />
             <button
               type="submit"
               disabled={!inputMessage.trim() || isLoading}
-              className="p-2.5 bg-[#D0AE70] text-[#171814] rounded-full hover:bg-[#B99153] disabled:opacity-40 transition-colors shadow-xs"
+              className="p-2.5 bg-[#d4af37] text-[#131315] rounded-full hover:bg-[#f2ca50] disabled:opacity-40 transition-colors shadow-xs cursor-pointer"
               aria-label="Send message"
             >
-              <Send className="w-4 h-4 text-[#171814]" />
+              <Send className="w-4 h-4 text-[#131315]" />
             </button>
           </form>
 

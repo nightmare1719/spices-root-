@@ -184,7 +184,7 @@ export const GoogleAuthButton: React.FC<GoogleAuthButtonProps> = ({
               window.google.accounts.id.prompt();
             }
           }}
-          className="w-full h-11 px-4 bg-white hover:bg-[#F7F2E8] border border-[#E5DED0] hover:border-[#D0AE70] rounded-xl flex items-center justify-center gap-3 text-[#292A25] text-xs sm:text-sm font-semibold transition-all shadow-xs hover:shadow-sm disabled:opacity-60"
+          className="w-full h-11 px-4 bg-[#1c1b1d] hover:bg-[#201f22] border border-[#353437] hover:border-[#d4af37] rounded-lg flex items-center justify-center gap-3 text-[#e5e1e4] text-xs sm:text-sm font-semibold transition-all shadow-xs hover:shadow-sm disabled:opacity-60 cursor-pointer"
         >
           {isLoading ? (
             <Loader2 className="w-4 h-4 text-[#D0AE70] animate-spin" />

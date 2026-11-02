@@ -119,43 +119,43 @@ export const HomePage: React.FC = () => {
               <span>Direct Harvest from Munnar & Western Ghats</span>
             </div>
 
-            <h1 className="font-editorial text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#F7F2E8] leading-[1.15] tracking-tight">
-              Pure Hill Spices From The Heights of Kerala.
+            <h1 className="font-editorial text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#e5e1e4] leading-[1.15] tracking-tight">
+              Rarest Terroirs. <span className="text-[#d4af37] italic font-normal">Untamed Aromas.</span>
             </h1>
 
-            <p className="text-sm sm:text-base text-[#D8D0C0] leading-relaxed max-w-xl font-normal">
+            <p className="text-sm sm:text-base text-[#d0c5af] leading-relaxed max-w-xl font-normal">
               Sun-cured 4.5mm Tellicherry peppercorns, 8mm bold emerald cardamom, true Ceylon cinnamon quills, and single-estate Kolukkumalai orthodox teas harvested at 7,900 ft.
             </p>
 
             <div className="pt-2 flex flex-col sm:flex-row items-center gap-4">
               <Link
                 to="/shop"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#D0AE70] text-[#171814] hover:bg-[#B99153] px-8 py-3.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg hover:shadow-xl transition-all duration-300 group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#d4af37] text-[#131315] hover:bg-[#f2ca50] px-8 py-3.5 rounded-lg text-xs sm:text-sm font-bold uppercase tracking-widest shadow-lg hover:shadow-[0_0_24px_rgba(212,175,55,0.4)] transition-all duration-300 group font-sans"
               >
-                <span>Shop Collection</span>
+                <span>Explore The Archive</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
 
               <Link
                 to="/category/tea"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-transparent text-[#F7F2E8] hover:bg-white/10 hover:text-[#D0AE70] px-7 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider border border-[#D0AE70]/40 transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#1c1b1d] text-[#e5e1e4] hover:bg-[#201f22] hover:text-[#d4af37] px-7 py-3.5 rounded-lg text-xs sm:text-sm font-semibold tracking-wider border border-[#d4af37]/35 transition-colors font-sans"
               >
                 Explore Munnar Teas
               </Link>
             </div>
 
             {/* Quick Micro-Trust badges */}
-            <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-center sm:justify-start gap-6 text-xs text-[#D8D0C0]">
+            <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-center sm:justify-start gap-6 text-xs text-[#d0c5af]">
               <span className="flex items-center gap-1.5">
-                <CheckCircle className="w-4 h-4 text-[#D0AE70]" />
+                <CheckCircle className="w-4 h-4 text-[#d4af37]" />
                 Zero Synthetic Additives
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle className="w-4 h-4 text-[#D0AE70]" />
+                <CheckCircle className="w-4 h-4 text-[#d4af37]" />
                 Non-Irradiated Whole Pods
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle className="w-4 h-4 text-[#D0AE70]" />
+                <CheckCircle className="w-4 h-4 text-[#d4af37]" />
                 Pan-India Express Delivery
               </span>
             </div>
@@ -164,53 +164,53 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. VALUE PROPOSITION STRIP */}
+      {/* 2. VALUE PROPOSITION STRIP (Stitch Reputation Strip Style) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 bg-white p-8 rounded-2xl border border-[#E5DED0] shadow-xs">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 bg-[#1c1b1d] p-8 rounded-xl border border-[#353437] shadow-xl">
 
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl bg-[#435B43]/10 flex items-center justify-center shrink-0 text-[#435B43]">
-              <Leaf className="w-6 h-6 text-[#435B43]" />
+            <div className="w-12 h-12 rounded-lg bg-[#201f22] border border-[#d4af37]/25 flex items-center justify-center shrink-0 text-[#d4af37]">
+              <Leaf className="w-6 h-6 text-[#d4af37]" />
             </div>
             <div>
-              <h4 className="font-editorial text-base font-bold text-[#171814]">Single-Origin Hills</h4>
-              <p className="text-xs text-[#77766E] mt-1 leading-relaxed">
+              <h4 className="font-editorial text-base font-bold text-[#e5e1e4]">Single-Origin Hills</h4>
+              <p className="text-xs text-[#d0c5af] mt-1 leading-relaxed">
                 Direct from verified shade plantations in Idukki, Munnar, and Wayanad.
               </p>
             </div>
           </div>
 
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl bg-[#D0AE70]/15 flex items-center justify-center shrink-0 text-[#D0AE70]">
-              <Flame className="w-6 h-6 text-[#D0AE70]" />
+            <div className="w-12 h-12 rounded-lg bg-[#201f22] border border-[#d4af37]/25 flex items-center justify-center shrink-0 text-[#d4af37]">
+              <Flame className="w-6 h-6 text-[#d4af37]" />
             </div>
             <div>
-              <h4 className="font-editorial text-base font-bold text-[#171814]">Peak Essential Oils</h4>
-              <p className="text-xs text-[#77766E] mt-1 leading-relaxed">
+              <h4 className="font-editorial text-base font-bold text-[#e5e1e4]">Peak Essential Oils</h4>
+              <p className="text-xs text-[#d0c5af] mt-1 leading-relaxed">
                 High piperine and eugenol retention through traditional slow drying.
               </p>
             </div>
           </div>
 
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl bg-[#171814]/10 flex items-center justify-center shrink-0 text-[#171814]">
-              <ShieldCheck className="w-6 h-6 text-[#171814]" />
+            <div className="w-12 h-12 rounded-lg bg-[#201f22] border border-[#d4af37]/25 flex items-center justify-center shrink-0 text-[#d4af37]">
+              <ShieldCheck className="w-6 h-6 text-[#d4af37]" />
             </div>
             <div>
-              <h4 className="font-editorial text-base font-bold text-[#171814]">Zero Adulteration</h4>
-              <p className="text-xs text-[#77766E] mt-1 leading-relaxed">
+              <h4 className="font-editorial text-base font-bold text-[#e5e1e4]">Zero Adulteration</h4>
+              <p className="text-xs text-[#d0c5af] mt-1 leading-relaxed">
                 Never mixed with spent spices, synthetic aroma sprays, or fillers.
               </p>
             </div>
           </div>
 
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl bg-[#A94F38]/10 flex items-center justify-center shrink-0 text-[#A94F38]">
-              <Award className="w-6 h-6 text-[#A94F38]" />
+            <div className="w-12 h-12 rounded-lg bg-[#201f22] border border-[#d4af37]/25 flex items-center justify-center shrink-0 text-[#d4af37]">
+              <Award className="w-6 h-6 text-[#d4af37]" />
             </div>
             <div>
-              <h4 className="font-editorial text-base font-bold text-[#171814]">Master-Graded Lots</h4>
-              <p className="text-xs text-[#77766E] mt-1 leading-relaxed">
+              <h4 className="font-editorial text-base font-bold text-[#e5e1e4]">Master-Graded Lots</h4>
+              <p className="text-xs text-[#d0c5af] mt-1 leading-relaxed">
                 Hand-screened 8mm cardamom and Tellicherry garbled black pepper.
               </p>
             </div>
@@ -223,16 +223,16 @@ export const HomePage: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3 mb-8">
           <div>
-            <span className="text-xs font-bold text-[#D0AE70] uppercase tracking-widest block mb-1">
+            <span className="text-xs font-bold text-[#d4af37] uppercase tracking-widest block mb-1 font-sans">
               Curated Harvests
             </span>
-            <h2 className="font-editorial text-3xl font-bold text-[#171814]">
+            <h2 className="font-editorial text-3xl font-bold text-[#e5e1e4]">
               Explore by Category
             </h2>
           </div>
           <Link
             to="/shop"
-            className="text-xs font-bold text-[#171814] hover:text-[#D0AE70] flex items-center gap-1 transition-colors group"
+            className="text-xs font-bold text-[#d0c5af] hover:text-[#d4af37] flex items-center gap-1 transition-colors group font-sans uppercase tracking-wider"
           >
             <span>View All Categories</span>
             <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -244,19 +244,19 @@ export const HomePage: React.FC = () => {
             <Link
               key={cat.id}
               to={`/category/${cat.slug}`}
-              className="group luxury-card rounded-2xl overflow-hidden p-3.5 flex flex-col items-center text-center bg-white border border-[#E5DED0] hover:border-[#D0AE70]"
+              className="group rounded-xl overflow-hidden p-3.5 flex flex-col items-center text-center bg-[#1c1b1d] border border-[#353437] hover:border-[#d4af37]/60 hover:shadow-[0_12px_36px_-8px_rgba(0,0,0,0.9),0_0_24px_0_rgba(212,175,55,0.18)] transition-all duration-300"
             >
-              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden bg-[#F7F2E8] mb-3 border-2 border-[#E5DED0] group-hover:border-[#D0AE70] transition-colors">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden bg-[#0e0e10] mb-3 border-2 border-[#353437] group-hover:border-[#d4af37] transition-colors">
                 <img
                   src={cat.image}
                   alt={cat.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
-              <h3 className="font-editorial text-sm font-bold text-[#292A25] group-hover:text-[#D0AE70] transition-colors line-clamp-1">
+              <h3 className="font-editorial text-sm font-bold text-[#e5e1e4] group-hover:text-[#d4af37] transition-colors line-clamp-1">
                 {cat.name}
               </h3>
-              <p className="text-[11px] text-[#77766E] mt-0.5">
+              <p className="text-[11px] text-[#99907c] mt-0.5 font-sans">
                 {cat.itemCount ? `${cat.itemCount} items` : 'Explore'}
               </p>
             </Link>
@@ -268,16 +268,16 @@ export const HomePage: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3 mb-8">
           <div>
-            <span className="text-xs font-bold text-[#A94F38] uppercase tracking-widest block mb-1">
+            <span className="text-xs font-bold text-[#c25e2e] uppercase tracking-widest block mb-1 font-sans">
               Plantation Favorites
             </span>
-            <h2 className="font-editorial text-3xl font-bold text-[#171814]">
+            <h2 className="font-editorial text-3xl font-bold text-[#e5e1e4]">
               Best-Selling Western Ghats Spices
             </h2>
           </div>
           <Link
             to="/shop"
-            className="text-xs font-bold text-[#171814] hover:text-[#D0AE70] flex items-center gap-1 transition-colors group"
+            className="text-xs font-bold text-[#d0c5af] hover:text-[#d4af37] flex items-center gap-1 transition-colors group font-sans uppercase tracking-wider"
           >
             <span>See Entire Catalog</span>
             <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -287,7 +287,7 @@ export const HomePage: React.FC = () => {
         {isLoading ? (
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 md:gap-6">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="aspect-[3/4] bg-white rounded-xl border border-[#E5DED0] animate-pulse" />
+              <div key={i} className="aspect-[3/4] bg-[#1c1b1d] rounded-xl border border-[#353437] animate-pulse" />
             ))}
           </div>
         ) : (
@@ -300,53 +300,53 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 5. BRAND STORY: "FROM THE WESTERN GHATS TO YOUR KITCHEN" */}
-      <section className="bg-[#171814] text-[#F7F2E8] py-20 relative overflow-hidden border-y border-[#D0AE70]/20">
+      <section className="bg-[#0e0e10] text-[#e5e1e4] py-20 relative overflow-hidden border-y border-[#2a261d]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
             <div className="space-y-6">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#D0AE70] flex items-center gap-2">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#d4af37] flex items-center gap-2 font-sans">
                 <Sparkles className="w-4 h-4" />
                 Our Sourcing & Heritage
               </span>
 
-              <h2 className="font-editorial text-3xl sm:text-4xl font-bold text-[#F7F2E8] leading-tight">
+              <h2 className="font-editorial text-3xl sm:text-4xl font-bold text-[#e5e1e4] leading-tight">
                 From The Mist-Clad Western Ghats Directly To Your Kitchen.
               </h2>
 
-              <p className="text-sm text-[#D8D0C0] leading-relaxed font-light">
+              <p className="text-sm text-[#d0c5af] leading-relaxed font-light">
                 For millennia, the rainforests of the Malabar Coast have gifted the world its most prized flavors. Today, commercial supply chains often extract the precious volatile oils from whole spices before grinding, leaving consumers with faint aroma and bland heat.
               </p>
 
-              <p className="text-sm text-[#D8D0C0] leading-relaxed font-light">
-                At <strong>Spice Roots</strong>, we partner directly with generational farmers in Munnar, Vandanmedu, and Wayanad. Our harvests are dried naturally on woven mats under the Kerala sun, sealed at the source, and delivered with 100% of their therapeutic botanicals and rich aroma intact.
+              <p className="text-sm text-[#d0c5af] leading-relaxed font-light">
+                At <strong className="text-[#e5e1e4]">Spice Roots</strong>, we partner directly with generational smallholders in Munnar, Vandanmedu, and Wayanad. Our harvests are dried naturally on woven mats under the Kerala sun, sealed at the source, and delivered with 100% of their therapeutic botanicals and rich aroma intact.
               </p>
 
-              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-[#292A25]">
+              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-[#2a261d]">
                 <div>
-                  <span className="font-editorial text-2xl sm:text-3xl font-bold text-[#D0AE70] block">
+                  <span className="font-editorial text-2xl sm:text-3xl font-bold text-[#d4af37] block">
                     7,900 ft
                   </span>
-                  <span className="text-[11px] text-[#D8D0C0]">Kolukkumalai Elevation</span>
+                  <span className="text-[11px] text-[#99907c] uppercase tracking-wider font-sans">Kolukkumalai Elevation</span>
                 </div>
                 <div>
-                  <span className="font-editorial text-2xl sm:text-3xl font-bold text-[#D0AE70] block">
+                  <span className="font-editorial text-2xl sm:text-3xl font-bold text-[#d4af37] block">
                     8.0 mm
                   </span>
-                  <span className="text-[11px] text-[#D8D0C0]">Super Bold Cardamom</span>
+                  <span className="text-[11px] text-[#99907c] uppercase tracking-wider font-sans">Super Bold Cardamom</span>
                 </div>
                 <div>
-                  <span className="font-editorial text-2xl sm:text-3xl font-bold text-[#D0AE70] block">
+                  <span className="font-editorial text-2xl sm:text-3xl font-bold text-[#d4af37] block">
                     100%
                   </span>
-                  <span className="text-[11px] text-[#D8D0C0]">Fair-Trade Sourced</span>
+                  <span className="text-[11px] text-[#99907c] uppercase tracking-wider font-sans">Direct Estate Trade</span>
                 </div>
               </div>
 
               <div className="pt-2">
                 <Link
                   to="/about"
-                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#D0AE70] hover:text-white transition-colors underline decoration-[#D0AE70]/40"
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#d4af37] hover:text-[#f2ca50] transition-colors underline decoration-[#d4af37]/40 font-sans"
                 >
                   Read Our Full Story →
                 </Link>
@@ -355,17 +355,17 @@ export const HomePage: React.FC = () => {
 
             {/* Visual Collage */}
             <div className="relative">
-              <div className="aspect-4/3 rounded-3xl overflow-hidden border-2 border-[#D0AE70]/30 shadow-2xl">
+              <div className="aspect-4/3 rounded-2xl overflow-hidden border border-[#d4af37]/35 shadow-2xl bg-[#1c1b1d]">
                 <img
                   src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1200&q=80"
                   alt="Authentic Kerala Spices"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl shadow-xl border border-[#E5DED0] hidden sm:block max-w-[220px]">
-                <p className="text-xs font-bold text-[#171814]">Single-Estate Harvest</p>
-                <p className="text-[10px] text-[#77766E] mt-1">
-                  Packed within 48 hours of sorting to lock in maximum aromatic potency.
+              <div className="absolute -bottom-6 -left-6 bg-[#1c1b1d] p-5 rounded-xl shadow-2xl border border-[#353437] hidden sm:block max-w-[220px]">
+                <p className="text-xs font-bold text-[#d4af37] uppercase tracking-wider font-sans">Single-Estate Harvest</p>
+                <p className="text-[10px] text-[#d0c5af] mt-1 leading-relaxed">
+                  Packed within 48 hours of sorting to lock in maximum volatile aromatic potency.
                 </p>
               </div>
             </div>
@@ -377,14 +377,14 @@ export const HomePage: React.FC = () => {
       {/* 6. RECIPE INSPIRATION SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-bold text-[#D0AE70] uppercase tracking-widest block mb-1">
+          <span className="text-xs font-bold text-[#d4af37] uppercase tracking-widest block mb-1 font-sans">
             Plantation Kitchen
           </span>
-          <h2 className="font-editorial text-3xl font-bold text-[#171814]">
-            Recipe Inspiration & Spices Used
+          <h2 className="font-editorial text-3xl font-bold text-[#e5e1e4]">
+            Recipe Inspiration &amp; Spices Used
           </h2>
-          <p className="text-xs sm:text-sm text-[#77766E] mt-2">
-            Elevate your home cooking with authentic recipes celebrating the traditional culinary soul of Kerala.
+          <p className="text-xs sm:text-sm text-[#d0c5af] mt-2">
+            Elevate your culinary creations with authentic heritage recipes celebrating the traditional soul of Kerala.
           </p>
         </div>
 
@@ -392,36 +392,36 @@ export const HomePage: React.FC = () => {
           {recipes.map((recipe, idx) => (
             <div
               key={idx}
-              className="luxury-card rounded-2xl overflow-hidden bg-white border border-[#E5DED0] flex flex-col justify-between"
+              className="rounded-xl overflow-hidden bg-[#1c1b1d] border border-[#353437] hover:border-[#d4af37]/50 shadow-xl transition-all duration-300 flex flex-col justify-between"
             >
               <div>
-                <div className="relative aspect-16/10 overflow-hidden bg-[#F7F2E8]">
+                <div className="relative aspect-16/10 overflow-hidden bg-[#0e0e10]">
                   <img
                     src={recipe.image}
                     alt={recipe.title}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute top-3 left-3 bg-[#171814]/90 backdrop-blur-xs text-[#F7F2E8] text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 border border-[#D0AE70]/30">
-                    <Clock className="w-3 h-3 text-[#D0AE70]" />
+                  <div className="absolute top-3 left-3 bg-[#0e0e10]/90 backdrop-blur-xs text-[#e5e1e4] text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 border border-[#d4af37]/30">
+                    <Clock className="w-3 h-3 text-[#d4af37]" />
                     <span>{recipe.time}</span>
                   </div>
                 </div>
 
                 <div className="p-5">
-                  <h3 className="font-editorial text-lg font-bold text-[#171814] mb-2">
+                  <h3 className="font-editorial text-lg font-bold text-[#e5e1e4] mb-2">
                     {recipe.title}
                   </h3>
-                  <p className="text-xs text-[#77766E] leading-relaxed mb-4">
+                  <p className="text-xs text-[#d0c5af] leading-relaxed mb-4">
                     {recipe.description}
                   </p>
 
-                  <div className="bg-[#F7F2E8] p-3 rounded-xl border border-[#E5DED0]">
-                    <span className="text-[10px] uppercase tracking-wider font-bold text-[#D0AE70] block mb-1.5">
+                  <div className="bg-[#201f22] p-3 rounded-lg border border-[#353437]">
+                    <span className="text-[10px] uppercase tracking-wider font-bold text-[#d4af37] block mb-1.5 font-sans">
                       Key Spices:
                     </span>
                     <div className="flex flex-wrap gap-1.5">
                       {recipe.spicesUsed.map((sp, sIdx) => (
-                        <span key={sIdx} className="text-[11px] bg-white text-[#292A25] px-2 py-0.5 rounded-md font-medium border border-[#E5DED0]">
+                        <span key={sIdx} className="text-[11px] bg-[#131315] text-[#dccf96] px-2 py-0.5 rounded-md font-medium border border-[#353437]">
                           {sp}
                         </span>
                       ))}
@@ -433,7 +433,7 @@ export const HomePage: React.FC = () => {
               <div className="p-5 pt-0">
                 <Link
                   to={recipe.categoryLink}
-                  className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 bg-[#171814] text-[#D0AE70] hover:bg-[#D0AE70] hover:text-[#171814] text-xs font-bold rounded-xl transition-all border border-[#171814]"
+                  className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 bg-[#d4af37] text-[#131315] hover:bg-[#f2ca50] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-sm font-sans"
                 >
                   <span>Explore Ingredients</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -445,14 +445,14 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 7. GENUINE VERIFIED REVIEWS */}
-      <section className="bg-white py-16 border-y border-[#E5DED0]">
+      <section className="bg-[#0e0e10] py-16 border-y border-[#2a261d]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-10">
-            <span className="text-xs font-bold text-[#A94F38] uppercase tracking-widest block mb-1">
+            <span className="text-xs font-bold text-[#c25e2e] uppercase tracking-widest block mb-1 font-sans">
               Verified Impressions
             </span>
-            <h2 className="font-editorial text-3xl font-bold text-[#171814]">
-              Loved by Chefs & Passionate Home Cooks
+            <h2 className="font-editorial text-3xl font-bold text-[#e5e1e4]">
+              Loved by Chefs &amp; Connoisseurs
             </h2>
           </div>
 
@@ -460,25 +460,25 @@ export const HomePage: React.FC = () => {
             {genuineReviews.map((rev, idx) => (
               <div
                 key={idx}
-                className="bg-[#F7F2E8] p-6 rounded-2xl border border-[#E5DED0] shadow-xs flex flex-col justify-between"
+                className="bg-[#1c1b1d] p-6 rounded-xl border border-[#353437] shadow-xl flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center gap-1 text-[#D0AE70] mb-3">
+                  <div className="flex items-center gap-1 text-[#d4af37] mb-3">
                     {[...Array(rev.rating)].map((_, i) => (
                       <Star key={i} className="w-4 h-4 fill-current" />
                     ))}
                   </div>
-                  <p className="text-xs sm:text-sm text-[#292A25] italic leading-relaxed mb-4">
+                  <p className="text-xs sm:text-sm text-[#d0c5af] italic leading-relaxed mb-4">
                     "{rev.comment}"
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-[#E5DED0] flex items-center justify-between">
+                <div className="pt-3 border-t border-[#353437] flex items-center justify-between">
                   <div>
-                    <h4 className="text-xs font-bold text-[#171814]">{rev.name}</h4>
-                    <p className="text-[10px] text-[#77766E]">{rev.location}</p>
+                    <h4 className="text-xs font-bold text-[#e5e1e4] font-editorial">{rev.name}</h4>
+                    <p className="text-[10px] text-[#99907c] font-sans">{rev.location}</p>
                   </div>
-                  <span className="text-[10px] bg-[#435B43]/10 text-[#435B43] font-semibold px-2 py-0.5 rounded-full border border-[#435B43]/20">
+                  <span className="text-[10px] bg-[#435b43]/20 text-[#dccf96] font-semibold px-2 py-0.5 rounded-full border border-[#435b43]/40">
                     Verified Buyer
                   </span>
                 </div>
@@ -490,21 +490,21 @@ export const HomePage: React.FC = () => {
 
       {/* 8. CALL TO ACTION BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#171814] rounded-3xl p-8 sm:p-12 text-center text-[#F7F2E8] border border-[#D0AE70]/40 shadow-xl relative overflow-hidden">
+        <div className="bg-[#1c1b1d] rounded-2xl p-8 sm:p-12 text-center text-[#e5e1e4] border border-[#d4af37]/35 shadow-2xl relative overflow-hidden">
           <div className="max-w-2xl mx-auto space-y-4 relative z-10">
-            <span className="text-xs font-bold text-[#D0AE70] uppercase tracking-widest block">
+            <span className="text-xs font-bold text-[#d4af37] uppercase tracking-widest block font-sans">
               Gourmet Heritage Awaits
             </span>
-            <h2 className="font-editorial text-3xl sm:text-4xl font-bold text-[#F7F2E8]">
+            <h2 className="font-editorial text-3xl sm:text-4xl font-bold text-[#e5e1e4]">
               Taste The Difference of Genuine Single-Origin Spices
             </h2>
-            <p className="text-xs sm:text-sm text-[#D8D0C0] leading-relaxed">
-              Order fresh crops today. Enjoy complimentary courier delivery across India on all orders over ₹499.
+            <p className="text-xs sm:text-sm text-[#d0c5af] leading-relaxed font-light">
+              Order fresh crops today. Enjoy complimentary courier dispatch across India on all orders over ₹499.
             </p>
             <div className="pt-4 flex justify-center gap-4">
               <Link
                 to="/shop"
-                className="bg-[#D0AE70] text-[#171814] hover:bg-[#B99153] font-bold text-xs sm:text-sm uppercase tracking-wider px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all"
+                className="bg-[#d4af37] text-[#131315] hover:bg-[#f2ca50] font-bold text-xs sm:text-sm uppercase tracking-widest px-8 py-3.5 rounded-lg shadow-lg hover:shadow-[0_0_24px_rgba(212,175,55,0.4)] transition-all font-sans"
               >
                 Shop All Spices Now
               </Link>

@@ -56,45 +56,45 @@ export const LoginPage: React.FC = () => {
     <div className="max-w-md mx-auto px-4 py-16 space-y-6">
       
       <div className="text-center space-y-2">
-        <span className="text-xs font-bold text-[#D0AE70] uppercase tracking-widest block font-sans">
-          Welcome to Spice Roots
+        <span className="text-xs font-bold text-[#d4af37] uppercase tracking-widest block font-sans">
+          Welcome to The Spice Vault
         </span>
-        <h1 className="font-editorial text-3xl font-bold text-[#171814]">
+        <h1 className="font-editorial text-3xl font-bold text-[#e5e1e4]">
           Sign In to Your Account
         </h1>
-        <p className="text-xs text-[#77766E]">
+        <p className="text-xs text-[#d0c5af]">
           Access your past orders, delivery addresses, and account management.
         </p>
       </div>
 
       {/* Authentication Notice if redirected */}
       {redirectMessage && (
-        <div className="bg-[#171814]/5 border border-[#171814]/20 p-4 rounded-2xl flex items-start gap-3 text-xs text-[#171814] animate-in fade-in duration-200">
-          <div className="p-1.5 bg-[#171814] text-[#D0AE70] rounded-lg shrink-0 mt-0.5">
+        <div className="bg-[#201f22] border border-[#d4af37]/30 p-4 rounded-2xl flex items-start gap-3 text-xs text-[#e5e1e4] animate-in fade-in duration-200">
+          <div className="p-1.5 bg-[#0e0e10] text-[#d4af37] border border-[#4d4635] rounded-lg shrink-0 mt-0.5">
             <Lock className="w-3.5 h-3.5" />
           </div>
           <div>
-            <p className="font-bold text-[#171814]">Authentication Required</p>
-            <p className="text-[#77766E] mt-0.5">{redirectMessage}</p>
+            <p className="font-bold text-[#e5e1e4]">Authentication Required</p>
+            <p className="text-[#d0c5af] mt-0.5">{redirectMessage}</p>
           </div>
         </div>
       )}
 
       {errorMessage && (
-        <div className="bg-[#A94F38]/10 p-3.5 rounded-xl border border-[#A94F38]/30 text-xs text-[#A94F38] flex items-center gap-2 font-medium">
+        <div className="bg-[#a94f38]/20 p-3.5 rounded-xl border border-[#a94f38]/30 text-xs text-[#a94f38] flex items-center gap-2 font-medium">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{errorMessage}</span>
         </div>
       )}
 
       {successMessage && (
-        <div className="bg-[#435B43]/10 p-3.5 rounded-xl border border-[#435B43]/30 text-xs text-[#435B43] flex items-center gap-2 font-medium">
-          <CheckCircle2 className="w-4 h-4 shrink-0 text-[#435B43]" />
+        <div className="bg-[#435b43]/20 p-3.5 rounded-xl border border-[#435b43]/30 text-xs text-[#8b9b7b] flex items-center gap-2 font-medium">
+          <CheckCircle2 className="w-4 h-4 shrink-0 text-[#8b9b7b]" />
           <span>{successMessage}</span>
         </div>
       )}
 
-      <div className="bg-white p-8 rounded-3xl border border-[#E5DED0] shadow-xs">
+      <div className="bg-[#1c1b1d] p-8 rounded-3xl border border-[#353437] shadow-lg">
         {/* Secure 1-Click Google Sign-In */}
         <div className="space-y-3 mb-6">
           <GoogleAuthButton
@@ -123,10 +123,10 @@ export const LoginPage: React.FC = () => {
 
           <div className="relative my-4">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-[#E5DED0]" />
+              <div className="w-full border-t border-[#353437]" />
             </div>
             <div className="relative flex justify-center text-xs">
-              <span className="bg-white px-3 text-[#77766E] font-semibold tracking-wider text-[11px] uppercase">
+              <span className="bg-[#1c1b1d] px-3 text-[#99907c] font-semibold tracking-wider text-[11px] uppercase">
                 or sign in with credentials
               </span>
             </div>
@@ -136,7 +136,7 @@ export const LoginPage: React.FC = () => {
         {/* Standard Credentials Form */}
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
-            <label htmlFor="login-username-input" className="block text-xs font-semibold text-[#292A25] mb-1">
+            <label htmlFor="login-username-input" className="block text-xs font-semibold text-[#d0c5af] mb-1">
               Email Address or Registered Phone
             </label>
             <div className="relative">
@@ -149,14 +149,14 @@ export const LoginPage: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com or 10-digit mobile"
-                className="w-full text-xs p-3 pl-10 bg-[#F7F2E8] border border-[#E5DED0] rounded-xl text-[#292A25] placeholder:text-[#77766E] focus:outline-hidden focus:border-[#D0AE70] focus:ring-1 focus:ring-[#D0AE70]"
+                className="w-full text-xs p-3 pl-10 bg-[#0e0e10] border border-[#353437] rounded-xl text-[#e5e1e4] placeholder:text-[#99907c] focus:outline-hidden focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37]"
               />
-              <Mail className="w-4 h-4 text-[#77766E] absolute left-3 top-3.5" />
+              <Mail className="w-4 h-4 text-[#99907c] absolute left-3 top-3.5" />
             </div>
           </div>
 
           <div>
-            <label htmlFor="login-password-input" className="block text-xs font-semibold text-[#292A25] mb-1">
+            <label htmlFor="login-password-input" className="block text-xs font-semibold text-[#d0c5af] mb-1">
               Password
             </label>
             <div className="relative">
@@ -169,27 +169,27 @@ export const LoginPage: React.FC = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full text-xs p-3 pl-10 bg-[#F7F2E8] border border-[#E5DED0] rounded-xl text-[#292A25] placeholder:text-[#77766E] focus:outline-hidden focus:border-[#D0AE70] focus:ring-1 focus:ring-[#D0AE70]"
+                className="w-full text-xs p-3 pl-10 bg-[#0e0e10] border border-[#353437] rounded-xl text-[#e5e1e4] placeholder:text-[#99907c] focus:outline-hidden focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37]"
               />
-              <Lock className="w-4 h-4 text-[#77766E] absolute left-3 top-3.5" />
+              <Lock className="w-4 h-4 text-[#99907c] absolute left-3 top-3.5" />
             </div>
           </div>
 
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-3.5 bg-[#D0AE70] text-[#171814] hover:bg-[#B99153] rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider shadow-sm hover:shadow-md disabled:opacity-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full py-3.5 bg-[#d4af37] text-[#131315] hover:bg-[#f2ca50] rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider shadow-[0_4px_20px_rgba(212,175,55,0.25)] disabled:opacity-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             <span>{isLoading ? 'Signing In...' : 'Sign In'}</span>
-            <ArrowRight className="w-4 h-4 text-[#171814]" />
+            <ArrowRight className="w-4 h-4 text-[#131315]" />
           </button>
         </form>
 
-        <div className="mt-6 pt-6 border-t border-[#E5DED0] text-center text-xs text-[#77766E]">
+        <div className="mt-6 pt-6 border-t border-[#353437] text-center text-xs text-[#99907c]">
           Don't have an account yet?{' '}
           <Link 
             to={queryRedirect ? `/register?redirect=${encodeURIComponent(queryRedirect)}` : '/register'} 
-            className="font-bold text-[#171814] hover:text-[#D0AE70] hover:underline"
+            className="font-bold text-[#d4af37] hover:underline"
           >
             Create Customer Account
           </Link>
