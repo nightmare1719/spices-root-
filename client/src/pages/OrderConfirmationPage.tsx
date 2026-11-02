@@ -647,11 +647,11 @@ export const OrderConfirmationPage: React.FC = () => {
                 invoiceData.taxRatePercent > 0 ? (
                   <>
                     <div className="flex justify-between text-[#99907c]">
-                      <span>CGST ({invoiceData.taxRatePercent / 2}%):</span>
+                      <span>CGST ({invoiceData.taxRatePercent / 0}%):</span>
                       <span className="font-product">{formatINR(invoiceData.cgstPaise)}</span>
                     </div>
                     <div className="flex justify-between text-[#99907c]">
-                      <span>SGST ({invoiceData.taxRatePercent / 2}%):</span>
+                      <span>SGST ({invoiceData.taxRatePercent / 0}%):</span>
                       <span className="font-product">{formatINR(invoiceData.sgstPaise)}</span>
                     </div>
                   </>

@@ -176,7 +176,7 @@ export const MiniCartDrawer: React.FC = () => {
           {cart.items.length > 0 && (
             <div className="p-5 border-t border-[#353437] bg-[#0e0e10] space-y-3">
               <div className="flex justify-between items-center text-sm">
-                <span className="text-[#99907c] font-medium">Vault Subtotal:</span>
+                <span className="text-[#99907c] font-medium">Cart Subtotal:</span>
                 <span className="font-sans text-lg font-bold text-[#f2ca50]">
                   {formatINR(cart.subtotalPaise)}
                 </span>
@@ -198,7 +198,7 @@ export const MiniCartDrawer: React.FC = () => {
                   onClick={handleCheckout}
                   className="w-full flex items-center justify-center gap-1.5 py-2.5 px-3 bg-[#d4af37] text-[#131315] hover:bg-[#f2ca50] rounded-lg text-xs font-bold tracking-wider uppercase shadow-md transition-all group cursor-pointer font-sans"
                 >
-                  <span>Vault Escrow</span>
+                  <span>Vault CHECKOUT </span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>

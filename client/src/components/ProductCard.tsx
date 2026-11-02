@@ -43,7 +43,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div className="group rounded-xl overflow-hidden flex flex-col h-full bg-[#1c1b1d] border border-[#d4af37]/20 hover:border-[#d4af37]/60 hover:shadow-[0_12px_36px_-8px_rgba(0,0,0,0.9),0_0_24px_0_rgba(212,175,55,0.18)] transition-all duration-300">
-      
+
       {/* Uniform Image Container (Stitch 1:1 Aspect Ratio against dark slate canvas) */}
       <div className="relative aspect-square w-full overflow-hidden bg-[#0e0e10]">
         <Link to={`/product/${product.slug}`} className="block w-full h-full">
@@ -62,11 +62,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             e.stopPropagation();
             toggleWishlist(product.id);
           }}
-          className={`absolute top-2 right-2 p-1.5 sm:p-2 rounded-full transition-all z-10 shadow-xs cursor-pointer ${
-            isSaved 
-              ? 'bg-[#c25e2e] text-white' 
+          className={`absolute top-2 right-2 p-1.5 sm:p-2 rounded-full transition-all z-10 shadow-xs cursor-pointer ${isSaved
+              ? 'bg-[#c25e2e] text-white'
               : 'bg-[#0e0e10]/80 backdrop-blur-xs text-[#d0c5af] hover:text-[#d4af37] hover:bg-[#1c1b1d]'
-          }`}
+            }`}
           aria-label={isSaved ? 'Remove from wishlist' : 'Add to wishlist'}
         >
           <Heart className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isSaved ? 'fill-current' : ''}`} />
@@ -154,13 +153,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <button
           onClick={handleAddToCart}
           disabled={isOutOfStock || isAdding}
-          className={`w-full mt-2.5 py-2 px-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer font-sans ${
-            isOutOfStock
+          className={`w-full mt-2.5 py-2 px-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer font-sans ${isOutOfStock
               ? 'bg-[#2a2a2c] text-[#99907c] cursor-not-allowed border border-[#353437]'
               : justAdded
-              ? 'bg-[#435b43] text-white shadow-md'
-              : 'bg-[#d4af37] text-[#131315] hover:bg-[#f2ca50] active:scale-98 shadow-sm hover:shadow-[0_0_16px_rgba(212,175,55,0.35)]'
-          }`}
+                ? 'bg-[#435b43] text-white shadow-md'
+                : 'bg-[#d4af37] text-[#131315] hover:bg-[#f2ca50] active:scale-98 shadow-sm hover:shadow-[0_0_16px_rgba(212,175,55,0.35)]'
+            }`}
           aria-label={isOutOfStock ? 'Sold Out' : justAdded ? 'Added to Cart' : `Add ${product.name} to Cart`}
         >
           {justAdded ? (
@@ -173,7 +171,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           ) : (
             <>
               <ShoppingBag className="w-3.5 h-3.5" />
-              <span>Acquire to Vault</span>
+              <span>Add To Cart</span>
             </>
           )}
         </button>

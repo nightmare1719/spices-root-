@@ -175,8 +175,8 @@ export const ProductDetailPage: React.FC = () => {
                   key={idx}
                   onClick={() => setActiveImageIndex(idx)}
                   className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-all shrink-0 bg-[#0e0e10] cursor-pointer ${activeImageIndex === idx
-                      ? 'border-[#d4af37] ring-2 ring-[#d4af37]/40 opacity-100'
-                      : 'border-[#353437] opacity-60 hover:opacity-100'
+                    ? 'border-[#d4af37] ring-2 ring-[#d4af37]/40 opacity-100'
+                    : 'border-[#353437] opacity-60 hover:opacity-100'
                     }`}
                 >
                   <img src={img} alt={`${product.name} thumb ${idx}`} className="w-full h-full object-cover" />
@@ -264,8 +264,8 @@ export const ProductDetailPage: React.FC = () => {
                     setQuantity(1);
                   }}
                   className={`p-3 rounded-lg border text-left transition-all cursor-pointer font-sans ${idx === selectedVariantIndex
-                      ? 'border-[#d4af37] bg-[#201f22] text-[#f2ca50] shadow-md ring-1 ring-[#d4af37]'
-                      : 'border-[#353437] bg-[#1c1b1d] text-[#d0c5af] hover:border-[#d4af37]/60'
+                    ? 'border-[#d4af37] bg-[#201f22] text-[#f2ca50] shadow-md ring-1 ring-[#d4af37]'
+                    : 'border-[#353437] bg-[#1c1b1d] text-[#d0c5af] hover:border-[#d4af37]/60'
                     }`}
                 >
                   <span className="block text-xs font-bold text-[#e5e1e4]">{v.packSize}</span>
@@ -326,15 +326,15 @@ export const ProductDetailPage: React.FC = () => {
                 className="flex-1 py-3.5 bg-[#d4af37] text-[#131315] hover:bg-[#f2ca50] rounded-lg text-xs sm:text-sm font-bold uppercase tracking-widest shadow-lg hover:shadow-[0_0_24px_rgba(212,175,55,0.4)] disabled:opacity-40 transition-all flex items-center justify-center gap-2 cursor-pointer font-sans"
               >
                 <ShoppingBag className="w-4 h-4 text-[#131315]" />
-                <span>{isAdding ? 'Securing...' : 'Acquire to Vault'}</span>
+                <span>{isAdding ? 'Securing...' : 'Add to Cart '}</span>
               </button>
 
               {/* Wishlist Button */}
               <button
                 onClick={() => toggleWishlist(product.id)}
                 className={`p-3.5 border rounded-lg transition-colors shadow-xs cursor-pointer ${isSaved
-                    ? 'border-[#c25e2e] bg-[#c25e2e] text-white'
-                    : 'border-[#353437] hover:border-[#d4af37] text-[#d0c5af] bg-[#1c1b1d]'
+                  ? 'border-[#c25e2e] bg-[#c25e2e] text-white'
+                  : 'border-[#353437] hover:border-[#d4af37] text-[#d0c5af] bg-[#1c1b1d]'
                   }`}
                 aria-label="Wishlist toggle"
               >
@@ -349,7 +349,7 @@ export const ProductDetailPage: React.FC = () => {
                 className="w-full py-3.5 bg-[#1c1b1d] text-[#f2ca50] hover:bg-[#201f22] border border-[#d4af37]/60 rounded-lg text-xs sm:text-sm font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer font-sans"
               >
                 <Zap className="w-4 h-4 fill-current text-[#d4af37]" />
-                <span>Acquire with 1-Click Vault Escrow</span>
+                <span>Instant Checkout </span>
               </button>
             )}
           </div>
