@@ -184,10 +184,10 @@ export const GoogleAuthButton: React.FC<GoogleAuthButtonProps> = ({
               window.google.accounts.id.prompt();
             }
           }}
-          className="w-full h-11 px-4 bg-white hover:bg-stone-50 border border-stone-300 rounded-xl flex items-center justify-center gap-3 text-stone-700 text-xs sm:text-sm font-semibold transition-all shadow-xs hover:shadow-sm disabled:opacity-60"
+          className="w-full h-11 px-4 bg-white hover:bg-[#F7F2E8] border border-[#E5DED0] hover:border-[#D0AE70] rounded-xl flex items-center justify-center gap-3 text-[#292A25] text-xs sm:text-sm font-semibold transition-all shadow-xs hover:shadow-sm disabled:opacity-60"
         >
           {isLoading ? (
-            <Loader2 className="w-4 h-4 text-[#153E2B] animate-spin" />
+            <Loader2 className="w-4 h-4 text-[#D0AE70] animate-spin" />
           ) : (
             <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24">
               <path

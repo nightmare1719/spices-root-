@@ -11,6 +11,7 @@ import { Footer } from './components/Footer.js';
 import { MiniCartDrawer } from './components/MiniCartDrawer.js';
 import { AiAssistantWidget } from './components/AiAssistantWidget.js';
 import { ScrollToTop } from './components/ScrollToTop.js';
+import { MobileBottomNav } from './components/MobileBottomNav.js';
 
 import { HomePage } from './pages/HomePage.js';
 import { ShopPage } from './pages/ShopPage.js';
@@ -46,8 +47,8 @@ const CustomerAuthGuard: React.FC<{ children: React.ReactNode; redirectMessage: 
   if (isLoading) {
     return (
       <div className="py-24 text-center">
-        <div className="w-8 h-8 border-4 border-[#153E2B] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-        <p className="text-xs text-stone-500 font-medium">Verifying authentication...</p>
+        <div className="w-8 h-8 border-4 border-[#D0AE70] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+        <p className="text-xs text-[#77766E] font-medium">Verifying authentication...</p>
       </div>
     );
   }
@@ -72,10 +73,10 @@ const CustomerLayout: React.FC = () => {
   const isCheckout = location.pathname.startsWith('/checkout');
 
   return (
-    <div className={`min-h-screen flex flex-col bg-[#FAF7F2] w-full max-w-full overflow-x-hidden ${isCheckout ? 'is-checkout-page' : ''}`}>
+    <div className={`min-h-screen flex flex-col bg-[#F7F2E8] w-full max-w-full overflow-x-hidden ${isCheckout ? 'is-checkout-page' : ''}`}>
       <AnnouncementBar />
       <Header />
-      <main className="flex-1 w-full max-w-full min-w-0">
+      <main className="flex-1 w-full max-w-full min-w-0 pb-16 md:pb-0">
         <Outlet />
       </main>
       <Footer />
@@ -83,6 +84,7 @@ const CustomerLayout: React.FC = () => {
       <div className="ai-assistant-widget-container">
         <AiAssistantWidget />
       </div>
+      <MobileBottomNav />
     </div>
   );
 };

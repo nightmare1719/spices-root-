@@ -12,7 +12,7 @@ const defaultSettings: IStoreSettings = {
   storeName: "Spice Roots",
   brandTagline: "Authentic Western Ghats & Kerala Spices",
   announcementText: "🌿 transparency shipping across india  | Direct from Munnar & Western Ghats",
-  supportEmail: "care@spiceroots.in",
+  supportEmail: " uniquestorm11@gmail.com ",
   supportPhone: "+91 91885 70191",
   businessAddress: "Kalaivani Spices & Plantation Depot, Post Office Junction, Munnar, Kerala - 685612",
   currencySymbol: "₹",

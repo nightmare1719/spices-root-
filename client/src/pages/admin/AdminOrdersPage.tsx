@@ -235,20 +235,20 @@ export const AdminOrdersPage: React.FC = () => {
       {/* Title & Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="font-editorial text-2xl sm:text-3xl font-bold text-[#153E2B]">
+          <h1 className="font-editorial text-2xl sm:text-3xl font-bold text-[#171814]">
             Orders & Direct UPI Payment Verification
           </h1>
-          <p className="text-xs text-stone-500">
+          <p className="text-xs text-[#77766E]">
             Verify direct UPI bank credits, audit customer submissions, manage shipments, and print GST invoices.
           </p>
         </div>
 
         <button
           onClick={loadOrders}
-          className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white text-stone-700 hover:text-stone-900 border border-stone-200 rounded-xl text-xs font-bold shadow-2xs hover:bg-stone-50 transition-colors"
+          className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white text-[#292A25] hover:text-[#171814] border border-[#E5DED0] rounded-xl text-xs font-bold shadow-2xs hover:bg-[#F7F2E8] transition-colors cursor-pointer"
           title="Refresh orders list"
         >
-          <RefreshCw className={`w-3.5 h-3.5 text-[#C5A059] ${isLoading ? 'animate-spin' : ''}`} />
+          <RefreshCw className={`w-3.5 h-3.5 text-[#D0AE70] ${isLoading ? 'animate-spin' : ''}`} />
           <span>Refresh Orders</span>
         </button>
       </div>
@@ -260,12 +260,12 @@ export const AdminOrdersPage: React.FC = () => {
           onClick={() => setPaymentFilter('all')}
           className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
             paymentFilter === 'all'
-              ? 'bg-[#153E2B] text-white shadow-xs'
-              : 'bg-white text-stone-600 hover:bg-stone-50 border border-stone-200'
+              ? 'bg-[#171814] text-[#D0AE70] shadow-xs'
+              : 'bg-white text-[#292A25] hover:bg-[#F7F2E8] border border-[#E5DED0]'
           }`}
         >
           <span>All Orders</span>
-          <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${paymentFilter === 'all' ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-600'}`}>
+          <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${paymentFilter === 'all' ? 'bg-white/20 text-[#D0AE70]' : 'bg-[#E5DED0] text-[#292A25]'}`}>
             {orders.length}
           </span>
         </button>
@@ -275,14 +275,14 @@ export const AdminOrdersPage: React.FC = () => {
           onClick={() => setPaymentFilter('VERIFICATION_PENDING')}
           className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
             paymentFilter === 'VERIFICATION_PENDING'
-              ? 'bg-amber-500 text-stone-900 shadow-md ring-2 ring-amber-400 font-extrabold'
-              : 'bg-amber-50 text-amber-900 hover:bg-amber-100/70 border border-amber-300'
+              ? 'bg-[#D0AE70] text-[#171814] shadow-md ring-2 ring-[#D0AE70]/40 font-extrabold'
+              : 'bg-[#D0AE70]/10 text-[#79503A] hover:bg-[#D0AE70]/20 border border-[#D0AE70]/30'
           }`}
         >
-          <Clock className="w-3.5 h-3.5 text-amber-700" />
+          <Clock className="w-3.5 h-3.5 text-[#79503A]" />
           <span>Pending Verification</span>
           {pendingCount > 0 && (
-            <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-amber-600 text-white font-mono font-bold animate-pulse">
+            <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-[#A94F38] text-white font-mono font-bold animate-pulse">
               {pendingCount}
             </span>
           )}
@@ -293,14 +293,14 @@ export const AdminOrdersPage: React.FC = () => {
           onClick={() => setPaymentFilter('PAID')}
           className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
             paymentFilter === 'PAID'
-              ? 'bg-emerald-600 text-white shadow-xs'
-              : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100/70 border border-emerald-200'
+              ? 'bg-[#435B43] text-white shadow-xs'
+              : 'bg-[#435B43]/10 text-[#435B43] hover:bg-[#435B43]/20 border border-[#435B43]/30'
           }`}
         >
-          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+          <CheckCircle2 className="w-3.5 h-3.5 text-[#435B43]" />
           <span>Paid & Verified</span>
           {paidCount > 0 && (
-            <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${paymentFilter === 'PAID' ? 'bg-white/20 text-white' : 'bg-emerald-200 text-emerald-900'}`}>
+            <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${paymentFilter === 'PAID' ? 'bg-white/20 text-white' : 'bg-[#435B43]/20 text-[#435B43]'}`}>
               {paidCount}
             </span>
           )}
@@ -311,13 +311,13 @@ export const AdminOrdersPage: React.FC = () => {
           onClick={() => setPaymentFilter('AWAITING_PAYMENT')}
           className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
             paymentFilter === 'AWAITING_PAYMENT'
-              ? 'bg-blue-600 text-white shadow-xs'
-              : 'bg-white text-stone-700 hover:bg-stone-50 border border-stone-200'
+              ? 'bg-[#171814] text-[#D0AE70] shadow-xs'
+              : 'bg-white text-[#292A25] hover:bg-[#F7F2E8] border border-[#E5DED0]'
           }`}
         >
           <span>Awaiting Transfer</span>
           {awaitingCount > 0 && (
-            <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${paymentFilter === 'AWAITING_PAYMENT' ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-600'}`}>
+            <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${paymentFilter === 'AWAITING_PAYMENT' ? 'bg-white/20 text-[#D0AE70]' : 'bg-[#E5DED0] text-[#292A25]'}`}>
               {awaitingCount}
             </span>
           )}
@@ -328,13 +328,13 @@ export const AdminOrdersPage: React.FC = () => {
           onClick={() => setPaymentFilter('REJECTED')}
           className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
             paymentFilter === 'REJECTED'
-              ? 'bg-red-600 text-white shadow-xs'
-              : 'bg-white text-red-700 hover:bg-red-50 border border-red-200'
+              ? 'bg-[#A94F38] text-white shadow-xs'
+              : 'bg-white text-[#A94F38] hover:bg-[#A94F38]/10 border border-[#A94F38]/30'
           }`}
         >
           <span>Rejected</span>
           {rejectedCount > 0 && (
-            <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${paymentFilter === 'REJECTED' ? 'bg-white/20 text-white' : 'bg-red-100 text-red-800'}`}>
+            <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${paymentFilter === 'REJECTED' ? 'bg-white/20 text-white' : 'bg-[#A94F38]/20 text-[#A94F38]'}`}>
               {rejectedCount}
             </span>
           )}
@@ -342,14 +342,14 @@ export const AdminOrdersPage: React.FC = () => {
       </div>
 
       {loadError && (
-        <div className="bg-red-50 border border-red-200 p-4 rounded-2xl flex items-center justify-between text-xs text-red-800 font-medium">
+        <div className="bg-[#A94F38]/10 border border-[#A94F38]/30 p-4 rounded-2xl flex items-center justify-between text-xs text-[#A94F38] font-medium">
           <div className="flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+            <AlertCircle className="w-4 h-4 text-[#A94F38] shrink-0" />
             <span>{loadError}</span>
           </div>
           <button
             onClick={loadOrders}
-            className="px-3 py-1 bg-red-600 text-white rounded-lg text-xs font-bold hover:bg-red-700 transition-colors"
+            className="px-3 py-1 bg-[#A94F38] text-white rounded-lg text-xs font-bold hover:bg-[#A94F38]/90 transition-colors cursor-pointer"
           >
             Retry
           </button>
@@ -357,7 +357,7 @@ export const AdminOrdersPage: React.FC = () => {
       )}
 
       {/* Filters Bar */}
-      <div className="bg-white p-4 rounded-2xl border border-stone-200 shadow-2xs flex flex-wrap gap-3 items-center justify-between">
+      <div className="bg-white p-4 rounded-2xl border border-[#E5DED0] shadow-2xs flex flex-wrap gap-3 items-center justify-between">
         <form onSubmit={handleSearchSubmit} className="flex gap-2 flex-1 min-w-[240px] max-w-md">
           <input
             id="admin-orders-search"
@@ -366,9 +366,9 @@ export const AdminOrdersPage: React.FC = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search order ref, customer, phone, UTR..."
-            className="w-full text-xs p-2.5 bg-[#FAF7F2] border border-stone-200 rounded-xl focus:outline-hidden focus:border-[#C5A059]"
+            className="w-full text-xs p-2.5 bg-[#F7F2E8] border border-[#E5DED0] rounded-xl text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
           />
-          <button type="submit" className="px-4 bg-[#153E2B] text-white rounded-xl text-xs font-bold hover:bg-[#1E5138] transition-colors">
+          <button type="submit" className="px-4 bg-[#171814] text-[#D0AE70] hover:bg-[#292A25] rounded-xl text-xs font-bold transition-colors cursor-pointer">
             Search
           </button>
         </form>
@@ -376,13 +376,13 @@ export const AdminOrdersPage: React.FC = () => {
         <div className="flex flex-wrap items-center gap-3">
           {/* Payment State Filter */}
           <div className="flex items-center gap-1.5">
-            <label htmlFor="admin-orders-payment-filter" className="text-xs font-semibold text-stone-600">Payment:</label>
+            <label htmlFor="admin-orders-payment-filter" className="text-xs font-semibold text-[#292A25]">Payment:</label>
             <select
               id="admin-orders-payment-filter"
               name="adminOrdersPaymentFilter"
               value={paymentFilter}
               onChange={(e) => setPaymentFilter(e.target.value)}
-              className="text-xs bg-[#FAF7F2] border border-stone-200 rounded-xl p-2 font-medium"
+              className="text-xs bg-[#F7F2E8] border border-[#E5DED0] rounded-xl p-2 font-medium text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
             >
               <option value="all">All Payment States</option>
               <option value="VERIFICATION_PENDING">⏳ Verification Pending</option>
@@ -395,13 +395,13 @@ export const AdminOrdersPage: React.FC = () => {
 
           {/* Fulfillment Status Filter */}
           <div className="flex items-center gap-1.5">
-            <label htmlFor="admin-orders-fulfillment-filter" className="text-xs font-semibold text-stone-600">Fulfillment:</label>
+            <label htmlFor="admin-orders-fulfillment-filter" className="text-xs font-semibold text-[#292A25]">Fulfillment:</label>
             <select
               id="admin-orders-fulfillment-filter"
               name="adminOrdersFulfillmentFilter"
               value={fulfillmentFilter}
               onChange={(e) => setFulfillmentFilter(e.target.value)}
-              className="text-xs bg-[#FAF7F2] border border-stone-200 rounded-xl p-2 font-medium"
+              className="text-xs bg-[#F7F2E8] border border-[#E5DED0] rounded-xl p-2 font-medium text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
             >
               <option value="all">All Fulfillment</option>
               <option value="pending">Pending</option>
@@ -416,10 +416,10 @@ export const AdminOrdersPage: React.FC = () => {
       </div>
 
       {/* Orders Table */}
-      <div className="bg-white rounded-3xl border border-stone-200 shadow-xs overflow-hidden">
+      <div className="bg-white rounded-3xl border border-[#E5DED0] shadow-xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-[#FAF7F2] text-stone-600 uppercase text-[10px] tracking-wider border-b border-stone-200">
+            <thead className="bg-[#F7F2E8] text-[#292A25] uppercase text-[10px] tracking-wider border-b border-[#E5DED0] font-sans">
               <tr>
                 <th className="p-4">Order Ref & Date</th>
                 <th className="p-4">Customer</th>
@@ -429,14 +429,14 @@ export const AdminOrdersPage: React.FC = () => {
                 <th className="p-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-stone-100">
+            <tbody className="divide-y divide-[#E5DED0]">
               {isLoading ? (
                 <tr>
-                  <td colSpan={6} className="text-center py-12 text-stone-400">Loading orders...</td>
+                  <td colSpan={6} className="text-center py-12 text-[#77766E]">Loading orders...</td>
                 </tr>
               ) : orders.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="text-center py-12 text-stone-400">No matching orders found.</td>
+                  <td colSpan={6} className="text-center py-12 text-[#77766E]">No matching orders found.</td>
                 </tr>
               ) : (
                 orders.map((ord) => {
@@ -445,34 +445,34 @@ export const AdminOrdersPage: React.FC = () => {
                   const isRejected = ord.paymentStatus === 'REJECTED';
 
                   return (
-                    <tr key={ord.id || ord.orderNumber} className={`hover:bg-stone-50/70 transition-colors ${isPending ? 'bg-amber-50/30' : ''}`}>
+                    <tr key={ord.id || ord.orderNumber} className={`hover:bg-[#F7F2E8]/40 transition-colors ${isPending ? 'bg-[#D0AE70]/10' : ''}`}>
                       
                       {/* Order Ref & Date */}
                       <td className="p-4">
-                        <span className="font-mono font-bold text-[#153E2B] text-xs block">
+                        <span className="font-mono font-bold text-[#171814] text-xs block">
                           {ord.orderNumber}
                         </span>
-                        <span className="text-[10px] text-stone-400">
+                        <span className="text-[10px] text-[#77766E]">
                           {formatDateTime(ord.createdAt)}
                         </span>
                       </td>
 
                       {/* Customer Info */}
                       <td className="p-4">
-                        <p className="font-bold text-stone-800">{ord.customerName}</p>
-                        <p className="text-[10px] text-stone-500 font-mono">{ord.customerPhone}</p>
-                        <p className="text-[10px] text-stone-400 truncate max-w-[150px]">{ord.customerEmail}</p>
-                        <p className="text-[10px] text-stone-500 pt-0.5">
+                        <p className="font-bold text-[#292A25]">{ord.customerName}</p>
+                        <p className="text-[10px] text-[#77766E] font-mono">{ord.customerPhone}</p>
+                        <p className="text-[10px] text-[#77766E] truncate max-w-[150px]">{ord.customerEmail}</p>
+                        <p className="text-[10px] text-[#77766E] pt-0.5">
                           {ord.shippingAddress?.city}, {ord.shippingAddress?.state}
                         </p>
                       </td>
 
                       {/* Amount */}
                       <td className="p-4">
-                        <span className="font-bold text-[#153E2B] text-sm block">
+                        <span className="font-bold text-[#435B43] text-sm block">
                           {formatINR(ord.priceBreakdown?.totalPaise || 0)}
                         </span>
-                        <span className="text-[10px] text-stone-400 block">
+                        <span className="text-[10px] text-[#77766E] block">
                           {ord.items?.length || 0} item{(ord.items?.length || 0) > 1 ? 's' : ''}
                         </span>
                       </td>
@@ -549,7 +549,7 @@ export const AdminOrdersPage: React.FC = () => {
                               to={`/track/${encodeURIComponent(ord.trackingNumber)}`}
                               target="_blank"
                               rel="noreferrer"
-                              className="text-[10px] font-mono text-[#153E2B] hover:text-[#C5A059] underline inline-flex items-center gap-1"
+                              className="text-[10px] font-mono text-[#171814] hover:text-[#D0AE70] underline inline-flex items-center gap-1"
                               title="Track package live"
                             >
                               <span>AWB: {ord.trackingNumber}</span>
@@ -567,13 +567,13 @@ export const AdminOrdersPage: React.FC = () => {
                               id={`verify-btn-${ord.orderNumber}`}
                               name={`verify-btn-${ord.orderNumber}`}
                               onClick={() => openPaymentModal(ord)}
-                              className={`w-full py-1.5 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                              className={`w-full py-1.5 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
                                 isPending
-                                  ? 'bg-[#153E2B] text-white hover:bg-[#1E5138] shadow-xs'
-                                  : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                                  ? 'bg-[#171814] text-[#D0AE70] hover:bg-[#292A25] shadow-xs'
+                                  : 'bg-[#F7F2E8] text-[#292A25] hover:bg-[#E5DED0] border border-[#E5DED0]'
                               }`}
                             >
-                              <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />
+                              <ShieldCheck className="w-3.5 h-3.5 text-[#D0AE70]" />
                               <span>{isPending ? 'Audit & Verify' : 'Payment Details'}</span>
                             </button>
 
@@ -582,10 +582,10 @@ export const AdminOrdersPage: React.FC = () => {
                                 id={`quick-approve-${ord.orderNumber}`}
                                 name={`quick-approve-${ord.orderNumber}`}
                                 onClick={() => handleQuickApprove(ord)}
-                                className="w-full py-1 px-2 rounded-lg text-[10px] font-bold transition-all flex items-center justify-center gap-1 bg-emerald-100 text-emerald-800 hover:bg-emerald-200"
+                                className="w-full py-1 px-2 rounded-lg text-[10px] font-bold transition-all flex items-center justify-center gap-1 bg-[#435B43]/15 text-[#435B43] hover:bg-[#435B43]/25 cursor-pointer"
                                 title="Quick approve and mark as Paid immediately"
                               >
-                                <CheckCircle2 className="w-3 h-3 text-emerald-700" />
+                                <CheckCircle2 className="w-3 h-3 text-[#435B43]" />
                                 <span>Quick Approve</span>
                               </button>
                             )}
@@ -597,7 +597,7 @@ export const AdminOrdersPage: React.FC = () => {
                             id={`status-modal-btn-${ord.orderNumber}`}
                             name={`status-modal-btn-${ord.orderNumber}`}
                             onClick={() => openStatusModal(ord)}
-                            className="py-1 px-2.5 bg-stone-100 text-stone-700 hover:bg-stone-200 rounded-lg text-[11px] font-semibold transition-colors"
+                            className="py-1 px-2.5 bg-[#F7F2E8] text-[#292A25] hover:bg-[#E5DED0] border border-[#E5DED0] rounded-lg text-[11px] font-semibold transition-colors cursor-pointer"
                           >
                             Update Status
                           </button>
@@ -606,7 +606,7 @@ export const AdminOrdersPage: React.FC = () => {
                             id={`invoice-modal-btn-${ord.orderNumber}`}
                             name={`invoice-modal-btn-${ord.orderNumber}`}
                             onClick={() => openInvoiceModal(ord)}
-                            className="py-1 px-2.5 bg-stone-100 text-stone-700 hover:bg-stone-200 rounded-lg text-[11px] font-semibold transition-colors"
+                            className="py-1 px-2.5 bg-[#F7F2E8] text-[#292A25] hover:bg-[#E5DED0] border border-[#E5DED0] rounded-lg text-[11px] font-semibold transition-colors cursor-pointer"
                             title="View / Print Tax Invoice"
                           >
                             Invoice
@@ -626,71 +626,71 @@ export const AdminOrdersPage: React.FC = () => {
       {/* 4. Protected UPI Payment Verification & Audit Modal */}
       {verifyModalOrder && (
         <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white w-full max-w-2xl rounded-3xl border border-stone-200 shadow-2xl p-6 sm:p-8 space-y-6 my-8 relative">
+          <div className="bg-white w-full max-w-2xl rounded-3xl border border-[#E5DED0] shadow-2xl p-6 sm:p-8 space-y-6 my-8 relative">
             <button
               onClick={() => setVerifyModalOrder(null)}
-              className="absolute top-6 right-6 p-2 rounded-full hover:bg-stone-100 text-stone-400"
+              className="absolute top-6 right-6 p-2 rounded-full hover:bg-[#F7F2E8] text-[#77766E] hover:text-[#171814] cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
 
             {/* Modal Header */}
-            <div className="border-b border-stone-200 pb-4">
-              <span className="text-xs font-bold text-[#C5A059] uppercase tracking-widest block">
+            <div className="border-b border-[#E5DED0] pb-4">
+              <span className="text-xs font-bold text-[#D0AE70] uppercase tracking-widest block font-sans">
                 Manual UPI Bank Transfer Verification
               </span>
-              <h2 className="font-editorial text-2xl font-bold text-[#153E2B] mt-0.5">
+              <h2 className="font-editorial text-2xl font-bold text-[#171814] mt-0.5">
                 Verify Order {verifyModalOrder.orderNumber}
               </h2>
-              <p className="text-xs text-stone-500">
-                Cross-check incoming credits in your merchant account (<strong className="font-mono text-stone-700">cynalbertoz@sbi</strong>) before approving.
+              <p className="text-xs text-[#77766E]">
+                Cross-check incoming credits in your merchant account (<strong className="font-mono text-[#292A25]">cynalbertoz@sbi</strong>) before approving.
               </p>
             </div>
 
             {/* Notification messages */}
             {paymentActionMessage && (
-              <div className="bg-emerald-50 p-3 rounded-xl border border-emerald-200 text-xs font-semibold text-emerald-800 flex items-center gap-2">
-                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+              <div className="bg-[#435B43]/10 p-3 rounded-xl border border-[#435B43]/30 text-xs font-semibold text-[#435B43] flex items-center gap-2">
+                <Check className="w-4 h-4 text-[#435B43] shrink-0" />
                 <span>{paymentActionMessage}</span>
               </div>
             )}
             {paymentActionError && (
-              <div className="bg-red-50 p-3 rounded-xl border border-red-200 text-xs font-semibold text-red-800 flex items-center gap-2">
-                <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+              <div className="bg-[#A94F38]/10 p-3 rounded-xl border border-[#A94F38]/30 text-xs font-semibold text-[#A94F38] flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 text-[#A94F38] shrink-0" />
                 <span>{paymentActionError}</span>
               </div>
             )}
 
             {/* Order & Payment Summary Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-              <div className="bg-[#FAF7F2] p-4 rounded-2xl border border-stone-200 space-y-1.5">
-                <span className="text-[10px] font-bold uppercase text-stone-400">Payable Amount</span>
-                <div className="font-editorial text-2xl font-bold text-[#153E2B]">
+              <div className="bg-[#F7F2E8] p-4 rounded-2xl border border-[#E5DED0] space-y-1.5">
+                <span className="text-[10px] font-bold uppercase text-[#77766E] font-sans">Payable Amount</span>
+                <div className="font-editorial text-2xl font-bold text-[#435B43]">
                   {formatINR(verifyModalOrder.priceBreakdown?.totalPaise || 0)}
                 </div>
-                <div className="text-stone-600">
-                  Current Status: <strong className="uppercase text-[#153E2B]">{verifyModalOrder.paymentStatus}</strong>
+                <div className="text-[#292A25]">
+                  Current Status: <strong className="uppercase text-[#171814]">{verifyModalOrder.paymentStatus}</strong>
                 </div>
                 {verifyModalOrder.paymentSubmittedAt && (
-                  <div className="text-stone-500 text-[11px]">
+                  <div className="text-[#77766E] text-[11px]">
                     Customer Submitted: {formatDateTime(verifyModalOrder.paymentSubmittedAt)}
                   </div>
                 )}
               </div>
 
-              <div className="bg-[#FAF7F2] p-4 rounded-2xl border border-stone-200 space-y-1.5">
-                <span className="text-[10px] font-bold uppercase text-stone-400">Customer Details</span>
-                <p className="font-bold text-stone-800 text-sm">{verifyModalOrder.customerName}</p>
-                <p className="text-stone-600 font-mono">{verifyModalOrder.customerPhone}</p>
-                <p className="text-stone-500">{verifyModalOrder.customerEmail}</p>
+              <div className="bg-[#F7F2E8] p-4 rounded-2xl border border-[#E5DED0] space-y-1.5">
+                <span className="text-[10px] font-bold uppercase text-[#77766E] font-sans">Customer Details</span>
+                <p className="font-bold text-[#171814] text-sm">{verifyModalOrder.customerName}</p>
+                <p className="text-[#292A25] font-mono">{verifyModalOrder.customerPhone}</p>
+                <p className="text-[#77766E]">{verifyModalOrder.customerEmail}</p>
               </div>
             </div>
 
             {/* Private Payment Screenshot Preview (Protected: served via admin route) */}
             <div>
               <div className="flex items-center justify-between mb-2">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-stone-700 flex items-center gap-1.5">
-                  <ImageIcon className="w-4 h-4 text-[#C5A059]" />
+                <h4 className="text-xs font-bold uppercase tracking-wider text-[#292A25] flex items-center gap-1.5 font-sans">
+                  <ImageIcon className="w-4 h-4 text-[#D0AE70]" />
                   Customer Payment Screenshot & Proof
                 </h4>
                 {verifyModalOrder.screenshotPath && (
@@ -698,18 +698,18 @@ export const AdminOrdersPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setImgZoom((prev) => Math.max(0.5, Number((prev - 0.25).toFixed(2))))}
-                      className="p-1 text-stone-600 hover:text-stone-900 hover:bg-stone-100 rounded"
+                      className="p-1 text-[#77766E] hover:text-[#171814] hover:bg-[#F7F2E8] rounded cursor-pointer"
                       title="Zoom Out"
                     >
                       <ZoomOut className="w-3.5 h-3.5" />
                     </button>
-                    <span className="text-[10px] font-mono text-stone-500 w-10 text-center">
+                    <span className="text-[10px] font-mono text-[#77766E] w-10 text-center">
                       {Math.round(imgZoom * 100)}%
                     </span>
                     <button
                       type="button"
                       onClick={() => setImgZoom((prev) => Math.min(3, Number((prev + 0.25).toFixed(2))))}
-                      className="p-1 text-stone-600 hover:text-stone-900 hover:bg-stone-100 rounded"
+                      className="p-1 text-[#77766E] hover:text-[#171814] hover:bg-[#F7F2E8] rounded cursor-pointer"
                       title="Zoom In"
                     >
                       <ZoomIn className="w-3.5 h-3.5" />
@@ -717,7 +717,7 @@ export const AdminOrdersPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setImgRotation((prev) => (prev + 90) % 360)}
-                      className="p-1 text-stone-600 hover:text-stone-900 hover:bg-stone-100 rounded"
+                      className="p-1 text-[#77766E] hover:text-[#171814] hover:bg-[#F7F2E8] rounded cursor-pointer"
                       title="Rotate 90° Clockwise"
                     >
                       <RotateCw className="w-3.5 h-3.5" />
@@ -728,14 +728,14 @@ export const AdminOrdersPage: React.FC = () => {
                         setImgZoom(1);
                         setImgRotation(0);
                       }}
-                      className="text-[10px] text-stone-500 hover:text-stone-800 px-1.5 py-0.5 rounded hover:bg-stone-100"
+                      className="text-[10px] text-[#77766E] hover:text-[#171814] px-1.5 py-0.5 rounded hover:bg-[#F7F2E8] cursor-pointer"
                     >
                       Reset
                     </button>
                     <button
                       type="button"
                       onClick={() => setIsLightboxOpen(true)}
-                      className="ml-1 p-1 bg-[#153E2B]/10 text-[#153E2B] hover:bg-[#153E2B]/20 rounded font-bold flex items-center gap-1 text-[11px] px-2 py-0.5"
+                      className="ml-1 p-1 bg-[#171814]/10 text-[#171814] hover:bg-[#171814]/20 rounded font-bold flex items-center gap-1 text-[11px] px-2 py-0.5 cursor-pointer"
                       title="Open Fullscreen Audit Mode"
                     >
                       <Maximize2 className="w-3 h-3" />
@@ -746,9 +746,9 @@ export const AdminOrdersPage: React.FC = () => {
               </div>
 
               {verifyModalOrder.screenshotPath ? (
-                <div className="bg-stone-50 p-3 rounded-2xl border border-stone-200 space-y-2">
+                <div className="bg-[#F7F2E8] p-3 rounded-2xl border border-[#E5DED0] space-y-2">
                   <div 
-                    className="max-h-72 min-h-48 overflow-hidden rounded-xl border border-stone-200 flex items-center justify-center bg-stone-900/5 p-2 relative cursor-zoom-in"
+                    className="max-h-72 min-h-48 overflow-hidden rounded-xl border border-[#E5DED0] flex items-center justify-center bg-white p-2 relative cursor-zoom-in"
                     onClick={() => setIsLightboxOpen(true)}
                     title="Click to view full screen"
                   >
@@ -764,14 +764,14 @@ export const AdminOrdersPage: React.FC = () => {
                         className="max-h-64 object-contain rounded-lg shadow-xs"
                       />
                     ) : (
-                      <div className="text-center p-6 space-y-2 text-stone-500">
-                        <AlertCircle className="w-8 h-8 text-amber-500 mx-auto" />
+                      <div className="text-center p-6 space-y-2 text-[#77766E]">
+                        <AlertCircle className="w-8 h-8 text-[#A94F38] mx-auto" />
                         <p className="text-xs font-semibold">Image preview couldn't be rendered directly.</p>
                         <a
                           href={api.admin.getScreenshotUrl(verifyModalOrder.id || verifyModalOrder.orderNumber)}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-xs text-[#153E2B] font-bold underline"
+                          className="inline-flex items-center gap-1 text-xs text-[#171814] font-bold underline"
                         >
                           <ExternalLink className="w-3 h-3" />
                           <span>Click here to open directly in browser</span>
@@ -779,7 +779,7 @@ export const AdminOrdersPage: React.FC = () => {
                       </div>
                     )}
                   </div>
-                  <div className="flex flex-wrap justify-between items-center text-[11px] text-stone-500 gap-2">
+                  <div className="flex flex-wrap justify-between items-center text-[11px] text-[#77766E] gap-2">
                     <span className="font-mono truncate max-w-xs">
                       File: {verifyModalOrder.screenshotPath}
                     </span>
@@ -787,7 +787,7 @@ export const AdminOrdersPage: React.FC = () => {
                       <a
                         href={api.admin.getScreenshotUrl(verifyModalOrder.id || verifyModalOrder.orderNumber)}
                         download={`payment_proof_${verifyModalOrder.orderNumber}.png`}
-                        className="text-stone-600 hover:text-stone-900 inline-flex items-center gap-1"
+                        className="text-[#292A25] hover:text-[#171814] inline-flex items-center gap-1 font-semibold"
                         title="Download proof to disk"
                       >
                         <Download className="w-3 h-3" />
@@ -797,7 +797,7 @@ export const AdminOrdersPage: React.FC = () => {
                         href={api.admin.getScreenshotUrl(verifyModalOrder.id || verifyModalOrder.orderNumber)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[#153E2B] font-bold hover:underline inline-flex items-center gap-1"
+                        className="text-[#171814] font-bold hover:underline inline-flex items-center gap-1"
                       >
                         <span>Open in New Tab</span>
                         <ExternalLink className="w-3 h-3" />
@@ -806,16 +806,16 @@ export const AdminOrdersPage: React.FC = () => {
                   </div>
                 </div>
               ) : (
-                <div className="p-4 bg-stone-50 rounded-2xl border border-stone-200 text-xs text-stone-400 text-center italic">
+                <div className="p-4 bg-[#F7F2E8] rounded-2xl border border-[#E5DED0] text-xs text-[#77766E] text-center italic">
                   No payment screenshot uploaded on the website. Customer may have contacted via WhatsApp.
                 </div>
               )}
             </div>
 
             {/* Admin Verification Inputs */}
-            <div className="space-y-4 pt-2 border-t border-stone-100 text-xs">
+            <div className="space-y-4 pt-2 border-t border-[#E5DED0] text-xs">
               <div>
-                <label htmlFor="admin-utr-input" className="block font-semibold text-stone-700 mb-1">
+                <label htmlFor="admin-utr-input" className="block font-semibold text-[#292A25] mb-1">
                   Verified UPI UTR / Transaction Reference Number
                 </label>
                 <input
@@ -825,15 +825,15 @@ export const AdminOrdersPage: React.FC = () => {
                   value={adminUtr}
                   onChange={(e) => setAdminUtr(e.target.value.replace(/\s+/g, ''))}
                   placeholder="e.g. 429381749281 (12 digits from your SBI / UPI bank statement)"
-                  className="w-full p-2.5 bg-[#FAF7F2] border border-stone-200 rounded-xl font-mono text-[#153E2B] font-bold"
+                  className="w-full p-2.5 bg-[#F7F2E8] border border-[#E5DED0] rounded-xl font-mono text-[#171814] font-bold focus:outline-hidden focus:border-[#D0AE70]"
                 />
-                <span className="text-[10px] text-stone-400 mt-1 block">
+                <span className="text-[10px] text-[#77766E] mt-1 block">
                   Record the confirmed bank reference for invoice reconciliation and accounting audits.
                 </span>
               </div>
 
               <div>
-                <label htmlFor="admin-note-input" className="block font-semibold text-stone-700 mb-1">
+                <label htmlFor="admin-note-input" className="block font-semibold text-[#292A25] mb-1">
                   Internal Administrator Note (Optional)
                 </label>
                 <input
@@ -843,14 +843,14 @@ export const AdminOrdersPage: React.FC = () => {
                   value={adminNote}
                   onChange={(e) => setAdminNote(e.target.value)}
                   placeholder="e.g. Verified credit of ₹350 in SBI account at 11:20 AM"
-                  className="w-full p-2.5 bg-[#FAF7F2] border border-stone-200 rounded-xl"
+                  className="w-full p-2.5 bg-[#F7F2E8] border border-[#E5DED0] rounded-xl text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
                 />
               </div>
 
               {/* Rejection Reason Form */}
               {isRejectMode && (
-                <div className="bg-red-50 p-4 rounded-2xl border border-red-200 space-y-2">
-                  <label htmlFor="rejection-reason-input" className="block font-bold text-red-900">
+                <div className="bg-[#A94F38]/10 p-4 rounded-2xl border border-[#A94F38]/30 space-y-2">
+                  <label htmlFor="rejection-reason-input" className="block font-bold text-[#A94F38]">
                     Reason for Rejection *
                   </label>
                   <input
@@ -861,9 +861,9 @@ export const AdminOrdersPage: React.FC = () => {
                     value={rejectionReason}
                     onChange={(e) => setRejectionReason(e.target.value)}
                     placeholder="e.g. No matching credit in SBI account / Incorrect amount transferred / Duplicate UTR"
-                    className="w-full p-2.5 bg-white border border-red-300 rounded-xl text-red-900"
+                    className="w-full p-2.5 bg-white border border-[#A94F38]/40 rounded-xl text-[#A94F38] focus:outline-hidden focus:border-[#A94F38]"
                   />
-                  <p className="text-[11px] text-red-700">
+                  <p className="text-[11px] text-[#A94F38]">
                     This reason will be displayed to the customer on their order confirmation and tracking screens.
                   </p>
                 </div>
@@ -871,13 +871,13 @@ export const AdminOrdersPage: React.FC = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row justify-between gap-3 pt-4 border-t border-stone-200">
+            <div className="flex flex-col sm:flex-row justify-between gap-3 pt-4 border-t border-[#E5DED0]">
               <div className="flex gap-2">
                 {!isRejectMode ? (
                   <button
                     type="button"
                     onClick={() => setIsRejectMode(true)}
-                    className="px-4 py-2.5 bg-red-50 text-red-700 hover:bg-red-100 rounded-xl text-xs font-bold transition-colors"
+                    className="px-4 py-2.5 bg-[#A94F38]/10 text-[#A94F38] hover:bg-[#A94F38]/20 rounded-xl text-xs font-bold transition-colors cursor-pointer"
                   >
                     Reject Submission...
                   </button>
@@ -886,7 +886,7 @@ export const AdminOrdersPage: React.FC = () => {
                     type="button"
                     onClick={handleRejectPayment}
                     disabled={isProcessingPayment}
-                    className="px-4 py-2.5 bg-red-600 text-white hover:bg-red-700 rounded-xl text-xs font-bold transition-colors"
+                    className="px-4 py-2.5 bg-[#A94F38] text-white hover:bg-[#A94F38]/90 rounded-xl text-xs font-bold transition-colors cursor-pointer"
                   >
                     {isProcessingPayment ? 'Rejecting...' : 'Confirm Rejection'}
                   </button>
@@ -896,7 +896,7 @@ export const AdminOrdersPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setIsRejectMode(false)}
-                    className="px-3 py-2.5 text-stone-500 hover:text-stone-800 text-xs"
+                    className="px-3 py-2.5 text-[#77766E] hover:text-[#171814] text-xs cursor-pointer"
                   >
                     Cancel
                   </button>
@@ -907,16 +907,16 @@ export const AdminOrdersPage: React.FC = () => {
                 type="button"
                 onClick={handleVerifyPayment}
                 disabled={isProcessingPayment}
-                className="px-6 py-2.5 bg-[#153E2B] text-white hover:bg-[#1E5138] rounded-xl text-xs font-bold uppercase tracking-wider shadow-md hover:shadow-lg disabled:opacity-50 transition-all flex items-center justify-center gap-2"
+                className="px-6 py-2.5 bg-[#D0AE70] text-[#171814] hover:bg-[#B99153] rounded-xl text-xs font-bold uppercase tracking-wider shadow-sm hover:shadow-md disabled:opacity-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 {isProcessingPayment ? (
                   <>
-                    <RefreshCw className="w-4 h-4 animate-spin text-[#D8B26E]" />
+                    <RefreshCw className="w-4 h-4 animate-spin text-[#171814]" />
                     <span>Processing...</span>
                   </>
                 ) : (
                   <>
-                    <CheckCircle2 className="w-4 h-4 text-[#D8B26E]" />
+                    <CheckCircle2 className="w-4 h-4 text-[#171814]" />
                     <span>Verify & Mark as Paid</span>
                   </>
                 )}
@@ -925,19 +925,19 @@ export const AdminOrdersPage: React.FC = () => {
 
             {/* Payment Audit Logs History */}
             {verifyModalOrder.paymentAuditLogs && verifyModalOrder.paymentAuditLogs.length > 0 && (
-              <div className="pt-4 border-t border-stone-100">
-                <h5 className="text-[11px] font-bold uppercase tracking-wider text-stone-500 mb-2">
+              <div className="pt-4 border-t border-[#E5DED0]">
+                <h5 className="text-[11px] font-bold uppercase tracking-wider text-[#77766E] mb-2 font-sans">
                   Payment Audit Trail & Logs
                 </h5>
                 <div className="space-y-1.5 max-h-36 overflow-y-auto">
                   {verifyModalOrder.paymentAuditLogs.map((log, idx) => (
-                    <div key={idx} className="p-2 bg-stone-50 rounded-lg text-[10px] text-stone-600 flex justify-between">
+                    <div key={idx} className="p-2 bg-[#F7F2E8] rounded-lg text-[10px] text-[#292A25] flex justify-between border border-[#E5DED0]">
                       <div>
-                        <span className="font-bold text-stone-800">{log.changedBy}</span>: {log.previousStatus} → <span className="font-bold text-[#153E2B]">{log.newStatus}</span>
-                        {log.note && <span className="block text-stone-500 italic mt-0.5">{log.note}</span>}
-                        {log.utr && <span className="block font-mono text-stone-700">UTR: {log.utr}</span>}
+                        <span className="font-bold text-[#171814]">{log.changedBy}</span>: {log.previousStatus} → <span className="font-bold text-[#435B43]">{log.newStatus}</span>
+                        {log.note && <span className="block text-[#77766E] italic mt-0.5">{log.note}</span>}
+                        {log.utr && <span className="block font-mono text-[#292A25]">UTR: {log.utr}</span>}
                       </div>
-                      <span className="text-stone-400 shrink-0 font-mono">{formatDateTime(log.timestamp)}</span>
+                      <span className="text-[#77766E] shrink-0 font-mono">{formatDateTime(log.timestamp)}</span>
                     </div>
                   ))}
                 </div>
@@ -951,21 +951,21 @@ export const AdminOrdersPage: React.FC = () => {
       {/* 5. Fulfillment Status Update Modal */}
       {statusOrder && (
         <div className="fixed inset-0 z-50 overflow-y-auto bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white w-full max-w-lg rounded-3xl border border-stone-200 shadow-2xl p-6 sm:p-8 space-y-6">
-            <div className="flex justify-between items-center pb-3 border-b">
+          <div className="bg-white w-full max-w-lg rounded-3xl border border-[#E5DED0] shadow-2xl p-6 sm:p-8 space-y-6">
+            <div className="flex justify-between items-center pb-3 border-b border-[#E5DED0]">
               <div>
-                <h3 className="font-editorial text-lg font-bold text-[#153E2B]">
+                <h3 className="font-editorial text-lg font-bold text-[#171814]">
                   Update Fulfillment: {statusOrder.orderNumber}
                 </h3>
-                <p className="text-xs text-stone-400">Customer: {statusOrder.customerName}</p>
+                <p className="text-xs text-[#77766E]">Customer: {statusOrder.customerName}</p>
               </div>
-              <button onClick={() => setStatusOrder(null)}><X className="w-5 h-5 text-stone-400" /></button>
+              <button onClick={() => setStatusOrder(null)} className="cursor-pointer text-[#77766E] hover:text-[#171814]"><X className="w-5 h-5" /></button>
             </div>
 
             <form onSubmit={handleUpdateStatus} className="space-y-4 text-xs">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label htmlFor="modal-fulfillment-status" className="block font-semibold text-stone-700 mb-1">
+                  <label htmlFor="modal-fulfillment-status" className="block font-semibold text-[#292A25] mb-1">
                     Fulfillment Status *
                   </label>
                   <select
@@ -973,7 +973,7 @@ export const AdminOrdersPage: React.FC = () => {
                     name="fulfillmentStatus"
                     value={newStatus}
                     onChange={(e) => setNewStatus(e.target.value as any)}
-                    className="w-full p-2.5 bg-[#FAF7F2] border border-stone-200 rounded-xl"
+                    className="w-full p-2.5 bg-[#F7F2E8] border border-[#E5DED0] rounded-xl text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
                   >
                     <option value="pending">Pending</option>
                     <option value="confirmed">Confirmed</option>
@@ -985,7 +985,7 @@ export const AdminOrdersPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="modal-payment-status" className="block font-semibold text-stone-700 mb-1">
+                  <label htmlFor="modal-payment-status" className="block font-semibold text-[#292A25] mb-1">
                     Payment Verification Status *
                   </label>
                   <select
@@ -993,7 +993,7 @@ export const AdminOrdersPage: React.FC = () => {
                     name="paymentStatus"
                     value={newPaymentStatus}
                     onChange={(e) => setNewPaymentStatus(e.target.value as any)}
-                    className="w-full p-2.5 bg-[#FAF7F2] border border-stone-200 rounded-xl font-bold text-[#153E2B]"
+                    className="w-full p-2.5 bg-[#F7F2E8] border border-[#E5DED0] rounded-xl font-bold text-[#171814] focus:outline-hidden focus:border-[#D0AE70]"
                   >
                     <option value="VERIFICATION_PENDING">⏳ VERIFICATION_PENDING</option>
                     <option value="PAID">✓ PAID (Verified)</option>
@@ -1005,7 +1005,7 @@ export const AdminOrdersPage: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="modal-courier-name" className="block font-semibold text-stone-700 mb-1">Courier Partner</label>
+                <label htmlFor="modal-courier-name" className="block font-semibold text-[#292A25] mb-1">Courier Partner</label>
                 <input
                   id="modal-courier-name"
                   name="courierName"
@@ -1013,12 +1013,12 @@ export const AdminOrdersPage: React.FC = () => {
                   value={newCourier}
                   onChange={(e) => setNewCourier(e.target.value)}
                   placeholder="e.g. Blue Dart Express, Delhivery, DTDC"
-                  className="w-full p-2.5 bg-[#FAF7F2] border border-stone-200 rounded-xl"
+                  className="w-full p-2.5 bg-[#F7F2E8] border border-[#E5DED0] rounded-xl text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
                 />
               </div>
 
               <div>
-                <label htmlFor="modal-tracking-number" className="block font-semibold text-stone-700 mb-1">Tracking Number / AWB</label>
+                <label htmlFor="modal-tracking-number" className="block font-semibold text-[#292A25] mb-1">Tracking Number / AWB</label>
                 <input
                   id="modal-tracking-number"
                   name="trackingNumber"
@@ -1026,12 +1026,12 @@ export const AdminOrdersPage: React.FC = () => {
                   value={newTracking}
                   onChange={(e) => setNewTracking(e.target.value)}
                   placeholder="Tracking AWB code"
-                  className="w-full p-2.5 bg-[#FAF7F2] border border-stone-200 rounded-xl font-mono"
+                  className="w-full p-2.5 bg-[#F7F2E8] border border-[#E5DED0] rounded-xl font-mono text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
                 />
               </div>
 
               <div>
-                <label htmlFor="modal-status-note" className="block font-semibold text-stone-700 mb-1">Status Note</label>
+                <label htmlFor="modal-status-note" className="block font-semibold text-[#292A25] mb-1">Status Note</label>
                 <input
                   id="modal-status-note"
                   name="statusNote"
@@ -1039,17 +1039,17 @@ export const AdminOrdersPage: React.FC = () => {
                   value={statusNote}
                   onChange={(e) => setStatusNote(e.target.value)}
                   placeholder="e.g. Dispatched from Munnar plantation hub"
-                  className="w-full p-2.5 bg-[#FAF7F2] border border-stone-200 rounded-xl"
+                  className="w-full p-2.5 bg-[#F7F2E8] border border-[#E5DED0] rounded-xl text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
                 />
               </div>
 
-              <div className="flex justify-between items-center gap-3 pt-4 border-t">
+              <div className="flex justify-between items-center gap-3 pt-4 border-t border-[#E5DED0]">
                 {(newTracking || statusOrder.trackingNumber) ? (
                   <Link
                     to={`/track/${encodeURIComponent(newTracking || statusOrder.trackingNumber || '')}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-xs font-bold text-[#153E2B] hover:underline flex items-center gap-1"
+                    className="text-xs font-bold text-[#171814] hover:text-[#D0AE70] hover:underline flex items-center gap-1 transition-colors"
                   >
                     <span>View Live Tracking</span>
                     <ExternalLink className="w-3 h-3" />
@@ -1059,14 +1059,14 @@ export const AdminOrdersPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setStatusOrder(null)}
-                    className="px-4 py-2 border rounded-xl hover:bg-stone-50 text-xs font-semibold"
+                    className="px-4 py-2 border border-[#E5DED0] rounded-xl hover:bg-[#F7F2E8] text-xs font-semibold text-[#77766E] hover:text-[#171814] cursor-pointer"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={isUpdatingStatus}
-                    className="px-5 py-2 bg-[#153E2B] text-white rounded-xl text-xs font-bold hover:bg-[#1E5138]"
+                    className="px-5 py-2 bg-[#D0AE70] text-[#171814] hover:bg-[#B99153] rounded-xl text-xs font-bold transition-colors cursor-pointer"
                   >
                     {isUpdatingStatus ? 'Saving...' : 'Update Status'}
                   </button>
@@ -1080,55 +1080,55 @@ export const AdminOrdersPage: React.FC = () => {
       {/* 6. Invoice Preview / Print Modal */}
       {invoiceOrder && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl relative my-8">
+          <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl relative my-8 border border-[#E5DED0]">
             <button
               onClick={() => { setInvoiceOrder(null); setInvoiceData(null); }}
-              className="absolute top-6 right-6 p-2 rounded-full hover:bg-stone-100 text-stone-500"
+              className="absolute top-6 right-6 p-2 rounded-full hover:bg-[#F7F2E8] text-[#77766E] hover:text-[#171814] cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
 
             {isLoadingInvoice || !invoiceData ? (
-              <div className="py-20 text-center text-xs text-stone-500">
-                <RefreshCw className="w-6 h-6 animate-spin text-[#153E2B] mx-auto mb-2" />
+              <div className="py-20 text-center text-xs text-[#77766E]">
+                <RefreshCw className="w-6 h-6 animate-spin text-[#D0AE70] mx-auto mb-2" />
                 <span>Generating official invoice document...</span>
               </div>
             ) : (
               <>
                 {/* Invoice Header */}
-                <div className="border-b border-stone-200 pb-4 flex justify-between items-start">
+                <div className="border-b border-[#E5DED0] pb-4 flex justify-between items-start">
                   <div>
-                    <h3 className="font-editorial text-xl font-bold text-[#153E2B]">
+                    <h3 className="font-editorial text-xl font-bold text-[#171814]">
                       {invoiceData.isRegisteredGst ? 'TAX INVOICE' : 'BILL OF SUPPLY'}
                     </h3>
-                    <p className="text-xs font-bold text-stone-800">{invoiceData.businessName}</p>
-                    <p className="text-[11px] text-stone-500">{invoiceData.address}</p>
+                    <p className="text-xs font-bold text-[#292A25]">{invoiceData.businessName}</p>
+                    <p className="text-[11px] text-[#77766E]">{invoiceData.address}</p>
                     {invoiceData.gstin && (
-                      <p className="text-[11px] font-mono text-[#153E2B]">GSTIN: {invoiceData.gstin}</p>
+                      <p className="text-[11px] font-mono text-[#171814]">GSTIN: {invoiceData.gstin}</p>
                     )}
                     {invoiceData.pan && (
-                      <p className="text-[11px] font-mono text-stone-600">PAN: {invoiceData.pan}</p>
+                      <p className="text-[11px] font-mono text-[#77766E]">PAN: {invoiceData.pan}</p>
                     )}
                   </div>
                   <div className="text-right text-xs">
-                    <p className="font-mono font-bold text-[#153E2B]">{invoiceData.invoiceNumber}</p>
-                    <p className="text-stone-500">Date: {new Date(invoiceData.invoiceDate).toLocaleDateString('en-IN')}</p>
-                    <p className="text-stone-500">Order: {invoiceData.orderNumber}</p>
+                    <p className="font-mono font-bold text-[#171814]">{invoiceData.invoiceNumber}</p>
+                    <p className="text-[#77766E]">Date: {new Date(invoiceData.invoiceDate).toLocaleDateString('en-IN')}</p>
+                    <p className="text-[#77766E]">Order: {invoiceData.orderNumber}</p>
                   </div>
                 </div>
 
                 {/* Customer Details */}
-                <div className="text-xs bg-stone-50 p-3 rounded-xl border border-stone-200">
-                  <span className="font-bold text-stone-700 block mb-1">Billed To (Customer):</span>
-                  <p className="font-semibold text-stone-900">{invoiceData.customer.name}</p>
-                  <p className="text-stone-600">{invoiceData.customer.addressLine}, {invoiceData.customer.city}, {invoiceData.customer.state} - {invoiceData.customer.pincode}</p>
-                  <p className="text-stone-600">Phone: {invoiceData.customer.phone} | Email: {invoiceData.customer.email}</p>
+                <div className="text-xs bg-[#F7F2E8] p-3 rounded-xl border border-[#E5DED0]">
+                  <span className="font-bold text-[#171814] block mb-1">Billed To (Customer):</span>
+                  <p className="font-semibold text-[#292A25]">{invoiceData.customer.name}</p>
+                  <p className="text-[#77766E]">{invoiceData.customer.addressLine}, {invoiceData.customer.city}, {invoiceData.customer.state} - {invoiceData.customer.pincode}</p>
+                  <p className="text-[#77766E]">Phone: {invoiceData.customer.phone} | Email: {invoiceData.customer.email}</p>
                 </div>
 
                 {/* Items Table */}
-                <table className="w-full text-xs divide-y divide-stone-200">
+                <table className="w-full text-xs divide-y divide-[#E5DED0]">
                   <thead>
-                    <tr className="text-stone-500 text-left">
+                    <tr className="text-[#77766E] text-left font-sans text-[10px] uppercase">
                       <th className="py-2">Item</th>
                       <th className="py-2">HSN</th>
                       <th className="py-2 text-center">Qty</th>
@@ -1136,62 +1136,62 @@ export const AdminOrdersPage: React.FC = () => {
                       <th className="py-2 text-right">Total</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-stone-100">
+                  <tbody className="divide-y divide-[#E5DED0]/60">
                     {invoiceData.items.map((it: any, i: number) => (
                       <tr key={i}>
-                        <td className="py-2">{it.name} <span className="text-stone-400">({it.packSize})</span></td>
-                        <td className="py-2 font-mono text-stone-500">{it.hsnCode}</td>
-                        <td className="py-2 text-center">{it.quantity}</td>
-                        <td className="py-2 text-right">{formatINR(it.ratePaise)}</td>
-                        <td className="py-2 text-right font-semibold">{formatINR(it.totalPaise)}</td>
+                        <td className="py-2 text-[#292A25]">{it.name} <span className="text-[#77766E]">({it.packSize})</span></td>
+                        <td className="py-2 font-mono text-[#77766E]">{it.hsnCode}</td>
+                        <td className="py-2 text-center text-[#292A25]">{it.quantity}</td>
+                        <td className="py-2 text-right text-[#292A25]">{formatINR(it.ratePaise)}</td>
+                        <td className="py-2 text-right font-semibold text-[#435B43]">{formatINR(it.totalPaise)}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
 
                 {/* Summary */}
-                <div className="border-t border-stone-200 pt-3 space-y-1 text-xs">
-                  <div className="flex justify-between text-stone-600">
+                <div className="border-t border-[#E5DED0] pt-3 space-y-1 text-xs">
+                  <div className="flex justify-between text-[#77766E]">
                     <span>Taxable Value:</span>
-                    <span>{formatINR(invoiceData.subtotalPaise)}</span>
+                    <span className="text-[#292A25]">{formatINR(invoiceData.subtotalPaise)}</span>
                   </div>
                   {invoiceData.discountPaise > 0 && (
-                    <div className="flex justify-between text-red-600">
+                    <div className="flex justify-between text-[#A94F38] font-semibold">
                       <span>Discount:</span>
                       <span>-{formatINR(invoiceData.discountPaise)}</span>
                     </div>
                   )}
                   {invoiceData.isRegisteredGst && (
                     <>
-                      <div className="flex justify-between text-stone-500">
+                      <div className="flex justify-between text-[#77766E]">
                         <span>CGST ({invoiceData.taxRatePercent / 2}%):</span>
-                        <span>{formatINR(invoiceData.cgstPaise)}</span>
+                        <span className="text-[#292A25]">{formatINR(invoiceData.cgstPaise)}</span>
                       </div>
-                      <div className="flex justify-between text-stone-500">
+                      <div className="flex justify-between text-[#77766E]">
                         <span>SGST ({invoiceData.taxRatePercent / 2}%):</span>
-                        <span>{formatINR(invoiceData.sgstPaise)}</span>
+                        <span className="text-[#292A25]">{formatINR(invoiceData.sgstPaise)}</span>
                       </div>
                     </>
                   )}
-                  <div className="flex justify-between text-stone-600">
+                  <div className="flex justify-between text-[#77766E]">
                     <span>Shipping:</span>
-                    <span>{invoiceData.shippingFeePaise === 0 ? 'FREE' : formatINR(invoiceData.shippingFeePaise)}</span>
+                    <span className="text-[#435B43]">{invoiceData.shippingFeePaise === 0 ? 'FREE' : formatINR(invoiceData.shippingFeePaise)}</span>
                   </div>
-                  <div className="pt-2 border-t border-stone-300 flex justify-between font-bold text-sm text-[#153E2B]">
+                  <div className="pt-2 border-t border-[#E5DED0] flex justify-between font-bold text-sm text-[#171814]">
                     <span>Invoice Total:</span>
-                    <span>{formatINR(invoiceData.totalPaise)}</span>
+                    <span className="text-[#435B43] font-editorial text-base">{formatINR(invoiceData.totalPaise)}</span>
                   </div>
-                  <p className="text-[10px] text-stone-500 italic pt-1">
+                  <p className="text-[10px] text-[#77766E] italic pt-1">
                     Amount in Words: {invoiceData.totalInWords}
                   </p>
                 </div>
 
-                <div className="flex justify-end gap-3 pt-4 border-t border-stone-100">
+                <div className="flex justify-end gap-3 pt-4 border-t border-[#E5DED0]">
                   <button
                     onClick={() => window.print()}
-                    className="px-4 py-2 bg-[#153E2B] text-white rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-1.5"
+                    className="px-4 py-2 bg-[#D0AE70] text-[#171814] hover:bg-[#B99153] rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer"
                   >
-                    <Printer className="w-3.5 h-3.5" />
+                    <Printer className="w-3.5 h-3.5 text-[#171814]" />
                     <span>Print Invoice</span>
                   </button>
                 </div>
@@ -1211,16 +1211,16 @@ export const AdminOrdersPage: React.FC = () => {
           }}
         >
           {/* Lightbox Top Navigation Bar */}
-          <div className="flex items-center justify-between px-6 py-4 bg-stone-900/90 border-b border-stone-800 text-white z-10">
+          <div className="flex items-center justify-between px-6 py-4 bg-[#171814] border-b border-[#292A25] text-white z-10">
             <div className="flex items-center gap-3">
-              <span className="text-xs uppercase tracking-widest font-bold text-[#D8B26E]">
+              <span className="text-xs uppercase tracking-widest font-bold text-[#D0AE70] font-sans">
                 Payment Audit Lightbox
               </span>
-              <span className="text-stone-500">•</span>
+              <span className="text-[#77766E]">•</span>
               <h3 className="font-mono text-sm font-bold text-white">
                 {verifyModalOrder.orderNumber}
               </h3>
-              <span className="text-xs text-stone-300">
+              <span className="text-xs text-[#D8D0C0]">
                 ({verifyModalOrder.customerName} - {formatINR(verifyModalOrder.priceBreakdown?.totalPaise || 0)})
               </span>
             </div>
@@ -1230,18 +1230,18 @@ export const AdminOrdersPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setImgZoom((prev) => Math.max(0.5, Number((prev - 0.25).toFixed(2))))}
-                className="p-2 text-stone-300 hover:text-white hover:bg-stone-800 rounded-lg transition-colors"
+                className="p-2 text-[#D8D0C0] hover:text-white hover:bg-stone-800 rounded-lg transition-colors cursor-pointer"
                 title="Zoom Out"
               >
                 <ZoomOut className="w-4 h-4" />
               </button>
-              <span className="text-xs font-mono text-stone-400 w-12 text-center">
+              <span className="text-xs font-mono text-[#D8D0C0] w-12 text-center">
                 {Math.round(imgZoom * 100)}%
               </span>
               <button
                 type="button"
                 onClick={() => setImgZoom((prev) => Math.min(4, Number((prev + 0.25).toFixed(2))))}
-                className="p-2 text-stone-300 hover:text-white hover:bg-stone-800 rounded-lg transition-colors"
+                className="p-2 text-[#D8D0C0] hover:text-white hover:bg-stone-800 rounded-lg transition-colors cursor-pointer"
                 title="Zoom In"
               >
                 <ZoomIn className="w-4 h-4" />
@@ -1249,7 +1249,7 @@ export const AdminOrdersPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setImgRotation((prev) => (prev + 90) % 360)}
-                className="p-2 text-stone-300 hover:text-white hover:bg-stone-800 rounded-lg transition-colors"
+                className="p-2 text-[#D8D0C0] hover:text-white hover:bg-stone-800 rounded-lg transition-colors cursor-pointer"
                 title="Rotate 90° Clockwise"
               >
                 <RotateCw className="w-4 h-4" />
@@ -1260,14 +1260,14 @@ export const AdminOrdersPage: React.FC = () => {
                   setImgZoom(1);
                   setImgRotation(0);
                 }}
-                className="px-2.5 py-1 text-xs text-stone-300 hover:text-white hover:bg-stone-800 rounded-lg transition-colors"
+                className="px-2.5 py-1 text-xs text-[#D8D0C0] hover:text-white hover:bg-stone-800 rounded-lg transition-colors cursor-pointer"
               >
                 Reset
               </button>
               <a
                 href={api.admin.getScreenshotUrl(verifyModalOrder.id || verifyModalOrder.orderNumber)}
                 download={`payment_${verifyModalOrder.orderNumber}.png`}
-                className="p-2 text-stone-300 hover:text-white hover:bg-stone-800 rounded-lg transition-colors"
+                className="p-2 text-[#D8D0C0] hover:text-white hover:bg-stone-800 rounded-lg transition-colors cursor-pointer"
                 title="Download screenshot"
               >
                 <Download className="w-4 h-4" />
@@ -1275,7 +1275,7 @@ export const AdminOrdersPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsLightboxOpen(false)}
-                className="p-2 text-stone-300 hover:text-white hover:bg-stone-800 rounded-lg transition-colors ml-4"
+                className="p-2 text-[#D8D0C0] hover:text-white hover:bg-stone-800 rounded-lg transition-colors ml-4 cursor-pointer"
                 title="Close Lightbox"
               >
                 <X className="w-5 h-5" />
@@ -1305,11 +1305,11 @@ export const AdminOrdersPage: React.FC = () => {
           </div>
 
           {/* Lightbox Bottom Action Footer */}
-          <div className="px-6 py-3 bg-stone-900/90 border-t border-stone-800 text-stone-300 flex items-center justify-between text-xs">
+          <div className="px-6 py-3 bg-[#171814] border-t border-[#292A25] text-[#D8D0C0] flex items-center justify-between text-xs">
             <div className="flex items-center gap-4">
               {verifyModalOrder.upiTransactionRef && (
                 <span>
-                  Submitted UTR: <strong className="font-mono text-[#D8B26E]">{verifyModalOrder.upiTransactionRef}</strong>
+                  Submitted UTR: <strong className="font-mono text-[#D0AE70]">{verifyModalOrder.upiTransactionRef}</strong>
                 </span>
               )}
               <span>
@@ -1323,7 +1323,7 @@ export const AdminOrdersPage: React.FC = () => {
                   setIsLightboxOpen(false);
                   setIsRejectMode(true);
                 }}
-                className="px-4 py-2 bg-red-900/80 hover:bg-red-800 text-red-200 rounded-xl font-bold transition-colors"
+                className="px-4 py-2 bg-[#A94F38]/80 hover:bg-[#A94F38] text-white rounded-xl font-bold transition-colors cursor-pointer"
               >
                 Reject Proof...
               </button>
@@ -1333,9 +1333,9 @@ export const AdminOrdersPage: React.FC = () => {
                   setIsLightboxOpen(false);
                   handleVerifyPayment();
                 }}
-                className="px-5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold flex items-center gap-1.5 transition-colors"
+                className="px-5 py-2 bg-[#D0AE70] hover:bg-[#B99153] text-[#171814] rounded-xl font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
               >
-                <CheckCircle2 className="w-4 h-4" />
+                <CheckCircle2 className="w-4 h-4 text-[#171814]" />
                 <span>Verify & Mark Paid</span>
               </button>
             </div>

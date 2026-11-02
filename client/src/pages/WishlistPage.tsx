@@ -39,18 +39,18 @@ export const WishlistPage: React.FC = () => {
   if (wishlistIds.length === 0) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-        <div className="w-16 h-16 rounded-full bg-[#B85D3A]/10 text-[#B85D3A] flex items-center justify-center mx-auto mb-4">
+        <div className="w-16 h-16 rounded-full bg-[#D0AE70]/15 text-[#D0AE70] flex items-center justify-center mx-auto mb-4">
           <Heart className="w-8 h-8" />
         </div>
-        <h1 className="font-editorial text-3xl font-bold text-[#153E2B] mb-2">
+        <h1 className="font-editorial text-3xl font-bold text-[#171814] mb-2">
           Your Wishlist is Empty
         </h1>
-        <p className="text-xs text-stone-500 max-w-sm mx-auto mb-6">
+        <p className="text-xs text-[#77766E] max-w-sm mx-auto mb-6">
           Save your favorite single-origin peppercorns, high-altitude teas, and spice boxes for later.
         </p>
         <Link
           to="/shop"
-          className="bg-[#153E2B] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-full hover:bg-[#1E5138] transition-colors"
+          className="bg-[#D0AE70] text-[#171814] hover:bg-[#B99153] text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-full transition-colors"
         >
           Explore Catalog
         </Link>
@@ -61,22 +61,22 @@ export const WishlistPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       <div>
-        <h1 className="font-editorial text-3xl font-bold text-[#153E2B]">
+        <h1 className="font-editorial text-3xl font-bold text-[#171814]">
           Your Saved Spices ({wishlistIds.length})
         </h1>
-        <p className="text-xs text-stone-500">
+        <p className="text-xs text-[#77766E]">
           Items you've earmarked for your next harvest order.
         </p>
       </div>
 
       {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 md:gap-6">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="h-80 bg-white rounded-2xl border border-stone-200 animate-pulse" />
+            <div key={i} className="aspect-[3/4] bg-white rounded-xl border border-[#E5DED0] animate-pulse" />
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 md:gap-6">
           {products.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}

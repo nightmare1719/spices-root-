@@ -267,16 +267,16 @@ export const AdminLogisticsPage: React.FC = () => {
     <div className="space-y-6">
       
       {/* 1. Horizontal Navigation Bar */}
-      <div className="bg-white rounded-2xl border border-stone-200 shadow-xs p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-white rounded-2xl border border-[#E5DED0] shadow-xs p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#153E2B] text-[#D8B26E] flex items-center justify-center font-bold shadow-xs">
+          <div className="w-10 h-10 rounded-xl bg-[#171814] text-[#D0AE70] flex items-center justify-center font-bold shadow-xs">
             <Truck className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="font-editorial text-xl font-bold text-[#153E2B]">
+            <h1 className="font-editorial text-xl font-bold text-[#171814]">
               Store Overview & Logistics
             </h1>
-            <p className="text-xs text-stone-500">
+            <p className="text-xs text-[#77766E]">
               Manage Destination Pincode & Weight-based rate slabs stored in MongoDB
             </p>
           </div>
@@ -286,93 +286,93 @@ export const AdminLogisticsPage: React.FC = () => {
         <div className="flex items-center gap-3 flex-wrap">
           <a
             href="/admin/products"
-            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold text-[#153E2B] bg-[#C5A059]/20 hover:bg-[#C5A059]/30 border border-[#C5A059]/40 transition-colors shadow-2xs"
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold text-[#171814] bg-[#D0AE70]/15 hover:bg-[#D0AE70]/25 border border-[#D0AE70]/30 transition-colors shadow-2xs"
           >
-            <Package className="w-4 h-4 text-[#C5A059]" />
+            <Package className="w-4 h-4 text-[#D0AE70]" />
             <span>Add New Product</span>
           </a>
 
           <button
             type="button"
             onClick={openCreateModal}
-            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-[#153E2B] hover:bg-[#1E5138] transition-colors shadow-xs"
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold text-[#171814] bg-[#D0AE70] hover:bg-[#B99153] transition-colors shadow-xs cursor-pointer"
           >
-            <Plus className="w-4 h-4 text-[#D8B26E]" />
+            <Plus className="w-4 h-4 text-[#171814]" />
             <span>Add Shipping Zone</span>
           </button>
         </div>
       </div>
 
       {/* Real-time Checkout Courier Integration Banner */}
-      <div className="bg-gradient-to-r from-[#153E2B] via-[#1E5138] to-[#153E2B] border border-[#C5A059]/30 text-white p-4 sm:p-5 rounded-2xl shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="bg-[#171814] border border-[#D0AE70]/30 text-[#F7F2E8] p-4 sm:p-5 rounded-2xl shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <span className="bg-[#C5A059] text-[#153E2B] text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full tracking-wider">
+            <span className="bg-[#D0AE70] text-[#171814] text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full tracking-wider font-sans">
               Live Checkout Integrated
             </span>
-            <span className="text-xs text-[#D8B26E] font-bold">Weight + Distance [Pincode] Formula Active</span>
+            <span className="text-xs text-[#D0AE70] font-bold">Weight + Distance [Pincode] Formula Active</span>
           </div>
           <h3 className="font-editorial text-lg font-bold text-white">
             Total Courier Amount = Customer Shipping Charge
           </h3>
-          <p className="text-xs text-stone-300 max-w-3xl">
+          <p className="text-xs text-[#D8D0C0] max-w-3xl">
             The rate slabs configured below calculate the courier shipping fee based on customer's exact 6-digit destination pincode and total cart weight in grams. The resulting courier total is automatically charged to the customer at checkout.
           </p>
         </div>
         <div className="shrink-0 bg-white/10 backdrop-blur-xs px-4 py-2.5 rounded-xl border border-white/10 text-center">
-          <span className="text-[10px] text-[#D8B26E] font-bold uppercase tracking-wider block">Customer Billing</span>
+          <span className="text-[10px] text-[#D0AE70] font-bold uppercase tracking-wider block font-sans">Customer Billing</span>
           <span className="font-mono text-xs text-white font-bold">Weight + Pincode</span>
         </div>
       </div>
 
       {/* Notifications */}
       {successMessage && (
-        <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 p-3.5 rounded-xl text-xs flex items-center gap-2 font-medium animate-in fade-in">
-          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+        <div className="bg-[#435B43]/10 border border-[#435B43]/30 text-[#435B43] p-3.5 rounded-xl text-xs flex items-center gap-2 font-medium animate-in fade-in">
+          <CheckCircle2 className="w-4 h-4 text-[#435B43] shrink-0" />
           <span>{successMessage}</span>
         </div>
       )}
 
       {errorMessage && (
-        <div className="bg-rose-50 border border-rose-200 text-rose-800 p-3.5 rounded-xl text-xs flex items-center gap-2 font-medium animate-in fade-in">
-          <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+        <div className="bg-[#A94F38]/10 border border-[#A94F38]/30 text-[#A94F38] p-3.5 rounded-xl text-xs flex items-center gap-2 font-medium animate-in fade-in">
+          <AlertCircle className="w-4 h-4 text-[#A94F38] shrink-0" />
           <span>{errorMessage}</span>
         </div>
       )}
 
       {/* Metric Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-white p-5 rounded-2xl border border-stone-200 shadow-2xs flex items-center justify-between">
+        <div className="bg-white p-5 rounded-2xl border border-[#E5DED0] shadow-2xs flex items-center justify-between">
           <div>
-            <p className="text-[11px] font-bold text-stone-400 uppercase tracking-wider">Active Shipping Slabs</p>
-            <p className="font-editorial text-2xl font-bold text-[#153E2B] mt-1">{rates.filter(r => r.isActive !== false).length}</p>
+            <p className="text-[11px] font-bold text-[#77766E] uppercase tracking-wider font-sans">Active Shipping Slabs</p>
+            <p className="font-editorial text-2xl font-bold text-[#171814] mt-1">{rates.filter(r => r.isActive !== false).length}</p>
           </div>
-          <MapPin className="w-8 h-8 text-[#153E2B]/15" />
+          <MapPin className="w-8 h-8 text-[#171814]/15" />
         </div>
-        <div className="bg-white p-5 rounded-2xl border border-stone-200 shadow-2xs flex items-center justify-between">
+        <div className="bg-white p-5 rounded-2xl border border-[#E5DED0] shadow-2xs flex items-center justify-between">
           <div>
-            <p className="text-[11px] font-bold text-stone-400 uppercase tracking-wider">Default Base Weight</p>
-            <p className="font-editorial text-2xl font-bold text-[#153E2B] mt-1">1.0 kg</p>
+            <p className="text-[11px] font-bold text-[#77766E] uppercase tracking-wider font-sans">Default Base Weight</p>
+            <p className="font-editorial text-2xl font-bold text-[#171814] mt-1">1.0 kg</p>
           </div>
-          <Scale className="w-8 h-8 text-[#153E2B]/15" />
+          <Scale className="w-8 h-8 text-[#171814]/15" />
         </div>
-        <div className="bg-white p-5 rounded-2xl border border-stone-200 shadow-2xs flex items-center justify-between">
+        <div className="bg-white p-5 rounded-2xl border border-[#E5DED0] shadow-2xs flex items-center justify-between">
           <div>
-            <p className="text-[11px] font-bold text-stone-400 uppercase tracking-wider">Database Storage</p>
-            <p className="font-editorial text-2xl font-bold text-[#153E2B] mt-1">MongoDB Atlas</p>
+            <p className="text-[11px] font-bold text-[#77766E] uppercase tracking-wider font-sans">Database Storage</p>
+            <p className="font-editorial text-2xl font-bold text-[#171814] mt-1">MongoDB Atlas</p>
           </div>
-          <CheckCircle2 className="w-8 h-8 text-[#153E2B]/15" />
+          <CheckCircle2 className="w-8 h-8 text-[#171814]/15" />
         </div>
       </div>
 
       {/* 2. Responsive Table Grid of Rate Slabs */}
-      <div className="bg-white rounded-2xl border border-stone-200 shadow-2xs overflow-hidden">
-        <div className="p-5 border-b border-stone-100 flex items-center justify-between">
+      <div className="bg-white rounded-2xl border border-[#E5DED0] shadow-2xs overflow-hidden">
+        <div className="p-5 border-b border-[#E5DED0] flex items-center justify-between">
           <div>
-            <h2 className="text-sm font-bold text-[#153E2B] uppercase tracking-wider">
+            <h2 className="text-sm font-bold text-[#171814] uppercase tracking-wider font-sans">
               Destination Pincode & Weight Rate Slabs
             </h2>
-            <p className="text-xs text-stone-500">
+            <p className="text-xs text-[#77766E]">
               Matches customer full 6-digit postal pincodes (or ranges like 625001-625025) with base weight allowance (₹) + per additional kilogram increments.
             </p>
           </div>
@@ -380,7 +380,7 @@ export const AdminLogisticsPage: React.FC = () => {
             id="refresh-rates-btn"
             name="refreshRates"
             onClick={loadRates}
-            className="p-2 text-stone-400 hover:text-stone-600 rounded-lg hover:bg-stone-50"
+            className="p-2 text-[#77766E] hover:text-[#171814] rounded-lg hover:bg-[#F7F2E8] cursor-pointer"
             title="Refresh Rates"
           >
             <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
@@ -388,13 +388,13 @@ export const AdminLogisticsPage: React.FC = () => {
         </div>
 
         {isLoading ? (
-          <div className="p-12 text-center text-xs text-stone-400">Loading rate slabs...</div>
+          <div className="p-12 text-center text-xs text-[#77766E]">Loading rate slabs...</div>
         ) : rates.length === 0 ? (
-          <div className="p-12 text-center text-xs text-stone-400">No shipping slabs configured yet. Click "Add Shipping Zone" above.</div>
+          <div className="p-12 text-center text-xs text-[#77766E]">No shipping slabs configured yet. Click "Add Shipping Zone" above.</div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-[#FAF7F2] text-stone-600 font-bold uppercase tracking-wider border-b border-stone-200">
+              <thead className="bg-[#F7F2E8] text-[#292A25] font-bold uppercase tracking-wider border-b border-[#E5DED0] font-sans">
                 <tr>
                   <th className="px-5 py-3.5">Zone Name</th>
                   <th className="px-5 py-3.5">Serviceable 6-Digit Pincodes</th>
@@ -405,10 +405,10 @@ export const AdminLogisticsPage: React.FC = () => {
                   <th className="px-5 py-3.5 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-stone-100">
+              <tbody className="divide-y divide-[#E5DED0]">
                 {rates.map((rate) => (
-                  <tr key={rate.id || rate._id} className="hover:bg-amber-50/30 transition-colors">
-                    <td className="px-5 py-4 font-bold text-stone-900">
+                  <tr key={rate.id || rate._id} className="hover:bg-[#F7F2E8]/40 transition-colors">
+                    <td className="px-5 py-4 font-bold text-[#171814]">
                       {rate.zoneName}
                     </td>
                     <td className="px-5 py-4">
@@ -418,8 +418,8 @@ export const AdminLogisticsPage: React.FC = () => {
                             key={i}
                             className={`px-2 py-0.5 rounded-md font-mono text-[11px] font-bold ${
                               p.trim() === '*'
-                                ? 'bg-amber-100 text-amber-900'
-                                : 'bg-[#153E2B]/10 text-[#153E2B]'
+                                ? 'bg-[#D0AE70]/20 text-[#79503A]'
+                                : 'bg-[#171814]/10 text-[#171814]'
                             }`}
                           >
                             {p.trim() === '*' ? 'REST OF INDIA (*)' : p.trim()}
@@ -427,23 +427,23 @@ export const AdminLogisticsPage: React.FC = () => {
                         ))}
                       </div>
                     </td>
-                    <td className="px-5 py-4 text-stone-700 font-medium">
+                    <td className="px-5 py-4 text-[#292A25] font-medium">
                       {rate.baseWeightKg} kg
                     </td>
-                    <td className="px-5 py-4 font-bold text-[#153E2B]">
+                    <td className="px-5 py-4 font-bold text-[#435B43]">
                       ₹{rate.baseRate}
                     </td>
-                    <td className="px-5 py-4 font-medium text-stone-700">
+                    <td className="px-5 py-4 font-medium text-[#292A25]">
                       +₹{rate.perAdditionalKgRate} / kg
                     </td>
-                    <td className="px-5 py-4 text-stone-500">
+                    <td className="px-5 py-4 text-[#77766E]">
                       {rate.estimatedDelivery || '—'}
                     </td>
                     <td className="px-5 py-4 text-right space-x-2">
                       <button
                         type="button"
                         onClick={() => openEditModal(rate)}
-                        className="p-1.5 rounded-lg text-stone-500 hover:text-[#153E2B] hover:bg-stone-100 transition-colors"
+                        className="p-1.5 rounded-lg text-[#77766E] hover:text-[#171814] hover:bg-[#F7F2E8] transition-colors cursor-pointer"
                         title="Edit Slab"
                       >
                         <Edit2 className="w-4 h-4" />
@@ -451,7 +451,7 @@ export const AdminLogisticsPage: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => handleDelete(rate.id || rate._id)}
-                        className="p-1.5 rounded-lg text-rose-500 hover:text-rose-700 hover:bg-rose-50 transition-colors"
+                        className="p-1.5 rounded-lg text-[#A94F38] hover:text-[#A94F38]/80 hover:bg-[#A94F38]/10 transition-colors cursor-pointer"
                         title="Delete Slab"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -466,26 +466,26 @@ export const AdminLogisticsPage: React.FC = () => {
       </div>
 
       {/* 3. Live Shipping Rate Calculation Simulator Widget */}
-      <div className="bg-[#153E2B] text-white rounded-2xl p-6 sm:p-7 shadow-xs">
+      <div className="bg-[#171814] text-[#F7F2E8] rounded-2xl p-6 sm:p-7 shadow-xs border border-[#292A25]">
         <div className="max-w-3xl space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <div className="flex items-center gap-2 text-[#D8B26E] font-bold text-xs uppercase tracking-widest">
+            <div className="flex items-center gap-2 text-[#D0AE70] font-bold text-xs uppercase tracking-widest font-sans">
               <Scale className="w-4 h-4" />
               <span>Interactive Courier Logistics Calculator</span>
             </div>
-            <span className="text-[10px] bg-[#1E5138] text-amber-200 px-2.5 py-1 rounded-full font-mono font-bold">
+            <span className="text-[10px] bg-[#292A25] text-[#D0AE70] px-2.5 py-1 rounded-full font-mono font-bold border border-[#D0AE70]/30">
               Formula: Weight + Distance [Pincode] = Shipping Fee
             </span>
           </div>
 
-          <p className="text-xs text-stone-300">
+          <p className="text-xs text-[#D8D0C0]">
             Preview the exact shipping charge that will be applied to the customer at checkout. Test with any destination pincode across India or use your current GPS location.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
             <div>
               <div className="flex items-center justify-between mb-1">
-                <label htmlFor="sim-pincode-input" className="block text-xs font-semibold text-stone-300">
+                <label htmlFor="sim-pincode-input" className="block text-xs font-semibold text-[#D8D0C0]">
                   Destination Pincode (6 digits)
                 </label>
                 <button
@@ -494,7 +494,7 @@ export const AdminLogisticsPage: React.FC = () => {
                   name="detectLocation"
                   onClick={handleUseCurrentLocation}
                   disabled={isLocating}
-                  className="text-[11px] font-bold text-[#D8B26E] hover:text-amber-200 hover:underline flex items-center gap-1 disabled:opacity-50 transition-colors"
+                  className="text-[11px] font-bold text-[#D0AE70] hover:text-amber-200 hover:underline flex items-center gap-1 disabled:opacity-50 transition-colors cursor-pointer"
                   title="Detect 6-digit postal code from device GPS"
                 >
                   <Navigation className={`w-3 h-3 ${isLocating ? 'animate-spin' : ''}`} />
@@ -509,15 +509,15 @@ export const AdminLogisticsPage: React.FC = () => {
                 onChange={(e) => setSimPincode(e.target.value.replace(/\D/g, '').slice(0, 6))}
                 placeholder="e.g. 625001 (Madurai) or 400001 (Mumbai)"
                 maxLength={6}
-                className="w-full bg-[#1E5138] border border-[#2A6C4B] rounded-xl px-3.5 py-2 text-xs text-white placeholder-stone-400 focus:outline-hidden focus:border-[#D8B26E] font-mono tracking-wider"
+                className="w-full bg-[#292A25] border border-[#D0AE70]/30 rounded-xl px-3.5 py-2 text-xs text-white placeholder-stone-400 focus:outline-hidden focus:border-[#D0AE70] font-mono tracking-wider"
               />
               {locationStatus && (
-                <p className="text-[10px] text-amber-200 mt-1 font-medium">{locationStatus}</p>
+                <p className="text-[10px] text-[#D0AE70] mt-1 font-medium">{locationStatus}</p>
               )}
             </div>
 
             <div>
-              <label htmlFor="sim-weight-input" className="block text-xs font-semibold text-stone-300 mb-1">
+              <label htmlFor="sim-weight-input" className="block text-xs font-semibold text-[#D8D0C0] mb-1">
                 Total Cart / Package Weight (Grams)
               </label>
               <input
@@ -529,31 +529,31 @@ export const AdminLogisticsPage: React.FC = () => {
                 value={simWeightGrams}
                 onChange={(e) => setSimWeightGrams(Math.max(1, Number(e.target.value)))}
                 placeholder="e.g. 1500 for 1.5kg"
-                className="w-full bg-[#1E5138] border border-[#2A6C4B] rounded-xl px-3.5 py-2 text-xs text-white placeholder-stone-400 focus:outline-hidden focus:border-[#D8B26E] font-mono"
+                className="w-full bg-[#292A25] border border-[#D0AE70]/30 rounded-xl px-3.5 py-2 text-xs text-white placeholder-stone-400 focus:outline-hidden focus:border-[#D0AE70] font-mono"
               />
-              <p className="text-[10px] text-stone-400 mt-1">
+              <p className="text-[10px] text-[#D8D0C0] mt-1">
                 {(simWeightGrams / 1000).toFixed(2)} kg (Calculated automatically from spice pack weights in cart)
               </p>
             </div>
           </div>
 
           {/* Result & Breakdown Card */}
-          <div className="bg-[#0F2E20] p-4 sm:p-5 rounded-2xl border border-[#2A6C4B] space-y-3">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#2A6C4B]/60 pb-3">
+          <div className="bg-[#292A25] p-4 sm:p-5 rounded-2xl border border-[#D0AE70]/30 space-y-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#D0AE70]/20 pb-3">
               <div>
-                <span className="text-[10px] text-[#D8B26E] uppercase font-bold tracking-wider block">
+                <span className="text-[10px] text-[#D0AE70] uppercase font-bold tracking-wider block font-sans">
                   Customer Shipping Charge (Checkout Total Courier Amount):
                 </span>
-                <span className="text-xs text-stone-300">
+                <span className="text-xs text-[#D8D0C0]">
                   Target: PIN <strong className="text-white font-mono">{simPincode || '—'}</strong> | Package:{' '}
                   <strong className="text-white font-mono">{(simWeightGrams / 1000).toFixed(2)} kg</strong>
                 </span>
               </div>
               <div className="text-right">
-                <div className="font-editorial text-3xl font-bold text-[#D8B26E]">
+                <div className="font-editorial text-3xl font-bold text-[#D0AE70]">
                   {simResult !== null ? `₹${simResult}` : '—'}
                 </div>
-                <span className="text-[10px] text-emerald-400 block font-semibold">
+                <span className="text-[10px] text-[#8B9B7B] block font-semibold">
                   ✓ Charged to customer at checkout
                 </span>
               </div>
@@ -561,28 +561,28 @@ export const AdminLogisticsPage: React.FC = () => {
 
             {simDetails && (
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-[11px] pt-1">
-                <div className="bg-[#153E2B] p-2.5 rounded-xl border border-[#2A6C4B]">
-                  <span className="text-stone-400 text-[10px] block">Matched Logistics Zone</span>
+                <div className="bg-[#171814] p-2.5 rounded-xl border border-[#292A25]">
+                  <span className="text-[#D8D0C0] text-[10px] block font-sans">Matched Logistics Zone</span>
                   <span className="font-bold text-white">{simDetails.zoneName}</span>
                   {simDetails.estimatedDelivery && (
-                    <span className="text-[10px] text-stone-400 block mt-0.5">⏱ {simDetails.estimatedDelivery}</span>
+                    <span className="text-[10px] text-[#D8D0C0] block mt-0.5">⏱ {simDetails.estimatedDelivery}</span>
                   )}
                 </div>
 
-                <div className="bg-[#153E2B] p-2.5 rounded-xl border border-[#2A6C4B]">
-                  <span className="text-stone-400 text-[10px] block">Base Rate Allowance</span>
+                <div className="bg-[#171814] p-2.5 rounded-xl border border-[#292A25]">
+                  <span className="text-[#D8D0C0] text-[10px] block font-sans">Base Rate Allowance</span>
                   <span className="font-bold text-white">
-                    ₹{simDetails.baseRate} <span className="font-normal text-stone-400">(up to {simDetails.baseWeightKg} kg)</span>
+                    ₹{simDetails.baseRate} <span className="font-normal text-[#D8D0C0]">(up to {simDetails.baseWeightKg} kg)</span>
                   </span>
                 </div>
 
-                <div className="bg-[#153E2B] p-2.5 rounded-xl border border-[#2A6C4B]">
-                  <span className="text-stone-400 text-[10px] block">Incremental Weight</span>
+                <div className="bg-[#171814] p-2.5 rounded-xl border border-[#292A25]">
+                  <span className="text-[#D8D0C0] text-[10px] block font-sans">Incremental Weight</span>
                   <span className="font-bold text-white">
                     {simDetails.extraKg > 0 ? (
                       <>+{simDetails.extraKg} kg @ ₹{simDetails.perAdditionalKgRate}/kg = ₹{simDetails.extraKg * simDetails.perAdditionalKgRate}</>
                     ) : (
-                      <span className="text-emerald-400">Within base allowance (₹0)</span>
+                      <span className="text-[#8B9B7B]">Within base allowance (₹0)</span>
                     )}
                   </span>
                 </div>
@@ -595,15 +595,15 @@ export const AdminLogisticsPage: React.FC = () => {
       {/* Modal for Creating / Editing Rate Slab */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-4">
-          <div className="bg-white rounded-3xl w-full max-w-lg shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-            <div className="p-5 border-b border-stone-200 flex items-center justify-between">
-              <h3 className="font-editorial text-lg font-bold text-[#153E2B]">
+          <div className="bg-white rounded-3xl w-full max-w-lg shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-150 border border-[#E5DED0]">
+            <div className="p-5 border-b border-[#E5DED0] flex items-center justify-between">
+              <h3 className="font-editorial text-lg font-bold text-[#171814]">
                 {editingId ? 'Edit Shipping Slab' : 'Add New Shipping Slab'}
               </h3>
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="text-stone-400 hover:text-stone-600 p-1"
+                className="text-[#77766E] hover:text-[#171814] p-1 cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -611,7 +611,7 @@ export const AdminLogisticsPage: React.FC = () => {
 
             <form onSubmit={handleSave} className="p-6 space-y-4 text-xs">
               <div>
-                <label htmlFor="zone-name-input" className="block font-semibold text-stone-700 mb-1">
+                <label htmlFor="zone-name-input" className="block font-semibold text-[#292A25] mb-1">
                   Zone Name *
                 </label>
                 <input
@@ -622,12 +622,12 @@ export const AdminLogisticsPage: React.FC = () => {
                   value={formData.zoneName}
                   onChange={e => setFormData({ ...formData, zoneName: e.target.value })}
                   placeholder="e.g. Madurai & South TN, Mumbai/Delhi Metros"
-                  className="w-full border border-stone-200 rounded-xl px-3.5 py-2.5 bg-[#FAF7F2] focus:outline-hidden focus:border-[#C5A059]"
+                  className="w-full border border-[#E5DED0] rounded-xl px-3.5 py-2.5 bg-[#F7F2E8] text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
                 />
               </div>
 
               <div>
-                <label htmlFor="pincode-list-input" className="block font-semibold text-stone-700 mb-1">
+                <label htmlFor="pincode-list-input" className="block font-semibold text-[#292A25] mb-1">
                   Serviceable 6-Digit Pincodes (comma separated, ranges like 625001-625025, or * for default) *
                 </label>
                 <input
@@ -638,16 +638,16 @@ export const AdminLogisticsPage: React.FC = () => {
                   value={formData.pincodePrefix}
                   onChange={e => setFormData({ ...formData, pincodePrefix: e.target.value })}
                   placeholder="e.g. 625001, 625020, 625001-625025 or *"
-                  className="w-full border border-stone-200 rounded-xl px-3.5 py-2.5 bg-[#FAF7F2] font-mono focus:outline-hidden focus:border-[#C5A059]"
+                  className="w-full border border-[#E5DED0] rounded-xl px-3.5 py-2.5 bg-[#F7F2E8] font-mono text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
                 />
-                <span className="text-[10px] text-stone-400 mt-1 block">
+                <span className="text-[10px] text-[#77766E] mt-1 block">
                   Enter exact 6-digit Indian postal codes or ranges (e.g. 625001-625025). Use * for Rest of India.
                 </span>
               </div>
 
               <div className="grid grid-cols-3 gap-3">
                 <div>
-                  <label htmlFor="base-weight-input" className="block font-semibold text-stone-700 mb-1">
+                  <label htmlFor="base-weight-input" className="block font-semibold text-[#292A25] mb-1">
                     Base Wt (kg)
                   </label>
                   <input
@@ -659,11 +659,11 @@ export const AdminLogisticsPage: React.FC = () => {
                     required
                     value={formData.baseWeightKg}
                     onChange={e => setFormData({ ...formData, baseWeightKg: parseFloat(e.target.value) || 1 })}
-                    className="w-full border border-stone-200 rounded-xl px-3.5 py-2 bg-[#FAF7F2]"
+                    className="w-full border border-[#E5DED0] rounded-xl px-3.5 py-2 bg-[#F7F2E8] text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
                   />
                 </div>
                 <div>
-                  <label htmlFor="base-rate-input" className="block font-semibold text-stone-700 mb-1">
+                  <label htmlFor="base-rate-input" className="block font-semibold text-[#292A25] mb-1">
                     Base Rate (₹)
                   </label>
                   <input
@@ -674,11 +674,11 @@ export const AdminLogisticsPage: React.FC = () => {
                     required
                     value={formData.baseRate}
                     onChange={e => setFormData({ ...formData, baseRate: parseInt(e.target.value, 10) || 0 })}
-                    className="w-full border border-stone-200 rounded-xl px-3.5 py-2 bg-[#FAF7F2]"
+                    className="w-full border border-[#E5DED0] rounded-xl px-3.5 py-2 bg-[#F7F2E8] text-[#292A25] font-bold focus:outline-hidden focus:border-[#D0AE70]"
                   />
                 </div>
                 <div>
-                  <label htmlFor="addl-rate-input" className="block font-semibold text-stone-700 mb-1">
+                  <label htmlFor="addl-rate-input" className="block font-semibold text-[#292A25] mb-1">
                     Addl. / kg (₹)
                   </label>
                   <input
@@ -689,13 +689,13 @@ export const AdminLogisticsPage: React.FC = () => {
                     required
                     value={formData.perAdditionalKgRate}
                     onChange={e => setFormData({ ...formData, perAdditionalKgRate: parseInt(e.target.value, 10) || 0 })}
-                    className="w-full border border-stone-200 rounded-xl px-3.5 py-2 bg-[#FAF7F2]"
+                    className="w-full border border-[#E5DED0] rounded-xl px-3.5 py-2 bg-[#F7F2E8] text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="estimated-delivery-input" className="block font-semibold text-stone-700 mb-1">
+                <label htmlFor="estimated-delivery-input" className="block font-semibold text-[#292A25] mb-1">
                   Estimated Delivery Timeline
                 </label>
                 <input
@@ -705,22 +705,22 @@ export const AdminLogisticsPage: React.FC = () => {
                   value={formData.estimatedDelivery || ''}
                   onChange={e => setFormData({ ...formData, estimatedDelivery: e.target.value })}
                   placeholder="e.g. 1-2 business days"
-                  className="w-full border border-stone-200 rounded-xl px-3.5 py-2 bg-[#FAF7F2]"
+                  className="w-full border border-[#E5DED0] rounded-xl px-3.5 py-2 bg-[#F7F2E8] text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
                 />
               </div>
 
-              <div className="pt-4 flex items-center justify-end gap-2 border-t border-stone-100">
+              <div className="pt-4 flex items-center justify-end gap-2 border-t border-[#E5DED0]">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2.5 rounded-xl text-stone-600 hover:bg-stone-100 font-semibold"
+                  className="px-4 py-2.5 rounded-xl text-[#77766E] hover:bg-[#F7F2E8] font-semibold cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isSaving}
-                  className="px-5 py-2.5 rounded-xl bg-[#153E2B] text-white font-bold hover:bg-[#1E5138] transition-colors shadow-xs"
+                  className="px-5 py-2.5 rounded-xl bg-[#D0AE70] text-[#171814] font-bold hover:bg-[#B99153] transition-colors shadow-xs cursor-pointer"
                 >
                   {isSaving ? 'Saving to MongoDB...' : 'Save Rate Slab'}
                 </button>

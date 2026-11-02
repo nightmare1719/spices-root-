@@ -36,17 +36,17 @@ const FAQS: FaqItem[] = [
   {
     category: 'Shipping & Delivery',
     question: 'How do I qualify for Free Shipping?',
-    answer: 'Any domestic order across India with a cart subtotal of ₹999 or higher automatically qualifies for complimentary Express Delivery. Standard shipping for smaller orders is ₹60 flat.'
+    answer: 'Any domestic order across India we have delevery partner , the shipping charges is calcuated with weight and distance of your locations.'
   },
   {
     category: 'Payments',
     question: 'What payment methods do you accept?',
-    answer: 'We support 100% secure online transactions via Razorpay, including UPI (Google Pay, PhonePe, Paytm, BHIM), all major Credit/Debit Cards, and NetBanking across 50+ Indian banks. Cash on Delivery (COD) is also available on eligible orders.'
+    answer: 'Now  we accpect Gpay, PhonePe, UPI Only , later we will intergrate razorpay payments gateway , all cards and international payments '
   },
   {
     category: 'Gifting & Wholesale',
     question: 'Can I order custom spice gift boxes for weddings or corporate events?',
-    answer: 'Yes! Our Western Ghats Spice Discovery Caskets can be custom engraved or bundled for corporate celebrations, festival hampers, and weddings. Please reach out to care@spiceroots.in or call our depot at +91 91885 70191.'
+    answer: 'Yes! Our Western Ghats Spice Discovery Caskets can be custom engraved or bundled for corporate celebrations, festival hampers, and weddings. Please reach out to uniquestorm11@gmail.com or call our depot at +91 91885 70191.'
   }
 ];
 
@@ -70,13 +70,13 @@ export const FaqPage: React.FC = () => {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
 
       <div className="text-center space-y-2">
-        <span className="text-xs font-bold text-[#C5A059] uppercase tracking-widest block">
+        <span className="text-xs font-bold text-[#D0AE70] uppercase tracking-widest block font-sans">
           Knowledge Base
         </span>
-        <h1 className="font-editorial text-3xl sm:text-4xl font-bold text-[#153E2B]">
+        <h1 className="font-editorial text-3xl sm:text-4xl font-bold text-[#171814]">
           Frequently Asked Questions
         </h1>
-        <p className="text-xs sm:text-sm text-stone-500 max-w-lg mx-auto">
+        <p className="text-xs sm:text-sm text-[#77766E] max-w-lg mx-auto">
           Everything you need to know about our Kerala harvests, freshness sealing, pan-India delivery, and storage.
         </p>
       </div>
@@ -88,16 +88,16 @@ export const FaqPage: React.FC = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search questions (e.g. shipping, shelf life, pepper, cardamom)..."
-          className="w-full pl-10 pr-4 py-3 text-xs sm:text-sm bg-white border border-[#EFE8D6] rounded-full focus:outline-hidden focus:border-[#C5A059] shadow-2xs"
+          className="w-full pl-10 pr-4 py-3 text-xs sm:text-sm bg-white border border-[#E5DED0] rounded-full text-[#292A25] placeholder:text-[#77766E] focus:outline-hidden focus:border-[#D0AE70] focus:ring-1 focus:ring-[#D0AE70] shadow-2xs"
         />
-        <Search className="w-4 h-4 text-stone-400 absolute left-3.5 top-3.5" />
+        <Search className="w-4 h-4 text-[#77766E] absolute left-3.5 top-3.5" />
       </div>
 
       {/* Accordion List */}
       <div className="space-y-3">
         {filteredFaqs.length === 0 ? (
-          <div className="text-center py-12 bg-white rounded-2xl border border-stone-200">
-            <p className="text-xs text-stone-500">No questions matched your search query.</p>
+          <div className="text-center py-12 bg-white rounded-2xl border border-[#E5DED0]">
+            <p className="text-xs text-[#77766E]">No questions matched your search query.</p>
           </div>
         ) : (
           filteredFaqs.map((faq, idx) => {
@@ -105,27 +105,27 @@ export const FaqPage: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="bg-white rounded-2xl border border-[#EFE8D6] overflow-hidden shadow-2xs transition-colors"
+                className="bg-white rounded-2xl border border-[#E5DED0] overflow-hidden shadow-2xs transition-colors"
               >
                 <button
                   onClick={() => toggleIndex(idx)}
-                  className="w-full text-left p-5 flex items-center justify-between gap-4 hover:bg-[#FAF7F2] transition-colors"
+                  className="w-full text-left p-5 flex items-center justify-between gap-4 hover:bg-[#F7F2E8] transition-colors cursor-pointer"
                 >
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#C5A059] block mb-1">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#D0AE70] block mb-1 font-sans">
                       {faq.category}
                     </span>
-                    <h3 className="font-editorial text-base font-bold text-[#153E2B]">
+                    <h3 className="font-editorial text-base font-bold text-[#171814]">
                       {faq.question}
                     </h3>
                   </div>
-                  <div className="p-1 rounded-full bg-stone-100 text-[#153E2B] shrink-0">
+                  <div className="p-1.5 rounded-full bg-[#F7F2E8] text-[#171814] shrink-0">
                     {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                   </div>
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 pb-5 text-xs sm:text-sm text-stone-600 leading-relaxed border-t border-stone-100 pt-3">
+                  <div className="px-5 pb-5 text-xs sm:text-sm text-[#292A25] leading-relaxed border-t border-[#E5DED0] pt-3 font-light">
                     {faq.answer}
                   </div>
                 )}

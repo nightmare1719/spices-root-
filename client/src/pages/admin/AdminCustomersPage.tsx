@@ -35,15 +35,15 @@ export const AdminCustomersPage: React.FC = () => {
     <div className="space-y-6 max-w-7xl mx-auto">
       
       <div>
-        <h1 className="font-editorial text-2xl sm:text-3xl font-bold text-[#153E2B]">
+        <h1 className="font-editorial text-2xl sm:text-3xl font-bold text-[#171814]">
           Registered Customer Directory
         </h1>
-        <p className="text-xs text-stone-500">
+        <p className="text-xs text-[#77766E]">
           Review customer accounts, total fulfilled orders, and lifetime purchase value.
         </p>
       </div>
 
-      <div className="bg-white p-4 rounded-2xl border border-stone-200 shadow-2xs flex justify-between items-center max-w-md">
+      <div className="bg-white p-4 rounded-2xl border border-[#E5DED0] shadow-2xs flex justify-between items-center max-w-md">
         <div className="relative w-full">
           <input
             id="admin-customers-search"
@@ -52,16 +52,16 @@ export const AdminCustomersPage: React.FC = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by customer name, email, phone..."
-            className="w-full text-xs pl-9 pr-3 py-2 bg-[#FAF7F2] border border-stone-200 rounded-lg focus:outline-hidden focus:border-[#C5A059]"
+            className="w-full text-xs pl-9 pr-3 py-2 bg-[#F7F2E8] border border-[#E5DED0] rounded-lg text-[#292A25] focus:outline-hidden focus:border-[#D0AE70]"
           />
-          <Search className="w-4 h-4 text-stone-400 absolute left-3 top-2.5" />
+          <Search className="w-4 h-4 text-[#77766E] absolute left-3 top-2.5" />
         </div>
       </div>
 
-      <div className="bg-white rounded-3xl border border-stone-200 shadow-xs overflow-hidden">
+      <div className="bg-white rounded-3xl border border-[#E5DED0] shadow-xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-[#FAF7F2] text-stone-600 uppercase text-[10px] tracking-wider border-b border-stone-200">
+            <thead className="bg-[#F7F2E8] text-[#292A25] uppercase text-[10px] tracking-wider border-b border-[#E5DED0] font-sans">
               <tr>
                 <th className="p-4">Customer Name</th>
                 <th className="p-4">Contact Details</th>
@@ -71,42 +71,42 @@ export const AdminCustomersPage: React.FC = () => {
                 <th className="p-4 text-right">Member Since</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-stone-100">
+            <tbody className="divide-y divide-[#E5DED0]">
               {isLoading ? (
                 <tr>
-                  <td colSpan={6} className="text-center py-10 text-stone-400">Loading customers...</td>
+                  <td colSpan={6} className="text-center py-10 text-[#77766E]">Loading customers...</td>
                 </tr>
               ) : filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="text-center py-10 text-stone-400">No customers found.</td>
+                  <td colSpan={6} className="text-center py-10 text-[#77766E]">No customers found.</td>
                 </tr>
               ) : (
                 filtered.map((c) => (
-                  <tr key={c.id} className="hover:bg-stone-50">
-                    <td className="p-4 font-bold text-[#153E2B]">
+                  <tr key={c.id} className="hover:bg-[#F7F2E8]/40 transition-colors">
+                    <td className="p-4 font-bold text-[#171814]">
                       {c.name}
                     </td>
 
                     <td className="p-4">
-                      <p className="text-stone-800 font-medium">{c.email}</p>
-                      <p className="text-[10px] text-stone-400">{c.phone || 'No phone saved'}</p>
+                      <p className="text-[#292A25] font-medium">{c.email}</p>
+                      <p className="text-[10px] text-[#77766E]">{c.phone || 'No phone saved'}</p>
                     </td>
 
                     <td className="p-4">
-                      <span className="font-bold text-[#153E2B] bg-[#153E2B]/10 px-2.5 py-0.5 rounded-full">
+                      <span className="font-bold text-[#171814] bg-[#171814]/10 px-2.5 py-0.5 rounded-full">
                         {c.totalOrders} orders
                       </span>
                     </td>
 
-                    <td className="p-4 font-editorial text-sm font-bold text-[#153E2B]">
+                    <td className="p-4 font-editorial text-sm font-bold text-[#435B43]">
                       {formatINR(c.totalSpentPaise)}
                     </td>
 
-                    <td className="p-4 text-stone-600">
+                    <td className="p-4 text-[#77766E]">
                       {c.addressesCount} address{c.addressesCount !== 1 ? 'es' : ''}
                     </td>
 
-                    <td className="p-4 text-right text-stone-400 text-[11px]">
+                    <td className="p-4 text-right text-[#77766E] text-[11px]">
                       {formatDate(c.joinedAt)}
                     </td>
                   </tr>

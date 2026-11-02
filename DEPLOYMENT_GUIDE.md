@@ -62,7 +62,7 @@ Under the **Environment Variables** section, add the following keys:
 | `GOOGLE_CLIENT_ID` | Google OAuth Client ID *(optional)* | `...apps.googleusercontent.com` |
 | `GOOGLE_CLIENT_SECRET` | Google OAuth Client Secret *(optional)* | `GOCSPX-...` |
 | `STORE_NAME` | Store Name | `Spice Roots` |
-| `STORE_EMAIL` | Store Email | `care@spiceroots.in` |
+| `STORE_EMAIL` | Store Email | `uniquestorm11@gmail.com ` |
 | `STORE_PHONE` | Customer Care Phone | `+91 91885 70191` |
 | `MERCHANT_UPI_ID` | Merchant UPI ID for QR payments | `cynalbertoz@sbi` |
 | `MERCHANT_NAME` | Merchant Display Name | `Spice Roots` |
