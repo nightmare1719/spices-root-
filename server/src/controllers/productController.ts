@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
+import mongoose from 'mongoose';
 import { db } from '../models/dataStore.js';
+import { ProductModel } from '../models/mongoSchemas.js';
+import { getIO } from '../services/socketService.js';
 import { IProduct } from '../types/index.js';
 
 export async function getProducts(req: Request, res: Response) {
@@ -188,5 +191,62 @@ export async function addProductReview(req: Request, res: Response) {
     return res.status(201).json({ success: true, data: review, message: 'Thank you! Your review has been published.' });
   } catch (err) {
     return res.status(500).json({ success: false, message: 'Failed to submit review', error: (err as Error).message });
+  }
+}
+
+/**
+ * Direct HTTP PUT handler for updating a product.
+ * Persists changes directly into MongoDB via Mongoose, keeps local cache consistent,
+ * and emits real-time updates via Socket.io.
+ */
+export async function updateProductHandler(req: Request, res: Response) {
+  try {
+    const { id } = req.params;
+    const updates = req.body;
+
+    // Validate ID
+    if (!id || typeof id !== 'string') {
+      return res.status(400).json({ success: false, message: 'Invalid product ID' });
+    }
+
+    // Direct MongoDB persistence using Mongoose
+    let updatedProduct: any = null;
+    if (mongoose.connection.readyState === 1) {
+      const filter = mongoose.isValidObjectId(id) ? { _id: id } : { id };
+      updatedProduct = await ProductModel.findOneAndUpdate(
+        filter,
+        { $set: { ...updates, updatedAt: new Date().toISOString() } },
+        { new: true, runValidators: true }
+      ).lean();
+    }
+
+    // Keep internal local store synchronized
+    const storeUpdated = db.updateProduct(id, updates);
+    if (!updatedProduct) {
+      updatedProduct = storeUpdated;
+    }
+
+    if (!updatedProduct) {
+      return res.status(404).json({ success: false, message: 'Product not found' });
+    }
+
+    // Broadcast update via Socket.io to ensure instant sync even if Change Streams are paused
+    const io = getIO();
+    if (io) {
+      io.emit('product:updated', updatedProduct);
+    }
+
+    return res.json({
+      success: true,
+      message: 'Product updated successfully',
+      data: updatedProduct
+    });
+  } catch (err) {
+    console.error('Failed to update product:', err);
+    return res.status(500).json({
+      success: false,
+      message: 'Internal server error while updating product',
+      error: (err as Error).message
+    });
   }
 }

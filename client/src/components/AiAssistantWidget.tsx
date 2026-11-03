@@ -153,8 +153,15 @@ export const AiAssistantWidget: React.FC = () => {
           {/* Header */}
           <div className="bg-[#0e0e10] text-[#e5e1e4] p-4 flex items-center justify-between border-b border-[#353437]">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-full bg-[#1c1b1d] border border-[#d4af37]/40 flex items-center justify-center shrink-0">
-                <Bot className="w-5 h-5 text-[#d4af37]" />
+              <div className="w-9 h-9 rounded-full bg-[#1c1b1d] border border-[#d4af37]/40 flex items-center justify-center shrink-0 overflow-hidden p-0.5">
+                <img
+                  src="/images/logo.png"
+                  alt="Spice Roots Logo"
+                  className="w-full h-full object-contain rounded-full"
+                  onError={(e) => {
+                    (e.target as HTMLElement).style.display = 'none';
+                  }}
+                />
               </div>
               <div>
                 <h3 className="font-editorial text-base font-bold text-[#d4af37] flex items-center gap-1.5">

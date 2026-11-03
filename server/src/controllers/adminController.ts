@@ -123,20 +123,10 @@ export async function createAdminProduct(req: Request, res: Response) {
   }
 }
 
+import { updateProductHandler } from './productController.js';
+
 export async function updateAdminProduct(req: Request, res: Response) {
-  try {
-    const { id } = req.params;
-    const updates = req.body;
-
-    const updated = db.updateProduct(id, updates);
-    if (!updated) {
-      return res.status(404).json({ success: false, message: 'Product not found.' });
-    }
-
-    return res.json({ success: true, data: updated, message: 'Product updated successfully.' });
-  } catch (err) {
-    return res.status(500).json({ success: false, message: 'Failed to update product', error: (err as Error).message });
-  }
+  return updateProductHandler(req, res);
 }
 
 export async function deleteAdminProduct(req: Request, res: Response) {

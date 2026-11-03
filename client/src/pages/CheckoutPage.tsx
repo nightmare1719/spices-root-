@@ -313,7 +313,7 @@ export const CheckoutPage: React.FC = () => {
           currency: rzpData.currency,
           name: "Spice Roots",
           description: `Order ${createdOrder.orderNumber}`,
-          image: "C: \kalaivani online shopping\logo .jpeg",
+          image: "/logo.jpeg",
           order_id: rzpData.orderId,
           handler: async function (response: any) {
             try {

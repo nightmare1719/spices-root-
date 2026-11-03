@@ -104,6 +104,7 @@
   ],
   "products": [
     {
+      "_id": "6ad3b4c6869ef72ebade5dcd",
       "id": "prod_black_pepper",
       "name": "Malabar Tellicherry Black Pepper (Garbled)",
       "slug": "malabar-black-pepper",
@@ -117,8 +118,8 @@
       "storageInfo": "Store in an airtight ceramic or glass jar in a cool, dark cupboard away from direct sunlight and humidity.",
       "usageTips": "Crack coarsely right before serving over creamy gravies, roasted meats, pasta, or traditional rasam.",
       "images": [
-        "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1000&q=80",
-        "https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=1000&q=80"
+        "https://i.pinimg.com/736x/21/1d/81/211d81f881b8cbada123dfb1856b9c45.jpg",
+        ""
       ],
       "isFeatured": true,
       "isPublished": true,
@@ -172,10 +173,12 @@
         "bestseller",
         "kerala"
       ],
-      "createdAt": "2026-11-02T12:22:36.096Z",
-      "updatedAt": "2026-11-02T12:22:36.096Z"
+      "createdAt": "2026-10-17T08:08:38.735Z",
+      "updatedAt": "2026-10-17T08:08:38.743Z",
+      "__v": 0
     },
     {
+      "_id": "6ad3b4c6869ef72ebade5dce",
       "id": "prod_green_cardamom_8mm",
       "name": "Alleppey Green Cardamom — 8mm Super Bold",
       "slug": "alleppey-green-cardamom-8mm",
@@ -244,10 +247,12 @@
         "bestseller",
         "whole spices"
       ],
-      "createdAt": "2026-11-02T12:22:36.096Z",
-      "updatedAt": "2026-11-02T12:22:36.096Z"
+      "createdAt": "2026-10-17T08:08:38.743Z",
+      "updatedAt": "2026-10-17T08:08:38.743Z",
+      "__v": 0
     },
     {
+      "_id": "6ad3b4c6869ef72ebade5dcf",
       "id": "prod_ceylon_cinnamon",
       "name": "Handcrafted Ceylon Roll Cinnamon Quills",
       "slug": "ceylon-roll-cinnamon",
@@ -305,10 +310,12 @@
         "baking",
         "sweet spices"
       ],
-      "createdAt": "2026-11-02T12:22:36.096Z",
-      "updatedAt": "2026-11-02T12:22:36.096Z"
+      "createdAt": "2026-10-17T08:08:38.744Z",
+      "updatedAt": "2026-10-17T08:08:38.744Z",
+      "__v": 0
     },
     {
+      "_id": "6ad3b4c6869ef72ebade5dd0",
       "id": "prod_clove_wayanad",
       "name": "High-Eugenol Wayanad Clove Buds",
       "slug": "wayanad-clove-buds",
@@ -364,59 +371,12 @@
         "clove",
         "whole spices"
       ],
-      "createdAt": "2026-11-02T12:22:36.096Z",
-      "updatedAt": "2026-11-02T12:22:36.096Z"
+      "createdAt": "2026-10-17T08:08:38.744Z",
+      "updatedAt": "2026-10-17T08:08:38.744Z",
+      "__v": 0
     },
     {
-      "id": "prod_star_anise",
-      "name": "Selected 8-Pointed Star Anise",
-      "slug": "whole-star-anise",
-      "category": "spices",
-      "shortDescription": "Intact sun-dried star anise blooms bearing sweet licorice fragrance and high anethole oil.",
-      "description": "Carefully sorted so every star remains intact, our star anise blooms bring an intoxicating licorice sweetness and glossy aromatic note essential for biryani, pho, and slow-simmered Asian stews.",
-      "origin": "Western Ghats Sub-Tropical Slopes",
-      "ingredients": [
-        "100% Whole Star Anise Pods (Illicium verum)"
-      ],
-      "storageInfo": "Keep in an airtight jar in a dry pantry.",
-      "usageTips": "Toss a single star into rice boiling water or hot cooking oil during tadka.",
-      "images": [
-        "https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=1000&q=80"
-      ],
-      "isFeatured": false,
-      "isPublished": true,
-      "variants": [
-        {
-          "id": "v_sta_100",
-          "sku": "SR-STA-100G",
-          "packSize": "100 g",
-          "unit": "g",
-          "pricePaise": 22000,
-          "comparePricePaise": 26000,
-          "stock": 50,
-          "isAvailable": true
-        },
-        {
-          "id": "v_sta_250",
-          "sku": "SR-STA-250G",
-          "packSize": "250 g",
-          "unit": "g",
-          "pricePaise": 50000,
-          "comparePricePaise": 58000,
-          "stock": 30,
-          "isAvailable": true
-        }
-      ],
-      "rating": 4.8,
-      "reviewCount": 16,
-      "tags": [
-        "star anise",
-        "biryani"
-      ],
-      "createdAt": "2026-11-02T12:22:36.096Z",
-      "updatedAt": "2026-11-02T12:22:36.096Z"
-    },
-    {
+      "_id": "6ad3b4c6869ef72ebade5dd2",
       "id": "prod_mace_nutmeg",
       "name": "Kerala Red Nut Mace (Javitri) & Nutmeg Combo",
       "slug": "kerala-nut-mace-nutmeg",
@@ -464,10 +424,12 @@
         "nutmeg",
         "rare"
       ],
-      "createdAt": "2026-11-02T12:22:36.096Z",
-      "updatedAt": "2026-11-02T12:22:36.096Z"
+      "createdAt": "2026-10-17T08:08:38.744Z",
+      "updatedAt": "2026-10-17T08:08:38.744Z",
+      "__v": 0
     },
     {
+      "_id": "6ad3b4c6869ef72ebade5dd3",
       "id": "prod_pathimugam",
       "name": "Authentic Kerala Pathimugam (Sappan Wood)",
       "slug": "kerala-pathimugam-sappan-wood",
@@ -514,70 +476,12 @@
         "traditional",
         "kerala herbal"
       ],
-      "createdAt": "2026-11-02T12:22:36.096Z",
-      "updatedAt": "2026-11-02T12:22:36.096Z"
+      "createdAt": "2026-10-17T08:08:38.744Z",
+      "updatedAt": "2026-10-17T08:08:38.744Z",
+      "__v": 0
     },
     {
-      "id": "prod_kerala_garam_masala",
-      "name": "Royal Malabar Garam Masala (Stone-Ground)",
-      "slug": "royal-malabar-garam-masala",
-      "category": "masalas",
-      "shortDescription": "Hand-roasted blend of 12 hill spices including green cardamom, mace, cinnamon, star anise, and fennel.",
-      "description": "Crafted following an authentic century-old Malabar heritage recipe. We slow-roast each spice separately at controlled temperatures to coax out aromatic essential oils before coarse stone-grinding. Contains zero coriander, zero chilli powder fillers, and zero preservatives.",
-      "origin": "Malabar & Munnar, Kerala",
-      "ingredients": [
-        "Green Cardamom",
-        "Cloves",
-        "Ceylon Cinnamon",
-        "Nut Mace",
-        "Star Anise",
-        "Fennel",
-        "Black Pepper",
-        "Nutmeg",
-        "Bay Leaves",
-        "Stone Flower (Kalpasi)"
-      ],
-      "storageInfo": "Seal tightly after each use to keep essential aromas locked in.",
-      "usageTips": "Add 1/2 teaspoon towards the final 5 minutes of cooking your curry, biryani, or stew.",
-      "images": [
-        "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1000&q=80",
-        "https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=1000&q=80"
-      ],
-      "isFeatured": true,
-      "isPublished": true,
-      "variants": [
-        {
-          "id": "v_gm_100",
-          "sku": "SR-GM-100G",
-          "packSize": "100 g",
-          "unit": "g",
-          "pricePaise": 21000,
-          "comparePricePaise": 25000,
-          "stock": 110,
-          "isAvailable": true
-        },
-        {
-          "id": "v_gm_250",
-          "sku": "SR-GM-250G",
-          "packSize": "250 g",
-          "unit": "g",
-          "pricePaise": 49000,
-          "comparePricePaise": 58000,
-          "stock": 65,
-          "isAvailable": true
-        }
-      ],
-      "rating": 5,
-      "reviewCount": 47,
-      "tags": [
-        "masala",
-        "bestseller",
-        "biryani"
-      ],
-      "createdAt": "2026-11-02T12:22:36.096Z",
-      "updatedAt": "2026-11-02T12:22:36.096Z"
-    },
-    {
+      "_id": "6ad3b4c6869ef72ebade5dd5",
       "id": "prod_kolukkumalai_tea",
       "name": "Kolukkumalai High-Peak Orthodox Black Tea",
       "slug": "kolukkumalai-orthodox-tea",
@@ -636,380 +540,199 @@
         "munnar",
         "bestseller"
       ],
-      "createdAt": "2026-11-02T12:22:36.096Z",
-      "updatedAt": "2026-11-02T12:22:36.096Z"
+      "createdAt": "2026-10-17T08:08:38.744Z",
+      "updatedAt": "2026-10-17T08:08:38.744Z",
+      "__v": 0
     },
     {
-      "id": "prod_thalayar_tea",
-      "name": "Thalayar Estate Rich CTC Leaf Tea",
-      "slug": "thalayar-estate-ctc-tea",
+      "_id": "prod_1792764953029_r570x",
+      "id": "prod_1792764953029_r570x",
+      "__v": 0,
       "category": "tea",
-      "shortDescription": "Robust, full-bodied morning milk tea blend from the sunny valleys of Thalayar Estate, Munnar.",
-      "description": "Specially selected CTC leaf blended with orthodox whole leaves for rapid strength, rich golden color, and invigorating briskness. Perfect for the quintessential Indian Masala Chai or Kadak Morning Chai.",
-      "origin": "Thalayar Estate, Munnar, Kerala",
-      "ingredients": [
-        "100% Pure Plantation-Packed CTC Black Tea"
-      ],
-      "storageInfo": "Keep in an airtight container.",
-      "usageTips": "Boil with water and milk in 1:1 ratio. Add freshly crushed ginger and Spice Roots Cardamom for heavenly chai.",
+      "createdAt": "2026-10-23T14:15:53.029Z",
+      "description": "",
       "images": [
-        "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&w=1000&q=80"
+        "https://www.rippletea.com/cdn/shop/files/FOP_4bcf197b-9184-46f6-ab70-e6f160e07ca7.png?v=1722936383&width=535"
       ],
+      "ingredients": [],
       "isFeatured": false,
       "isPublished": true,
+      "name": "Ripple Tasty Leaf Tea\t",
+      "origin": "Idukki, Kerala",
+      "rating": 5,
+      "reviewCount": 0,
+      "shortDescription": "\"Blend of CTC leaf, Orthodox whole leaf and high-grown green Oolong tea with rich aroma and refreshing taste.",
+      "slug": "ripple-tasty-leaf-tea-703",
+      "tags": [],
+      "updatedAt": "2026-10-23T16:05:10.348Z",
       "variants": [
         {
-          "id": "v_tt_250",
-          "sku": "SR-TT-250G",
-          "packSize": "250 g",
-          "unit": "g",
-          "pricePaise": 14000,
-          "comparePricePaise": 17000,
-          "stock": 120,
-          "isAvailable": true
-        },
-        {
-          "id": "v_tt_500",
-          "sku": "SR-TT-500G",
+          "id": "v_1792764863062",
+          "sku": "SR-NEW-100G",
           "packSize": "500 g",
           "unit": "g",
-          "pricePaise": 26000,
-          "comparePricePaise": 31000,
-          "stock": 80,
-          "isAvailable": true
-        },
-        {
-          "id": "v_tt_1000",
-          "sku": "SR-TT-1KG",
-          "packSize": "1 kg",
-          "unit": "kg",
-          "pricePaise": 48000,
-          "comparePricePaise": 56000,
-          "stock": 45,
+          "pricePaise": 20000,
+          "comparePricePaise": 25000,
+          "stock": 46,
           "isAvailable": true
         }
-      ],
-      "rating": 4.8,
-      "reviewCount": 31,
-      "tags": [
-        "tea",
-        "chai",
-        "ctc"
-      ],
-      "createdAt": "2026-11-02T12:22:36.096Z",
-      "updatedAt": "2026-11-02T12:22:36.096Z"
+      ]
     },
     {
-      "id": "prod_white_tea_tips",
-      "name": "Munnar White Tea Silver Tips",
-      "slug": "munnar-white-tea-silver-tips",
+      "_id": "prod_1792772845838_3qtjd",
+      "id": "prod_1792772845838_3qtjd",
+      "__v": 0,
       "category": "tea",
-      "shortDescription": "Extremely rare unopened velvety tea buds sun-cured with zero oxidation, offering sweet floral undertones.",
-      "description": "Hand-plucked only at dawn during spring flushes, Silver Tips represent the peak luxury of tea cultivation. Packed with natural polyphenols, this rare brew delivers a crystal-pale liquor with delicate notes of jasmine and wild honey.",
-      "origin": "High Elevation Munnar Gardens",
-      "ingredients": [
-        "100% Unopened Velvety Tea Buds (Camellia sinensis)"
-      ],
-      "storageInfo": "Keep in an airtight ceramic jar away from spices.",
-      "usageTips": "Infuse 1-2 grams in 75-80°C hot water for 4 minutes. Leaves can be re-steeped up to 3 times.",
+      "createdAt": "2026-10-23T16:27:25.838Z",
+      "description": "",
       "images": [
-        "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=1000&q=80"
+        "https://www.rippletea.com/cdn/shop/files/FoP_500g.jpg?v=1722936247&width=535"
       ],
-      "isFeatured": true,
-      "isPublished": true,
-      "variants": [
-        {
-          "id": "v_wt_25",
-          "sku": "SR-WT-25G",
-          "packSize": "25 g",
-          "unit": "g",
-          "pricePaise": 65000,
-          "comparePricePaise": 75000,
-          "stock": 35,
-          "isAvailable": true
-        },
-        {
-          "id": "v_wt_50",
-          "sku": "SR-WT-50G",
-          "packSize": "50 g",
-          "unit": "g",
-          "pricePaise": 110000,
-          "comparePricePaise": 125000,
-          "stock": 20,
-          "isAvailable": true
-        }
-      ],
-      "rating": 5,
-      "reviewCount": 14,
-      "tags": [
-        "white tea",
-        "luxury",
-        "rare"
-      ],
-      "createdAt": "2026-11-02T12:22:36.096Z",
-      "updatedAt": "2026-11-02T12:22:36.096Z"
-    },
-    {
-      "id": "prod_lemongrass_oil",
-      "name": "Kundaly Naturals Steam-Distilled Lemongrass Oil",
-      "slug": "kundaly-lemongrass-oil",
-      "category": "essential_oils",
-      "shortDescription": "100% pure steam-distilled essential oil from wild Munnar hill lemongrass, invigorating and purifying.",
-      "description": "Harvested from steep hillside terraces in Kundaly Valley, Munnar, this pure essential oil carries intense citral fragrance. Widely prized for natural aromatherapy, diffusers, home purification, and stress relief.",
-      "origin": "Kundaly Valley, Munnar, Kerala",
-      "ingredients": [
-        "100% Pure Steam-Distilled Lemongrass Essential Oil (Cymbopogon flexuosus)"
-      ],
-      "storageInfo": "Store in amber glass dropper bottle in a cool place away from open flame.",
-      "usageTips": "Add 4-5 drops into an aroma diffuser or warm bath. Dilute with carrier oil before topical use.",
-      "images": [
-        "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1000&q=80"
-      ],
+      "ingredients": [],
       "isFeatured": false,
       "isPublished": true,
+      "name": "Premium Dust Tea",
+      "origin": "Idukki, Kerala",
+      "rating": 5,
+      "reviewCount": 0,
+      "shortDescription": "Plantation-packed Munnar dust tea selected and blended for a strong, aromatic and refreshing cup.",
+      "slug": "premium-dust-tea-259",
+      "tags": [],
+      "updatedAt": "2026-11-01T17:33:57.891Z",
       "variants": [
         {
-          "id": "v_lgo_30",
-          "sku": "SR-LGO-30ML",
-          "packSize": "30 ml",
-          "unit": "ml",
-          "pricePaise": 22000,
-          "comparePricePaise": 26000,
-          "stock": 60,
-          "isAvailable": true
-        },
-        {
-          "id": "v_lgo_100",
-          "sku": "SR-LGO-100ML",
-          "packSize": "100 ml",
-          "unit": "ml",
-          "pricePaise": 45500,
-          "comparePricePaise": 52000,
-          "stock": 45,
+          "id": "v_1792772724377",
+          "sku": "SR-NEW-100G",
+          "packSize": "100 g",
+          "unit": "g",
+          "pricePaise": 15000,
+          "comparePricePaise": 25000,
+          "stock": 47,
           "isAvailable": true
         }
-      ],
-      "rating": 4.8,
-      "reviewCount": 22,
-      "tags": [
-        "essential oil",
-        "lemongrass",
-        "aromatherapy"
-      ],
-      "createdAt": "2026-11-02T12:22:36.096Z",
-      "updatedAt": "2026-11-02T12:22:36.096Z"
+      ]
     },
     {
-      "id": "prod_coconut_oil_cold_pressed",
-      "name": "Heritage Cold-Pressed Virgin Coconut Oil",
-      "slug": "virgin-cold-pressed-coconut-oil",
-      "category": "essential_oils",
-      "shortDescription": "Extracted from fresh Kerala coconuts on traditional wooden chekku (wood press) with zero chemical heating.",
-      "description": "Clear, fragrant, and pure as rainwater. Extracted mechanically from mature sun-dried copra, keeping all vital lauric acid, natural vitamins, and comforting nutty aroma intact.",
-      "origin": "Coastal Kerala Plantations",
-      "ingredients": [
-        "100% Cold-Pressed Pure Coconut Oil (Cocos nucifera)"
-      ],
-      "storageInfo": "Solidifies naturally below 24°C without any change in quality.",
-      "usageTips": "Authentic medium for Kerala seafood and vegetable curries, or nourishing head and body massage.",
+      "_id": "prod_1793728747321_g4yn5",
+      "id": "prod_1793728747321_g4yn5",
+      "__v": 0,
+      "category": "spices",
+      "createdAt": "2026-11-03T17:59:07.321Z",
+      "description": "Directly sourced from organic nutmeg gardens in Kalady and Munnar foothills. Mace is the delicate lace-like lattice surrounding the nutmeg seed, possessing a much more floral, refined and musky warmth than nutmeg alone.",
       "images": [
-        "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1000&q=80"
+        "https://i.pinimg.com/736x/5f/8c/4d/5f8c4d5294e3ffccb5c364d2135a7640.jpg"
       ],
+      "ingredients": [],
       "isFeatured": false,
       "isPublished": true,
-      "variants": [
-        {
-          "id": "v_co_500",
-          "sku": "SR-CO-500ML",
-          "packSize": "500 ml",
-          "unit": "ml",
-          "pricePaise": 22000,
-          "comparePricePaise": 26000,
-          "stock": 80,
-          "isAvailable": true
-        },
-        {
-          "id": "v_co_1000",
-          "sku": "SR-CO-1LTR",
-          "packSize": "1 L",
-          "unit": "L",
-          "pricePaise": 38000,
-          "comparePricePaise": 45000,
-          "stock": 55,
-          "isAvailable": true
-        }
-      ],
-      "rating": 4.9,
-      "reviewCount": 26,
-      "tags": [
-        "coconut oil",
-        "pure",
-        "cold-pressed"
-      ],
-      "createdAt": "2026-11-02T12:22:36.096Z",
-      "updatedAt": "2026-11-02T12:22:36.096Z"
-    },
-    {
-      "id": "prod_heritage_spice_box",
-      "name": "Western Ghats Spice Discovery Wooden Casket",
-      "slug": "western-ghats-spice-discovery-casket",
-      "category": "gift_boxes",
-      "shortDescription": "Handcrafted seasoned rosewood chest filled with 6 royal spice jars: Cardamom, Pepper, Clove, Cinnamon, Star Anise & Nutmeg.",
-      "description": "The ultimate culinary gift for passionate home chefs and spice connoisseurs. Each velvet-lined artisan chest houses six reusable brass-capped glass containers packed with our premier export-grade harvests.",
-      "origin": "Handcrafted in Munnar & Idukki, Kerala",
-      "ingredients": [
-        "Alleppey Green Cardamom 8mm",
-        "Tellicherry Black Pepper",
-        "Ceylon Cinnamon Quills",
-        "Wayanad Cloves",
-        "Whole Star Anise",
-        "Nut Mace"
-      ],
-      "storageInfo": "Keep wooden box closed in a cool, moisture-safe room.",
-      "usageTips": "A magnificent centerpiece for festive gifting, corporate appreciation, and weddings.",
-      "images": [
-        "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1000&q=80",
-        "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1000&q=80"
-      ],
-      "isFeatured": true,
-      "isPublished": true,
-      "variants": [
-        {
-          "id": "v_box_6",
-          "sku": "SR-GIFT-6SPICE",
-          "packSize": "6-Spice Casket (350g net)",
-          "unit": "box",
-          "pricePaise": 189900,
-          "comparePricePaise": 229900,
-          "stock": 25,
-          "isAvailable": true
-        },
-        {
-          "id": "v_box_royal",
-          "sku": "SR-GIFT-ROYAL",
-          "packSize": "Royal 8-Spice & Munnar Tea Chest (700g net)",
-          "unit": "box",
-          "pricePaise": 299900,
-          "comparePricePaise": 350000,
-          "stock": 15,
-          "isAvailable": true
-        }
-      ],
+      "name": "  Kerala Nutmeg ",
+      "origin": "Idukki, Kerala",
       "rating": 5,
-      "reviewCount": 19,
-      "tags": [
-        "gift box",
-        "luxury",
-        "hamper",
-        "corporate"
-      ],
-      "createdAt": "2026-11-02T12:22:36.096Z",
-      "updatedAt": "2026-11-02T12:22:36.096Z"
-    },
-    {
-      "id": "prod_roasted_almond_chocolate",
-      "name": "Munnar Roasted Almond Dark Chocolate",
-      "slug": "munnar-roasted-almond-dark-chocolate",
-      "category": "chocolates",
-      "shortDescription": "Handmade 65% single-origin dark chocolate embedded with crunchy slow-roasted Californian almonds.",
-      "description": "Prepared in small batches in Munnar hill station. We combine pure cocoa butter and rich chocolate liquor with golden roasted almonds for a velvety snap and rich bittersweet crunch.",
-      "origin": "Handcrafted in Munnar, Kerala",
-      "ingredients": [
-        "Cocoa Beans",
-        "Cocoa Butter",
-        "Roasted Almonds",
-        "Unrefined Sugar",
-        "Natural Vanilla Extract"
-      ],
-      "storageInfo": "Store in a cool, dry place between 15°C and 20°C.",
-      "usageTips": "Pair with Kolukkumalai black tea or savour as an evening treat.",
-      "images": [
-        "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=1000&q=80"
-      ],
-      "isFeatured": true,
-      "isPublished": true,
+      "reviewCount": 0,
+      "shortDescription": "Brilliant carmine-red meg ",
+      "slug": "nutmeg-771",
+      "tags": [],
+      "updatedAt": "2026-11-03T17:59:44.872Z",
       "variants": [
         {
-          "id": "v_choc_150",
-          "sku": "SR-CHOC-150G",
-          "packSize": "150 g",
+          "id": "v_1793728442427",
+          "sku": "SR-MEG-100G",
+          "packSize": "100g",
           "unit": "g",
-          "pricePaise": 24000,
-          "comparePricePaise": 28000,
+          "pricePaise": 11000,
+          "comparePricePaise": 25000,
           "stock": 50,
           "isAvailable": true
         },
         {
-          "id": "v_choc_300",
-          "sku": "SR-CHOC-300G",
-          "packSize": "300 g",
+          "id": "v_1793728617008",
+          "sku": "SR-MEG-250G",
+          "packSize": "250 g",
           "unit": "g",
-          "pricePaise": 45000,
-          "comparePricePaise": 52000,
-          "stock": 35,
+          "pricePaise": 27500,
+          "comparePricePaise": 40000,
+          "stock": 30,
+          "isAvailable": true
+        },
+        {
+          "id": "v_1793728620517",
+          "sku": "SR-MEG-500G",
+          "packSize": "500 g",
+          "unit": "g",
+          "pricePaise": 55000,
+          "comparePricePaise": 40000,
+          "stock": 30,
           "isAvailable": true
         }
-      ],
-      "rating": 4.9,
-      "reviewCount": 28,
-      "tags": [
-        "chocolate",
-        "munnar",
-        "almonds",
-        "handmade"
-      ],
-      "createdAt": "2026-11-02T12:22:36.096Z",
-      "updatedAt": "2026-11-02T12:22:36.096Z"
+      ]
     }
   ],
   "categories": [
     {
+      "_id": "6ad3b4c5869ef72ebade5dc6",
       "id": "cat_spices",
       "name": "Whole & Ground Spices",
       "slug": "spices",
       "description": "Hand-picked from the mountain slopes of Idukki and Wayanad, sun-dried to preserve pure volatile oils.",
       "image": "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80",
-      "isActive": true
+      "isActive": true,
+      "itemCount": 0,
+      "__v": 0
     },
     {
+      "_id": "6ad3b4c5869ef72ebade5dc7",
       "id": "cat_masalas",
       "name": "Artisan Masala Blends",
       "slug": "masalas",
       "description": "Slow-roasted traditional Kerala spices blended in small batches without fillers or artificial colors.",
       "image": "https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=800&q=80",
-      "isActive": true
+      "isActive": true,
+      "itemCount": 0,
+      "__v": 0
     },
     {
+      "_id": "6ad3b4c5869ef72ebade5dc8",
       "id": "cat_tea",
       "name": "Munnar & High-Grown Tea",
       "slug": "tea",
       "description": "Single-estate orthodox whole leaf, silver tips, and aromatic CTC teas from Kolukkumalai & Thalayar.",
       "image": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=800&q=80",
-      "isActive": true
+      "isActive": true,
+      "itemCount": 0,
+      "__v": 0
     },
     {
+      "_id": "6ad3b4c5869ef72ebade5dc9",
       "id": "cat_oils",
       "name": "Essential Oils & Naturals",
       "slug": "essential_oils",
       "description": "Steam-distilled pure lemongrass, rosemary, eucalyptus, and virgin cold-pressed coconut oil.",
       "image": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80",
-      "isActive": true
+      "isActive": true,
+      "itemCount": 0,
+      "__v": 0
     },
     {
+      "_id": "6ad3b4c5869ef72ebade5dca",
       "id": "cat_gift",
       "name": "Gift Boxes & Hampers",
       "slug": "gift_boxes",
       "description": "Curated wooden spice caskets and celebration hampers packed with the finest Western Ghats harvest.",
       "image": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80",
-      "isActive": true
+      "isActive": true,
+      "itemCount": 0,
+      "__v": 0
     },
     {
+      "_id": "6ad3b4c5869ef72ebade5dcb",
       "id": "cat_chocolates",
       "name": "Munnar Artisan Chocolates",
       "slug": "chocolates",
       "description": "Handcrafted rich cocoa chocolates infused with roasted plantation nuts and subtle spice notes.",
       "image": "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=800&q=80",
-      "isActive": true
+      "isActive": true,
+      "itemCount": 0,
+      "__v": 0
     }
   ],
   "carts": [
@@ -2477,10 +2200,97 @@
       ],
       "updatedAt": "2026-11-01T17:33:57.892Z",
       "userId": "usr_1793297774168_kcwj6"
+    },
+    {
+      "_id": "ord_1793625096268_88sb9",
+      "id": "ord_1793625096268_88sb9",
+      "__v": 0,
+      "createdAt": "2026-11-02T13:11:36.268Z",
+      "customerEmail": "admin@spiceroots.in",
+      "customerName": "Spice Roots Admin",
+      "customerPhone": "+91 91885 70191",
+      "fulfillmentStatus": "pending",
+      "items": [
+        {
+          "productId": "prod_green_cardamom_8mm",
+          "productName": "Alleppey Green Cardamom — 8mm Super Bold",
+          "productSlug": "alleppey-green-cardamom-8mm",
+          "variantId": "v_gc_50",
+          "sku": "SR-GC-50G",
+          "packSize": "50 g",
+          "unitPricePaise": 27500,
+          "quantity": 2,
+          "lineTotalPaise": 55000,
+          "image": "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=1000&q=80"
+        },
+        {
+          "productId": "prod_black_pepper",
+          "productName": "Malabar Tellicherry Black Pepper (Garbled)",
+          "productSlug": "malabar-black-pepper",
+          "variantId": "v_bp_100",
+          "sku": "SR-BP-100G",
+          "packSize": "100 g",
+          "unitPricePaise": 16000,
+          "quantity": 1,
+          "lineTotalPaise": 16000,
+          "image": "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1000&q=80"
+        },
+        {
+          "productId": "prod_kolukkumalai_tea",
+          "productName": "Kolukkumalai High-Peak Orthodox Black Tea",
+          "productSlug": "kolukkumalai-orthodox-tea",
+          "variantId": "v_kt_100",
+          "sku": "SR-KT-100G",
+          "packSize": "100 g",
+          "unitPricePaise": 24000,
+          "quantity": 1,
+          "lineTotalPaise": 24000,
+          "image": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=1000&q=80"
+        }
+      ],
+      "orderNumber": "SR-2026-82225",
+      "paymentAuditLogs": [
+        {
+          "previousStatus": "CREATED",
+          "newStatus": "AWAITING_PAYMENT",
+          "timestamp": "2026-11-02T13:11:36.257Z",
+          "changedBy": "system",
+          "note": "Order initialized with payment method: upi_manual"
+        }
+      ],
+      "paymentMethod": "upi_manual",
+      "paymentStatus": "AWAITING_PAYMENT",
+      "priceBreakdown": {
+        "subtotalPaise": 95000,
+        "discountPaise": 0,
+        "shippingFeePaise": 6000,
+        "taxPaise": 4750,
+        "totalPaise": 105750
+      },
+      "shippingAddress": {
+        "name": "Spice Roots Admin",
+        "phone": "+91 91885 70191",
+        "addressLine": "Post Office Junction",
+        "landmark": "Opposite Plantation Club",
+        "city": "Munnar",
+        "state": "Kerala",
+        "pincode": "685612",
+        "isDefault": false
+      },
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-11-02T13:11:36.257Z",
+          "note": "Order created for Direct UPI payment. Awaiting customer transfer."
+        }
+      ],
+      "updatedAt": "2026-11-02T13:11:36.268Z",
+      "userId": "usr_1792051028445_txwjm"
     }
   ],
   "coupons": [
     {
+      "_id": "6ad3b4c6869ef72ebade5ddf",
       "id": "cpn_welcome10",
       "code": "WELCOME10",
       "discountType": "percent",
@@ -2490,9 +2300,11 @@
       "expiryDate": "2027-12-31T23:59:59.000Z",
       "usageLimit": 1000,
       "timesUsed": 12,
-      "isActive": true
+      "isActive": true,
+      "__v": 0
     },
     {
+      "_id": "6ad3b4c6869ef72ebade5de0",
       "id": "cpn_kerala20",
       "code": "KERALA20",
       "discountType": "percent",
@@ -2502,9 +2314,11 @@
       "expiryDate": "2027-12-31T23:59:59.000Z",
       "usageLimit": 500,
       "timesUsed": 8,
-      "isActive": true
+      "isActive": true,
+      "__v": 0
     },
     {
+      "_id": "6ad3b4c6869ef72ebade5de1",
       "id": "cpn_freeship",
       "code": "FREESHIP",
       "discountType": "flat",
@@ -2512,7 +2326,8 @@
       "minOrderValuePaise": 49900,
       "expiryDate": "2027-12-31T23:59:59.000Z",
       "timesUsed": 3,
-      "isActive": true
+      "isActive": true,
+      "__v": 0
     }
   ],
   "reviews": [
@@ -2702,66 +2517,6 @@
       "isVerifiedPurchase": true,
       "productId": "prod_kolukkumalai_tea",
       "rating": 5
-    },
-    {
-      "productId": "prod_black_pepper",
-      "customerName": "Ananya Nair (Kochi)",
-      "rating": 5,
-      "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-02T12:22:35.890Z",
-      "id": "rev_1793622155890",
-      "_id": "rev_1793622155890"
-    },
-    {
-      "productId": "prod_green_cardamom_8mm",
-      "customerName": "Chef Vikramaditya (Mumbai)",
-      "rating": 5,
-      "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-02T12:22:35.892Z",
-      "id": "rev_1793622155892",
-      "_id": "rev_1793622155892"
-    },
-    {
-      "productId": "prod_kolukkumalai_tea",
-      "customerName": "Priya Sundaram (Chennai)",
-      "rating": 5,
-      "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-02T12:22:35.895Z",
-      "id": "rev_1793622155895",
-      "_id": "rev_1793622155895"
-    },
-    {
-      "productId": "prod_black_pepper",
-      "customerName": "Ananya Nair (Kochi)",
-      "rating": 5,
-      "comment": "The aroma when you grind this pepper is unforgettable. Night and day difference from supermarket pepper.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-02T12:22:36.369Z",
-      "id": "rev_1793622156369",
-      "_id": "rev_1793622156369"
-    },
-    {
-      "productId": "prod_green_cardamom_8mm",
-      "customerName": "Chef Vikramaditya (Mumbai)",
-      "rating": 5,
-      "comment": "True 8mm bold cardamom pods, intensely green and dripping with sweet essential oil. Ideal for restaurant biryanis.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-02T12:22:36.374Z",
-      "id": "rev_1793622156374",
-      "_id": "rev_1793622156374"
-    },
-    {
-      "productId": "prod_kolukkumalai_tea",
-      "customerName": "Priya Sundaram (Chennai)",
-      "rating": 5,
-      "comment": "Having visited Kolukkumalai in person, this brings back the mist and sunrise taste in every single cup.",
-      "isVerifiedPurchase": true,
-      "createdAt": "2026-11-02T12:22:36.377Z",
-      "id": "rev_1793622156377",
-      "_id": "rev_1793622156377"
     }
   ],
   "shippingRates": [
@@ -2826,8 +2581,8 @@
     "supportPhone": "+91 91885 70191",
     "businessAddress": "Kalaivani Spices & Plantation Depot, Post Office Junction, Munnar, Idukki District, Kerala - 685612",
     "currencySymbol": "₹",
-    "freeShippingThresholdPaise": 99900,
-    "standardShippingFeePaise": 6000,
+    "freeShippingThresholdPaise": 500000,
+    "standardShippingFeePaise": null,
     "taxPercent": 5,
     "isCodEnabled": false,
     "isRazorpayEnabled": false,
@@ -2847,6 +2602,6 @@
     "_id": "6ad3b4c6cb7ee1dcd71d1b49",
     "__v": 0,
     "createdAt": "2026-10-17T17:47:50.550Z",
-    "updatedAt": "2026-11-02T10:06:57.884Z"
+    "updatedAt": "2026-11-03T18:51:06.447Z"
   }
 }

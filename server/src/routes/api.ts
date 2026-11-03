@@ -3,7 +3,8 @@ import {
   getProducts, 
   getProductBySlug, 
   getCategories, 
-  addProductReview 
+  addProductReview,
+  updateProductHandler 
 } from '../controllers/productController.js';
 import { 
   getCart, 
@@ -104,6 +105,7 @@ router.get('/settings', (_req: Request, res: Response) => {
 
 // --- PRODUCTS & CATEGORIES ---
 router.get('/products', getProducts);
+router.put('/products/:id', updateProductHandler);
 router.get('/products/:slug', getProductBySlug);
 router.get('/categories', getCategories);
 router.post('/products/:id/reviews', addProductReview);

@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './context/AuthContext.js';
 import { CartProvider } from './context/CartContext.js';
 import { WishlistProvider } from './context/WishlistContext.js';
 import { StoreProvider } from './context/StoreContext.js';
+import { ProductProvider } from './context/ProductContext.js';
 
 import { AnnouncementBar } from './components/AnnouncementBar.js';
 import { Header } from './components/Header.js';
@@ -94,9 +95,10 @@ export const App: React.FC = () => {
     <BrowserRouter>
       <ScrollToTop />
       <StoreProvider>
-        <AuthProvider>
-          <CartProvider>
-            <WishlistProvider>
+        <ProductProvider>
+          <AuthProvider>
+            <CartProvider>
+              <WishlistProvider>
               <Routes>
                 {/* Customer Storefront Routes */}
                 <Route element={<CustomerLayout />}>
@@ -146,8 +148,9 @@ export const App: React.FC = () => {
             </WishlistProvider>
           </CartProvider>
         </AuthProvider>
-      </StoreProvider>
-    </BrowserRouter>
+      </ProductProvider>
+    </StoreProvider>
+  </BrowserRouter>
   );
 };
 

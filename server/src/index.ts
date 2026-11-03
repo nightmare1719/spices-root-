@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
+import http from 'http';
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -8,6 +9,7 @@ import path from 'path';
 import apiRouter from './routes/api.js';
 import { connectDatabase } from './config/database.js';
 import { runSeed } from './seed.js';
+import { initSocket } from './services/socketService.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -90,18 +92,22 @@ app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   });
 });
 
-// Initialize DB, Seed, and Listen
+// Initialize DB, Seed, Socket.io, and Listen
 async function startServer() {
   try {
     await connectDatabase();
     await runSeed(false); // Idempotent seed check
 
-    app.listen(PORT, () => {
+    const httpServer = http.createServer(app);
+    initSocket(httpServer, allowedOrigins);
+
+    httpServer.listen(PORT, () => {
       console.log(`=================================================`);
       console.log(`🌿 SPICE ROOTS SERVER STARTED ON PORT ${PORT}`);
       console.log(`   Health Check : http://localhost:${PORT}/api/health`);
       console.log(`   Products API : http://localhost:${PORT}/api/products`);
       console.log(`   Settings API : http://localhost:${PORT}/api/settings`);
+      console.log(`   Realtime Sync: Socket.io + Change Stream Active`);
       console.log(`=================================================`);
     });
   } catch (err) {

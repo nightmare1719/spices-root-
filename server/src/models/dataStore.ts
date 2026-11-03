@@ -27,7 +27,7 @@ const defaultSettings: IStoreSettings = {
   storeName: "Spice Roots",
   brandTagline: "Authentic Western Ghats & Kerala Spices",
   announcementText: "🌿 transparency shipping across india  | Sourced fresh from Munnar & Western Ghats",
-  supportEmail: "care@spiceroots.in",
+  supportEmail: "uniquestorm11@gmail.com",
   supportPhone: "+91 91885 70191",
   businessAddress: "Kalaivani Spices & Plantation Depot, Post Office Junction, Munnar, Idukki District, Kerala - 685612",
   currencySymbol: "₹",
@@ -46,7 +46,7 @@ const defaultSettings: IStoreSettings = {
   invoicePrefix: process.env.INVOICE_PREFIX || "SR-INV-",
   aboutStory: "Founded amidst the mist-clad hills of Munnar and the lush slopes of the Western Ghats, Spice Roots (Kalaivani Spices) connects generational spice planters with kitchens that revere authenticity. Each peppercorn, cardamom pod, and hand-rolled cinnamon quill is selected for peak essential oil content, zero adulteration, and traditional sun-drying practices.",
   shippingPolicy: "Orders are dispatched within 24-48 business hours via trusted courier partners (Blue Dart, DTDC, India Post). Standard delivery timeline is 3-6 business days across India. Tracking details are emailed and accessible on our tracking page as soon as your shipment is picked up.",
-  returnPolicy: "Because spices and food products are perishable and consumable goods, we accept returns or replacements within 7 days of delivery only for items received in damaged condition, defective packaging, or incorrect products sent. Please reach out to care@spiceroots.in with photos of the package.",
+  returnPolicy: "Because spices and food products are perishable and consumable goods, we accept returns or replacements within 7 days of delivery only for items received in damaged condition, defective packaging, or incorrect products sent. Please reach out to uniquestorm11@gmail.com with photos of the package.",
   privacyPolicy: "We respect your personal privacy. Customer information including address, phone number, and email are solely utilized to fulfill your orders, process payments securely, and send order updates. We never sell, rent, or lease customer data to third-party marketing services.",
   termsAndConditions: "By using Spice Roots, you agree to these terms. Prices are listed in Indian Rupees (INR) inclusive of applicable taxes. Order cancellation is supported prior to dispatch. Products are subject to seasonal availability from our plantation harvests."
 };
@@ -113,7 +113,14 @@ class DataStore {
   private isLoaded: boolean = false;
 
   constructor() {
-    this.dataDir = path.resolve(process.cwd(), 'data');
+    const candidateServerData = path.resolve(process.cwd(), 'server', 'data');
+    const candidateRootData = path.resolve(process.cwd(), 'data');
+
+    if (fs.existsSync(path.join(candidateServerData, 'store.json'))) {
+      this.dataDir = candidateServerData;
+    } else {
+      this.dataDir = candidateRootData;
+    }
     this.filePath = path.join(this.dataDir, 'store.json');
     this.inMemory = {
       users: [],
@@ -347,6 +354,17 @@ class DataStore {
       });
     }
     return this.inMemory.products[index];
+  }
+  public upsertProductFromMongo(mongoDoc: any) {
+    this.init();
+    const docId = mongoDoc.id || mongoDoc._id?.toString();
+    const index = this.inMemory.products.findIndex(p => p.id === docId || p._id === docId);
+    if (index !== -1) {
+      this.inMemory.products[index] = { ...this.inMemory.products[index], ...mongoDoc };
+    } else {
+      this.inMemory.products.push(mongoDoc);
+    }
+    this.save();
   }
   public deleteProduct(id: string) {
     this.init();

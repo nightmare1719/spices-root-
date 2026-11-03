@@ -1,43 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { api, API_BASE } from '../../services/api.js';
+import React, { useState } from 'react';
+import { API_BASE } from '../../services/api.js';
 import { IProduct, IProductVariant } from '../../types/index.js';
 import { formatINR } from '../../utils/format.js';
+import { useProducts } from '../../context/ProductContext.js';
 import { 
   Plus, Search, Edit2, Trash2, Download, 
   Check, X, Eye, EyeOff, Star, Sparkles 
 } from 'lucide-react';
 
 export const AdminProductsPage: React.FC = () => {
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const { products, isLoading, updateProduct, createProduct, deleteProduct } = useProducts();
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('all');
-  const [isLoading, setIsLoading] = useState(true);
 
   // Edit / Create Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Partial<IProduct> | null>(null);
 
-  const loadProducts = async () => {
-    setIsLoading(true);
-    try {
-      const res = await api.admin.getProducts({ search, category });
-      if (res.success && res.data) {
-        setProducts(res.data);
-      }
-    } catch (err) {
-      console.error('Failed to load products:', err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    loadProducts();
-  }, [category]);
+  // Derived filtered products list from synchronized global state
+  const filteredProducts = products.filter(p => {
+    const matchesCat = category === 'all' || p.category.toLowerCase() === category.toLowerCase();
+    const q = search.toLowerCase().trim();
+    const matchesSearch = !q || p.name.toLowerCase().includes(q) || p.variants.some(v => v.sku.toLowerCase().includes(q));
+    return matchesCat && matchesSearch;
+  });
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    loadProducts();
   };
 
   const openCreateModal = () => {
@@ -76,14 +65,15 @@ export const AdminProductsPage: React.FC = () => {
     if (!editingProduct?.name || !editingProduct?.variants?.length) return;
 
     try {
-      if (editingProduct.id) {
-        await api.admin.updateProduct(editingProduct.id, editingProduct);
+      const targetId = editingProduct._id || editingProduct.id;
+      if (targetId) {
+        // Direct MongoDB persistence with optimistic state update and rollback
+        await updateProduct(targetId, editingProduct);
       } else {
-        await api.admin.createProduct(editingProduct);
+        await createProduct(editingProduct);
       }
       setIsModalOpen(false);
       setEditingProduct(null);
-      await loadProducts();
     } catch (err) {
       alert((err as Error).message || 'Failed to save product');
     }
@@ -92,8 +82,7 @@ export const AdminProductsPage: React.FC = () => {
   const handleDeleteProduct = async (id: string, name: string) => {
     if (!window.confirm(`Are you sure you want to delete "${name}"?`)) return;
     try {
-      await api.admin.deleteProduct(id);
-      await loadProducts();
+      await deleteProduct(id);
     } catch (err) {
       alert((err as Error).message || 'Failed to delete product');
     }
@@ -101,8 +90,10 @@ export const AdminProductsPage: React.FC = () => {
 
   const handleTogglePublish = async (prod: IProduct) => {
     try {
-      await api.admin.updateProduct(prod.id, { isPublished: !prod.isPublished });
-      await loadProducts();
+      const targetId = prod._id || prod.id;
+      if (targetId) {
+        await updateProduct(targetId, { isPublished: !prod.isPublished });
+      }
     } catch (err) {
       alert('Failed to update status');
     }
@@ -198,15 +189,15 @@ export const AdminProductsPage: React.FC = () => {
                 <tr>
                   <td colSpan={6} className="text-center py-10 text-[#99907c]">Loading catalog...</td>
                 </tr>
-              ) : products.length === 0 ? (
+              ) : filteredProducts.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="text-center py-10 text-[#99907c]">No products found.</td>
                 </tr>
               ) : (
-                products.map((prod) => {
+                filteredProducts.map((prod) => {
                   const totalStock = prod.variants.reduce((sum, v) => sum + v.stock, 0);
                   return (
-                    <tr key={prod.id} className="hover:bg-[#201f22]/60 transition-colors">
+                    <tr key={prod._id || prod.id} className="hover:bg-[#201f22]/60 transition-colors">
                       
                       <td className="p-4">
                         <div className="flex items-center gap-3">
